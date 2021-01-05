@@ -1,50 +1,39 @@
 module.exports = {
   siteMetadata: {
-    title: `WP GraphQL Gatsby Starter`,
-    description: `Get started...`,
-    author: `@n8finch`,
-    image: `${__dirname}/src/images/gatsby-astronaut.png`,
+    title: "wau-gatsby-wp",
   },
   plugins: [
     {
-      resolve: `gatsby-plugin-google-analytics`,
+      resolve: "gatsby-source-wordpress-experimental",
       options: {
-        trackingId: "UA-72004715-1",
+        url: "https://www.fsansalvadore.com/dev/wau/wp/",
       },
     },
-    `gatsby-plugin-react-helmet`,
+    "gatsby-plugin-styled-components",
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: "gatsby-plugin-google-analytics",
       options: {
-        name: `images`,
-        path: `${__dirname}/src/images`,
+        trackingId: "UA-105651725-1",
       },
     },
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
+    "gatsby-plugin-sharp",
+    "gatsby-plugin-react-helmet",
+    "gatsby-plugin-sitemap",
+    "gatsby-plugin-offline",
     {
-      resolve: "gatsby-source-graphql",
+      resolve: "gatsby-plugin-manifest",
       options: {
-        // This type will contain remote schema Query type
-        typeName: `WPGraphQL`,
-        // This is field under which it's accessible
-        fieldName: `wpgraphql`,
-        // Url to query from
-        url: `https://dev-gatsby-wpgraphql-starter.pantheonsite.io/graphql`,
+        icon: "src/images/icon.png",
       },
     },
+    "gatsby-transformer-sharp",
     {
-      resolve: `gatsby-plugin-manifest`,
+      resolve: "gatsby-source-filesystem",
       options: {
-        name: `gatsby-starter-default`,
-        short_name: `starter`,
-        start_url: `/`,
-        background_color: `#663399`,
-        theme_color: `#663399`,
-        display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+        name: "images",
+        path: "./src/images/",
       },
+      __key: "images",
     },
-    `gatsby-plugin-offline`,
   ],
-}
+};
