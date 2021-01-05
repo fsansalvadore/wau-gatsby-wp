@@ -1,39 +1,46 @@
 module.exports = {
   siteMetadata: {
-    title: "wau-gatsby-wp",
+    title: `WAU Architetti`,
+    titleTemplate: "%s",
+    description: `WAU ARCHITETTI description`,
+    author: `@Francesco_Sansa`,
+    url: "https://wauarchitetti.com/", // No trailing slash allowed!
+    siteUrl: `https://wauarchitetti.com/`,
+    // image: "/images/Saglietti_1200X623.png", // Path to your image you placed in the 'static' folder
+    twitterUsername: "@Francesco_Sansa",
   },
   plugins: [
     {
-      resolve: "gatsby-source-wordpress-experimental",
+      resolve: "gatsby-source-graphql",
       options: {
-        url: "https://www.fsansalvadore.com/dev/wau/wp/",
+        typeName: "WORDPRESS",
+        fieldName: "wordpress",
+        url: "https://www.fsansalvadore.com/dev/wau/wp/graphql",
+        refetchInterval: 60,
       },
     },
-    "gatsby-plugin-styled-components",
     {
-      resolve: "gatsby-plugin-google-analytics",
-      options: {
-        trackingId: "UA-105651725-1",
-      },
+      resolve: 'gatsby-plugin-i18n',
+      options: {        
+        langKeyDefault: 'it',
+        langKeyForNull: 'it ',
+        prefixDefault: false,
+        useLangKeyLayout: false
+      }
     },
-    "gatsby-plugin-sharp",
-    "gatsby-plugin-react-helmet",
-    "gatsby-plugin-sitemap",
-    "gatsby-plugin-offline",
     {
-      resolve: "gatsby-plugin-manifest",
+      resolve: `gatsby-source-filesystem`,
       options: {
-        icon: "src/images/icon.png",
+        name: `images`,
+        path: `${__dirname}/src/images`,
       },
     },
-    "gatsby-transformer-sharp",
+    `gatsby-plugin-sass`,
     {
-      resolve: "gatsby-source-filesystem",
-      options: {
-        name: "images",
-        path: "./src/images/",
-      },
-      __key: "images",
+        resolve: `gatsby-plugin-styled-components`,
+        options: {
+            // Add any options here
+        },
     },
-  ],
-};
+  ]
+}
