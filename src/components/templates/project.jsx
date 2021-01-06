@@ -2,6 +2,7 @@ import React from "react"
 import { graphql, Link } from "gatsby"
 import { Helmet } from 'react-helmet'
 import styled from 'styled-components'
+import Layout from "../layout"
 // import ComponentParser from '../ComponentParser'
 
 const ProjectPage = (props) => {
@@ -17,12 +18,12 @@ const ProjectPage = (props) => {
   const {data} = props;
   
   return (
-    <div>
+    <Layout>
           <Link to="/">
             Home Page
           </Link>
           <h1>{title}</h1>
-    </div>
+    </Layout>
   )
 }
 
