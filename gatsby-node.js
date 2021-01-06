@@ -261,7 +261,7 @@ exports.createPages = async ({ actions, graphql }) => {
       // createPage action
       actions.createPage({
         // set path base on language
-        path: `/expertises/${expertise.slug}`,
+        path: `/expertise/${expertise.slug}`,
         // set template and context
         component: path.resolve(`./src/components/templates/expertise-show.jsx`),
         context: {
@@ -278,7 +278,7 @@ exports.createPages = async ({ actions, graphql }) => {
       // createPage action
       actions.createPage({
         // set path base on language
-        path: `/en/expertises/${expertise.slug}`,
+        path: `/en/expertise/${expertise.slug}`,
         // set template and context
         component: path.resolve(`./src/components/templates/expertise-show.jsx`),
         context: {

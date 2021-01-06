@@ -1,22 +1,26 @@
-import PropTypes from "prop-types"
-import React, { Component } from "react"
-import { Location } from "@reach/router"
+import React from "react"
 import { Link } from "gatsby"
 
-function LanguageSelector({ classes, lang, location, className }) {
-  if (lang === "default") {
+const LanguageSelector = ({ classes, className }) => {
+  let location
+
+  if (typeof window !== `undefined`) {
+      location = window.location.href
+  }
+  
+  if (location.includes("00/en")) {
     return (
-      <Link className={className} to={`/en/${location.pathname}`}>
-        Eng
+      <Link
+        className={className}
+        to={"/"}
+      >
+        Ita
       </Link>
     )
   } else {
     return (
-      <Link
-        className={className}
-        to={location.pathname.replace("/" + lang + "/", "/")}
-      >
-        Ita
+      <Link className={className} to={`/en/`}>
+        Eng
       </Link>
     )
   }
