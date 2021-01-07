@@ -3,7 +3,9 @@ import PropTypes from "prop-types"
 import { useStaticQuery, graphql, Link } from "gatsby"
 
 import GenericMetadata from './GenericMetadata'
-import MenuIta from "./elements/Menu/Menu"
+import Menu from "./elements/Menu/Menu"
+import "../styles/global.css"
+import MainNav from "./elements/MainNav/MainNav"
 
 const Layout = ({ children }) => {
   let location
@@ -18,7 +20,7 @@ const Layout = ({ children }) => {
   return (
     <>
       <GenericMetadata/>
-      <MenuIta lang={lang} />
+      <MainNav lang={lang} />
       {children}
     </>
   )

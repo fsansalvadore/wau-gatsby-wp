@@ -118,7 +118,7 @@ exports.createPages = async ({ actions, graphql }) => {
     // create ita articles pages
     data.wordpress.articles.nodes.filter(a => a.language.code === "EN").forEach(article => {
       actions.createPage({
-        path: `/en/articles/${article.slug}`,
+        path: `/en/news/${article.slug}`,
         component: path.resolve(`./src/components/templates/article-show.jsx`),
         context: {
           ...article,

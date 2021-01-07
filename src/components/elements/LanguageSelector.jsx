@@ -14,13 +14,13 @@ const LanguageSelector = ({ classes, className }) => {
         className={className}
         to={"/"}
       >
-        Ita
+        Italiano
       </Link>
     )
   } else {
     return (
       <Link className={className} to={`/en/`}>
-        Eng
+        English
       </Link>
     )
   }
