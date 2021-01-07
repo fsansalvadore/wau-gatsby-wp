@@ -14,7 +14,6 @@ const IndexPage = () => {
         <title>WAU Architetti • Home Page</title>
       </Helmet>
       <div>
-        {/* <LanguageSelector lang={lang} location={location} /> */}
         <h1>WAU ARCHITETTI ITA</h1>
       </div>
     </Layout>

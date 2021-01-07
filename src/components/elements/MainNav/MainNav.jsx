@@ -1,21 +1,17 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { Link } from "gatsby"
 import Menu from '../Menu/Menu';
 import styled from "styled-components";
 import { motion } from 'framer-motion'
 import Logo from "../Logo/Logo";
-
+import tw from 'twin.macro'
 import { transition } from '../../../helpers/framer-defaults'
 
 const Navbar = styled.div`
     position: fixed;
     z-index: 999;
-    width: 100%;
     height: 80px;
-    padding: 0 4rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    ${tw`fixed w-full py-0 px-8 md:px-16 flex items-center justify-between`}
 `
 
 const MenuBtn = styled.button`
@@ -92,11 +88,21 @@ const closeBtnVariant = {
 
 const MainNav = ({lang}) => {
   const [isOpen, toggleMenu] = useState(false)
+
+  useEffect(() => {
+    if (typeof window !== `undefined`) {
+        if(isOpen) {
+            document.querySelector('body').style.overflowY = "hidden"
+        } else {
+            document.querySelector('body').style.overflowY = "auto"
+        }
+    }
+  })
   
   return (
     <>
       <Navbar>
-          <Link to="/">
+          <Link to={lang === "en" ? "/en/" : "/"}>
             <Logo />
           </Link>
         <MenuBtn as="a" onClick={() => toggleMenu(!isOpen)} isOpen={isOpen}>

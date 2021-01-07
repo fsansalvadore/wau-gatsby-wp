@@ -130,36 +130,34 @@ var plugins = [{
 //   },
 // ]
 
-var apis = __webpack_require__(/*! ./api-ssr-docs */ "./.cache/api-ssr-docs.js"); // Run the specified API in any plugins that have implemented it
+const apis = __webpack_require__(/*! ./api-ssr-docs */ "./.cache/api-ssr-docs.js"); // Run the specified API in any plugins that have implemented it
 
 
-module.exports = function (api, args, defaultReturn, argTransform) {
+module.exports = (api, args, defaultReturn, argTransform) => {
   if (!apis[api]) {
-    console.log("This API doesn't exist", api);
+    console.log(`This API doesn't exist`, api);
   } // Run each plugin in series.
   // eslint-disable-next-line no-undef
 
 
-  var results = plugins.map(function (plugin) {
+  let results = plugins.map(plugin => {
     if (!plugin.plugin[api]) {
       return undefined;
     }
 
-    var result = plugin.plugin[api](args, plugin.options);
+    const result = plugin.plugin[api](args, plugin.options);
 
     if (result && argTransform) {
       args = argTransform({
-        args: args,
-        result: result
+        args,
+        result
       });
     }
 
     return result;
   }); // Filter out undefined results.
 
-  results = results.filter(function (result) {
-    return typeof result !== "undefined";
-  });
+  results = results.filter(result => typeof result !== `undefined`);
 
   if (results.length > 0) {
     return results;
@@ -410,7 +408,7 @@ function HTML(props) {
     name: "viewport",
     content: "width=device-width, initial-scale=1, shrink-to-fit=no"
   }), props.headComponents), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("body", props.bodyAttributes, props.preBodyComponents, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    key: "body",
+    key: `body`,
     id: "___gatsby",
     dangerouslySetInnerHTML: {
       __html: props.body
@@ -453,125 +451,119 @@ __webpack_require__.r(__webpack_exports__);
 // this module so that when this code runs, testRequireError is undefined.
 // So in the meantime, we'll just inline it.
 
-var testRequireError = function testRequireError(moduleName, err) {
-  var regex = new RegExp("Error: Cannot find module\\s." + moduleName);
-  var firstLine = err.toString().split("\n")[0];
+const testRequireError = (moduleName, err) => {
+  const regex = new RegExp(`Error: Cannot find module\\s.${moduleName}`);
+  const firstLine = err.toString().split(`\n`)[0];
   return regex.test(firstLine);
 };
 
-var Html;
+let Html;
 
 try {
   Html = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module '../src/html'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
 } catch (err) {
-  if (testRequireError("../src/html", err)) {
+  if (testRequireError(`../src/html`, err)) {
     Html = __webpack_require__(/*! ./default-html */ "./.cache/default-html.js");
   } else {
-    console.log("There was an error requiring \"src/html.js\"\n\n", err, "\n\n");
+    console.log(`There was an error requiring "src/html.js"\n\n`, err, `\n\n`);
     process.exit();
   }
 }
 
 Html = Html && Html.__esModule ? Html.default : Html;
-/* harmony default export */ __webpack_exports__["default"] = (function (pagePath, callback) {
-  var headComponents = [/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("meta", {
+/* harmony default export */ __webpack_exports__["default"] = ((pagePath, callback) => {
+  let headComponents = [/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("meta", {
     key: "environment",
     name: "note",
     content: "environment=development"
   })];
-  var htmlAttributes = {};
-  var bodyAttributes = {};
-  var preBodyComponents = [];
-  var postBodyComponents = [];
-  var bodyProps = {};
-  var htmlStr;
+  let htmlAttributes = {};
+  let bodyAttributes = {};
+  let preBodyComponents = [];
+  let postBodyComponents = [];
+  let bodyProps = {};
+  let htmlStr;
 
-  var setHeadComponents = function setHeadComponents(components) {
+  const setHeadComponents = components => {
     headComponents = headComponents.concat(components);
   };
 
-  var setHtmlAttributes = function setHtmlAttributes(attributes) {
+  const setHtmlAttributes = attributes => {
     htmlAttributes = lodash_merge__WEBPACK_IMPORTED_MODULE_0___default()(htmlAttributes, attributes);
   };
 
-  var setBodyAttributes = function setBodyAttributes(attributes) {
+  const setBodyAttributes = attributes => {
     bodyAttributes = lodash_merge__WEBPACK_IMPORTED_MODULE_0___default()(bodyAttributes, attributes);
   };
 
-  var setPreBodyComponents = function setPreBodyComponents(components) {
+  const setPreBodyComponents = components => {
     preBodyComponents = preBodyComponents.concat(components);
   };
 
-  var setPostBodyComponents = function setPostBodyComponents(components) {
+  const setPostBodyComponents = components => {
     postBodyComponents = postBodyComponents.concat(components);
   };
 
-  var setBodyProps = function setBodyProps(props) {
+  const setBodyProps = props => {
     bodyProps = lodash_merge__WEBPACK_IMPORTED_MODULE_0___default()({}, bodyProps, props);
   };
 
-  var getHeadComponents = function getHeadComponents() {
-    return headComponents;
-  };
+  const getHeadComponents = () => headComponents;
 
-  var replaceHeadComponents = function replaceHeadComponents(components) {
+  const replaceHeadComponents = components => {
     headComponents = components;
   };
 
-  var getPreBodyComponents = function getPreBodyComponents() {
-    return preBodyComponents;
-  };
+  const getPreBodyComponents = () => preBodyComponents;
 
-  var replacePreBodyComponents = function replacePreBodyComponents(components) {
+  const replacePreBodyComponents = components => {
     preBodyComponents = components;
   };
 
-  var getPostBodyComponents = function getPostBodyComponents() {
-    return postBodyComponents;
-  };
+  const getPostBodyComponents = () => postBodyComponents;
 
-  var replacePostBodyComponents = function replacePostBodyComponents(components) {
+  const replacePostBodyComponents = components => {
     postBodyComponents = components;
   };
 
-  _api_runner_ssr__WEBPACK_IMPORTED_MODULE_3___default()("onRenderBody", {
-    setHeadComponents: setHeadComponents,
-    setHtmlAttributes: setHtmlAttributes,
-    setBodyAttributes: setBodyAttributes,
-    setPreBodyComponents: setPreBodyComponents,
-    setPostBodyComponents: setPostBodyComponents,
-    setBodyProps: setBodyProps,
+  _api_runner_ssr__WEBPACK_IMPORTED_MODULE_3___default()(`onRenderBody`, {
+    setHeadComponents,
+    setHtmlAttributes,
+    setBodyAttributes,
+    setPreBodyComponents,
+    setPostBodyComponents,
+    setBodyProps,
     pathname: pagePath
   });
-  _api_runner_ssr__WEBPACK_IMPORTED_MODULE_3___default()("onPreRenderHTML", {
-    getHeadComponents: getHeadComponents,
-    replaceHeadComponents: replaceHeadComponents,
-    getPreBodyComponents: getPreBodyComponents,
-    replacePreBodyComponents: replacePreBodyComponents,
-    getPostBodyComponents: getPostBodyComponents,
-    replacePostBodyComponents: replacePostBodyComponents,
+  _api_runner_ssr__WEBPACK_IMPORTED_MODULE_3___default()(`onPreRenderHTML`, {
+    getHeadComponents,
+    replaceHeadComponents,
+    getPreBodyComponents,
+    replacePreBodyComponents,
+    getPostBodyComponents,
+    replacePostBodyComponents,
     pathname: pagePath
   });
-  var htmlElement = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(Html, Object.assign({}, bodyProps, {
-    body: "",
+  const htmlElement = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(Html, { ...bodyProps,
+    body: ``,
     headComponents: headComponents.concat([/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("script", {
-      key: "io",
+      key: `io`,
       src: "/socket.io/socket.io.js"
     })]),
-    htmlAttributes: htmlAttributes,
-    bodyAttributes: bodyAttributes,
-    preBodyComponents: preBodyComponents,
+    htmlAttributes,
+    bodyAttributes,
+    preBodyComponents,
     postBodyComponents: postBodyComponents.concat([/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("script", {
-      key: "polyfill",
+      key: `polyfill`,
       src: "/polyfill.js",
       noModule: true
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("script", {
-      key: "commons",
+      key: `commons`,
       src: "/commons.js"
     })])
-  }));
+  });
   htmlStr = Object(react_dom_server__WEBPACK_IMPORTED_MODULE_2__["renderToStaticMarkup"])(htmlElement);
-  htmlStr = "<!DOCTYPE html>" + htmlStr;
+  htmlStr = `<!DOCTYPE html>${htmlStr}`;
   callback(null, htmlStr);
 });
 
@@ -594,12 +586,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var wrapRootElement = function wrapRootElement(_ref) {
-  var element = _ref.element;
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_apollo__WEBPACK_IMPORTED_MODULE_1__["ApolloProvider"], {
-    client: _src_context_ApolloContext__WEBPACK_IMPORTED_MODULE_2__["client"]
-  }, element);
-};
+const wrapRootElement = ({
+  element
+}) => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_apollo__WEBPACK_IMPORTED_MODULE_1__["ApolloProvider"], {
+  client: _src_context_ApolloContext__WEBPACK_IMPORTED_MODULE_2__["client"]
+}, element);
 
 /***/ }),
 
@@ -17874,9 +17865,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var isomorphic_fetch__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(isomorphic_fetch__WEBPACK_IMPORTED_MODULE_1__);
 
 
-var client = new apollo_boost__WEBPACK_IMPORTED_MODULE_0__["default"]({
+const client = new apollo_boost__WEBPACK_IMPORTED_MODULE_0__["default"]({
   uri: 'https://www.fsansalvadore.com/dev/saglietti/graphql',
-  fetch: isomorphic_fetch__WEBPACK_IMPORTED_MODULE_1___default.a
+  fetch: (isomorphic_fetch__WEBPACK_IMPORTED_MODULE_1___default())
 });
 
 /***/ }),

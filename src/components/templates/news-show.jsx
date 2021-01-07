@@ -1,6 +1,6 @@
 import React from "react"
 import { Link } from "gatsby"
-
+import Heading from "../elements/Heading/Heading"
 import Layout from "../../layout"
 
 const NewsShowPage = props => {

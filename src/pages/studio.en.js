@@ -1,6 +1,9 @@
 import React from "react"
 import Layout from "../components/layout"
 import { Helmet } from 'react-helmet'
+import Heading from "../components/elements/Heading/Heading"
+import tw from 'twin.macro'
+import HeadingIntroHalf from "../components/elements/Heading/HeadingIntroHalf"
 
 // import loadable from '@loadable/component'
 
@@ -13,7 +16,13 @@ const StudioPageEng = () => {
         <title>WAU Architetti • Studio</title>
       </Helmet>
       <div>
-        <h1>Studio ENG</h1>
+        <Heading>
+          <HeadingIntroHalf
+            breadcrumb="Studio"
+            heading="Duis aute irure dolor in reprehenderit."
+            subheading="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+          />
+        </Heading>
       </div>
     </Layout>
   )

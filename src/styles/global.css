@@ -34,6 +34,7 @@ body {
     /* background: #f1f4f8; */
     background-color: var(--white);
     font-size: 16px;
+    /* height: 200vh; */
 }
 
 .after-sphere {
@@ -49,7 +50,7 @@ h1 {
     z-index: 10;
 }
 
-.font-mono {
+.mono {
     font-family: 'Roboto Mono', monospace;
 }
 

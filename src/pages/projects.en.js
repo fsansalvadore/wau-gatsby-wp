@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react"
 import Layout from "../components/layout"
 import { Helmet } from 'react-helmet'
 import { Link, graphql } from 'gatsby'
+import Heading from "../components/elements/Heading/Heading"
+import tw from 'twin.macro'
+import HeadingIntroHalf from "../components/elements/Heading/HeadingIntroHalf"
 
 const ProjectsPageEng = ({data}) => {
   const [projects, setProjects] = useState(null)
@@ -24,23 +27,29 @@ const ProjectsPageEng = ({data}) => {
         <title>WAU Architetti • Projects</title>
       </Helmet>
       <div>
-        <h1>Progetti Eng</h1>
-        <div className="search-form">
-          <form>
-            <i className="search-icon">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M14.6743 15.3094L11.291 11.9261M13.1188 7.53158C13.1188 10.968 10.333 13.7538 6.89657 13.7538C3.46012 13.7538 0.674316 10.968 0.674316 7.53158C0.674316 4.09512 3.46012 1.30933 6.89657 1.30933C10.333 1.30933 13.1188 4.09512 13.1188 7.53158Z" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
+      <Heading>
+        <HeadingIntroHalf
+            breadcrumb="Projects"
+            heading="Duis aute irure dolor in reprehenderit."
+            subheading="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+          />
+          <div className="search-form">
+            <form>
+              <i className="search-icon">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M14.6743 15.3094L11.291 11.9261M13.1188 7.53158C13.1188 10.968 10.333 13.7538 6.89657 13.7538C3.46012 13.7538 0.674316 10.968 0.674316 7.53158C0.674316 4.09512 3.46012 1.30933 6.89657 1.30933C10.333 1.30933 13.1188 4.09512 13.1188 7.53158Z" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
 
-            </i>
-            <input
-              type="text"
-              onChange={e => setTerm(e.target.value)}
-              value={term}
-              placeholder="Search"
-            />
-          </form>
-        </div>
+              </i>
+              <input
+                type="text"
+                onChange={e => setTerm(e.target.value)}
+                value={term}
+                placeholder="Search"
+              />
+            </form>
+          </div>
+        </Heading>
         <ul className="proj_content" >
           {
             projects && projects.length > 0 ?

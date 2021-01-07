@@ -1,6 +1,8 @@
 import React from "react"
 import Layout from "../components/layout"
 import { Helmet } from 'react-helmet'
+import Heading from "../components/elements/Heading/Heading"
+import tw from 'twin.macro'
 
 // import loadable from '@loadable/component'
 
@@ -13,7 +15,10 @@ const ContactsPage = () => {
         <title>WAU Architetti • Contacts</title>
       </Helmet>
       <div>
-        <h1>Contacts ENG</h1>
+        <Heading>
+          <p className="breadcrumbs mono">Contacts</p>
+          <h1>Contacts ENG</h1>
+        </Heading>
       </div>
     </Layout>
   )

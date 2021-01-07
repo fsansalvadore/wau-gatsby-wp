@@ -1,9 +1,9 @@
 import React from 'react'
 import { Helmet } from 'react-helmet'
 
-const GenericMetadata = () => {
+const GenericMetadata = ({lang}) => {
     return (
-        <Helmet htmlAttributes={{ lang : "it" }}>
+        <Helmet htmlAttributes={{ lang : lang }}>
             <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
             <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
             <title>WAU Architetti</title>
@@ -27,7 +27,7 @@ const GenericMetadata = () => {
             <meta name="twitter:title" content="WAU Architetti" />
             <meta name="twitter:description" content="WAU Architetti" />
             <meta name="twitter:creator" content="@Francesco_Sansa" />
-            <meta name="twitter:image" content="./images/Saglietti_1200X623.png" />
+            {/* <meta name="twitter:image" content="./images/Saglietti_1200X623.png" /> */}
             <meta name="robots" content="NOODP" />
             <meta name="msnbot" content="NOODP" />
             <meta name="googlebot" content="NOODP" />

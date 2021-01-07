@@ -4,8 +4,12 @@ import { useStaticQuery, graphql, Link } from "gatsby"
 
 import GenericMetadata from './GenericMetadata'
 import Menu from "./elements/Menu/Menu"
-import "../styles/global.css"
 import MainNav from "./elements/MainNav/MainNav"
+// import { GlobalStyles } from 'twin.macro'
+import "../styles/global.css"
+// import LocomotiveScroll from 'locomotive-scroll';
+
+// const scroll = new LocomotiveScroll();
 
 const Layout = ({ children }) => {
   let location
@@ -19,7 +23,8 @@ const Layout = ({ children }) => {
 
   return (
     <>
-      <GenericMetadata/>
+      <GenericMetadata lang={lang} />
+      {/* <GlobalStyles /> */}
       <MainNav lang={lang} />
       {children}
     </>

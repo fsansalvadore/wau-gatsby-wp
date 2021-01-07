@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react"
 import Layout from "../components/layout"
 import { Helmet } from 'react-helmet'
 import { Link, graphql } from 'gatsby'
+import Heading from "../components/elements/Heading/Heading"
+import tw from 'twin.macro'
 
 const ExpertisesPageIta = ({data}) => {
   const [expertises, setExpertises] = useState(null)
@@ -19,7 +21,10 @@ const ExpertisesPageIta = ({data}) => {
         <title>WAU Architetti • Expertise</title>
       </Helmet>
       <div>
-        <h1>Expertise Ita</h1>
+        <Heading>
+          <p className="breadcrumbs mono">Expertise</p>
+          <h1>Expertise Ita</h1>
+        </Heading>
         <ul >
           {
             expertises && expertises.length > 0 ?

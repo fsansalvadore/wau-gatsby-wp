@@ -1,48 +1,41 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import { useStaticQuery, graphql, Link } from "gatsby"
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
 import { transition } from '../../../helpers/framer-defaults'
+import tw from 'twin.macro'
 
 import LanguageSelector from '../LanguageSelector'
 import SocialIcons from '../SocialIcons/SocialIcons'
 
-const MenuContainer = styled.div`
+const MenuContainer = styled(motion.div)`
     position: fixed;
     width: 100vw;
     height: 100vh;
     z-index: 100;
 `
 const MenuSlider = styled(motion.div)`
-    position: absolute;
-    width: 100%;
-    height: 100%;
     min-height: 550px;
+    z-index: 99;
     background: linear-gradient(317.03deg, var(--green) -33.22%, var(--purple) 78.8%);
-    right: 0;
-    top: 0;
-    bottom: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 60px;
-    padding: 4rem;
     will-change: width, transform;
     transition: width 0.3s ease;
+    ${tw`absolute w-full h-full right-0 top-0 bottom-0 flex flex-col justify-between p-8 md:p-16`}
 
     * {
       color: var(--white);
     }
 
     .menu-top {
+        ${tw`mt-8`}
         flex: 1;
         display: flex;
         align-items: center;
 
         a {
-            padding: 10px;
+            padding: 5px 0;
             font-size: 1.8rem;
-            line-height: 4rem;
+            line-height: 3rem;
             opacity: 0.3;
             transition: opacity 0.15s ease;
             will-change: opacity;
@@ -78,7 +71,7 @@ export const DimOverlay = styled(motion.div)`
     position: fixed;
     width: 100vw;
     height: 100vh;
-    z-index: 9998;
+    z-index: 50;
     top: 0;
     left: 0;
     right: 0;
@@ -96,6 +89,22 @@ const sliderVariants = {
     },
     hidden: {
         x: "100%"
+    }
+}
+
+export const menuContainer = {
+    initial: {
+        display: "none",
+    },
+    hidden: { 
+        display: "block",
+        delay: 0.4,
+        transitionEnd: {
+            display: "none",
+        },
+    },
+    show: {
+        display: "block",
     }
 }
 
@@ -147,7 +156,13 @@ const Menu = ({lang, isOpen}) => {
     `)
 
     return (
-        <MenuContainer>
+        <MenuContainer
+            variants={menuContainer}
+            animate={isOpen ? "show" : "hidden"}
+            initial="initial"
+            exit="hidden"
+            transition={{...transition, duration: 0.4}}
+        >
             <MenuSlider
                 variants={sliderVariants}
                 animate={isOpen ? "show" : "hidden"}

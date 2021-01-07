@@ -4,6 +4,8 @@ import { Helmet } from 'react-helmet'
 import styled from 'styled-components'
 import Layout from "../layout"
 // import ComponentParser from '../ComponentParser'
+import Heading from '../elements/Heading/Heading'
+import tw, { css } from 'twin.macro'
 
 const ProjectPage = (props) => {
   const {
@@ -12,17 +14,23 @@ const ProjectPage = (props) => {
     index,
     title,
     featuredImage,
+    lang,
     seo,
-    tags
+    tags,
+    project
   } = props.pageContext;
   const {data} = props;
   
   return (
     <Layout>
-          <Link to="/">
-            Home Page
-          </Link>
+      <Heading>
+        <div tw="w-1/4">
+          <p className="breadcrumbs mono" >
+            <Link to={lang.code === "EN" ? "/en/projects/" : "/progetti/"}>{lang.code === "EN" ? "Projects" : "Progetti"}</Link> /
+          </p>
           <h1>{title}</h1>
+        </div>
+      </Heading>
     </Layout>
   )
 }
@@ -36,6 +44,9 @@ export const query = graphql`
           title
           date
           slug
+          language {
+            code
+          }
         }
       }
     }

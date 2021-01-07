@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react"
 import Layout from "../components/layout"
 import { Helmet } from 'react-helmet'
 import { Link, graphql } from 'gatsby'
+import Heading from "../components/elements/Heading/Heading"
+import tw from 'twin.macro'
+import HeadingIntroHalf from "../components/elements/Heading/HeadingIntroHalf"
 
 const NewsPageIta = ({data}) => {
   const [articles, setArticle] = useState(null)
@@ -19,7 +22,13 @@ const NewsPageIta = ({data}) => {
         <title>WAU Architetti • Article</title>
       </Helmet>
       <div>
-        <h1>Article Eng</h1>
+        <Heading>
+          <HeadingIntroHalf
+            breadcrumb="Notizie"
+            heading="Duis aute irure dolor in reprehenderit."
+            subheading="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+          />
+        </Heading>
         <ul >
           {
             articles && articles.length > 0 ?

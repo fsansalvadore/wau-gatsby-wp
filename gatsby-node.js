@@ -19,6 +19,10 @@ const query = `
           slug
           id
           title
+          project_details_afc {
+            year
+            location
+          }
           ${language}
         }
       }
@@ -55,6 +59,7 @@ exports.createPages = async ({ actions, graphql }) => {
           index: data.wordpress.projects.nodes.indexOf(project),
           id: project.id,
           title: project.title,
+          lang: project.language
         },
       })
     })
@@ -69,6 +74,7 @@ exports.createPages = async ({ actions, graphql }) => {
           index: data.wordpress.projects.nodes.indexOf(project),
           id: project.id,
           title: project.title,
+          lang: project.language
         },
       })
     })
@@ -83,6 +89,7 @@ exports.createPages = async ({ actions, graphql }) => {
           index: data.wordpress.expertises.nodes.indexOf(expertise),
           id: expertise.id,
           title: expertise.title,
+          lang: expertise.language
         },
       })
     })
@@ -97,6 +104,7 @@ exports.createPages = async ({ actions, graphql }) => {
           index: data.wordpress.expertises.nodes.indexOf(expertise),
           id: expertise.id,
           title: expertise.title,
+          lang: expertise.language
         },
       })
     })
@@ -111,6 +119,7 @@ exports.createPages = async ({ actions, graphql }) => {
           index: data.wordpress.articles.nodes.indexOf(article),
           id: article.id,
           title: article.title,
+          lang: article.language
         },
       })
     })
@@ -125,6 +134,7 @@ exports.createPages = async ({ actions, graphql }) => {
           index: data.wordpress.articles.nodes.indexOf(article),
           id: article.id,
           title: article.title,
+          lang: article.language
         },
       })
     })
