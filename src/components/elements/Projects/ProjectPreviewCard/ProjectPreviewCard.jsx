@@ -5,6 +5,7 @@ import { motion } from 'framer-motion'
 import styled from 'styled-components'
 import LazyLoad from 'react-lazyload';
 import { transition } from '../../../../helpers/framer-defaults'
+// import { WPImage } from '../../WPImage/WPImage'
 
 const StyledProjectPreviewCard = styled(motion.li)`
     height: 300px;
@@ -41,6 +42,11 @@ const ProjectPreviewCard = ({
                         <h2>{title ? title : "Missing title project"}</h2>
                     </div>
                 </div>
+                {/* <WPImage
+                    src={imgSrc ? imgSrc : ""}
+                    alt={imgAlt ? imgAlt : ""}
+                    width={100}
+                /> */}
                 <img
                     tw="absolute w-full h-full top-0 right-0 bottom-0 left-0"
                     src={imgSrc ? imgSrc : ""}

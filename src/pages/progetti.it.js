@@ -13,8 +13,8 @@ const ProjectsPageIta = ({data}) => {
 
   useEffect(() => {
     if(data.wordpress.projects) {
-      setProjects(data.wordpress.projects.nodes.filter(item => item.language.code === "IT"
-              && item.title.toLowerCase().includes(term.toLowerCase())
+      setProjects(data.wordpress.projects.nodes.filter(p => p.language.code === "IT")
+      .filter(item => item.title.toLowerCase().includes(term.toLowerCase())
               // || item.custom_post_type_Project.ambiti.join().toLowerCase().includes(term.toLowerCase())
               // || item.custom_post_type_Project.anno.toString().includes(term)
               || !term)
@@ -60,8 +60,8 @@ const ProjectsPageIta = ({data}) => {
                   title={proj.title}
                   imgSrc={proj.featuredImage ? proj.featuredImage.node.link : ""}
                   imgAlt={proj.featuredImage ? proj.featuredImage.node.altText : ""}
-                  year={proj.project_details_afc.year}
-                  location={proj.project_details_afc.location}
+                  year={proj.ProjectAFC && proj.ProjectAFC.projectdate}
+                  location={proj.ProjectAFC && proj.ProjectAFC.location && proj.ProjectAFC.location}
                 />
                 {console.log(proj.title, proj)}
               </li>
@@ -99,8 +99,8 @@ export const query = graphql`
               link
             }
           }
-          project_details_afc {
-            year
+          ProjectAFC {
+            projectdate
             location
           }
           language {
@@ -111,6 +111,7 @@ export const query = graphql`
         }
       }
     }
+    
   }
 `
 

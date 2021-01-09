@@ -19,8 +19,8 @@ const query = `
           slug
           id
           title
-          project_details_afc {
-            year
+          ProjectAFC {
+            projectdate
             location
           }
           ${language}

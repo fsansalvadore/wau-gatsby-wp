@@ -1,1 +1,1 @@
-{"data":{"wordpress":{"articles":{"nodes":[{"date":"2021-01-05T22:23:07","status":"publish","slug":"second-article","id":"cG9zdDoxMjk=","title":"Second Article","language":{"code":"EN","locale":"en_US","slug":"en"}},{"date":"2021-01-05T22:21:28","status":"publish","slug":"first-article-eng","id":"cG9zdDoxMjU=","title":"First article (eng)","language":{"code":"EN","locale":"en_US","slug":"en"}}]}}},"pageContext":{"slug":"/en/news/","langKey":"en"}}
+{"data":{"wordpress":{"articles":{"nodes":[]}}},"pageContext":{"slug":"/en/news/","langKey":"en"}}
