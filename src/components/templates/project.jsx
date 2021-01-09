@@ -6,6 +6,7 @@ import Layout from "../layout"
 // import ComponentParser from '../ComponentParser'
 import Heading from '../elements/Heading/Heading'
 import tw, { css } from 'twin.macro'
+import parse from 'html-react-parser'
 
 const ProjectPage = (props) => {
   const {
@@ -15,6 +16,7 @@ const ProjectPage = (props) => {
     title,
     featuredImage,
     lang,
+    content,
     seo,
     tags,
     project
@@ -30,6 +32,9 @@ const ProjectPage = (props) => {
           </p>
           <h1>{title}</h1>
         </div>
+        <article>
+          {content && parse(content)}
+        </article>
       </Heading>
     </Layout>
   )

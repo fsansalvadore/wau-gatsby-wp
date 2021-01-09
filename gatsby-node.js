@@ -59,7 +59,8 @@ exports.createPages = async ({ actions, graphql }) => {
           index: data.wordpress.projects.nodes.indexOf(project),
           id: project.id,
           title: project.title,
-          lang: project.language
+          lang: project.language,
+          content: project.content
         },
       })
     })
@@ -74,7 +75,8 @@ exports.createPages = async ({ actions, graphql }) => {
           index: data.wordpress.projects.nodes.indexOf(project),
           id: project.id,
           title: project.title,
-          lang: project.language
+          lang: project.language,
+          content: project.content
         },
       })
     })
