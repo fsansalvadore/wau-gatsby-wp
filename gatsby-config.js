@@ -1,3 +1,5 @@
+const path = require(`path`)
+
 module.exports = {
   siteMetadata: {
     title: `WAU Architetti`,
@@ -28,11 +30,18 @@ module.exports = {
         useLangKeyLayout: false
       }
     },
+    // {
+    //   resolve: `gatsby-source-filesystem`,
+    //   options: {
+    //     name: `images`,
+    //     path: `${__dirname}/src/images`,
+    //   },
+    // },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,
-        path: `${__dirname}/src/images`,
+        path: path.join(__dirname, `src`, `images`),
       },
     },
     `gatsby-plugin-sass`,
@@ -42,5 +51,7 @@ module.exports = {
             // Add any options here
         },
     },
+    "gatsby-transformer-sharp",
+    "gatsby-plugin-sharp"
   ]
 }
