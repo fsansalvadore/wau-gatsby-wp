@@ -32,7 +32,6 @@ const ProjectsPageIta = ({data}) => {
           <HeadingIntroHalf
             breadcrumb="Progetti"
             heading="Duis aute irure dolor in reprehenderit."
-            subheading="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
           />
           <form>
             <i className="search-icon">
@@ -61,8 +60,8 @@ const ProjectsPageIta = ({data}) => {
                   featuredImage={proj.featuredImage}
                   imgSrc={proj.featuredImage ? proj.featuredImage.node.link : ""}
                   imgAlt={proj.featuredImage ? proj.featuredImage.node.altText : ""}
-                  year={proj.ProjectAFC && proj.ProjectAFC.projectdate}
-                  location={proj.ProjectAFC && proj.ProjectAFC.location && proj.ProjectAFC.location}
+                  projectdate={proj.ProjectAFC.projectdate ? proj.ProjectAFC.projectdate : null}
+                  location={proj.ProjectAFC.location && proj.ProjectAFC.location}
                 />
               </li>
             )) : (
@@ -100,7 +99,7 @@ export const query = graphql`
               sourceUrl
               imageFile {
                 childImageSharp {
-                  fixed {
+                  fixed(width: 1920, quality: 100) {
                     ...GatsbyImageSharpFixed
                   }
                   fluid {

@@ -34,6 +34,7 @@ body {
     /* background: #f1f4f8; */
     background-color: var(--white);
     font-size: 16px;
+    line-height: 1.4rem;
     /* height: 200vh; */
 }
 

@@ -21,6 +21,7 @@ const query = `
           id
           title
           ProjectAFC {
+            introduzione
             projectdate
             location
           }
@@ -99,6 +100,7 @@ exports.createPages = async ({ actions, graphql }) => {
           id: project.id,
           title: project.title,
           lang: project.language,
+          featuredImage: project.featuredImage,
           content: project.content
         },
       })
@@ -115,6 +117,7 @@ exports.createPages = async ({ actions, graphql }) => {
           id: project.id,
           title: project.title,
           lang: project.language,
+          featuredImage: project.featuredImage,
           content: project.content
         },
       })

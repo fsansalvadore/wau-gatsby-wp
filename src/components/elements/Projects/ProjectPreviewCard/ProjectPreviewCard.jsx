@@ -19,6 +19,10 @@ const StyledProjectPreviewCard = styled(motion.div)`
         width: 100% !important;
         height: 100% !important;
     }
+
+    .preview-card-info-container {
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 100%);
+    }
 `
 
 const ProjectPreviewCard = ({
@@ -27,7 +31,7 @@ const ProjectPreviewCard = ({
     imgSrc,
     imgAlt,
     title,
-    year,
+    projectdate,
     featuredImage,
     location,
     ...otherProps
@@ -43,18 +47,22 @@ const ProjectPreviewCard = ({
                 {...otherProps}
             >
                 <Link to={link} tw="w-full h-full">
-                    <div tw="absolute w-full bottom-0 py-8 px-8 md:px-16 z-10">
-                        <div tw="">
-                            <motion.p>{year} - {location}</motion.p>
+                    <div className="preview-card-info-container" tw="absolute w-full bottom-0 py-8 px-8 md:px-16 z-10">
+                        <div tw="mb-4">
+                            <motion.p>{projectdate ? `${projectdate.split("/").slice(-1)[0]} - ` : ''}{location}</motion.p>
                         </div>
-                        <div tw="overflow-hidden">
-                            <h2>{title ? title : "Missing title project"}</h2>
+                        <div tw="overflow-hidden h-8 pt-1">
+                            <motion.h2
+                                initial={{y: 50}}
+                                animate={{y: 0}}
+                                transition={{...transition, delay: 0.1, duration: 1}}
+                            >{title ? title : "Missing title project"}</motion.h2>
                         </div>
                     </div>
                     {
                         featuredImage ?
                         <Img
-                            fixed={featuredImage.node.imageFile.childImageSharp.fixed}
+                            fluid={featuredImage.node.imageFile.childImageSharp.fluid}
                             // fluid={featuredImage.node.imageFile.childImageSharp.fluid}
                             tw="absolute w-full h-full top-0 right-0 bottom-0 left-0"
                             alt={ imgAlt ? imgAlt : "Image" }
