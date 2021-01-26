@@ -37,7 +37,7 @@ const ProjectsPageIta = ({data}) => {
           <form>
             <i className="search-icon">
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M14.6743 15.3094L11.291 11.9261M13.1188 7.53158C13.1188 10.968 10.333 13.7538 6.89657 13.7538C3.46012 13.7538 0.674316 10.968 0.674316 7.53158C0.674316 4.09512 3.46012 1.30933 6.89657 1.30933C10.333 1.30933 13.1188 4.09512 13.1188 7.53158Z" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M14.6743 15.3094L11.291 11.9261M13.1188 7.53158C13.1188 10.968 10.333 13.7538 6.89657 13.7538C3.46012 13.7538 0.674316 10.968 0.674316 7.53158C0.674316 4.09512 3.46012 1.30933 6.89657 1.30933C10.333 1.30933 13.1188 4.09512 13.1188 7.53158Z" stroke="black" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
             </i>
             <input
@@ -58,12 +58,12 @@ const ProjectsPageIta = ({data}) => {
                 <ProjectPreviewCard
                   link={proj.slug}
                   title={proj.title}
+                  featuredImage={proj.featuredImage}
                   imgSrc={proj.featuredImage ? proj.featuredImage.node.link : ""}
                   imgAlt={proj.featuredImage ? proj.featuredImage.node.altText : ""}
                   year={proj.ProjectAFC && proj.ProjectAFC.projectdate}
                   location={proj.ProjectAFC && proj.ProjectAFC.location && proj.ProjectAFC.location}
                 />
-                {console.log(proj.title, proj)}
               </li>
             )) : (
               <li className="pseudo content">
@@ -97,6 +97,17 @@ export const query = graphql`
             node {
               altText
               link
+              sourceUrl
+              imageFile {
+                childImageSharp {
+                  fixed {
+                    ...GatsbyImageSharpFixed
+                  }
+                  fluid {
+                    ...GatsbyImageSharpFluid
+                  }
+                }
+              }
             }
           }
           ProjectAFC {
@@ -111,7 +122,6 @@ export const query = graphql`
         }
       }
     }
-    
   }
 `
 

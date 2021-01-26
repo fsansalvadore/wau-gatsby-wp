@@ -1,4 +1,5 @@
 const path = require(`path`)
+const { createRemoteFileNode } = require(`gatsby-source-filesystem`)
 
 const language = `
 language {
@@ -23,6 +24,7 @@ const query = `
             projectdate
             location
           }
+          
           ${language}
         }
       }
@@ -45,6 +47,43 @@ const query = `
     }
   }
 `
+
+exports.createResolvers = async (
+  {
+    actions,
+    cache,
+    createNodeId,
+    createResolvers,
+    store,
+    reporter,
+  },
+) => {
+  const { createNode } = actions
+
+  await createResolvers({
+    WORDPRESS_MediaItem: {
+      imageFile: {
+        type: "File",
+        async resolve(source) {
+          let sourceUrl = source.sourceUrl
+
+          if (source.mediaItemUrl !== undefined) {
+            sourceUrl = source.mediaItemUrl
+          }
+
+          return await createRemoteFileNode({
+            url: encodeURI(sourceUrl),
+            store,
+            cache,
+            createNode,
+            createNodeId,
+            reporter,
+          })
+        },
+      },
+    },
+  })
+}
 
 exports.createPages = async ({ actions, graphql }) => {
   const { data } = await graphql(`${ query }`)
