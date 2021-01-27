@@ -8,6 +8,7 @@ import Heading from '../elements/Heading/Heading'
 import tw, { css } from 'twin.macro'
 import parse from 'html-react-parser'
 import Img from 'gatsby-image'
+import GridMaxWidthContainer from '../elements/Atoms/GridMaxWidthContainer'
 
 const ProjectPage = (props) => {
   const {
@@ -89,9 +90,9 @@ const ProjectPage = (props) => {
           </figure>
         }
         <article tw="w-full flex justify-center">
-          <div className="project-content" tw="grid grid-cols-12 px-4">
+          <GridMaxWidthContainer className="project-content" tw="w-full grid grid-cols-12 px-4">
             {content && parse(content)}
-          </div>
+          </GridMaxWidthContainer>
         </article>
       </ProjectContainer>
     </Layout>
@@ -127,7 +128,8 @@ const ProjectContainer = styled.div(() => [
       > h1,
       > h2,
       > h3,
-      > h4 {
+      > h4,
+      > .wp-block-quote {
         ${tw`col-span-12 md:col-span-7 md:col-start-6 my-4 mb-8 md:mb-8 xl:mb-8`}
       }
 
@@ -211,11 +213,8 @@ export const query = graphql`
               sourceUrl
               imageFile {
                 childImageSharp {
-                  fixed(width: 1920, quality: 100) {
+                  fixed(width: 1500, quality: 90) {
                     ...GatsbyImageSharpFixed
-                  }
-                  fluid {
-                    ...GatsbyImageSharpFluid
                   }
                 }
               }

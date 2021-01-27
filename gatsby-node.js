@@ -25,7 +25,20 @@ const query = `
             projectdate
             location
           }
-          
+          ${language}
+        }
+      }
+      team_members(first: 100, where: { status: PUBLISH }) {
+        nodes {
+          date
+          status
+          slug
+          title
+          teamMemberAFC {
+            ruolo
+            descrizione
+            email
+          }
           ${language}
         }
       }
@@ -38,6 +51,14 @@ const query = `
         }
       }
       articles(first: 100, where: { status: PUBLISH }) {
+        nodes {
+          slug
+          id
+          title(format: RENDERED)
+          ${language}
+        }
+      }
+      collaborators(first: 100, where: { status: PUBLISH }) {
         nodes {
           slug
           id

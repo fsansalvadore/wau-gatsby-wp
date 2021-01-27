@@ -99,11 +99,8 @@ export const query = graphql`
               sourceUrl
               imageFile {
                 childImageSharp {
-                  fixed(width: 1920, quality: 100) {
+                  fixed(width: 1500, quality: 90) {
                     ...GatsbyImageSharpFixed
-                  }
-                  fluid {
-                    ...GatsbyImageSharpFluid
                   }
                 }
               }
