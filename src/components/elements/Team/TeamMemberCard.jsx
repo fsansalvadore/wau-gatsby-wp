@@ -63,9 +63,8 @@ const TeamMemberCard = ({
                 transition={{...transition, duration: 0.8}}
                 tw="relative flex items-end w-full overflow-hidden"
                 onMouseEnter={() => setIsHovered(true)}
-                onMouseDown={() => setIsHovered(true)}
+                onTap={() => setIsHovered(!isHovered)}
                 onMouseLeave={() => setIsHovered(false)}
-                onMouseUp={() => setIsHovered(false)}
                 {...otherProps}
             >
                 <div tw="w-full relative" className="team-card-container">
@@ -106,7 +105,7 @@ const TeamMemberCard = ({
                             afc && afc.email &&
                             <motion.div
                                 tw="absolute bottom-4 mb-4"
-                                variants={teamMemberFilterVariants}
+                                variants={teamMemberDescriptionVariants}
                                 animate={isHovered ? "hovered" : "hidden"}
                                 initial="hidden"
                             >
@@ -135,7 +134,7 @@ const TeamMemberCard = ({
                             <img
                                 tw="absolute w-full h-full top-0 right-0 bottom-0 left-0"
                                 src=""
-                                // alt={imgAlt ? imgAlt : "Image"}
+                                alt="WAU team member"
                                 />
                         }
                     </div>

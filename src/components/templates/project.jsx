@@ -81,16 +81,24 @@ const ProjectPage = (props) => {
         </Heading>
         {
           proj.featuredImage &&
-          <figure className="proj-featuredImage" tw="mb-10 md:mb-16 xl:mb-32">
-            <Img
-                tw="relative w-full h-64 top-0 right-0 bottom-0 left-0"
-                fixed={proj.featuredImage.node.imageFile.childImageSharp.fixed}
-                // fluid={proj.featuredImage.node.imageFile.childImageSharp.fluid}
-            />
+          <figure className="project-coverImage" tw="mb-10 md:mb-16 xl:mb-32">
+            {
+                proj.featuredImage.node.imageFile ?
+                <Img
+                    tw="relative w-full h-64 top-0 right-0 bottom-0 left-0"
+                    fixed={proj.featuredImage.node.imageFile.childImageSharp.fixed}
+
+                /> :
+                <img
+                  src={proj.featuredImage.node.sourceUrl}
+                  alt={proj.featuredImage.node.altText}
+                  tw="relative w-full h-64 top-0 right-0 bottom-0 left-0"
+                />
+              }
           </figure>
         }
         <article tw="w-full flex justify-center">
-          <GridMaxWidthContainer className="project-content" tw="w-full grid grid-cols-12 px-4">
+          <GridMaxWidthContainer className="project-content" tw="w-full grid grid-cols-12">
             {content && parse(content)}
           </GridMaxWidthContainer>
         </article>
@@ -101,14 +109,12 @@ const ProjectPage = (props) => {
 
 const ProjectContainer = styled.div(() => [
   css`
-  .proj-featuredImage {
-
+  .project-coverImage
     .gatsby-image-wrapper {
-      width: 100% !important;
-      height: 800px !important;
+        width: 100% !important;
+        height: 50vw !important;
     }
   }
-
   .project-aside-info {
     p {
       ${tw`py-2 font-light`}
@@ -116,7 +122,7 @@ const ProjectContainer = styled.div(() => [
   }
   article {
     .project-content {
-      max-width: 1600px;
+      // max-width: 1600px;
 
       > * {
         ${tw`col-span-12`}

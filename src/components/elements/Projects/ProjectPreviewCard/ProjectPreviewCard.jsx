@@ -9,7 +9,8 @@ import { transition } from '../../../../helpers/framer-defaults'
 import Img from 'gatsby-image'
 
 const StyledProjectPreviewCard = styled(motion.div)`
-    height: 300px;
+    // height: 300px;
+    padding-bottom: 50%;
 
     * {
         color: var(--white);
@@ -46,7 +47,7 @@ const ProjectPreviewCard = ({
                 tw="relative flex items-end w-full"
                 {...otherProps}
             >
-                <Link to={link} tw="w-full h-full">
+                <Link to={link} tw="absolute right-0 bottom-0 left-0 top-0 w-full h-full">
                     <div className="preview-card-info-container" tw="absolute w-full bottom-0 py-8 px-8 md:px-16 z-10">
                         <div tw="mb-4">
                             <motion.p>{projectdate ? `${projectdate.split("/").slice(-1)[0]} - ` : ''}{location}</motion.p>
@@ -60,7 +61,7 @@ const ProjectPreviewCard = ({
                         </div>
                     </div>
                     {
-                        featuredImage ?
+                        featuredImage && featuredImage.node.imageFile ?
                         <Img
                             fixed={featuredImage.node.imageFile.childImageSharp.fixed}
                             // fluid={featuredImage.node.imageFile.childImageSharp.fluid}
@@ -70,9 +71,7 @@ const ProjectPreviewCard = ({
                         :
                         <img
                             tw="absolute w-full h-full top-0 right-0 bottom-0 left-0"
-                            srcset={featuredImage.node.imageFile.childImageSharp.fluid.srcSet}
-                            sizes={featuredImage.node.imageFile.childImageSharp.fluid.sizes}
-                            src={featuredImage.node.imageFile.childImageSharp.fluid.src}
+                            src={featuredImage.node.sourceUrl}
                             alt={imgAlt ? imgAlt : "Image"}
                             />
                     }

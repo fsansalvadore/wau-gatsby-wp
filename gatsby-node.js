@@ -48,6 +48,34 @@ const query = `
           id
           title(format: RENDERED)
           ${language}
+          featuredImage {
+            node {
+              sourceUrl(size: LARGE)
+              altText
+            }
+          }
+          expertiseACF {
+            introduzione
+            progetti {
+              ... on WORDPRESS_Project {
+                id
+                title
+                date
+                slug
+                language {
+                  code
+                }
+                ProjectAFC {
+                  location
+                }
+                featuredImage {
+                  node {
+                    sourceUrl(size: LARGE)
+                  }
+                }
+              }
+            }
+          }
         }
       }
       articles(first: 100, where: { status: PUBLISH }) {
@@ -63,7 +91,6 @@ const query = `
           slug
           id
           title(format: RENDERED)
-          ${language}
         }
       }
     }
