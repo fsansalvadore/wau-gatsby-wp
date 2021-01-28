@@ -5,7 +5,6 @@ import { motion } from 'framer-motion'
 import styled from 'styled-components'
 import LazyLoad from 'react-lazyload';
 import { transition } from '../../../../helpers/framer-defaults'
-// import { WPImage } from '../../WPImage/WPImage'
 import Img from 'gatsby-image'
 
 const StyledProjectPreviewCard = styled(motion.div)`
@@ -37,7 +36,6 @@ const ProjectPreviewCard = ({
     location,
     ...otherProps
 }) => {
-    console.log(featuredImage)
     return (
         <LazyLoad height={300}>
             <StyledProjectPreviewCard

@@ -25,6 +25,12 @@ const query = `
             projectdate
             location
           }
+          tags {
+            nodes {
+              name
+              id
+            }
+          }
           ${language}
         }
       }
@@ -46,6 +52,7 @@ const query = `
         nodes {
           slug
           id
+          content
           title(format: RENDERED)
           ${language}
           featuredImage {
@@ -83,6 +90,22 @@ const query = `
           slug
           id
           title(format: RENDERED)
+          content
+          featuredImage {
+            node {
+              sourceUrl(size: LARGE)
+            }
+          }
+          categories {
+            nodes {
+              name
+              id
+            }
+          }
+          ArticleACF {
+            anteprima
+            introduzione
+          }
           ${language}
         }
       }

@@ -106,6 +106,11 @@ export const query = graphql`
               }
             }
           }
+          tags {
+            nodes {
+              name
+            }
+          }
           ProjectAFC {
             projectdate
             location

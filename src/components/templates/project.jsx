@@ -25,15 +25,8 @@ const ProjectPage = (props) => {
     project
   } = props.pageContext;
   const { data } = props;
-
-  console.log("props", props)
-  console.log("data", data)
-  console.log("project", project)
-  console.log("data.wordpress.projects", data.wordpress.projects)
-  console.log(ProjectAFC.projectdate.split("/").slice(-1)[0])
   const proj = data.wordpress.projects.nodes.find(project => project.title === title)
 
-  console.log("proj", proj)
   return (
     <Layout>
       <ProjectContainer>
@@ -57,14 +50,20 @@ const ProjectPage = (props) => {
           <aside tw="w-full md:w-1/4 mt-8 lg:mt-0" className="project-aside-info">
             <hr/>
             {
-              ProjectAFC && ProjectAFC.location &&
+              tags && tags.nodes.length > 0 &&
               <div>
-                <p>{ProjectAFC.location}</p>
+                <ul>
+                  {
+                    tags.nodes.map(tag => (
+                      <li>/ {tag.name}</li>
+                    ))
+                  }
+                </ul>
                 <hr/>
               </div>
             }
             {
-              ProjectAFC && ProjectAFC.projectdate &&
+              ProjectAFC && ProjectAFC.projectdate && ProjectAFC.projectdate.split("/") &&
               <div>
                 <p>{ProjectAFC.projectdate.split("/").slice(-1)[0]}</p>
                 <hr/>
@@ -116,8 +115,11 @@ const ProjectContainer = styled.div(() => [
     }
   }
   .project-aside-info {
-    p {
-      ${tw`py-2 font-light`}
+    p, li {
+      ${tw`inline-block py-2 font-light`}
+    }
+    li {
+      ${tw`mr-2`}
     }
   }
   article {
@@ -211,6 +213,11 @@ export const query = graphql`
           slug
           language {
             code
+          }
+          tags {
+            nodes {
+              name
+            }
           }
           featuredImage {
             node {

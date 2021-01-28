@@ -76,7 +76,7 @@ export const DimOverlay = styled(motion.div)`
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.15);
+    background: rgba(0, 0, 0, 0.25);
     display: none;
 `
 
@@ -206,6 +206,7 @@ const Menu = ({lang, isOpen}) => {
                 variants={menuDim}
                 initial="initial"
                 animate={isOpen ? "show" : "hidden"}
+                
                 transition={{...transition, duration: 0.4}}    
             />
         </MenuContainer>

@@ -12,8 +12,6 @@ const TeamPageIta = ({data}) => {
   const [teamMembers, setTeamMembers] = useState(null)
   const [collaborators, setCollaborators] = useState(null)
 
-  console.log("data", data)
-
   useEffect(() => {
     if (data && data.wordpress.team_members) {
       setTeamMembers(data.wordpress.team_members.nodes

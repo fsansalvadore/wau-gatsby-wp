@@ -99,6 +99,16 @@ const MainNav = ({lang}) => {
     }
   })
   
+  useEffect(() => {
+    if (typeof window !== `undefined`) {
+        document.addEventListener('keydown', (e) => {
+            if(e.key === "Escape") {
+                toggleMenu(false)
+            }
+        });
+    }
+  })
+
   return (
     <>
       <Navbar>

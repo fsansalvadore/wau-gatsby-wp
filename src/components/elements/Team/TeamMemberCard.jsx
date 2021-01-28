@@ -51,9 +51,7 @@ const TeamMemberCard = ({
     afc,
     ...otherProps
 }) => {
-
     const [isHovered, setIsHovered] = useState(false)
-    console.log("featuredImage", featuredImage)
 
     return (
         <LazyLoad height={500}>
