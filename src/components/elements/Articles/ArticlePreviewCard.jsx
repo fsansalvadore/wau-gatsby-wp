@@ -8,6 +8,7 @@ import { transition } from '../../../helpers/framer-defaults'
 // import { WPImage } from '../../WPImage/WPImage'
 import Img from 'gatsby-image'
 import WAUFallback from '../../../assets/WAUFallback.svg'
+import { months } from '../../../helpers/utils'
 
 const MotionLink = motion.custom(Link)
 
@@ -15,10 +16,6 @@ const ArticlePreviewCard = ({
     article,
     ...otherProps
 }) => {
-    const months = {
-        ita: ["Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"],
-        eng: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
-    }
     const [date, setDate] = useState(new Date(article.date))
     const [articleDate, setArticleDate] = useState(null)
 

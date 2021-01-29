@@ -62,7 +62,7 @@ const TeamPageIta = ({data}) => {
           {
             collaborators && collaborators.length > 0 &&
             <GridMaxWidthContainer tw="my-16 lg:mt-32">
-              <h2 tw="col-span-12 md:col-span-4 md:col-start-2 text-3xl md:text-5xl">Collaboratori</h2>
+              <h2 tw="col-span-12 md:col-span-4 md:col-start-1 text-3xl md:text-5xl">Collaboratori</h2>
               <ul tw="col-span-12 md:col-span-5 md:col-start-7 mt-8 md:mt-0">
                 {
                   collaborators.map(collaborator => (

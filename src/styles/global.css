@@ -30,6 +30,15 @@
 .container-max-1200 {
     max-width: 1200px;
 }
+.container-max-1000 {
+    max-width: 1000px;
+}
+.container-max-900 {
+    max-width: 900px;
+}
+.container-max-800 {
+    max-width: 800px;
+}
 
 .gradientBg {
     background: var(--gradientBg);
@@ -76,11 +85,17 @@ h1 {
     font-family: 'Roboto Mono', monospace !important;
 }
 
-.cover-image .gatsby-image-wrapper,
+.cover-image .gatsby-image-wrapper {
+    width: 100% !important;
+    height: 50vw !important;
+}
+
 .cover-image img {
     width: 100% !important;
     height: 100% !important;
 }
+
+
 
 @keyframes wordAnim {
     0% {

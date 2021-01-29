@@ -1,6 +1,7 @@
 const path = require(`path`)
 const { createRemoteFileNode } = require(`gatsby-source-filesystem`)
 
+// Query language fields
 const language = `
 language {
   code
@@ -91,6 +92,7 @@ const query = `
           id
           title(format: RENDERED)
           content
+          date
           featuredImage {
             node {
               sourceUrl(size: LARGE)

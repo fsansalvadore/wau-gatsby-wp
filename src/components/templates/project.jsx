@@ -1,10 +1,9 @@
 import React from "react"
 import { graphql, Link } from "gatsby"
 import { Helmet } from 'react-helmet'
-import styled from 'styled-components'
 import Layout from "../layout"
-// import ComponentParser from '../ComponentParser'
 import Heading from '../elements/Heading/Heading'
+import styled from 'styled-components'
 import tw, { css } from 'twin.macro'
 import parse from 'html-react-parser'
 import Img from 'gatsby-image'
