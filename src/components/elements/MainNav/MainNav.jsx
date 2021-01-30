@@ -4,15 +4,25 @@ import Menu from '../Menu/Menu';
 import styled from "styled-components";
 import { motion } from 'framer-motion'
 import Logo from "../Logo/Logo";
-import tw from 'twin.macro'
-import { transition } from '../../../helpers/framer-defaults'
+import tw, { css } from 'twin.macro'
+import { transition, fixedNavbarAnim } from '../../../helpers/framer-defaults'
 
 const Navbar = styled.div`
     position: fixed;
     z-index: 999;
     height: 80px;
-    ${tw`fixed w-full py-0 px-8 md:px-16 flex items-center justify-between`}
+    ${tw`absolute w-full py-0 px-8 md:px-16 flex items-center justify-between`}
 `
+const FixedNavbar = styled(motion.div)(() => [
+    css`
+        position: fixed;
+        z-index: 999;
+        height: 80px;
+        background: ${props => props.isOpen ? "transparent" : "var(--white)"};
+        box-shadow: ${props => props.isOpen ? "none" : "2px 0 2px rgba(0, 0, 0, 0.2)"};
+        ${tw`fixed w-full py-0 px-8 md:px-16 flex items-center justify-between`}
+    `
+])
 
 const MenuBtn = styled.button`
     position: relative;
@@ -86,9 +96,46 @@ const closeBtnVariant = {
     },
 }
 
+const NavContent = ({lang, isOpen, toggleMenu}) => {
+    return (
+        <>
+            <Link to={lang === "en" ? "/en/" : "/"}>
+            <Logo />
+            </Link>
+            <MenuBtn as="a" onClick={() => toggleMenu(!isOpen)} isOpen={isOpen}>
+                    <motion.span
+                        className="menu-icon"
+                        variants={openBtnVariant}
+                        animate={!isOpen ? "show" : "hidden"}
+                        initial="initial"
+                        exit={{opacity: 0, ...transition}}
+                        transition={{...transition, duration: 0.4}}
+                    >
+                        <span>Menu</span>
+                    </motion.span>
+                    <motion.div
+                        className="close-icon"
+                        variants={closeBtnVariant}
+                        animate={isOpen ? "show" : "hidden"}
+                        initial="initial"
+                        exit={{opacity: 0, ...transition}}
+                        transition={{...transition, duration: 0.4}}
+                    >
+                        <motion.span></motion.span>
+                        <motion.span></motion.span>
+                    </motion.div>
+            </MenuBtn>
+        </>
+    )
+}
+
 const MainNav = ({lang}) => {
   const [isOpen, toggleMenu] = useState(false)
+  const [showFixed, setShowFixed] = useState(false)
+  const [isScrollUp, setIsScrollUp] = useState(false)
+  let scrollPos = 0;
 
+  // Disable scroll when menu is open
   useEffect(() => {
     if (typeof window !== `undefined`) {
         if(isOpen) {
@@ -98,7 +145,27 @@ const MainNav = ({lang}) => {
         }
     }
   })
+
+  // Detect scroll direction
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+        window.addEventListener('scroll', () => {
+            let st = window.pageYOffset || document.documentElement.scrollTop; 
+            if (window.scrollY > 80 && st <= scrollPos) {
+                setIsScrollUp(false)
+                setShowFixed(true)
+                // Scrolling down
+            } else {
+                setIsScrollUp(true)
+                setShowFixed(false)
+                // Scrolling down
+            }
+            scrollPos = st <= 0 ? 0 : st;
+        })
+    }
+  }, [setIsScrollUp, setShowFixed])
   
+  // Close menu with Esc key
   useEffect(() => {
     if (typeof window !== `undefined`) {
         document.addEventListener('keydown', (e) => {
@@ -112,33 +179,17 @@ const MainNav = ({lang}) => {
   return (
     <>
       <Navbar>
-          <Link to={lang === "en" ? "/en/" : "/"}>
-            <Logo />
-          </Link>
-        <MenuBtn as="a" onClick={() => toggleMenu(!isOpen)} isOpen={isOpen}>
-                <motion.span
-                    className="menu-icon"
-                    variants={openBtnVariant}
-                    animate={!isOpen ? "show" : "hidden"}
-                    initial="initial"
-                    exit={{opacity: 0, ...transition}}
-                    transition={{...transition, duration: 0.4}}
-                >
-                    <span>Menu</span>
-                </motion.span>
-                <motion.div
-                    className="close-icon"
-                    variants={closeBtnVariant}
-                    animate={isOpen ? "show" : "hidden"}
-                    initial="initial"
-                    exit={{opacity: 0, ...transition}}
-                    transition={{...transition, duration: 0.4}}
-                >
-                    <motion.span></motion.span>
-                    <motion.span></motion.span>
-                </motion.div>
-        </MenuBtn>
+        <NavContent lang={lang} toggleMenu={toggleMenu} isOpen={isOpen} />
       </Navbar>
+      <FixedNavbar
+        variants={fixedNavbarAnim}
+        initial={{y: -80}}
+        animate={!isScrollUp && showFixed ? "show" : "hidden"}
+        transition={transition}
+        isOpen={isOpen}
+      >
+        <NavContent lang={lang} toggleMenu={toggleMenu} isOpen={isOpen} />
+      </FixedNavbar>
       <Menu lang={lang} isOpen={isOpen}/>
     </>
   )

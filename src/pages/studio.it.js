@@ -8,9 +8,13 @@ import { useStaticQuery, graphql } from 'gatsby'
 import Img from 'gatsby-image'
 import GridMaxWidthContainer from "../components/elements/Atoms/GridMaxWidthContainer"
 import styled from 'styled-components'
-import Embed from 'react-embed';
-import ReactPlayer from 'react-player'
+// import Embed from 'react-embed';
+// import ReactPlayer from 'react-player'
 import parse from 'html-react-parser'
+import { motion } from 'framer-motion'
+import {transition} from '../helpers/framer-defaults'
+import ValueCircle from "../components/elements/Studio/ValueCircle"
+import StyledStudioPage from '../components/elements/Studio/StyledStudioPage'
 
 const StudioPageIta = () => {
   const data = useStaticQuery(graphql`
@@ -85,6 +89,7 @@ const StudioPageIta = () => {
   `)
   const [studio, setStudio] = useState(null)
   const [values, setValues] = useState([])
+  const [counter, setCounter] = useState(0)
 
   useEffect(() => {
     if(data) {
@@ -109,6 +114,35 @@ const StudioPageIta = () => {
       )
     }
   }, [data, setStudio, setValues])
+
+  let interval
+
+  useEffect(() => {
+    if(values) {
+      interval = setInterval(() => {
+        if(counter < values.length - 1) {
+          setCounter(counter => counter + 1)
+          console.log(counter)
+        } else {
+          setCounter(0)
+          console.log(counter)
+        }
+      }, 5000)
+      return () => clearInterval(interval);
+    }
+  }, [counter, values, interval])
+
+  useEffect(() => {
+    if (typeof window !== `undefined`) {
+      const items = document.querySelectorAll(".value-items li")
+      items.forEach(item => {
+        if(item.dataset.counter == counter) {
+          item.querySelector("div").classList.add("active")
+        }
+      })
+      console.log("items", items)
+    }
+  }, [values, counter])
 
   return(
     <Layout>
@@ -147,20 +181,48 @@ const StudioPageIta = () => {
                   <div tw="grid grid-cols-12">
                     {
                       studio.studioACF.valuesSection.title &&
-                      <div tw="text-3xl md:text-5xl text-center col-span-12 lg:col-span-10 lg:col-start-2 xl:col-span-8 xl:col-start-3">{parse(studio.studioACF.valuesSection.title)}</div>
+                      <div tw="text-3xl md:text-5xl mb-4 text-center col-span-12 lg:col-span-10 lg:col-start-2 xl:col-span-8 xl:col-start-3">{parse(studio.studioACF.valuesSection.title)}</div>
                     }
                     <figure tw="col-span-full text-center flex flex-col items-center">
-                      <ul tw="my-8 md:my-16 w-full flex justify-center">
+                      <ul className="value-items" tw="my-8 md:my-16 w-full flex justify-center">
                       {
                         values &&
-                        values.map(value => (
-                            <li key={Math.floor(Math.random() * (100 - 999) + 100)} tw="p-8 list-none" >
-                              {value.title}
+                        values.map((value, index) => (
+                            <li
+                              key={Math.floor(Math.random() * (100 - 999) + 100)}
+                              tw="p-2 md:p-4 list-none"
+                              data-counter={index}
+                              onClick={() => setCounter(index)}
+                              onMouseOver={() => setCounter(index)}
+                            >
+                              <ValueCircle value={value} index={index} />
                             </li>
                         ))
                       }
                       </ul>
-                      <figcaption tw="text-center w-full lg:w-1/2 mx-auto">{values[1].description}</figcaption>
+                      <div tw="relative w-full flex justify-center pb-56 md:pb-32">
+                        {
+                          values.map((value, index) => (
+                            <motion.figcaption
+                              tw="absolute mx-auto text-center w-full lg:w-2/3 mx-auto"
+                              animate={
+                                counter === index
+                                ? {y:0, opacity: 1, transition: {...transition, delay:0.15}}
+                                : {y:40, opacity: 0, transition: {...transition, duration: 0.2}}}
+                              initial={{y:40, opacity: 0, transition: {...transition, duration: 0.2}}}
+                              trasition={{...transition}}
+                              exit={{y:40, opacity: 0}}
+                            >
+                              <h4 tw="text-3xl font-bold mb-4 md:mb-8">{value.title}</h4>
+                              <p>
+                                {
+                                  value.description
+                                }
+                              </p>
+                            </motion.figcaption>
+                          ))
+                        }
+                      </div>
                     </figure>
                   </div>
                 </section>
@@ -193,7 +255,7 @@ const StudioPageIta = () => {
                     }
                     {
                       studio.studioACF.sectionApproach.content &&
-                      <p tw="text-lg col-span-12 md:col-span-6 md:col-start-7">{parse(studio.studioACF.sectionApproach.content)}</p>
+                      <div tw="text-lg col-span-12 md:col-span-6 md:col-start-7">{parse(studio.studioACF.sectionApproach.content)}</div>
                     }
                   </div>
                 </section>
@@ -226,7 +288,7 @@ const StudioPageIta = () => {
                     }
                     {
                       studio.studioACF.sectionEnd.content &&
-                      <p tw="text-lg col-span-12 md:col-span-6 md:col-start-7">{parse(studio.studioACF.sectionEnd.content)}</p>
+                      <div tw="text-lg col-span-12 md:col-span-6 md:col-start-7">{parse(studio.studioACF.sectionEnd.content)}</div>
                     }
                   </div>
                 </section>
@@ -237,109 +299,5 @@ const StudioPageIta = () => {
     </Layout>
   )
 }
-
-const StyledStudioPage = styled.div(() => [
-  css`
-  .studio-content > div {
-    // max-width: 1600px;
-
-    > * {
-      ${tw`col-span-12`}
-    }
-    
-    > p, 
-    > ul,
-    > ol,
-    > h1,
-    > h2,
-    > h3,
-    > h4,
-    > .wp-block-quote {
-      ${tw`col-span-12 md:col-span-7 md:col-start-6 my-4 mb-8 md:mb-8 xl:mb-8`}
-    }
-
-    ul {
-      ${tw`pl-4`}
-    }
-
-    iframe.p4-_1gxhi00 {
-      height: 56vw !important;
-    }
-    
-    .video-container {
-      iframe, video {
-        width: 100vw !important;
-        // height: 56vw !important;
-      }
-      video:focus { outline: none; }
-    }
-
-    .player-wrapper {
-      position: relative;
-      padding-top: 56.25% /* Player ratio: 100 / (1280 / 720) */
-    }
-    
-    .react-player {
-      position: absolute;
-      top: 0;
-      left: 0;
-    }
-
-    p {
-      line-height: 1.6rem;
-      font-weight: 200;
-      ${tw`md:text-lg mb-4 md:mb-8`}
-    }
-    
-    section p:last-of-type {
-      ${tw`md:text-lg mb-0`}
-    }
-
-    > .wp-block-columns {
-      ${tw`flex flex-col md:flex-row`}
-
-      .wp-block-column {
-        flex-grow: 1;
-        ${tw`mr-0 md:mr-4`}
-      }
-      
-      .wp-block-column:last-of-type {
-        ${tw`mr-0`}
-      }
-    }
-
-    .wp-block-embed {
-      iframe {
-        width: 100%;
-        height: 57vw;
-      }
-    }
-
-    > .wp-block-image.size-large {
-      grid-column: 1 / span 12;
-      margin-left: calc(50% - 50vw);
-      margin-right: calc(50% - 50vw);
-      max-width: 1000%;
-      width: auto;
-      
-      img {
-        width: 100%;
-        height: auto;
-      }
-    }
-
-    .wp-block-separator {
-      ${tw`my-6 md:my-12 xl:my-32`}
-    }
-    .wp-block-image {
-      ${tw`my-12 xl:my-32`}
-      
-      img {
-        ${tw`w-full h-auto`}
-      }
-    }
-  }
-  `
-])
 
 export default StudioPageIta

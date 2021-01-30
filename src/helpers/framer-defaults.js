@@ -18,6 +18,7 @@ export const teamMemberFilterVariants = {
         }
     }
 }
+
 export const teamMemberDescriptionVariants = {
     hovered: {
         opacity: 0.95,
@@ -64,6 +65,21 @@ export const teamMemberImageVariants = {
         filter: "blur(0px)",
         transition: {
             ...transition,
+            duration: 0.15
+        }
+    }
+}
+
+export const fixedNavbarAnim = {
+    show: {
+        y: 0,
+        transition: {
+            duration: 0.3
+        }
+    },
+    hidden: {
+        y: -80,
+        transition: {
             duration: 0.15
         }
     }
