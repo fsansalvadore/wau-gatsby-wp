@@ -1,4 +1,4 @@
-import React, { useEffect} from "react"
+import React from "react"
 
 import GenericMetadata from './GenericMetadata'
 import MainNav from "./elements/MainNav/MainNav"

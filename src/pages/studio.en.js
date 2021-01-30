@@ -1,6 +1,4 @@
 import React from "react"
-import Layout from "../components/layout"
-import { Helmet } from 'react-helmet'
 import { useStaticQuery, graphql } from 'gatsby'
 import StudioPageLayout from "../components/elements/Studio/StudioPageLayout"
 
