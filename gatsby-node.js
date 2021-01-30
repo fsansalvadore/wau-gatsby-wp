@@ -11,7 +11,7 @@ language {
 `
 
 const query = `
-  query {
+  query GlobalQuery {
     wordpress {
       projects(first: 100, where: { status: PUBLISH }) {
         nodes {
@@ -118,9 +118,88 @@ const query = `
           title(format: RENDERED)
         }
       }
+      pages(first: 100, where: { status: PUBLISH }) {
+        nodes {
+          slug
+          id
+          title(format: RENDERED)
+          pagesACF {
+            title
+            introduzione
+          }
+          studioACF {
+            valuesSection {
+              values {
+                value1 {
+                  title
+                  description
+                }
+                value2 {
+                  title
+                  description
+                }
+                value3 {
+                  title
+                  description
+                }
+              }
+              title
+            }
+            video
+            videonative {
+              sourceUrl
+              uri
+              altText
+              mediaItemUrl
+            }
+            image1 {
+              sourceUrl(size: LARGE)
+            }
+            image2 {
+              sourceUrl(size: LARGE)
+            }
+            sectionEnd {
+              title
+              content
+            }
+            sectionApproach {
+              title
+              content
+            }
+          }
+        }
+      }
     }
   }
 `
+
+// const studioQuery = `
+//   query StudioQuery {
+//     wordpress {
+//       pages(where: { status: PUBLISH, title: "Studio" }) {
+//         nodes {
+//           studioACF {
+//             valuesSection {
+//               values {
+//                 value1 {
+//                   title
+//                   description
+//                 }
+//                 value2 {
+//                   title
+//                 }
+//                 value3 {
+//                   title
+//                 }
+//               }
+//               title
+//             }
+//           }
+//         }
+//       }
+//     }
+//   }
+// `
 
 exports.createResolvers = async (
   {
@@ -161,6 +240,7 @@ exports.createResolvers = async (
 
 exports.createPages = async ({ actions, graphql }) => {
   const { data } = await graphql(`${ query }`)
+  // const { studio } = await graphql(`${ studioQuery }`)
   
     // create ita projects pages
     data.wordpress.projects.nodes.filter(p => p.language.code === "IT").forEach(project => {

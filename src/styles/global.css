@@ -16,14 +16,6 @@
     padding: 0;
 }
 
-.cover-image-fullscreen {
-    grid-column: 1 / span 12;
-    margin-left: calc(50% - 50vw);
-    margin-right: calc(50% - 50vw);
-    max-width: 1000%;
-    width: auto;
-}
-
 .container-max-1400 {
     max-width: 1400px;
 }
@@ -95,7 +87,13 @@ h1 {
     height: 100% !important;
 }
 
-
+.cover-image-fullscreen {
+    grid-column: 1 / span 12;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    max-width: 1000%;
+    width: auto;
+}
 
 @keyframes wordAnim {
     0% {
