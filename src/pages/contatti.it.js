@@ -1,5 +1,5 @@
 import React from "react"
-import Layout from "../components/layout"
+import Layout from "../components/Layout"
 import { Helmet } from 'react-helmet'
 import Heading from "../components/elements/Heading/Heading"
 import tw from 'twin.macro'

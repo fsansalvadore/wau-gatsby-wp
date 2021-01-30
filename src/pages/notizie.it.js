@@ -1,5 +1,5 @@
 import React from "react"
-import Layout from "../components/layout"
+import Layout from "../components/Layout"
 import { Helmet } from 'react-helmet'
 import { StaticQuery, graphql } from 'gatsby'
 import Heading from "../components/elements/Heading/Heading"

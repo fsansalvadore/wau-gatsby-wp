@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import Layout from "../components/layout"
+import Layout from "../components/Layout"
 import { Helmet } from 'react-helmet'
 import { Link, graphql } from 'gatsby'
 import Heading from "../components/elements/Heading/Heading"

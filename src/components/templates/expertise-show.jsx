@@ -1,7 +1,7 @@
 import React from "react"
 import { Link, StaticQuery } from "gatsby"
 import Heading from '../elements/Heading/Heading'
-import Layout from "../layout"
+import Layout from "../Layout"
 import ProjectPreviewCard from "../elements/Projects/ProjectPreviewCard/ProjectPreviewCard"
 import Img from 'gatsby-image'
 import parse from 'html-react-parser'

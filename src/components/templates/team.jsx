@@ -1,7 +1,7 @@
 import React from "react"
 import { Link } from "gatsby"
 
-import Layout from "../../layout"
+import Layout from "../../Layout"
 
 const TeamPage = props => {
   const { content, title } = props.pageContext;
