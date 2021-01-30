@@ -14,12 +14,12 @@ const GenericMetadata = ({lang}) => {
             <meta http-equiv="Cache-Control" content="max-age=1209600" />
             <meta itemprop="name" content="WAU Architetti" />
             <meta itemprop="description" content="WAU Architetti" />
-            {/* <meta itemprop="image" content="./images/Saglietti_1200X623.png" /> */}
+            <meta itemprop="image" content="./images/Wau-Architetti-social.jpg" />
             <meta property="og:site_name" content="WAU Architetti" />
             <meta property="og:type" content="website" />
             <meta property="og:url" content="https://www.wauarchitetti.com/" />
             <meta property="og:title" content="WAU Architetti" />
-            {/* <meta property="og:image" content="./images/Saglietti_1200X623.png" /> */}
+            <meta property="og:image" content="./images/Wau-Architetti-social.jpg" />
             <meta property="og:description" content="WAU Architetti" />
             <meta property="og:locale" content="it_IT" />
             <meta name="twitter:card" content="summary" />
@@ -27,7 +27,7 @@ const GenericMetadata = ({lang}) => {
             <meta name="twitter:title" content="WAU Architetti" />
             <meta name="twitter:description" content="WAU Architetti" />
             <meta name="twitter:creator" content="@Francesco_Sansa" />
-            {/* <meta name="twitter:image" content="./images/Saglietti_1200X623.png" /> */}
+            <meta name="twitter:image" content="./images/Wau-Architetti-social.jpg" />
             <meta name="robots" content="NOODP" />
             <meta name="msnbot" content="NOODP" />
             <meta name="googlebot" content="NOODP" />

@@ -8,7 +8,7 @@ module.exports = {
     author: `@Francesco_Sansa`,
     url: "https://wauarchitetti.com/", // No trailing slash allowed!
     siteUrl: `https://wauarchitetti.com/`,
-    // image: "/images/Saglietti_1200X623.png", // Path to your image you placed in the 'static' folder
+    image: "/images/Wau-Architetti-social.jpg", // Path to your image you placed in the 'static' folder
     twitterUsername: "@Francesco_Sansa"
   },
   plugins: [
