@@ -1,5 +1,4 @@
 import React from "react"
-
 import GenericMetadata from './GenericMetadata'
 import MainNav from "./elements/MainNav/MainNav"
 // import { GlobalStyles } from 'twin.macro'
