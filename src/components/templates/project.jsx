@@ -1,5 +1,5 @@
 import React from "react"
-import { graphql, Link } from "gatsby"
+import { graphql, useStaticQuery, Link } from "gatsby"
 import { Helmet } from 'react-helmet'
 import Layout from "../layout"
 import Heading from '../elements/Heading/Heading'
@@ -23,11 +23,51 @@ const ProjectPage = (props) => {
     tags,
     project
   } = props.pageContext;
-  const { data } = props;
+  
+  const data = useStaticQuery(graphql`
+    query PrevNextQuery {
+      wordpress {
+        projects(first: 100, where: { status: PUBLISH }) {
+          nodes {
+            id
+            title
+            date
+            slug
+            language {
+              code
+            }
+            tags {
+              nodes {
+                name
+              }
+            }
+            featuredImage {
+              node {
+                altText
+                link
+                sourceUrl
+                imageFile {
+                  childImageSharp {
+                    fixed(width: 1500, quality: 90) {
+                      ...GatsbyImageSharpFixed
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  `)
+
   const proj = data.wordpress.projects.nodes.find(project => project.title === title)
 
   return (
     <Layout>
+      <Helmet>
+        <title>{proj ? `${proj.title}` : "Progetto"} • WAU Architetti</title>
+      </Helmet>
       <ProjectContainer>
         <Heading tw="flex flex-col lg:flex-row">
           <div tw="w-full md:w-3/4">
@@ -200,42 +240,5 @@ const ProjectContainer = styled.div(() => [
     }
   }
 `])
-
-export const query = graphql`
-  query PrevNextQuery {
-    wordpress {
-      projects(first: 100, where: { status: PUBLISH }) {
-        nodes {
-          id
-          title
-          date
-          slug
-          language {
-            code
-          }
-          tags {
-            nodes {
-              name
-            }
-          }
-          featuredImage {
-            node {
-              altText
-              link
-              sourceUrl
-              imageFile {
-                childImageSharp {
-                  fixed(width: 1500, quality: 90) {
-                    ...GatsbyImageSharpFixed
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-`
 
 export default ProjectPage

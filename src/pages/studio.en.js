@@ -1,31 +1,84 @@
 import React from "react"
 import Layout from "../components/layout"
 import { Helmet } from 'react-helmet'
-import Heading from "../components/elements/Heading/Heading"
-import tw from 'twin.macro'
-import HeadingIntroHalf from "../components/elements/Heading/HeadingIntroHalf"
+import { useStaticQuery, graphql } from 'gatsby'
+import StudioPageLayout from "../components/elements/Studio/StudioPageLayout"
 
-// import loadable from '@loadable/component'
+const StudioPageIta = () => {
+  const data = useStaticQuery(graphql`
+    query StudioEngQuery {
+      wordpress {
+        pages(where: { status: PUBLISH, language: EN, title: "Studio" }) {
+          nodes {
+            slug
+            title
+            pagesACF {
+              title
+              introduzione
+            }
+            studioACF {
+              valuesSection {
+                values {
+                  value1 {
+                    title
+                    description
+                  }
+                  value2 {
+                    title
+                    description
+                  }
+                  value3 {
+                    title
+                    description
+                  }
+                }
+                title
+              }
+              video
+              videonative {
+                sourceUrl
+                uri
+                altText
+                mediaItemUrl
+              }
+              image1 {
+                sourceUrl
+                imageFile {
+                  childImageSharp {
+                    fixed(width: 1500, quality: 90) {
+                      ...GatsbyImageSharpFixed
+                    }
+                  }
+                }
+              }
+              image2 {
+                sourceUrl
+                imageFile {
+                  childImageSharp {
+                    fixed(width: 1500, quality: 90) {
+                      ...GatsbyImageSharpFixed
+                    }
+                  }
+                }
+              }
+              sectionEnd {
+                title
+                content
+              }
+              sectionApproach {
+                title
+                content
+              }
+            }
+          }
+        }
+      }
+    }
+  `)
 
-// const VideoSection = loadable(() => import('../components/organisms/video-section/video-section.component'))
-
-const StudioPageEng = () => {
-  return(
-    <Layout>
-      <Helmet>
-        <title>WAU Architetti • Studio</title>
-      </Helmet>
-      <div>
-        <Heading>
-          <HeadingIntroHalf
-            breadcrumb="Studio"
-            heading="Duis aute irure dolor in reprehenderit."
-            subheading="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-          />
-        </Heading>
-      </div>
-    </Layout>
+  return (
+    <StudioPageLayout data={data} />
   )
 }
 
-export default StudioPageEng
+export default StudioPageIta

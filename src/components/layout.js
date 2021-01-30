@@ -6,7 +6,7 @@ import MainNav from "./elements/MainNav/MainNav"
 import "../styles/global.css"
 import "../styles/locomotive-scroll.css"
 
-const Layout = ({ children }) => {
+const Layout = ({ isMenuLight, children }) => {
   let location
   let lang = "it"
   if (typeof window !== `undefined`) {
@@ -20,7 +20,7 @@ const Layout = ({ children }) => {
     <>
       <GenericMetadata lang={lang} />
       {/* <GlobalStyles /> */}
-      <MainNav lang={lang} />
+      <MainNav lang={lang} isMenuLight={isMenuLight} />
       {children}
     </>
   )

@@ -7,19 +7,27 @@ import Logo from "../Logo/Logo";
 import tw, { css } from 'twin.macro'
 import { transition, fixedNavbarAnim } from '../../../helpers/framer-defaults'
 
-const Navbar = styled.div`
-    position: fixed;
-    z-index: 999;
-    height: 80px;
-    ${tw`absolute w-full py-0 px-8 md:px-16 flex items-center justify-between`}
-`
+const Navbar = styled.div(({isMenuLight}) => [
+    css`
+        position: fixed;
+        z-index: 999;
+        height: 80px;
+        ${tw`absolute w-full py-0 px-8 md:px-16 flex items-center justify-between`}
+    `,
+    isMenuLight && css`
+        .menu-icon span {
+            color: var(--white) !important;
+        }
+    `
+])
+
 const FixedNavbar = styled(motion.div)(() => [
     css`
         position: fixed;
         z-index: 999;
         height: 80px;
         background: ${props => props.isOpen ? "transparent" : "var(--white)"};
-        box-shadow: ${props => props.isOpen ? "none" : "2px 0 2px rgba(0, 0, 0, 0.2)"};
+        box-shadow: ${props => props.isOpen ? "none" : "1px 0 1px rgba(0, 0, 0, 0.4)"};
         ${tw`fixed w-full py-0 px-8 md:px-16 flex items-center justify-between`}
     `
 ])
@@ -96,11 +104,11 @@ const closeBtnVariant = {
     },
 }
 
-const NavContent = ({lang, isOpen, toggleMenu}) => {
+const NavContent = ({lang, isOpen, toggleMenu, isMenuLight}) => {
     return (
         <>
             <Link to={lang === "en" ? "/en/" : "/"}>
-            <Logo />
+            <Logo isMenuLight={isMenuLight} />
             </Link>
             <MenuBtn as="a" onClick={() => toggleMenu(!isOpen)} isOpen={isOpen}>
                     <motion.span
@@ -129,7 +137,7 @@ const NavContent = ({lang, isOpen, toggleMenu}) => {
     )
 }
 
-const MainNav = ({lang}) => {
+const MainNav = ({lang, isMenuLight}) => {
   const [isOpen, toggleMenu] = useState(false)
   const [showFixed, setShowFixed] = useState(false)
   const [isScrollUp, setIsScrollUp] = useState(false)
@@ -178,8 +186,8 @@ const MainNav = ({lang}) => {
 
   return (
     <>
-      <Navbar>
-        <NavContent lang={lang} toggleMenu={toggleMenu} isOpen={isOpen} />
+      <Navbar isMenuLight={isMenuLight}>
+        <NavContent lang={lang} toggleMenu={toggleMenu} isOpen={isOpen} isMenuLight={isMenuLight} />
       </Navbar>
       <FixedNavbar
         variants={fixedNavbarAnim}

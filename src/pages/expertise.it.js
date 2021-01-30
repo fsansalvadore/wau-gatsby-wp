@@ -19,7 +19,7 @@ const ExpertisesPageIta = ({data}) => {
   }, [setExpertises, term, data.wordpress.expertises])
   
   return(
-    <Layout>
+    <Layout isMenuLight>
       <Helmet>
         <title>WAU Architetti • Expertise</title>
       </Helmet>

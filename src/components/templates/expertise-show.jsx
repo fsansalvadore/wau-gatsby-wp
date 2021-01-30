@@ -44,7 +44,7 @@ const ExpertisePage = props => {
         }
       `}
       render={data => (
-        <Layout>
+        <Layout isMenuLight>
           <ExpertiseContainer className="gradientBg">
             <Heading>
               <p className="breadcrumbs mono">
