@@ -14,7 +14,6 @@ export const onServiceWorkerUpdateReady = () => {
   if (answer === true) {
     window.location.reload()
   }
-
 }
 
 window.self.addEventListener('fetch', function(event) {
