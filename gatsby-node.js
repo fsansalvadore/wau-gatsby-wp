@@ -240,7 +240,6 @@ exports.createResolvers = async (
 
 exports.createPages = async ({ actions, graphql }) => {
   const { data } = await graphql(`${ query }`)
-  // const { studio } = await graphql(`${ studioQuery }`)
   
     // create ita projects pages
     data.wordpress.projects.nodes.filter(p => p.language.code === "IT").forEach(project => {
