@@ -45,6 +45,18 @@ module.exports = {
         // path: path.join(__dirname, `src`, `images`),
       }
     },
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `WAU Architetti`,
+        short_name: `WAU`,
+        start_url: `/`,
+        background_color: `#ffffff`,
+        theme_color: `#000000`,
+        icon: `src/images/favicon.svg`, // This path is relative to the root of the site.
+        // crossOrigin: `use-credentials`,
+      },
+    },
     // {
     //   resolve: `gatsby-source-filesystem`,
     //   options: {
