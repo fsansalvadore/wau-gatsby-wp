@@ -1,7 +1,7 @@
 import React from "react"
 import { Link } from "gatsby"
 import Heading from "../elements/Heading/Heading"
-import Layout from "../../Layout"
+import Layout from "../../LayoutComponent"
 
 const NewsShowPage = props => {
   const { content, title } = props.pageContext;

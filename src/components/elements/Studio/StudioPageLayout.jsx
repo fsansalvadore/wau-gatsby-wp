@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import Layout from "../../Layout"
+import Layout from "../../LayoutComponent"
 import { Helmet } from 'react-helmet'
 import Heading from "../../../components/elements/Heading/Heading"
 import HeadingIntroHalf from "../../../components/elements/Heading/HeadingIntroHalf"

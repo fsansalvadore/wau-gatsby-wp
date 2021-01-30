@@ -1,7 +1,7 @@
 import React from "react"
 import { graphql, useStaticQuery, Link } from "gatsby"
 import { Helmet } from 'react-helmet'
-import Layout from "../Layout"
+import Layout from "../LayoutComponent"
 import Heading from '../elements/Heading/Heading'
 import styled from 'styled-components'
 import tw, { css } from 'twin.macro'

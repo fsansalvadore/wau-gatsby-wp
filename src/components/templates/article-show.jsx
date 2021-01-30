@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { StaticQuery, graphql, Link } from "gatsby"
 import Heading from '../elements/Heading/Heading'
-import Layout from "../Layout"
+import Layout from "../LayoutComponent"
 import Img from 'gatsby-image'
 import styled from 'styled-components'
 import tw, { css } from 'twin.macro'

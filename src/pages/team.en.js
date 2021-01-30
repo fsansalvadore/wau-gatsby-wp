@@ -1,5 +1,5 @@
 import React from "react"
-import Layout from "../components/Layout"
+import Layout from "../components/LayoutComponent"
 import { Helmet } from 'react-helmet'
 import Heading from "../components/elements/Heading/Heading"
 import HeadingIntroHalf from "../components/elements/Heading/HeadingIntroHalf"

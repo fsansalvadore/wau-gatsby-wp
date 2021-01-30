@@ -173,34 +173,6 @@ const query = `
   }
 `
 
-// const studioQuery = `
-//   query StudioQuery {
-//     wordpress {
-//       pages(where: { status: PUBLISH, title: "Studio" }) {
-//         nodes {
-//           studioACF {
-//             valuesSection {
-//               values {
-//                 value1 {
-//                   title
-//                   description
-//                 }
-//                 value2 {
-//                   title
-//                 }
-//                 value3 {
-//                   title
-//                 }
-//               }
-//               title
-//             }
-//           }
-//         }
-//       }
-//     }
-//   }
-// `
-
 exports.createResolvers = async (
   {
     actions,
