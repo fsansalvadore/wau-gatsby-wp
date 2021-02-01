@@ -4,6 +4,7 @@ import MainNav from "./elements/MainNav/MainNav"
 // import { GlobalStyles } from 'twin.macro'
 import "../styles/global.css"
 import "../styles/locomotive-scroll.css"
+import { Footer } from "antd/lib/layout/layout"
 
 const Layout = ({ isMenuLight, children }) => {
   let location
@@ -21,6 +22,7 @@ const Layout = ({ isMenuLight, children }) => {
       {/* <GlobalStyles /> */}
       <MainNav lang={lang} isMenuLight={isMenuLight} />
       {children}
+      <Footer lang={lang} />
     </>
   )
 }
