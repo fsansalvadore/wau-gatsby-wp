@@ -12,7 +12,7 @@ const MenuContainer = styled(motion.div)`
     position: fixed;
     width: 100vw;
     height: 100vh;
-    z-index: 100;
+    z-index: 101;
 `
 const MenuSlider = styled(motion.div)`
     min-height: 550px;

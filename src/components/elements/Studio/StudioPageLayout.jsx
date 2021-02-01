@@ -6,9 +6,6 @@ import HeadingIntroHalf from "../../../components/elements/Heading/HeadingIntroH
 import tw from 'twin.macro'
 import Img from 'gatsby-image'
 import GridMaxWidthContainer from "../../../components/elements/Atoms/GridMaxWidthContainer"
-import styled from 'styled-components'
-// import Embed from 'react-embed';
-// import ReactPlayer from 'react-player'
 import parse from 'html-react-parser'
 import { motion } from 'framer-motion'
 import {transition} from '../../../helpers/framer-defaults'
