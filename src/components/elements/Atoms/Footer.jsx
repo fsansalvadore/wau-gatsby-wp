@@ -10,7 +10,9 @@ export default ({lang}) => {
         <StyledFooter>
             <GridMaxWidthContainer>
                 <div tw="col-span-12 text-center lg:col-span-5 lg:text-left">
-                    <Logo isMenuLight  />
+                    <Link to={lang == "it" ? "/" : "/en"}>
+                        <Logo isMenuLight  />
+                    </Link>
                 </div>
                 <div className="footer-list">
                     <h5>Naviga</h5>
@@ -64,7 +66,7 @@ export default ({lang}) => {
 
 const StyledFooter = styled.footer(() => [
     css`
-        ${tw`w-full flex items-center py-8`}
+        ${tw`relative z-40 w-full flex items-center py-8`}
         background: var(--purple);
         color: var(--white);
 

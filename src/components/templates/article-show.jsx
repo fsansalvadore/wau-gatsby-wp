@@ -200,7 +200,7 @@ const ProjectContainer = styled.div(() => [
       }
 
       figcaption {
-        max-width: 1200px;
+        max-width: 900px;
         ${tw`mx-auto px-8 py-4 md:px-16`}
       }
     }

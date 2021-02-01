@@ -32,6 +32,9 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Link } from 'gatsby'
 import TextLoop from "react-text-loop";
 import tw from 'twin.macro'
+import GridMaxWidthContainer from "../components/elements/Atoms/GridMaxWidthContainer"
+import SectionTextBlock from "../components/elements/Atoms/SectionTextBlock"
+import ContactsTextBlock from "../components/elements/Atoms/ContactsTextBlock"
 
 softShadows()
 
@@ -211,7 +214,6 @@ const IntroCanvas = ({
           </animated.mesh>
         </group>
       </StyledIntroCanvas>
-
   )
 }
 
@@ -231,17 +233,11 @@ const StyledIntroContainer = styled.div`
     justify-content: center;
 
     .after-sphere {
-      position: relative;
-      display: block;
-      z-index: 10;
-      overflow-y: scroll;
-      width: 100vw;
-      height: auto;
+      position: realtive;
+      z-index: 50 !important;
+      background: var(--white);
     }
     
-    h1 {
-        z-index: 10;
-    }   
     
     .canvas {
       top: 0;
@@ -327,14 +323,23 @@ const StyledIntroContainer = styled.div`
       min-height: 100%;
       // top: 0;
       bottom: 0;
-      z-index: 10;
+      z-index: 4;
       display: flex;
       align-items: center;
       justify-content: center;
       opacity: 0;
 
-      .video {
-        pointer-events: none;
+      video.video {
+        object-fit: cover;
+        width: 100vw;
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        left: 0;
+      }
+
+      p {
+        ${tw`absolute left-0 right-0 bottom-32 z-20 mx-auto text-white text-center uppercase`}
       }
     }
 
@@ -346,7 +351,7 @@ const StyledIntroContainer = styled.div`
       height: 100vh;
       top: 0;
       bottom: 0;
-      z-index: 20;
+      z-index: 3;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -396,7 +401,6 @@ const IndexPage = () => {
   const indexRef = useRef(null)
   const videoRef = useRef(null)
   const introTextRef = useRef(null)
-  const wordsRef = useRef(null)
   // const [ shouldUseImage, setShouldUseImage ] = useState(false);
   const [ introWords, setIntroWords ] = useState(null)
   // const [ wordsArr, setWordsArr ] = useState("")
@@ -404,8 +408,10 @@ const IndexPage = () => {
   // Words animation
   useEffect(() => {
     setIntroWords(["architettura", "multidisciplinare", "design", "passione", "creatività"])
-    
-  }, [setIntroWords])
+    if(videoRef.current) {
+      videoRef.current.querySelector("video").play()
+    }
+  }, [setIntroWords, videoRef.current])
   
   useEffect(() => {
     if(introWords) {
@@ -526,9 +532,9 @@ const IndexPage = () => {
           scrub: 2,
           // markers: true,
           // onUpdate: ({progress, direction, isActive}) => console.log(progress, direction, isActive)
-          onUpdate: ({progress, direction, isActive}) => progress > 0.3
+          onUpdate: ({progress, direction, isActive}) => (progress > 0.3
           ? document.querySelector("a.main-cta").classList.add("off")
-          : document.querySelector("a.main-cta").classList.remove("off")
+          : document.querySelector("a.main-cta").classList.remove("off"))
         }
       })
     
@@ -552,7 +558,7 @@ const IndexPage = () => {
       .to(videoRef.current,  {
         duration: 0.5,
         opacity: 1
-      }, "1.5")
+      }, "1.3")
     }
   }, [])
 
@@ -576,8 +582,10 @@ const IndexPage = () => {
                   <img src={WauGif} alt="Muted Video" />
                 </div>
               ) : ( */}
-              <div className="intro-text-container" ref={introTextRef}><p>WAU interviene nello spazio quotidiano realizzando rivoluzioni leggere.</p></div>
-              <div
+              <div className="intro-text-container" ref={introTextRef}>
+                <p>Siamo uno studio di architettura multidisciplinare.</p>
+              </div>
+              {/* <div
                 className="video-container"
                 ref={videoRef}
                 dangerouslySetInnerHTML={{
@@ -595,7 +603,24 @@ const IndexPage = () => {
                     Your browser does not support the video tag.
                   </video>
                   `
-                }}/>
+                }}/> */}
+                <div
+                className="video-container"
+                ref={videoRef}>
+                  <p>Continua a scorrere</p>
+                  <video
+                    class="video"
+                    width="900"
+                    height="500"
+                    controls={false}
+                    loop
+                    autoplay
+                    muted
+                    >
+                    <source src={`${WauVideo}`} type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
                 {/* ) */}
                 {/* } */}
             <IntroCanvas
@@ -644,11 +669,34 @@ const IndexPage = () => {
             >
             <h1>Sezione</h1>
           </NextContainer>
+          <section tw="w-full py-32 lg:py-64 flex justify-center bg-blue-400">
+            <GridMaxWidthContainer>
+              <SectionTextBlock
+                label="Vision"
+                title="Ri(e)voluzioni dello spazio quotidiano"
+                content="Abbiamo l’obiettivo di creare ambienti migliori per la vita e il lavoro dei nostri clienti, mettendo in circolo nuova energia."
+                link="/studio"
+                cta="Scopri lo studio"
+                tw="col-span-full md:col-span-6 md:col-start-7"
+              />
+            </GridMaxWidthContainer>
+          </section>
           <NextContainer
-            className="next-container yellow"
+            className="next-container"
             >
             <h1>Sezione</h1>
           </NextContainer>
+          <section tw="w-full py-32 lg:py-64 flex justify-center bg-blue-400">
+            <GridMaxWidthContainer>
+              <ContactsTextBlock
+                title="Raccontaci i tuoi progetti"
+                content="WAU è la soluzione per chi cerca un partner capace di accompagnare e guidare le proprie idee, fino alla realizzazione finale. Che si tratti di un piccolo incarico o di una grande committenza, seguiamo ogni lavoro con la stessa attenzione."
+                link="/contatti"
+                cta="Contattaci"
+                tw="col-span-full md:col-span-8 md:col-start-5"
+              />
+            </GridMaxWidthContainer>
+          </section>
         </div>
       </div>
     </Layout>
