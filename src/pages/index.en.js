@@ -1,18 +1,23 @@
-import React from "react"
-import Layout from "../components/LayoutComponent"
-import { Helmet } from 'react-helmet'
+import React, { useEffect, useState } from "react"
+import { useStaticQuery, graphql } from 'gatsby'
+import HomePageLayout from '../components/elements/HomePage/HomePageLayout'
 
-const IndexPage = () => {
+const IndexEng = () => {
+  let location
+  const [lang, setLang] = useState("it")
+
+  useEffect(() => {
+    if (typeof window !== `undefined`) {
+        location = window.location.href
+        if(location.includes("00/en") || location.includes("app/en") || location.includes("com/en")) {
+          setLang("en")
+        }
+    }
+  }, [lang])
+  
   return(
-    <Layout>
-      <Helmet>
-        <title>WAU Architetti • Home Page</title>
-      </Helmet>
-      <div>
-        <h1>WAU ARCHITETTI ENG</h1>
-      </div>
-    </Layout>
+    <HomePageLayout lang={lang} />
   )
 }
 
-export default IndexPage
+export default IndexEng

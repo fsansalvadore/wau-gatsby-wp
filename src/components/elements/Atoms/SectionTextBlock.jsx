@@ -21,10 +21,11 @@ export default ({
     useEffect(() => {
         if(typeof window !== `undefined` && typeof document !== `undefined` && sectionRef.current) {
             gsap.registerPlugin(ScrollTrigger)
-            const label     = sectionRef.current.querySelector(".st-label h4")
-            const title     = sectionRef.current.querySelector(".st-title h5")
-            const content   = sectionRef.current.querySelector(".st-content p")
-            const link      = sectionRef.current.querySelector(".st-link > div")
+            // const label     = sectionRef.current.querySelector(".st-label h4")
+            // const title     = sectionRef.current.querySelector(".st-title h5")
+            // const content   = sectionRef.current.querySelector(".st-content p")
+            // const link      = sectionRef.current.querySelector(".st-link > div")
+            const items      = sectionRef.current.querySelectorAll(".st-anim > *")
 
             let sectionTextTL = gsap.timeline({
               scrollTrigger: {
@@ -39,7 +40,7 @@ export default ({
             })
           
             sectionTextTL
-            .fromTo([label, title, content, link],
+            .fromTo([items],
             {y: "170%", skewY: 4, opacity: 0},
             {duration: 0.8, skewY: 0, opacity: 1, ease: Power1.easeOut, y: "0",stagger: 0.1},
             sectionRef.current)
@@ -50,23 +51,23 @@ export default ({
         <StyledContactsTextBlock {...otherProps} ref={sectionRef} >
             {
                 label &&
-                <div className="st-label">
+                <div className="st-label st-anim">
                     <motion.h4 tw="font-mono text-sm mb-4">{label}</motion.h4>
                 </div>
             }
             {
                 title &&
-                <div className="st-title">
-                    <motion.h5 tw="text-4xl mb-4 w-3/4">{title}</motion.h5>
+                <div className="st-title st-anim">
+                    <motion.h5 tw="md:text-3xl lg:text-5xl mb-4 w-3/4">{title}</motion.h5>
                 </div>
             }
             {
                 content &&
-                <div className="st-content">
+                <div className="st-content st-anim">
                     <motion.p tw="text-xl mb-4 w-3/4">{parse(content)}</motion.p>
                 </div>
             }
-            <div className="st-link" tw="py-8">
+            <div className="st-link st-anim" tw="py-8">
                 <div>
                     <Button as={Link} to={link ? link : "#"}>
                         {

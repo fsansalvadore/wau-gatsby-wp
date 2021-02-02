@@ -33,7 +33,7 @@ const ExpertisesPageIta = ({data}) => {
             <hr tw="col-span-12"/>
             <div tw="flex flex-col md:flex-row col-span-12 py-8 md:py-16">
               <h3 tw="w-full md:w-1/2 text-5xl">Architettura</h3>
-              <div tw="w-full md:w-1/2 mt-8 md:mt-0">
+              <div tw="w-full md:w-1/2 mt-8 md:mt-0 text-xl">
                 <p>
                   The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.
                   <br/><br/>

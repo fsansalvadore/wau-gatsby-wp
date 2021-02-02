@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import GenericMetadata from './GenericMetadata'
 import MainNav from "./elements/MainNav/MainNav"
 // import { GlobalStyles } from 'twin.macro'
@@ -8,13 +8,16 @@ import Footer from './elements/Atoms/Footer'
 
 const Layout = ({ isMenuLight, children }) => {
   let location
-  let lang = "it"
-  if (typeof window !== `undefined`) {
-      location = window.location.href
-      if(location.includes("00/en") || location.includes("app/en") || location.includes("com/en")) {
-        lang = "en"
-      }
-  }
+  const [lang, setLang] = useState("it")
+
+  useEffect(() => {
+    if (typeof window !== `undefined`) {
+        location = window.location.href
+        if(location.includes("00/en") || location.includes("app/en") || location.includes("com/en")) {
+          setLang("en")
+        }
+    }
+  }, [lang])
 
   return (
     <>
