@@ -117,7 +117,7 @@ const Sphere = ({ ctaSectionRef, position, url }) => {
         // rotation={introSpring.rotation}
         >
         {/* geomtery */}
-        <sphereBufferGeometry attach='geometry' args={[1, 400, 400]}/>
+        <sphereBufferGeometry attach='geometry' args={[1, 150, 150]}/>
         {/* meterial */}
         {/* https://github.com/pmndrs/drei#shaders */}
         <AnimatedMeshDistortMaterial
