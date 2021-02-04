@@ -51,7 +51,7 @@ const ExpertisesPageIta = ({data}) => {
                 expertises.map(expertise => (
                   <li
                     key={`exp-${expertise.id}-${expertise.slug}-${Math.floor(Math.random() * (100 - 999) + 100)}`}
-                    tw="border-0 border-b border-solid border-white py-8 md:py-16"
+                    tw="border-0 border-b border-solid border-white py-6 md:py-12"
                   >
                     <h3 tw="text-4xl">{expertise.title}</h3>
                     <div tw="w-full mt-8">

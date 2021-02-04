@@ -37,6 +37,7 @@ import React, {
   import ContactsTextBlock from "../../../components/elements/Atoms/ContactsTextBlock"
   import Accordion from "../../../components/elements/Atoms/Accordion"
   import Button from '../Atoms/Button'
+import ContactsCtaSection from "../Contacts/ContactsCtaSection"
 
   softShadows()
   
@@ -45,7 +46,7 @@ import React, {
   const AnimatedCanvas = animated(Canvas)
   const AnimatedMeshDistortMaterial = animated(MeshDistortMaterial)
   
-  const Sphere = ({ indexRef, position, url }) => {
+const Sphere = ({ indexRef, position, url }) => {
     const sphereRef = useRef(null)
     const meshRef = useRef(null)
     const [hovered, setHover] = useState(false)
@@ -207,7 +208,7 @@ import React, {
               // enable receiving shadows
               receiveShadow
               rotation={[-Math.PI / 2, 0, 0]}
-              position={planeAnim.position}
+              position={[0, -3, 0]}
               >
               <planeBufferGeometry attach='geometry' args={[100, 100]} />
               
@@ -230,6 +231,7 @@ import React, {
       width: 100%;
       position: relative !important;
       height: 400vh !important;
+      min-height: 2800px;
       display: flex;
       justify-content: center;
   
@@ -240,11 +242,15 @@ import React, {
   
       }
       
-      p.continue-cta {
+      p#continue-cta {
         ${tw`fixed font-light left-0 right-0 mx-auto text-center`}
-        bottom: 8vh;
-        color: gray !important;
+        bottom: 10%;
+        color: var(--black);
         z-index: 4;
+
+        &.white {
+          color: var(--white) !important;
+        }
       }
       
       .canvas {
@@ -262,7 +268,9 @@ import React, {
         border: 1px solid #111;
         position: fixed;
         top: auto;
-        bottom: 5%;
+        bottom: 20%;
+        transition: bottom 0.3s ease;
+        will-change: bottom;
         opacity: 0.8;
         z-index: 50;
         transition: opacity 0.3s ease !important;
@@ -281,8 +289,11 @@ import React, {
 
       @media screen and (min-width: 1024px) {
         a.main-cta {
-          top: 75vh;
-          bottom: auto;
+          // top: 75vh;
+          bottom: 25%;
+        }
+        p#continue-cta {
+          bottom: 13%;
         }
       }
   
@@ -389,6 +400,25 @@ import React, {
   //   const ua = navigator.userAgent.toLowerCase();
   //   return ua.indexOf("safari") > -1 && ua.indexOf("chrome") < 0;
   // };
+
+  const ScrollProgressToggleOut = () => {
+    console.log("ScrollProgressToggleOut")
+    if(typeof window !== `undefined` && typeof document !== `undefined`) {
+      if(document.querySelector("a.main-cta")) {
+        document.querySelector("a.main-cta").classList.add("off")
+        document.querySelector("#continue-cta").classList.add("white")
+      }
+    }
+  }
+  const ScrollProgressToggleIn = () => {
+    console.log("ScrollProgressToggleIn")
+    if(typeof window !== `undefined` && typeof document !== `undefined`) {
+      if(document.querySelector("a.main-cta")) {
+        document.querySelector("a.main-cta").classList.remove("off")
+        document.querySelector("#continue-cta").classList.remove("white")
+      }
+    }
+  }
   
   const HomePageLayout = ({ lang, data, ...otherProps }) => {
     const indexRef = useRef(null)
@@ -432,9 +462,11 @@ import React, {
             scrub: 2,
             // markers: true,
             // onUpdate: ({progress, direction, isActive}) => console.log(progress, direction, isActive)
-            onUpdate: ({progress, direction, isActive}) => (progress > 0.3
-            ? document.querySelector("a.main-cta") ? document.querySelector("a.main-cta").classList.add("off")
-            : document.querySelector("a.main-cta").classList.remove("off") : null)
+            onUpdate: ({progress, direction, isActive}) => (
+              progress > 0.3
+              ? ScrollProgressToggleOut()
+              : ScrollProgressToggleIn()
+            )
           }
         })
       
@@ -458,7 +490,7 @@ import React, {
         .to(videoRef.current,  {
           duration: 0.5,
           opacity: 1
-        }, "1.3")
+        }, "1.2")
       }
     }, [introTextTL, ScrollTrigger, gsap.timeline])
   
@@ -478,7 +510,7 @@ import React, {
             className="intro-container"
             >
               <Link to="/progetti" className="main-cta">Esplora i Progetti</Link>
-                <p className="continue-cta">{lang === "it" ? "Scorri per continuare" : "Scroll to continue"}</p>
+                <p id="continue-cta">{lang === "it" ? "Scorri per continuare" : "Scroll to continue"}</p>
                 <div
                   className="intro-text-container"
                   ref={introTextRef}
@@ -491,7 +523,7 @@ import React, {
                   ref={videoRef}>
                     {/* <p>Continua a scorrere</p> */}
                     <video
-                      class="video"
+                      className="video"
                       width="900"
                       height="500"
                       controls={false}
@@ -605,17 +637,7 @@ import React, {
                 </div>
               </GridMaxWidthContainer>
             </section>
-            <section tw="w-full py-32 lg:py-64 flex justify-center" className="lightGradientBg">
-              <GridMaxWidthContainer>
-                <ContactsTextBlock
-                  title="Raccontaci i tuoi progetti"
-                  content="WAU è la soluzione per chi cerca un partner capace di accompagnare e guidare le proprie idee, fino alla realizzazione finale. Che si tratti di un piccolo incarico o di una grande committenza, seguiamo ogni lavoro con la stessa attenzione."
-                  link="/contatti"
-                  cta="Contattaci"
-                  tw="col-span-full md:col-span-8 md:col-start-5"
-                />
-              </GridMaxWidthContainer>
-            </section>
+            <ContactsCtaSection />
           </div>
         </div>
       </Layout>

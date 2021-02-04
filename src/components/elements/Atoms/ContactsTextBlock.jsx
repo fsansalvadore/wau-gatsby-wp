@@ -46,7 +46,7 @@ export default ({
 
     return (
         <StyledSectionTextBlock {...otherProps} ref={contactsTextBlockRef} >
-            <div className="left" tw="col-span-full md:col-span-3">
+            <div className="left" tw="col-span-full lg:col-span-3">
                 {
                     title &&
                     <div className="st-title">
@@ -54,11 +54,11 @@ export default ({
                     </div>
                 }
             </div>
-            <div className="right" tw="col-span-full md:col-span-5 md:col-start-4">
+            <div className="right" tw="col-span-full lg:col-span-5 lg:col-start-4">
                 {
                     content &&
                     <div className="st-content">
-                        <motion.p tw="text-xl mb-4 w-3/4">{parse(content)}</motion.p>
+                        <motion.p tw="text-xl mb-4">{parse(content)}</motion.p>
                     </div>
                 }
                 <div className="st-link" tw="py-8">
