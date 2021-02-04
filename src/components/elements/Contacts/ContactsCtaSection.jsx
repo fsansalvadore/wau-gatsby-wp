@@ -61,7 +61,7 @@ const Sphere = ({ ctaSectionRef, position, url }) => {
           scrollTrigger: {
             trigger: ctaSectionRef.current,
             start: "top 85%",
-            end: "top 10%",
+            end: "top 15%",
             scrub: 1,
             snap: true,
             // markers: true,

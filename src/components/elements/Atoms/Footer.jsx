@@ -1,4 +1,4 @@
-import { Link } from 'gatsby'
+import { Link, useStaticQuery, graphql } from 'gatsby'
 import React from 'react'
 import styled from 'styled-components'
 import tw, { css } from 'twin.macro'
@@ -6,6 +6,34 @@ import Logo from '../Logo/Logo'
 import GridMaxWidthContainer from './GridMaxWidthContainer'
 
 export default ({lang}) => {
+    const data = useStaticQuery(graphql`
+        query GET_FOOTERMENU_BY_NAME {
+            wordpress {
+                menus {
+                    nodes {
+                        count
+                        name
+                        menuItems {
+                            nodes {
+                                id
+                                databaseId
+                                title
+                                url
+                                cssClasses
+                                description
+                                label
+                                linkRelationship
+                                target
+                                parentId
+                                path
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    `)
+
     return (
         <StyledFooter>
             <GridMaxWidthContainer>
@@ -17,30 +45,43 @@ export default ({lang}) => {
                 <div className="footer-list">
                     <h5>Naviga</h5>
                     <ul>
-                        <li><Link to="#">Home Page</Link></li>
-                        <li><Link to="#">Home Page</Link></li>
-                        <li><Link to="#">Home Page</Link></li>
-                        <li><Link to="#">Home Page</Link></li>
+                        {
+                            lang === "it" ?
+                            data.wordpress.menus.nodes.find(node => node.name === "Menu ita").menuItems.nodes.map(item => (
+                                <li key={item.id}>
+                                    <Link to={item.path.replace("/dev/wau/wp", "")}>{item.label}</Link>
+                                </li>
+                            )) :
+                            data.wordpress.menus.nodes.find(node => node.name === "Menu eng").menuItems.nodes.map(item => (
+                                <li key={item.id}>
+                                    <Link to={item.path.replace("/dev/wau/wp", "")}>{item.label}</Link>
+                                </li>
+                            ))
+                        }
                     </ul>
                 </div>
                 <div className="footer-list">
                     <h5>Chat</h5>
                     <ul>
-                        <li><Link to="#">Home Page</Link></li>
-                        <li><Link to="#">Home Page</Link></li>
+                        <li><a href="mailto:info@wauarchitetti.com">info@wauarchitetti.com</a></li>
+                        <li><a href="tel:+390118127237">(+39) 011 8127237</a></li>
                     </ul>
                 </div>
                 <div className="footer-list">
                     <h5>Seguici</h5>
                     <ul>
-                        <li><Link to="#">Facebook</Link></li>
-                        <li><Link to="#">Instagram</Link></li>
+                        <li><a href="https://www.facebook.com/wau.architetti">Facebook</a></li>
+                        <li><a href="https://www.instagram.com/wau_architetti">Instagram</a></li>
                     </ul>
                 </div>
                 <div className="footer-lang-container" tw="col-span-12 lg:col-span-1">
                     <ul>
-                        <li>ITA</li>
-                        <li>ENG</li>
+                        <li>
+                            <a href="/">ITA</a>
+                        </li>
+                        <li>
+                            <a href="/en">ENG</a>
+                        </li>
                     </ul>
                 </div>
                 <hr tw="col-span-full my-8 opacity-50"/>
@@ -75,13 +116,13 @@ const StyledFooter = styled.footer(() => [
         }
 
         a {
-            ${tw`visited:text-white text-white`}
+            ${tw`opacity-80 hover:opacity-100 visited:text-white text-white`}
         }
         .footer-list {
             ${tw`col-span-12 md:col-span-4 lg:col-span-2 text-center md:text-left my-2`}
 
             li {
-                ${tw`text-sm mb-2`}        
+                ${tw`text-sm mb-2 opacity-60 hover:opacity-100`}        
             }
         }
         
@@ -97,7 +138,7 @@ const StyledFooter = styled.footer(() => [
 
         .footer-inline-list {
             li {
-                ${tw`text-sm inline-block mr-4`}
+                ${tw`opacity-60 hover:opacity-100 text-sm inline-block mr-4`}
             }
         }
     `

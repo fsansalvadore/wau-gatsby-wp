@@ -227,15 +227,12 @@ const VisionSphere = ({ visionSectionRef, position, url }) => {
     if(visionSphereRef.current && typeof window !== `undefined` && typeof document !== `undefined`) {
       gsap.registerPlugin(ScrollTrigger)
       
-      // console.log("visionSphereRef", visionSphereRef)
-      // console.log("indexRef", indexRef)
       let sphereTL = gsap.timeline({
         scrollTrigger: {
           trigger: visionSectionRef.current,
           start: "top 40%",
           end: "bottom 10%",
           scrub: 1.4,
-          // snap: true,
           // markers: true,
         }
       })
@@ -286,12 +283,10 @@ const VisionSphere = ({ visionSectionRef, position, url }) => {
       {/* https://github.com/pmndrs/drei#shaders */}
       <AnimatedMeshDistortMaterial
         attach='material'
-        // color={"#403C90"}
         // drei arguments for MeshWobbleMaterial
         ref={meshRef}
         factor={introSpring.factor}
         map={texture}
-        // speed={introSpring.speed}
         speed={hovered ? 2 : 2}
         />
     </animated.mesh>
@@ -304,20 +299,6 @@ const VisionSectionCanvas = ({
 }) => {
   const visionCanvasRef = useRef()
 
-  // const planeAnim = useSpring({
-  //   position: [0, -3, 0],
-  //   from: {
-  //     position: [0, -40, 0]
-  //   },
-  //   delay: 300,
-  //   config: {
-  //     mass: 1,
-  //     tension: 240,
-  //     friction: 40,
-  //     velocity: 0
-  //   }
-  // })
-
   return (
       <StyledVisionSectionCanvas
         id="canvas-root"
@@ -326,6 +307,7 @@ const VisionSectionCanvas = ({
         colorManagement
         camera={{ position: [0, 0, 10], fov: 50 }}
         ref={visionCanvasRef}
+        {...otherProps}
         >
         {/* lighting can be defined globally */}
         {/* directionalLight can cast shadows */}
@@ -357,20 +339,6 @@ const VisionSectionCanvas = ({
             visionSectionRef={visionSectionRef}
             />
         </Suspense>
-
-        {/* plane that receives casted shadow */}
-        {/* <group>
-          <animated.mesh
-            // enable receiving shadows
-            receiveShadow
-            rotation={[-Math.PI / 2, 0, 0]}
-            position={[0, -3, 0]}
-            >
-            <planeBufferGeometry attach='geometry' args={[100, 100]} />
-            
-            <shadowMaterial attach='material' opacity={0.1} />
-          </animated.mesh>
-        </group> */}
       </StyledVisionSectionCanvas>
   )
 }
@@ -378,7 +346,6 @@ const VisionSectionCanvas = ({
 const StyledVisionSectionCanvas = styled(AnimatedCanvas)`
     // z-index: -3;
     height: 100% !important;
-    min-height: 700px !important;
     position: absolute !important;
     left: 0 !important;
     top: 0 !important;
@@ -407,7 +374,7 @@ const StyledIntroContainer = styled.div`
     
     p#continue-cta {
       ${tw`fixed font-light left-0 right-0 mx-auto text-center`}
-      bottom: 10%;
+      bottom: 5%;
       color: var(--black);
       z-index: 4;
 
@@ -431,7 +398,7 @@ const StyledIntroContainer = styled.div`
       border: 1px solid #111;
       position: fixed;
       top: auto;
-      bottom: 20%;
+      bottom: 13%;
       transition: bottom 0.3s ease;
       will-change: bottom;
       opacity: 0.8;
@@ -529,16 +496,20 @@ const StyledIntroContainer = styled.div`
       z-index: -2;
 
       p {
-        max-width: 320px;
+        max-width: 180px;
         text-align: center;
         color: white;
         font-size: 16px;
         line-height: 110%;
+        letter-spacing: -0.02rem;
         text-transform: uppercase;
       }
     }
 
     @media screen and (min-width: 600px) {
+      .intro-text-container p {
+        max-width: 320px;
+      }
       .video-container {
         .video {
           width: 100vw;
@@ -562,11 +533,6 @@ const NextContainer = styled.div`
       background-color: yellow;
     }
 `
-
-// const isSafari = () => {
-//   const ua = navigator.userAgent.toLowerCase();
-//   return ua.indexOf("safari") > -1 && ua.indexOf("chrome") < 0;
-// };
 
 const ScrollProgressToggleOut = () => {
   console.log("ScrollProgressToggleOut")
@@ -618,7 +584,6 @@ const HomePageLayout = ({ lang, data, ...otherProps }) => {
   // Intro Text scroll animation
   useEffect(() => {
     if(typeof window !== `undefined` && typeof document !== `undefined`) {
-      // gsap.registerPlugin(ScrollTrigger)
 
       introTextTL = gsap.timeline({
         scrollTrigger: {
@@ -630,7 +595,6 @@ const HomePageLayout = ({ lang, data, ...otherProps }) => {
           onUpdate: ({progress, direction, isActive}) => (
             progress > 0.3 ? ScrollProgressToggleOut() : ScrollProgressToggleIn()
           ),
-          // onLeave: () => {videoRef.current.style.display = "none"}
         }
       })
     
@@ -680,7 +644,7 @@ const HomePageLayout = ({ lang, data, ...otherProps }) => {
                 ref={introTextRef}
                 tw="fixed left-0 right-0 top-0 bottom-0 w-full h-screen flex items-center justify-center opacity-0"
                 >
-                <p>Siamo uno studio di architettura multidisciplinare.</p>
+                <p>Lorem ipsum dolor sit amet</p>
               </div>
                 <div
                 className="video-container"
@@ -769,7 +733,7 @@ const HomePageLayout = ({ lang, data, ...otherProps }) => {
               />
             </GridMaxWidthContainer>
           </section>
-          <section tw="w-full py-32 lg:py-64 flex justify-center items-center bg-white">
+          <section tw="w-full z-30 py-32 lg:py-64 flex justify-center items-center bg-white">
             <GridMaxWidthContainer>
               <div tw="col-span-full md:col-span-8 md:col-start-3">
                 <h4 tw="font-mono font-light mb-8 md:mb-16">{lang === "it" ? "Ultime novità" : "Latest news"}</h4>

@@ -13,7 +13,6 @@ const StyledButton = styled(Link)(() => [
         &:hover {
             border-color: var(--black);
             background: var(--black) !important;
-            transform: scale(1.2) !important;
         }   
     `
 ])
