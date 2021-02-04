@@ -36,6 +36,9 @@
     background: var(--gradientBg);
     color: var(--white);
 }
+.lightGradientBg {
+    background: radial-gradient(50% 50% at 50% 50%, #F3F4F7 0%, #E8EEF1 100%);
+}
 
 li, a {
     text-decoration: none;

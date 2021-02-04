@@ -69,7 +69,7 @@ export default ({
             }
             <div className="st-link st-anim" tw="py-8">
                 <div>
-                    <Button as={Link} to={link ? link : "#"}>
+                    <Button to={link ? link : "#"}>
                         {
                             cta ? cta : "Scopri di più"
                         }

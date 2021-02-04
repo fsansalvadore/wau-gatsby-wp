@@ -3,8 +3,54 @@ import { useStaticQuery, graphql } from 'gatsby'
 import HomePageLayout from '../components/elements/HomePage/HomePageLayout'
 
 const IndexIta = () => {
-  let location
+  const data = useStaticQuery(graphql`
+    query HomePageItaQuery {
+      wordpress {
+        expertises(first: 100, where: { status: PUBLISH, language: IT }) {
+          nodes {
+            date
+            status
+            slug
+            id
+            title
+            expertiseACF {
+              anteprima
+            }
+            language {
+              code
+              locale
+              slug
+            }
+          }
+        }
+        articles(first: 3, where: { status: PUBLISH, language: IT }) {
+          nodes {
+            date
+            content
+            slug
+            id
+            title
+            language {
+              code
+              locale
+              slug
+            }
+            categories {
+              nodes {
+                name
+                id
+              }
+            }
+            ArticleACF {
+              anteprima
+            }
+          }
+        }
+      }
+    }
+  `)
   const [lang, setLang] = useState("it")
+  let location
 
   useEffect(() => {
     if (typeof window !== `undefined`) {
@@ -16,7 +62,7 @@ const IndexIta = () => {
   }, [lang])
   
   return(
-    <HomePageLayout lang={lang} />
+    <HomePageLayout lang={lang} data={data} />
   )
 }
 
