@@ -10,7 +10,7 @@ import tw from 'twin.macro'
 
 const ContattiPage = () => {
   return(
-    <Layout>
+    <Layout hasNoContactsCta>
       <Helmet>
         <title>WAU Architetti • Contatti</title>
       </Helmet>

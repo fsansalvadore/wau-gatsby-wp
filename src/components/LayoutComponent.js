@@ -5,8 +5,9 @@ import MainNav from "./elements/MainNav/MainNav"
 import "../styles/global.css"
 import "../styles/locomotive-scroll.css"
 import Footer from './elements/Atoms/Footer'
+import ContactsCtaSection from './elements/Contacts/ContactsCtaSection'
 
-const Layout = ({ isMenuLight, children }) => {
+const Layout = ({ isMenuLight, hasNoContactsCta, children }) => {
   let location
   const [lang, setLang] = useState("it")
 
@@ -25,6 +26,10 @@ const Layout = ({ isMenuLight, children }) => {
       {/* <GlobalStyles /> */}
       <MainNav lang={lang} isMenuLight={isMenuLight} />
       {children}
+      {
+        !hasNoContactsCta &&
+        <ContactsCtaSection />
+      }
       <Footer lang={lang} />
     </>
   )

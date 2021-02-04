@@ -220,7 +220,7 @@ const Sphere = ({ indexRef, position, url }) => {
   }
   
   const StyledIntroCanvas = styled(AnimatedCanvas)`
-      z-index: 2;
+      z-index: -3;
       width: 100% !important;
       height: 100vh !important;
       min-height: 700px !important;
@@ -299,6 +299,7 @@ const Sphere = ({ indexRef, position, url }) => {
   
       .intro-text {
         min-height: 700px;
+        z-index: -10;
         
         img {
           height: 40px;
@@ -308,7 +309,6 @@ const Sphere = ({ indexRef, position, url }) => {
         
         h1.intro-title {
           ${tw`absolute right-0 font-light text-4xl md:text-5xl left-0 mx-auto text-center`}
-          z-index: 1;
           top: 65%;
           letter-spacing: -0.05rem;
           line-height: 100%;
@@ -338,7 +338,7 @@ const Sphere = ({ indexRef, position, url }) => {
         min-height: 100%;
         // top: 0;
         bottom: 0;
-        z-index: 4;
+        z-index: -1;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -359,7 +359,7 @@ const Sphere = ({ indexRef, position, url }) => {
       }
   
       .intro-text-container {
-        z-index: 3;
+        z-index: -2;
   
         p {
           max-width: 320px;
@@ -423,6 +423,7 @@ const Sphere = ({ indexRef, position, url }) => {
   const HomePageLayout = ({ lang, data, ...otherProps }) => {
     const indexRef = useRef(null)
     const videoRef = useRef(null)
+    const videoOutRef = useRef(null)
     const introTextRef = useRef(null)
     const [ introWords, setIntroWords ] = useState(null)
     const [ articles, setArticles ] = useState(null)
@@ -463,10 +464,9 @@ const Sphere = ({ indexRef, position, url }) => {
             // markers: true,
             // onUpdate: ({progress, direction, isActive}) => console.log(progress, direction, isActive)
             onUpdate: ({progress, direction, isActive}) => (
-              progress > 0.3
-              ? ScrollProgressToggleOut()
-              : ScrollProgressToggleIn()
-            )
+              progress > 0.3 ? ScrollProgressToggleOut() : ScrollProgressToggleIn()
+            ),
+            // onLeave: () => {videoRef.current.style.display = "none"}
           }
         })
       
@@ -493,6 +493,24 @@ const Sphere = ({ indexRef, position, url }) => {
         }, "1.2")
       }
     }, [introTextTL, ScrollTrigger, gsap.timeline])
+    
+    // Toggle video after scroll animation
+    // useEffect(() => {
+    //   if(typeof window !== `undefined` && typeof document !== `undefined`) {
+    //     // gsap.registerPlugin(ScrollTrigger)
+        
+    //     // console.log("sphereRef", videoRef)
+    //     // console.log("indexRef", indexRef)
+    //     introTextTL = gsap.timeline({
+    //       scrollTrigger: {
+    //         trigger: videoOutRef.current,
+    //         start: "top bottom",
+    //         onEnter: () => {videoRef.current.style.display = "none"},
+    //         onEnterBack: () => {videoRef.current.style.display = "flex"}
+    //       }
+    //     })
+    //   }
+    // }, [introTextTL, ScrollTrigger, gsap.timeline, videoOutRef])
   
     // useEffect(() => {
     //   gsap.delayedCall(0.01, () => ScrollTrigger.getAll().forEach(t => console.log("start", t.start, "end", t.end)));
@@ -584,7 +602,7 @@ const Sphere = ({ indexRef, position, url }) => {
                 }
               </GridMaxWidthContainer>
             </section>
-            <section tw="w-full py-32 lg:py-64 flex justify-center" className="lightGradientBg">
+            <section tw="w-full py-32 lg:py-64 flex justify-center" className="lightGradientBg" ref={videoOutRef}>
               <GridMaxWidthContainer>
                 <SectionTextBlock
                   label="Vision"
@@ -637,7 +655,6 @@ const Sphere = ({ indexRef, position, url }) => {
                 </div>
               </GridMaxWidthContainer>
             </section>
-            <ContactsCtaSection />
           </div>
         </div>
       </Layout>

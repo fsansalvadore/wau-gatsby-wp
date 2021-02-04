@@ -216,7 +216,7 @@ export default ({
                 ctaSectionRef={ctaSectionRef}
                 tw="absolute w-1/4 left-0 top-0 h-full"
             />
-            <GridMaxWidthContainer tw="z-10">
+            <GridMaxWidthContainer>
                 <ContactsTextBlock
                     title="Raccontaci i tuoi progetti"
                     content="WAU è la soluzione per chi cerca un partner capace di accompagnare e guidare le proprie idee, fino alla realizzazione finale. Che si tratti di un piccolo incarico o di una grande committenza, seguiamo ogni lavoro con la stessa attenzione."

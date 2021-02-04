@@ -58,7 +58,7 @@ export default ({
             {
                 title &&
                 <div className="st-title st-anim">
-                    <motion.h5 tw="md:text-3xl lg:text-5xl mb-4 w-3/4">{title}</motion.h5>
+                    <motion.h5 tw="text-3xl lg:text-5xl mb-4 w-3/4">{title}</motion.h5>
                 </div>
             }
             {
