@@ -6,17 +6,17 @@ import { useEffect } from 'react'
 const CircleLink = styled.a`
     width: 36px;
     height: 36px;
-    border: 1px solid #000;
+    border: 1px solid var(--white);
     border-radius: 50%;
     display: inline-flex;
     align-items: center;
     justify-content: center;
 ` 
 
-const SocialIcon = ({isFacebook, isInstagram, isLinkedin, isSpotify, size}) => {
+const SocialIcon = ({social, isFacebook, isInstagram, isLinkedin, isSpotify, size}) => {
     const [current, setCurrent] = useState(null)
 
-    const social = {
+    const socials = {
         facebook: {
             url: "https://www.facebook.com/sagliettistudio/",
             icon: "M597.332 341.333V239.733C597.332 193.866 607.466 170.666 678.665 170.666H767.999V0H618.932C436.266 0 375.999 83.733 375.999 227.466V341.333H256V511.998H375.999V1024H597.332V511.998H747.732L767.999 341.333H597.332Z"
@@ -46,20 +46,18 @@ const SocialIcon = ({isFacebook, isInstagram, isLinkedin, isSpotify, size}) => {
       };
 
     useEffect(() => {
-        if(isFacebook) {
-            setCurrent({url: social.facebook.url, icon: social.facebook.icon})
-        } else if (isInstagram) {
-            setCurrent({url: social.instagram.url, icon: social.instagram.icon})
-        } else if (isLinkedin) {
-            setCurrent({url: social.linkedin.url, icon: social.linkedin.icon})
-        } else if (isSpotify) {
-            setCurrent({url: social.spotify.url, icon: social.spotify.icon})
+        if(social.label === "facebook") {
+            setCurrent({url: social.path, icon: socials.facebook.icon})
+        } else if (social.label === "instagram") {
+            setCurrent({url: social.path, icon: socials.instagram.icon})
+        } else if (social.label === "linkedin") {
+            setCurrent({url: social.path, icon: socials.linkedin.icon})
         }
-    }, [isFacebook, isInstagram, isLinkedin, isSpotify, social.facebook.url, social.facebook.icon, social.instagram.url,
-        social.instagram.icon, social.linkedin.url, social.linkedin.icon, social.spotify.url, social.spotify.icon])
+    }, [social, socials.facebook.url, socials.facebook.icon, socials.instagram.url,
+        socials.instagram.icon, socials.linkedin.url, socials.linkedin.icon, socials.spotify.url, socials.spotify.icon])
 
     return (
-        <CircleLink href={current && current.url} className="social-link" target="_blank">
+        <CircleLink href={social && social.path} className="social-link" target="_blank">
             <svg
                 style={styles.svg}
                 width={`${size ? size + 'px' : '15px'}`}

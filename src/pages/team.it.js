@@ -61,7 +61,7 @@ const TeamPageIta = ({data}) => {
         <section tw="w-full flex justify-center">
           {
             collaborators && collaborators.length > 0 &&
-            <GridMaxWidthContainer tw="my-16 lg:mt-32">
+            <GridMaxWidthContainer tw="my-16 lg:mt-32 mb-16 md:mb-32">
               <h2 tw="col-span-12 md:col-span-4 md:col-start-1 text-3xl md:text-5xl">Collaboratori</h2>
               <ul tw="col-span-12 md:col-span-5 md:col-start-7 mt-8 md:mt-0">
                 {

@@ -8,6 +8,7 @@ import tw, { css } from 'twin.macro'
 import parse from 'html-react-parser'
 import Img from 'gatsby-image'
 import GridMaxWidthContainer from '../elements/Atoms/GridMaxWidthContainer'
+import SocialShare from '../elements/Atoms/SocialShare'
 
 const ProjectPage = (props) => {
   const {
@@ -136,8 +137,9 @@ const ProjectPage = (props) => {
           </figure>
         }
         <article tw="w-full flex justify-center">
-          <GridMaxWidthContainer className="project-content" tw="w-full grid grid-cols-12">
+          <GridMaxWidthContainer className="project-content" tw="w-full grid grid-cols-12 mb-16 md:mb-32">
             {content && parse(content)}
+            <SocialShare lang={lang.slug} />
           </GridMaxWidthContainer>
         </article>
       </ProjectContainer>
@@ -176,6 +178,7 @@ const ProjectContainer = styled.div(() => [
       > h2,
       > h3,
       > h4,
+      > .social-share,
       > .wp-block-quote {
         ${tw`col-span-12 md:col-span-7 md:col-start-6 my-4 mb-8 md:mb-8 xl:mb-8`}
       }

@@ -637,7 +637,7 @@ const HomePageLayout = ({ lang, data, ...otherProps }) => {
         <StyledIntroContainer
           className="intro-container"
           >
-            <Link to="/progetti" className="main-cta">Esplora i Progetti</Link>
+            <Link to={lang === "it" ? "/progetti" : "/en/projects"} className="main-cta">{lang === "it" ? "Esplora i Progetti" : "Explore projects"}</Link>
               <p id="continue-cta">{lang === "it" ? "Scorri per continuare" : "Scroll to continue"}</p>
               <div
                 className="intro-text-container"

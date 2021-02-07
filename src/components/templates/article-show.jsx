@@ -12,6 +12,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 // import ComponentParser from "../elements/Articles/ArticleComponentParser"
 import { months } from '../../helpers/utils'
+import SocialShare from "../elements/Atoms/SocialShare"
 
 const ArticleShowPage = props => {
   const {
@@ -120,9 +121,9 @@ const ArticleShowPage = props => {
               </GridMaxWidthContainer>
             </div>
             <article tw="w-full flex justify-center">
-              <GridMaxWidthContainer className="container-max-900" tw="w-full grid grid-cols-12">
+              <GridMaxWidthContainer className="container-max-900" tw="w-full grid grid-cols-12 pb-8 md:pb-16 mb-16 md:mb-32">
                 {content && parse(content)}
-                {/* <ComponentParser content={blocks} /> */}
+                <SocialShare lang={lang.slug} />
               </GridMaxWidthContainer>
             </article>
           </ProjectContainer>

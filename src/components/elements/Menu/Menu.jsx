@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useStaticQuery, graphql, Link } from "gatsby"
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
@@ -37,11 +37,28 @@ const MenuSlider = styled(motion.div)`
             font-size: 1.8rem;
             line-height: 3rem;
             opacity: 0.3;
-            transition: opacity 0.15s ease;
+            transition: opacity 0.15s ease, padding: 0.2s ease;
             will-change: opacity;
 
             &:hover {
                 opacity: 1;
+            }
+
+            &.active-menuLink {
+                padding-left: 20px;
+                display: flex;
+                align-items: center;
+                position: relative;
+
+                &:before {
+                    content: '';
+                    width: 6px;
+                    height: 6px;
+                    position: absolute;
+                    background-color: var(--white);
+                    left: 0;
+                    border-radius: 50%;
+                }
             }
         }
     }
@@ -126,6 +143,11 @@ export const menuDim = {
     }
 }
 
+// const activeMenuLink = {
+//     background: "white",
+//     color: "green"
+// }
+
 const Menu = ({lang, isOpen}) => {
     const data = useStaticQuery(graphql`
         query GET_MENU_BY_NAME {
@@ -155,6 +177,21 @@ const Menu = ({lang, isOpen}) => {
         }
     `)
 
+    const [location, setLocation] = useState("")
+    const [socialMenu, setSocialMenu] = useState(null)
+    
+    useEffect(() => {
+        if (typeof window !== `undefined`) {
+            setLocation(window.location.href)
+        }
+    }, [setLocation])
+    
+    useEffect(() => {
+        if (typeof window !== `undefined`) {
+            setSocialMenu(data.wordpress.menus.nodes.find(node => node.name === "Social"))
+        }
+    }, [setLocation])
+
     return (
         <MenuContainer
             variants={menuContainer}
@@ -175,12 +212,12 @@ const Menu = ({lang, isOpen}) => {
                             lang === "it" ?
                             data.wordpress.menus.nodes.find(node => node.name === "Menu ita").menuItems.nodes.map(item => (
                                 <li key={item.id}>
-                                    <Link to={item.path.replace("/dev/wau/wp", "")}>{item.label}</Link>
+                                    <Link to={item.path.replace("/dev/wau/wp", "")} activeClassName="active-menuLink" className={location.includes(item.label.toLowerCase()) ? "active-menuLink" : ""}>{item.label}</Link>
                                 </li>
                             )) :
                             data.wordpress.menus.nodes.find(node => node.name === "Menu eng").menuItems.nodes.map(item => (
                                 <li key={item.id}>
-                                    <Link to={item.path.replace("/dev/wau/wp", "")}>{item.label}</Link>
+                                    <Link to={item.path.replace("/dev/wau/wp", "")} activeClassName="active-menuLink" className={location.includes(item.label.toLowerCase()) ? "active-menuLink" : ""}>{item.label}</Link>
                                 </li>
                             ))
                         }
@@ -190,11 +227,13 @@ const Menu = ({lang, isOpen}) => {
                     <div className="menu-bottom-info">
                         <div className="menu-footer-info">
                             <h3>WAU ARCHITETTI</h3>
-                            <a target="_blank" href="https://www.google.com/maps/place/Via+Po,+1,+10124+Torino+TO/data=!4m2!3m1!1s0x47886d7075788f65:0xfbab35a5fc5276c2?sa=X&ved=2ahUKEwjD8czu4onuAhXJ5KQKHc0nCyUQ8gEwAHoECAYQAQ">Via Po, 1 - 10124 Torino, Italia</a>
-                            <p>T <a target="_blank" href="tel:+390118127237">+39 011 812 7237</a></p>
+                            <div tw="opacity-70 text-sm mb-8 pt-2">
+                                <a target="_blank" href="https://www.google.com/maps/place/Via+Po,+1,+10124+Torino+TO/data=!4m2!3m1!1s0x47886d7075788f65:0xfbab35a5fc5276c2?sa=X&ved=2ahUKEwjD8czu4onuAhXJ5KQKHc0nCyUQ8gEwAHoECAYQAQ">Via Po, 1 - 10124 Torino, Italia</a>
+                                <p>T <a target="_blank" href="tel:+390118127237">+39 011 812 7237</a></p>
+                            </div>
                         </div>
                         <div className="social-icons">
-                            <SocialIcons />
+                            <SocialIcons menu={socialMenu} />
                         </div>
                     </div>
                     <div className="lang-container">
@@ -203,10 +242,10 @@ const Menu = ({lang, isOpen}) => {
                 </div>
             </MenuSlider>
             <DimOverlay
+                id="dim-overlay"
                 variants={menuDim}
                 initial="initial"
                 animate={isOpen ? "show" : "hidden"}
-                
                 transition={{...transition, duration: 0.4}}    
             />
         </MenuContainer>

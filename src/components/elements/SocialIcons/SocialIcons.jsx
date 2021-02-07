@@ -13,7 +13,7 @@ const SocialIconsContainer = styled.div`
     }
 `
 
-const SocialIcons = () => {
+const SocialIcons = ({menu}) => {
     const socialIconsRef = useRef(null)
 
     useEffect(() => {
@@ -36,10 +36,9 @@ const SocialIcons = () => {
 
     return (
         <SocialIconsContainer ref={socialIconsRef}>
-            <SocialIcon isFacebook/>
-            <SocialIcon isInstagram/>
-            <SocialIcon isLinkedin/>
-            <SocialIcon isSpotify/>
+            {
+                menu && menu.menuItems.nodes.map(social => <SocialIcon social={social} />)
+            }
         </SocialIconsContainer>
     )
 }

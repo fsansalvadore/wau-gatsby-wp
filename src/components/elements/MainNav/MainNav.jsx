@@ -115,7 +115,7 @@ const NavContent = ({lang, isOpen, toggleMenu, isMenuLight}) => {
                         className="menu-icon"
                         variants={openBtnVariant}
                         animate={!isOpen ? "show" : "hidden"}
-                        initial="initial"
+                        initial="hidden"
                         exit={{opacity: 0, ...transition}}
                         transition={{...transition, duration: 0.4}}
                     >
@@ -173,7 +173,7 @@ const MainNav = ({lang, isMenuLight}) => {
     }
   }, [setIsScrollUp, setShowFixed])
   
-  // Close menu with Esc key
+  // Close menu with Esc key and clicking outside
   useEffect(() => {
     if (typeof window !== `undefined`) {
         document.addEventListener('keydown', (e) => {
@@ -181,6 +181,11 @@ const MainNav = ({lang, isMenuLight}) => {
                 toggleMenu(false)
             }
         });
+        if (document.querySelector("#dim-overlay")) {
+            document.querySelector("#dim-overlay").addEventListener("click", () => {
+                toggleMenu(false)
+            })
+        }
     }
   })
 
