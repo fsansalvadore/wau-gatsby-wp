@@ -31,7 +31,6 @@ const ContactFormContainer = styled.div`
     color: #000;
     font-size: 0.75rem !important;
     font-weight: 800;
-    font-family: 'ff-real-headline-pro-2', sans-serif;
     letter-spacing: 0.03rem;
   }
   
@@ -123,10 +122,6 @@ const ContactFormContainer = styled.div`
     pointer-event: auto;
     justify-content: space-between;
     ${tw`font-mono`}
-  }
-
-  @media (max-width: 1200px) {
-    
   }
 ` 
 
