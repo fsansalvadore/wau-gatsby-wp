@@ -1,19 +1,22 @@
 import React, { useRef, useEffect } from 'react'
 import SocialIcon from './SocialIcon'
 import styled from 'styled-components'
+import tw, { css } from 'twin.macro'
 
-const SocialIconsContainer = styled.div`
-    a {
-        margin-right: 10px;
-        transition: opacity 0.25s ease;
-    }
+const SocialIconsContainer = styled.div((isDark) => [
+    css`
+        a {
+            margin-right: 10px;
+            transition: opacity 0.25s ease;
+        }
+        
+        a.social-icon:hover {
+            opacity: 1 !important;
+        }
+    `
+])
 
-    a.social-icon:hover {
-        opacity: 1 !important;
-    }
-`
-
-const SocialIcons = ({menu}) => {
+const SocialIcons = ({menu, isDark}) => {
     const socialIconsRef = useRef(null)
 
     useEffect(() => {
@@ -35,9 +38,9 @@ const SocialIcons = ({menu}) => {
     })
 
     return (
-        <SocialIconsContainer ref={socialIconsRef}>
+        <SocialIconsContainer ref={socialIconsRef} isDark={isDark}>
             {
-                menu && menu.menuItems.nodes.map(social => <SocialIcon social={social} />)
+                menu && menu.menuItems.nodes.map(social => <SocialIcon isDark={isDark} social={social} key={`icons-${Math.floor(Math.random() * (100 - 999) + 100)}`} />)
             }
         </SocialIconsContainer>
     )

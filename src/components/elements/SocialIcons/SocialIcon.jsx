@@ -1,19 +1,27 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
-import { useState } from 'react'
-import { useEffect } from 'react'
+import tw, {css} from 'twin.macro'
 
-const CircleLink = styled.a`
-    width: 36px;
-    height: 36px;
-    border: 1px solid var(--white);
-    border-radius: 50%;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-` 
+const CircleLink = styled.a((props) => [
+    css`
+        width: 36px;
+        height: 36px;
+        border: ${props => props.isDark ? "1px solid #010101" : "1px solid var(--white)"};
+        border-radius: 50%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        
+        svg {
+            color: ${props => props.isDark ? "var(--black) !important" : "var(--white)"};
+            path {
+                fill: ${props => props.isDark ? "var(--black) !important" : "var(--white)"};
+            }
+        }
+    ` 
+])
 
-const SocialIcon = ({social, isFacebook, isInstagram, isLinkedin, isSpotify, size}) => {
+const SocialIcon = ({social, isDark, size}) => {
     const [current, setCurrent] = useState(null)
 
     const socials = {
@@ -57,7 +65,7 @@ const SocialIcon = ({social, isFacebook, isInstagram, isLinkedin, isSpotify, siz
         socials.instagram.icon, socials.linkedin.url, socials.linkedin.icon, socials.spotify.url, socials.spotify.icon])
 
     return (
-        <CircleLink href={social && social.path} className="social-link" target="_blank">
+        <CircleLink href={social && social.path} className="social-link" target="_blank" isDark={isDark}>
             <svg
                 style={styles.svg}
                 width={`${size ? size + 'px' : '15px'}`}

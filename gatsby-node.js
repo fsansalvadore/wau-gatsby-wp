@@ -124,8 +124,33 @@ const query = `
           id
           title(format: RENDERED)
           pagesACF {
+            titoletto
             title
             introduzione
+          }
+          contactsACF {
+            emails {
+              email1 {
+                email
+                etichetta
+              }
+              email2 {
+                email
+                etichetta
+              }
+              email3 {
+                email
+                etichetta
+              }
+              email4 {
+                email
+                etichetta
+              }
+            }
+            form {
+              titolo
+              sottotitolo
+            }
           }
           studioACF {
             valuesSection {

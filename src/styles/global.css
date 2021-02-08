@@ -102,6 +102,10 @@ h1 {
     width: auto;
 }
 
+.contacts-email:last-of-type {
+    margin-bottom: 0;
+}
+
 @keyframes wordAnim {
     0% {
       transform: translateed(0, -30px, 0);
