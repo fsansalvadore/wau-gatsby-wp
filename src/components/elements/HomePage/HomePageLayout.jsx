@@ -4,7 +4,7 @@ import React, {
   Suspense,
   useEffect
 } from "react"
-import Layout from "../../../components/LayoutComponent"
+import Layout from "../../LayoutComponent"
 import { Helmet } from 'react-helmet'
 
 import * as THREE from "three"
@@ -26,10 +26,11 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Link } from 'gatsby'
 import TextLoop from "react-text-loop";
 import tw from 'twin.macro'
-import GridMaxWidthContainer from "../../../components/elements/Atoms/GridMaxWidthContainer"
-import SectionTextBlock from "../../../components/elements/Atoms/SectionTextBlock"
-import Accordion from "../../../components/elements/Atoms/Accordion"
+import GridMaxWidthContainer from "../Atoms/GridMaxWidthContainer"
+import SectionTextBlock from "../Atoms/SectionTextBlock"
+import Accordion from "../Atoms/Accordion"
 import Button from '../Atoms/Button'
+import PageLoader from "../Atoms/PageLoader"
 
 softShadows()
 
@@ -634,6 +635,7 @@ const HomePageLayout = ({ lang, data, ...otherProps }) => {
       <div
         ref={indexRef}
       >
+        <PageLoader />
         <StyledIntroContainer
           className="intro-container"
           >
@@ -699,7 +701,7 @@ const HomePageLayout = ({ lang, data, ...otherProps }) => {
               <SectionTextBlock 
                 label="Expertise"
                 title="Lorem ipsum dolor sit amet, consectetur."
-                link="/expertise"
+                link={lang === "it" ? `/expertise` : `/en/expertise`}
                 cta="Scopri le espertise"
                 tw="col-span-full md:col-span-6"
               />
@@ -727,7 +729,7 @@ const HomePageLayout = ({ lang, data, ...otherProps }) => {
                 label="Vision"
                 title="Ri(e)voluzioni dello spazio quotidiano"
                 content="Abbiamo l’obiettivo di creare ambienti migliori per la vita e il lavoro dei nostri clienti, mettendo in circolo nuova energia."
-                link="/studio"
+                link={lang === "it" ? `/studio` : `/en/studio`}
                 cta="Scopri lo studio"
                 tw="col-span-full md:col-span-6 md:col-start-7"
               />
@@ -747,11 +749,11 @@ const HomePageLayout = ({ lang, data, ...otherProps }) => {
                             <div>
                               <ul tw="font-mono mb-2 text-xs block ml-0">
                                 {
-                                    article.categories && article.categories.nodes.map(category => (
-                                        <li key={`art-cat-${Math.floor(Math.random() * (100 - 999) + 100)}`} tw="inline mr-2">
-                                            / {category.name}
-                                        </li>
-                                    ))
+                                  article.categories && article.categories.nodes.map(category => (
+                                    <li key={`art-cat-${Math.floor(Math.random() * (100 - 999) + 100)}`} tw="inline mr-2">
+                                      / {category.name}
+                                    </li>
+                                  ))
                                 }
                               </ul>
                               <p tw="text-2xl md:text-3xl font-bold">{article.title}</p>
@@ -768,8 +770,8 @@ const HomePageLayout = ({ lang, data, ...otherProps }) => {
                   }
                 </ul>
 
-                <Button to={lang === "it" ? "/notizie" : "/news"} tw="mt-8 md:mt-16 inline-block">
-                    {lang === "it" ? "Explora le notizie" : "Read all news"}
+                <Button to={lang === "it" ? "/notizie" : "/en/news"} tw="mt-8 md:mt-16 inline-block">
+                  {lang === "it" ? "Explora le notizie" : "Read all news"}
                 </Button>
               </div>
             </GridMaxWidthContainer>

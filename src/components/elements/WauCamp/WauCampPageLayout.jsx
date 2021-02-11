@@ -9,10 +9,10 @@ import GridMaxWidthContainer from "../Atoms/GridMaxWidthContainer"
 import parse from 'html-react-parser'
 import { motion } from 'framer-motion'
 import {transition} from '../../../helpers/framer-defaults'
-import ValueCircle from "./ValueCircle"
-import StyledStudioPage from './StyledStudioPage'
+import ValueCircle from "../Studio/ValueCircle"
+import StyledStudioPage from '../Studio/StyledStudioPage'
 
-const StudioPageLayout = ({data}) => {
+const WauCampPageLayout = ({data}) => {
   const [studio, setStudio] = useState(null)
   const [values, setValues] = useState([])
   const [counter, setCounter] = useState(0)
@@ -226,4 +226,4 @@ const StudioPageLayout = ({data}) => {
     )
 }
 
-export default StudioPageLayout
+export default WauCampPageLayout

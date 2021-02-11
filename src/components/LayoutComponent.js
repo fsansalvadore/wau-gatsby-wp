@@ -28,7 +28,7 @@ const Layout = ({ isMenuLight, hasNoContactsCta, children }) => {
       {children}
       {
         !hasNoContactsCta &&
-        <ContactsCtaSection />
+        <ContactsCtaSection lang={lang} />
       }
       <Footer lang={lang} />
     </>

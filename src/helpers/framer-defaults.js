@@ -3,6 +3,17 @@ export const transition = {
     ease: [0.6, 0.05, 0.01, 0.9]
 }
 
+export const loaderVariants = {
+    initial: {
+        y: 0
+    },
+    hidden: {
+        y: "-100%",
+        transition: {
+            duration: 0.3
+        }
+    }
+}
 export const teamMemberFilterVariants = {
     hovered: {
         opacity: 0.95,

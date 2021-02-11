@@ -152,7 +152,7 @@ const ContentCtaCanvas = ({
         >
             {/* lighting can be defined globally */}
             {/* directionalLight can cast shadows */}
-            <directionalLight 
+            <directionalLight
                 // to cast shadow
                 castShadow
                 position={[0, 10, 0]}
@@ -200,6 +200,7 @@ const ContentCtaCanvas = ({
 
 export default ({
     className,
+    lang,
     ...props
 }) => {
     const ctaSectionRef = useRef(null)
@@ -220,8 +221,8 @@ export default ({
                 <ContactsTextBlock
                     title="Raccontaci i tuoi progetti"
                     content="WAU è la soluzione per chi cerca un partner capace di accompagnare e guidare le proprie idee, fino alla realizzazione finale. Che si tratti di un piccolo incarico o di una grande committenza, seguiamo ogni lavoro con la stessa attenzione."
-                    link="/contatti"
-                    cta="Contattaci"
+                    link={lang === "it" ? "/contatti" : "/en/contacts"}
+                    cta={lang === "it" ? "Contattaci" : "Contact Us"}
                     tw="col-span-full md:col-span-8 md:col-start-7 lg:col-span-7 lg:col-start-5"
                 />
             </GridMaxWidthContainer>
