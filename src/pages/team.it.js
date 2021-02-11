@@ -29,7 +29,7 @@ const TeamPageIta = ({data}) => {
       <div>
         <Heading>
           <HeadingIntroHalf
-            breadcrumb="Team ita"
+            breadcrumb="Team"
             heading="Lorem ipsum dolor sit amet, consectetur."
             subheading="Crediamo che la forza di un gruppo si misuri nella capacità di mettere a frutto la diversità - di stile, di approccio, di opinione - verso un risultato comune che è sempre superiore alle singole componenti del progetto."
           />

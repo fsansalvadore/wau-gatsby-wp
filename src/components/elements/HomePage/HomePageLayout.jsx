@@ -438,13 +438,13 @@ const StyledIntroContainer = styled.div`
       
       img {
         height: 40px;
-        top: 30%;
+        top: 18%;
         ${tw`absolute right-0 left-0 mx-auto mb-32`}
       }
       
       h1.intro-title {
         ${tw`absolute right-0 font-light text-4xl md:text-5xl left-0 mx-auto text-center`}
-        top: 65%;
+        top: 25%;
         letter-spacing: -0.05rem;
         line-height: 100%;
       }

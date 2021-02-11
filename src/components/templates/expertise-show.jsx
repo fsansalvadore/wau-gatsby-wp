@@ -112,7 +112,6 @@ const ExpertisePage = props => {
               </section>
             }
           </ExpertiseContainer>
-          <Link to="/">Go to Home Page</Link>
         </Layout>
       )}
     />

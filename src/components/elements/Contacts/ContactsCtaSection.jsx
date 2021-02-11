@@ -63,7 +63,7 @@ const Sphere = ({ ctaSectionRef, position, url }) => {
             start: "top 85%",
             end: "top 15%",
             scrub: 1,
-            snap: true,
+            // snap: true,
             // markers: true,
             // onUpdate: ({progress, direction, isActive}) => console.log(progress, direction, isActive)
             onUpdate: ({progress, direction, isActive}) => progress === 1 ? setIntroFinished(true) : setIntroFinished(false)
