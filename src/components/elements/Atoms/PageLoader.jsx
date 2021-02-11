@@ -13,6 +13,9 @@ export default () => {
             window.onload = () => {
                 setIsLoaded(true)
             }
+            setTimeout(() => {
+                setIsLoaded(true)
+            }, 2000)
         }
     }, [setIsLoaded])
 
