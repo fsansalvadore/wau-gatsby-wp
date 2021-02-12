@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect, useRef } from "react"
 import { graphql, useStaticQuery, Link } from "gatsby"
 import { Helmet } from 'react-helmet'
 import Layout from "../LayoutComponent"
@@ -9,6 +9,7 @@ import parse from 'html-react-parser'
 import Img from 'gatsby-image'
 import GridMaxWidthContainer from '../elements/Atoms/GridMaxWidthContainer'
 import SocialShare from '../elements/Atoms/SocialShare'
+import Button from '../elements/Atoms/Button'
 
 const ProjectPage = (props) => {
   const {
@@ -61,7 +62,7 @@ const ProjectPage = (props) => {
       }
     }
   `)
-
+  const pdfRef = useRef(null)
   const proj = data.wordpress.projects.nodes.find(project => project.title === title)
 
   return (
@@ -69,7 +70,7 @@ const ProjectPage = (props) => {
       <Helmet>
         <title>{proj ? `${proj.title}` : "Progetto"} • WAU Architetti</title>
       </Helmet>
-      <ProjectContainer>
+      <ProjectContainer ref={pdfRef} id="printJS-form">
         <Heading tw="flex flex-col lg:flex-row">
           <div tw="w-full md:w-3/4">
             <p className="breadcrumbs mono" >

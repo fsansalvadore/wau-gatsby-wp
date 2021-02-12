@@ -19,7 +19,6 @@ const query = `
           date
           status
           slug
-          id
           title
           ProjectAFC {
             introduzione
@@ -52,7 +51,6 @@ const query = `
       expertises(first: 100, where: { status: PUBLISH }) {
         nodes {
           slug
-          id
           content
           title(format: RENDERED)
           ${language}
@@ -89,7 +87,6 @@ const query = `
       articles(first: 100, where: { status: PUBLISH }) {
         nodes {
           slug
-          id
           title(format: RENDERED)
           content
           date
@@ -121,7 +118,6 @@ const query = `
       pages(first: 100, where: { status: PUBLISH }) {
         nodes {
           slug
-          id
           title(format: RENDERED)
           pagesACF {
             titoletto
@@ -190,6 +186,17 @@ const query = `
             sectionApproach {
               title
               content
+            }
+          }
+        }
+      }
+      clients(first: 100, where: { status: PUBLISH }) {
+        nodes {
+          title
+          featuredImage {
+            node {
+              sourceUrl
+              altText
             }
           }
         }
