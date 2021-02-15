@@ -8,10 +8,11 @@ import tw from 'twin.macro'
 import ProjectPreviewCard from "../../elements/Projects/ProjectPreviewCard/ProjectPreviewCard"
 import FilterForm from '../Forms/FilterForm'
 import { Select } from 'antd';
+import fallbackImg from '../../../images/Wau-Architetti-social-logo.jpg'
 
 const { Option } = Select;
 
-const ProjectsPageLayout = ({data}) => {
+const ProjectsPageLayout = ({data, lang}) => {
   const [projects, setProjects] = useState(null)
   const [term, setTerm] = useState("")
   const [tagList, setTagList] = useState(null)
@@ -61,6 +62,21 @@ const ProjectsPageLayout = ({data}) => {
     <Layout>
       <Helmet>
         <title>WAU Architetti • {page ? `${page.title}` : "Projects"}</title>
+        <link rel="canonical" href={lang === "it" ? `https://www.wauarchitetti.com/progetti` : `https://www.wauarchitetti.com/en/projects`} />
+        <meta name="description" content={`${page && page.seo && page.seo.metaDesc}`} />
+        <meta name="keywords" content={page && page.metaKeywords && page.metaKeywords} />
+        <meta itemprop="image" content={`${page && page.featuredImage ? page.featuredImage.node.sourceUrl : fallbackImg}`} />
+        <meta property="og:site_name" content={lang === "it" ? `${page && page.title} • WAU Architetti` : `${page && page.title} • WAU Architects`} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={lang === "it" ? `https://www.wauarchitetti.com/progetti` : `https://www.wauarchitetti.com/en/projects`} />
+        <meta property="og:title" content={lang === "it" ? `${page && page.title} • WAU Architetti` : `${page && page.title} • WAU Architects`} />
+        <meta property="og:image" content={`${page && page.featuredImage ? page.featuredImage.node.sourceUrl : fallbackImg}`} />
+        <meta property="og:description" content={`${page && page.seo && page.seo.metaDesc}`} />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:site" content={lang === "it" ? `https://www.wauarchitetti.com/progetti` : `https://www.wauarchitetti.com/en/projects`} />
+        <meta name="twitter:title" content={lang === "it" ? `${page && page.title} • WAU Architetti` : `${page && page.title} • WAU Architects`} />
+        <meta name="twitter:description" content={`${page && page.seo && page.seo.metaDesc}`} />
+        <meta name="twitter:image" content={`${page && page.featuredImage ? page.featuredImage.node.sourceUrl : fallbackImg}`} />
       </Helmet>
       <div>
         <Heading>
@@ -76,25 +92,8 @@ const ProjectsPageLayout = ({data}) => {
                   <Option value={tag}>{tag}</Option>
                 ))
               }
-              {/* <Option value="management">Management</Option>
-              <Option value="milano">Milano</Option>
-              <Option value="sostenibilità">Sostenibilità</Option> */}
             </Select>
           </FilterForm>
-          {/* <FilterForm>
-            <i className="search-icon">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M14.6743 15.3094L11.291 11.9261M13.1188 7.53158C13.1188 10.968 10.333 13.7538 6.89657 13.7538C3.46012 13.7538 0.674316 10.968 0.674316 7.53158C0.674316 4.09512 3.46012 1.30933 6.89657 1.30933C10.333 1.30933 13.1188 4.09512 13.1188 7.53158Z" stroke="black" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-            </i>
-            <input
-              type="text"
-              onChange={e => setTerm(e.target.value)}
-              value={term}
-              placeholder="Cerca per titolo, anno o ambito"
-              tw=""
-            />
-          </FilterForm> */}
         </Heading>
         <div className="search-form">
         </div>

@@ -72,7 +72,7 @@ const ArticleShowPage = props => {
       <Helmet>
         <title>{seo && seo.title ? `${seo.title}` : lang.code === "IT" ? `${title} • Notizie • WAU Architetti` : `${title} • News • WAU Architects`}</title>
         <link rel="canonical" href={lang.code === "IT" ? `https://www.wauarchitetti.com/notizie/${slug}` : `https://www.wauarchitetti.com/en/news/${slug}`} />
-        <meta name="description" content={`${seo & seo.metaDesc}`} />
+        <meta name="description" content={`${seo && seo.metaDesc}`} />
         <meta name="keywords" content={tags ? (tags.nodes.map(tag => tag.name ? ` ${tag.name},` : "")) : "WAU Architetti, architetti a torino, studio di architetti"} />
         <meta itemprop="image" content={`${featuredImage ? featuredImage.node.sourceUrl : fallbackImg}`} />
         <meta property="og:site_name" content={lang.code === "IT" ? `${title} • Notizie • WAU Architetti` : `${title} • News • WAU Architects`} />
@@ -80,12 +80,12 @@ const ArticleShowPage = props => {
         <meta property="og:url" content={lang.code === "IT" ? `https://www.wauarchitetti.com/notizie/${slug}` : `https://www.wauarchitetti.com/en/news/${slug}`} />
         <meta property="og:title" content={lang.code === "IT" ? `${title} • Notizie • WAU Architetti` : `${title} • News • WAU Architects`} />
         <meta property="og:image" content={`${featuredImage ? featuredImage.node.sourceUrl : fallbackImg}`} />
-        <meta property="og:description" content={`${seo && seo.metaDesc}`} />
+        <meta property="og:description" content={`${seo &&seo.metaDesc}`} />
         <meta property="og:locale" content={lang.locale} />
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:site" content={lang.code === "IT" ? `https://www.wauarchitetti.com/notizie/${slug}` : `https://www.wauarchitetti.com/en/news/${slug}`} />
         <meta name="twitter:title" content={lang.code === "IT" ? `${title} • Notizie • WAU Architetti` : `${title} • News • WAU Architects`} />
-        <meta name="twitter:description" content={`${seo & seo.metaDesc}`} />
+        <meta name="twitter:description" content={`${seo && seo.metaDesc}`} />
         <meta name="twitter:image" content={`${featuredImage ? featuredImage.node.sourceUrl : fallbackImg}`} />
       </Helmet>
       <ProjectContainer>

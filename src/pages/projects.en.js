@@ -1,66 +1,87 @@
 import React from "react"
-import { graphql } from 'gatsby'
+import { graphql, useStaticQuery } from 'gatsby'
 import ProjectsPageLayout from '../components/elements/Projects/ProjectsPageLayout'
 
-const ProjectsPageIta = ({data}) => {
-  return(
-    <ProjectsPageLayout data={data} />
-  )
-}
-
-export const query = graphql`
-  query ProjectsEngQuery {
-    wordpress {
-      pages(where: { status: PUBLISH, language: EN, title: "Projects" }) {
-        nodes {
-          slug
-          title
-          pagesACF {
+const ProjectsPageIta = () => {
+  const data = useStaticQuery(graphql`
+    query ProjectsEngQuery {
+      wordpress {
+        pages(where: { status: PUBLISH, language: EN, title: "Projects" }) {
+          nodes {
+            slug
             title
-            introduzione
+            pagesACF {
+              title
+              introduzione
+            }
+            language {
+              code
+              locale
+              slug
+            }
+            seo {
+              title
+              focuskw
+              metaDesc
+              metaKeywords
+              opengraphDescription
+              opengraphImage {
+                link
+              }
+              opengraphTitle
+              twitterDescription
+              twitterImage {
+                link
+              }
+              twitterTitle
+            }
           }
         }
-      }
-      projects(first: 100, where: { status: PUBLISH, language: EN }) {
-        nodes {
-          content
-          date
-          status
-          slug
-          id
-          title
-          featuredImage {
-            node {
-              altText
-              link
-              sourceUrl
-              imageFile {
-                childImageSharp {
-                  fixed(width: 1500, quality: 90) {
-                    ...GatsbyImageSharpFixed
+        projects(first: 100, where: { status: PUBLISH, language: EN }) {
+          nodes {
+            content
+            date
+            status
+            slug
+            id
+            title
+            featuredImage {
+              node {
+                altText
+                link
+                sourceUrl
+                imageFile {
+                  childImageSharp {
+                    fixed(width: 1500, quality: 90) {
+                      ...GatsbyImageSharpFixed
+                    }
                   }
                 }
               }
             }
-          }
-          tags {
-            nodes {
-              name
+            tags {
+              nodes {
+                name
+              }
             }
-          }
-          ProjectAFC {
-            projectdate
-            location
-          }
-          language {
-            code
-            locale
-            slug
+            ProjectAFC {
+              projectdate
+              location
+            }
+            language {
+              code
+              locale
+              slug
+            }
           }
         }
       }
     }
-  }
-`
+  `)
+
+  return(
+    <ProjectsPageLayout data={data} lang="en" />
+  )
+}
 
 export default ProjectsPageIta
