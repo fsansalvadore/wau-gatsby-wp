@@ -64,7 +64,6 @@ const ProjectsPageLayout = ({data, lang}) => {
         <title>WAU Architetti • {page ? `${page.title}` : "Projects"}</title>
         <link rel="canonical" href={lang === "it" ? `https://www.wauarchitetti.com/progetti` : `https://www.wauarchitetti.com/en/projects`} />
         <meta name="description" content={`${page && page.seo && page.seo.metaDesc}`} />
-        <meta name="keywords" content={page && page.metaKeywords && page.metaKeywords} />
         <meta itemprop="image" content={`${page && page.featuredImage ? page.featuredImage.node.sourceUrl : fallbackImg}`} />
         <meta property="og:site_name" content={lang === "it" ? `${page && page.title} • WAU Architetti` : `${page && page.title} • WAU Architects`} />
         <meta property="og:type" content="website" />
