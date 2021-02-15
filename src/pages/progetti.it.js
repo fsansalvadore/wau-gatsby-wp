@@ -14,27 +14,6 @@ const ProjectsPageIta = () => {
               title
               introduzione
             }
-            language {
-              code
-              locale
-              slug
-            }
-            seo {
-              title
-              focuskw
-              metaDesc
-              metaKeywords
-              opengraphDescription
-              opengraphImage {
-                link
-              }
-              opengraphTitle
-              twitterDescription
-              twitterImage {
-                link
-              }
-              twitterTitle
-            }
           }
         }
         projects(first: 100, where: { status: PUBLISH, language: IT }) {
@@ -80,7 +59,7 @@ const ProjectsPageIta = () => {
   `)
   
   return(
-    <ProjectsPageLayout data={data} lang="it" />
+    <ProjectsPageLayout data={data} />
   )
 }
 
