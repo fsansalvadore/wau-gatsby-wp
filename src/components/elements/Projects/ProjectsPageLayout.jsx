@@ -29,13 +29,11 @@ const ProjectsPageLayout = ({data, lang}) => {
               || !term)
         .sort((a, b) => (a.date < b.date) ? 1 : (a.date === b.date) ? ((a.title > b.title) ? 1 : -1) : -1 ))
     }
-  }, [term])
+  }, [setProjects, term, data.wordpress.projects])
 
   const handleChange = (value) => {
     setTerm(value.toLowerCase())
   }
-
-  console.log("Array.from", data.wordpress.projects.nodes.map(item => Array.from(item.tags.nodes.map(node => node.name.toLowerCase())).join()))
 
   useEffect(() => {
     if(data) {
@@ -62,13 +60,16 @@ const ProjectsPageLayout = ({data, lang}) => {
       <Helmet>
         <title>{lang === "it" ? `${page && page.title} • WAU Architetti` : `${page && page.title} • WAU Architects`}</title>
         <link rel="canonical" href={lang === "it" ? `https://www.wauarchitetti.com/progetti` : `https://www.wauarchitetti.com/en/projects`} />
+        <meta name="description" content={`${page && page.seo && page.seo.metaDesc}`} />
         <meta property="og:site_name" content={lang === "it" ? `${page && page.title} • WAU Architetti` : `${page && page.title} • WAU Architects`} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={lang === "it" ? `https://www.wauarchitetti.com/progetti` : `https://www.wauarchitetti.com/en/projects`} />
         <meta property="og:title" content={lang === "it" ? `${page && page.title} • WAU Architetti` : `${page && page.title} • WAU Architects`} />
+        <meta property="og:description" content={`${page && page.seo && page.seo.metaDesc}`} />
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:site" content={lang === "it" ? `https://www.wauarchitetti.com/progetti` : `https://www.wauarchitetti.com/en/projects`} />
         <meta name="twitter:title" content={lang === "it" ? `${page && page.title} • WAU Architetti` : `${page && page.title} • WAU Architects`} />
+        <meta name="twitter:description" content={`${page && page.seo && page.seo.metaDesc}`} />
       </Helmet>
       <div>
         <Heading>
