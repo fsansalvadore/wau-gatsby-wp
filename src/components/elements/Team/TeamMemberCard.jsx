@@ -75,9 +75,9 @@ const TeamMemberCard = ({
                     >
                         <div tw="overflow-hidden pt-1 mb-px">
                             <motion.h2
-                                initial={{y: 50}}
-                                animate={{y: 0}}
-                                transition={{...transition, delay: 0.1, duration: 1}}
+                                // initial={{y: 50}}
+                                // animate={{y: 0}}
+                                // transition={{...transition, delay: 0.1, duration: 1}}
                                 tw="pb-2"
                             >{title ? title : "Missing member name"}</motion.h2>
                         </div>

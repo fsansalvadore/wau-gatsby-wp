@@ -11,10 +11,10 @@ const ArticlesPageLayout = ({ data, lang }) => {
     const [page, setPage] = useState(null)
 
     useEffect(() => {
-        if(data) {
-          setPage(data.wordpress.pages.nodes[0])
-        }
-      }, [data, setPage])
+      if(data) {
+        setPage(data.wordpress.pages.nodes[0])
+      }
+    }, [data, setPage])
 
   return(
     <Layout>

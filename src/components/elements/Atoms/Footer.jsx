@@ -85,18 +85,21 @@ export default ({lang}) => {
                     </ul>
                 </div>
                 <hr tw="col-span-full my-8 opacity-50"/>
-                <div tw="col-span-12 lg:col-span-6" className="footer-inline-list">
+                <div tw="col-span-12 text-center lg:text-left lg:col-span-6" className="footer-inline-list">
                     <p tw="inline mr-4 text-sm">© WAU {new Date().getFullYear()}</p>
                     <ul tw="inline">
                         <li>
-                            <Link to="#" >Privacy Policy</Link>
+                            <Link to={lang === "it" ? "/privacy-policy" : "/en/privacy-policy"} tw="py-4" >Privacy Policy</Link>
                         </li>
                     </ul>
                 </div>
-                <div tw="col-span-12 lg:col-span-6 flex justify-end" className="footer-inline-list">
+                <div tw="col-span-12 text-center mt-6 lg:mt-0 lg:text-right lg:col-span-6 flex justify-center lg:justify-end" className="footer-inline-list">
                     <ul>
                         <li>
-                            <Link to="#" >Website Credits</Link>
+                            <Link to="https://www.saglietti.it/" target="_blank" tw="py-4" >Design</Link>
+                        </li>
+                        <li>
+                            <Link to="https://www.fsansalvadore.com/" target="_blank" tw="py-4" >Website</Link>
                         </li>
                     </ul>
                 </div>

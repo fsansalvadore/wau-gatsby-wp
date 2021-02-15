@@ -6,7 +6,6 @@ import Heading from "../Heading/Heading"
 import tw from 'twin.macro'
 import GridMaxWidthContainer from "../Atoms/GridMaxWidthContainer"
 import Button from '../Atoms/Button'
-import styled from 'styled-components'
 import ClientsSection from "../Clients/ClientsSection"
 
 const ExpertisePageLayout = ({data, lang}) => {

@@ -30,6 +30,21 @@ export const teamMemberFilterVariants = {
     }
 }
 
+export const teamTitleVariants = {
+    hovered: {
+        opacity: 1,
+        transition: {
+            ...transition,
+            duration: 0.1
+        }
+    },
+    hidden: {
+        opacity: 0,
+        transition: {
+            duration: 0.1
+        }
+    }
+}
 export const teamMemberDescriptionVariants = {
     hovered: {
         opacity: 0.95,
@@ -50,6 +65,7 @@ export const teamMemberDescriptionVariants = {
 export const teamMemberContentVariants = {
     hovered: {
         height: "100%",
+        opacity: 1,
         transition: {
             ...transition,
             duration: 0.3
@@ -57,6 +73,7 @@ export const teamMemberContentVariants = {
     },
     hidden: {
         height: "auto",
+        opacity: 0,
         transition: {
             ...transition,
             duration: 0.15

@@ -1,31 +1,65 @@
 import React from "react"
-import Layout from "../components/LayoutComponent"
-import { Helmet } from 'react-helmet'
-import Heading from "../components/elements/Heading/Heading"
-import HeadingIntroHalf from "../components/elements/Heading/HeadingIntroHalf"
-import tw from 'twin.macro'
+import { graphql, useStaticQuery } from 'gatsby'
+import TeamPageLayout from '../components/elements/Team/TeamPageLayout'
 
-// import loadable from '@loadable/component'
+const TeamPageIta = () => {
+  const data = useStaticQuery(graphql`
+    query TeamItaQuery {
+      wordpress {
+        team_members(first: 100, where: { status: PUBLISH, language: EN }) {
+          nodes {
+            date
+            title
+            featuredImage {
+              node {
+                altText
+                link
+                sourceUrl
+                imageFile {
+                  childImageSharp {
+                    fixed(width: 1200, quality: 90) {
+                      ...GatsbyImageSharpFixed
+                    }
+                  }
+                }
+              }
+            }
+            teamMemberAFC {
+              ruolo
+              descrizione
+              email
+            }
+            language {
+              code
+              locale
+              slug
+            }
+          }
+        }
+        collaborators(first: 100, where: { status: PUBLISH }) {
+          nodes {
+            date
+            title
+          }
+        }
+        pages(where: { status: PUBLISH, language: EN, title: "Team" }) {
+          nodes {
+            slug
+            title
+            pagesACF {
+              titoletto
+              title
+              introduzione
+            }
+          }
+        }
+      }
+    }
+  `)
 
-// const VideoSection = loadable(() => import('../components/organisms/video-section/video-section.component'))
-
-const TeamPageEng = () => {
   return(
-    <Layout>
-      <Helmet>
-        <title>WAU Architetti • Team</title>
-      </Helmet>
-      <div>
-        <Heading>
-          <HeadingIntroHalf
-            breadcrumb="Team"
-            heading="Duis aute irure dolor in reprehenderit."
-            subheading="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-          />
-        </Heading>
-      </div>
-    </Layout>
+    <TeamPageLayout data={data} lang="it" />
   )
 }
 
-export default TeamPageEng
+export default TeamPageIta

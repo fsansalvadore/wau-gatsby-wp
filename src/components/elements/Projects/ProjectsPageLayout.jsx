@@ -29,7 +29,7 @@ const ProjectsPageLayout = ({data, lang}) => {
               || !term)
         .sort((a, b) => (a.date < b.date) ? 1 : (a.date === b.date) ? ((a.title > b.title) ? 1 : -1) : -1 ))
     }
-  }, [setProjects, term, data.wordpress.projects])
+  }, [term])
 
   const handleChange = (value) => {
     setTerm(value.toLowerCase())
