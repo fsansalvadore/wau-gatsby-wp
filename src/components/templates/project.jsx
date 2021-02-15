@@ -1,4 +1,4 @@
-import React, { useRef } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import { graphql, useStaticQuery, Link } from "gatsby"
 import { Helmet } from 'react-helmet'
 import Layout from "../LayoutComponent"
@@ -15,7 +15,6 @@ import fallbackImg from '../../images/Wau-Architetti-social-logo.jpg'
 const ProjectPage = (props) => {
   const {
     slug,
-    blocks,
     index,
     title,
     featuredImage,
@@ -44,6 +43,10 @@ const ProjectPage = (props) => {
                 name
               }
             }
+            ProjectAFC {
+              projectdate
+              location
+            }
             featuredImage {
               node {
                 altText
@@ -63,9 +66,32 @@ const ProjectPage = (props) => {
       }
     }
   `)
-  const pdfRef = useRef(null)
+
+  const [prevPost, setPrevPost] = useState(null)
+  const [nextPost, setNextPost] = useState(null)
   const proj = data.wordpress.projects.nodes.find(project => project.title === title)
-    console.log("lang", lang)
+  const sortedProjects = data.wordpress.projects.nodes.sort((a, b) => (a.date < b.date) ? 1 : (a.date === b.date) ? ((a.title > b.title) ? 1 : -1) : -1 )
+  const pdfRef = useRef(null)
+  const postLength = sortedProjects.length
+
+  useEffect(() => {
+    if(sortedProjects) {
+      if (index === postLength - 1) {
+        setPrevPost(sortedProjects[index - 1])
+        setNextPost(sortedProjects[0])
+      } else if (index === 0) {
+        setPrevPost(sortedProjects[postLength - 1])
+        setNextPost(sortedProjects[index + 1])
+      } else {
+        setPrevPost(sortedProjects[index - 1])
+        setNextPost(sortedProjects[index + 1])
+      }
+    }
+  }, [index, sortedProjects])
+
+  console.log("prevPost", prevPost)
+  console.log("nextPost", nextPost)
+
   return (
     <Layout>
       <Helmet>
@@ -87,7 +113,7 @@ const ProjectPage = (props) => {
         <meta name="twitter:description" content={`${seo && seo.metaDesc}`} />
         <meta name="twitter:image" content={`${featuredImage ? featuredImage.node.sourceUrl : fallbackImg}`} />
       </Helmet>
-      <ProjectContainer ref={pdfRef} id="printJS-form">
+      <ProjectContainer ref={pdfRef} >
         <Heading tw="flex flex-col lg:flex-row">
           <div tw="w-full md:w-3/4">
             <p className="breadcrumbs mono" >

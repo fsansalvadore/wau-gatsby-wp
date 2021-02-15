@@ -91,6 +91,9 @@ export default ({lang}) => {
                         <li>
                             <Link to={lang === "it" ? "/privacy-policy" : "/en/privacy-policy"} tw="py-4" >Privacy Policy</Link>
                         </li>
+                        <li>
+                            <a href="javascript:void()" id="csconsentlink" tw="py-4">Cookie Settings</a>
+                        </li>
                     </ul>
                 </div>
                 <div tw="col-span-12 text-center mt-6 lg:mt-0 lg:text-right lg:col-span-6 flex justify-center lg:justify-end" className="footer-inline-list">

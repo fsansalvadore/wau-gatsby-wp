@@ -30,6 +30,7 @@ const Layout = ({ isMenuLight, hasNoContactsCta, children }) => {
         <ContactsCtaSection lang={lang} />
       }
       <Footer lang={lang} />
+      <script type="text/javascript" charset="UTF-8" src="//cdn.cookie-script.com/s/b6c4a2730d62e6c3c995c08302b9a5c3.js"></script>
     </>
   )
 }
