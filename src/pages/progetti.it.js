@@ -60,7 +60,7 @@ const ProjectsPageIta = () => {
   `)
   
   return(
-    <ProjectsPageLayout data={data} />
+    <ProjectsPageLayout data={data} lang="it" />
   )
 }
 
