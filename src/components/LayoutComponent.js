@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react"
 import GenericMetadata from './GenericMetadata'
 import MainNav from "./elements/MainNav/MainNav"
-// import { GlobalStyles } from 'twin.macro'
 import "../styles/global.css"
-import "../styles/locomotive-scroll.css"
+// import "../styles/locomotive-scroll.css"
 import Footer from './elements/Atoms/Footer'
 import ContactsCtaSection from './elements/Contacts/ContactsCtaSection'
 

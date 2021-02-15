@@ -11,6 +11,7 @@ const ProjectsPageIta = () => {
             slug
             title
             pagesACF {
+              titoletto
               title
               introduzione
             }

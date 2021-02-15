@@ -16,6 +16,7 @@ export const query = graphql`
           slug
           title
           pagesACF {
+            titoletto
             title
             introduzione
           }
