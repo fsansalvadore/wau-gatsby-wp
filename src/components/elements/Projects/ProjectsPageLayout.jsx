@@ -98,7 +98,7 @@ const ProjectsPageLayout = ({data}) => {
         </Heading>
         <div className="search-form">
         </div>
-        <ul className="proj_content" tw="grid grid-cols-1 md:grid-cols-2">
+        <ul className="proj_content" tw="grid grid-cols-1 md:grid-cols-2 m-0">
           {
             projects && projects.length > 0 ?
             projects.map(proj => (

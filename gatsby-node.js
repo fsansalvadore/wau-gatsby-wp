@@ -10,6 +10,25 @@ language {
 }
 `
 
+const seoFields = `
+  seo {
+    title
+    focuskw
+    metaDesc
+    metaKeywords
+    opengraphDescription
+    opengraphImage {
+      link
+    }
+    opengraphTitle
+    twitterDescription
+    twitterImage {
+      link
+    }
+    twitterTitle
+  }
+`
+
 const query = `
   query GlobalQuery {
     wordpress {
@@ -20,6 +39,14 @@ const query = `
           status
           slug
           title
+          ${seoFields}
+          featuredImage {
+            node {
+              sourceUrl
+              altText
+              link
+            }
+          }
           ProjectAFC {
             introduzione
             projectdate
@@ -54,6 +81,7 @@ const query = `
           content
           title(format: RENDERED)
           ${language}
+          ${seoFields}
           featuredImage {
             node {
               sourceUrl(size: LARGE)
@@ -95,6 +123,7 @@ const query = `
               sourceUrl(size: LARGE)
             }
           }
+          ${seoFields}
           categories {
             nodes {
               name
@@ -119,6 +148,7 @@ const query = `
         nodes {
           slug
           title(format: RENDERED)
+          ${seoFields}
           pagesACF {
             titoletto
             title
@@ -245,97 +275,109 @@ exports.createResolvers = async (
 exports.createPages = async ({ actions, graphql }) => {
   const { data } = await graphql(`${ query }`)
   
-    // create ita projects pages
-    data.wordpress.projects.nodes.filter(p => p.language.code === "IT").forEach(project => {
-      actions.createPage({
-        path: `/progetti/${project.slug}`,
-        component: path.resolve(`./src/components/templates/project.jsx`),
-        context: {
-          ...project,
-          index: data.wordpress.projects.nodes.indexOf(project),
-          id: project.id,
-          title: project.title,
-          lang: project.language,
-          featuredImage: project.featuredImage,
-          content: project.content
-        },
-      })
+  // create ita projects pages
+  data.wordpress.projects.nodes.filter(p => p.language.code === "IT").forEach(project => {
+    actions.createPage({
+      path: `/progetti/${project.slug}`,
+      component: path.resolve(`./src/components/templates/project.jsx`),
+      context: {
+        ...project,
+        index: data.wordpress.projects.nodes.indexOf(project),
+        id: project.id,
+        title: project.title,
+        slug: project.slug,
+        lang: project.language,
+        featuredImage: project.featuredImage,
+        content: project.content,
+        seo: project.seo
+      },
     })
+  })
 
-    // create ita projects pages
-    data.wordpress.projects.nodes.filter(p => p.language.code === "EN").forEach(project => {
-      actions.createPage({
-        path: `/en/projects/${project.slug}`,
-        component: path.resolve(`./src/components/templates/project.jsx`),
-        context: {
-          ...project,
-          index: data.wordpress.projects.nodes.indexOf(project),
-          id: project.id,
-          title: project.title,
-          lang: project.language,
-          featuredImage: project.featuredImage,
-          content: project.content
-        },
-      })
+  // create ita projects pages
+  data.wordpress.projects.nodes.filter(p => p.language.code === "EN").forEach(project => {
+    actions.createPage({
+      path: `/en/projects/${project.slug}`,
+      component: path.resolve(`./src/components/templates/project.jsx`),
+      context: {
+        ...project,
+        index: data.wordpress.projects.nodes.indexOf(project),
+        id: project.id,
+        title: project.title,
+        slug: project.slug,
+        lang: project.language,
+        featuredImage: project.featuredImage,
+        content: project.content,
+        seo: project.seo
+      },
     })
-    
-    // create ita expertises pages
-    data.wordpress.expertises.nodes.filter(e => e.language.code === "IT").forEach(expertise => {
-      actions.createPage({
-        path: `/expertise/${expertise.slug}`,
-        component: path.resolve(`./src/components/templates/expertise-show.jsx`),
-        context: {
-          ...expertise,
-          index: data.wordpress.expertises.nodes.indexOf(expertise),
-          id: expertise.id,
-          title: expertise.title,
-          lang: expertise.language
-        },
-      })
+  })
+  
+  // create ita expertises pages
+  data.wordpress.expertises.nodes.filter(e => e.language.code === "IT").forEach(expertise => {
+    actions.createPage({
+      path: `/expertise/${expertise.slug}`,
+      component: path.resolve(`./src/components/templates/expertise-show.jsx`),
+      context: {
+        ...expertise,
+        index: data.wordpress.expertises.nodes.indexOf(expertise),
+        id: expertise.id,
+        title: expertise.title,
+        slug: expertise.slug,
+        lang: expertise.language,
+        seo: expertise.seo
+      },
     })
+  })
 
-    // create ita expertises pages
-    data.wordpress.expertises.nodes.filter(e => e.language.code === "EN").forEach(expertise => {
-      actions.createPage({
-        path: `/en/expertise/${expertise.slug}`,
-        component: path.resolve(`./src/components/templates/expertise-show.jsx`),
-        context: {
-          ...expertise,
-          index: data.wordpress.expertises.nodes.indexOf(expertise),
-          id: expertise.id,
-          title: expertise.title,
-          lang: expertise.language
-        },
-      })
+  // create ita expertises pages
+  data.wordpress.expertises.nodes.filter(e => e.language.code === "EN").forEach(expertise => {
+    actions.createPage({
+      path: `/en/expertise/${expertise.slug}`,
+      component: path.resolve(`./src/components/templates/expertise-show.jsx`),
+      context: {
+        ...expertise,
+        index: data.wordpress.expertises.nodes.indexOf(expertise),
+        id: expertise.id,
+        title: expertise.title,
+        slug: expertise.slug,
+        lang: expertise.language,
+        seo: expertise.seo
+      },
     })
-    
-    // create ita articles pages
-    data.wordpress.articles.nodes.filter(a => a.language.code === "IT").forEach(article => {
-      actions.createPage({
-        path: `/notizie/${article.slug}`,
-        component: path.resolve(`./src/components/templates/article-show.jsx`),
-        context: {
-          ...article,
-          index: data.wordpress.articles.nodes.indexOf(article),
-          id: article.id,
-          title: article.title,
-          lang: article.language
-        },
-      })
+  })
+  
+  // create ita articles pages
+  data.wordpress.articles.nodes.filter(a => a.language.code === "IT").forEach(article => {
+    actions.createPage({
+      path: `/notizie/${article.slug}`,
+      component: path.resolve(`./src/components/templates/article-show.jsx`),
+      context: {
+        ...article,
+        index: data.wordpress.articles.nodes.indexOf(article),
+        id: article.id,
+        title: article.title,
+        slug: article.slug,
+        lang: article.language,
+        seo: article.seo
+      },
     })
+  })
 
-    // create ita articles pages
-    data.wordpress.articles.nodes.filter(a => a.language.code === "EN").forEach(article => {
-      actions.createPage({
-        path: `/en/news/${article.slug}`,
-        component: path.resolve(`./src/components/templates/article-show.jsx`),
-        context: {
-          ...article,
-          index: data.wordpress.articles.nodes.indexOf(article),
-          id: article.id,
-          title: article.title,
-          lang: article.language
-        },
-      })
+  // create ita articles pages
+  data.wordpress.articles.nodes.filter(a => a.language.code === "EN").forEach(article => {
+    actions.createPage({
+      path: `/en/news/${article.slug}`,
+      component: path.resolve(`./src/components/templates/article-show.jsx`),
+      context: {
+        ...article,
+        index: data.wordpress.articles.nodes.indexOf(article),
+        id: article.id,
+        title: article.title,
+        slug: article.slug,
+        lang: article.language,
+        seo: article.seo
+      },
     })
+  })
 }

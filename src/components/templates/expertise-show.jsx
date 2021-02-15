@@ -1,5 +1,5 @@
 import React from "react"
-import { Link, StaticQuery } from "gatsby"
+import { graphql, Link, useStaticQuery } from "gatsby"
 import Heading from '../elements/Heading/Heading'
 import Layout from "../LayoutComponent"
 import ProjectPreviewCard from "../elements/Projects/ProjectPreviewCard/ProjectPreviewCard"
@@ -8,33 +8,34 @@ import parse from 'html-react-parser'
 import GridMaxWidthContainer from '../elements/Atoms/GridMaxWidthContainer'
 import styled from 'styled-components'
 import tw, { css } from 'twin.macro'
+import { Helmet } from 'react-helmet'
+import fallbackImg from '../../images/Wau-Architetti-social-logo.jpg'
 
 const ExpertisePage = props => {
   const {
     content,
+    slug,
     expertiseACF,
     featuredImage,
+    seo,
+    tags,
     title,
     lang
   } = props.pageContext;
 
-  return (
-    <StaticQuery
-      query={graphql`
-        query ExpertiseMediaQuery {
-          wordpress {
-            expertises(first: 100, where: { status: PUBLISH }) {
-              nodes {
-                title
-                featuredImage {
-                  node {
-                    sourceUrl(size: LARGE)
-                    imageFile {
-                      childImageSharp {
-                        fixed(width: 1500, quality: 90) {
-                          ...GatsbyImageSharpFixed
-                        }
-                      }
+  const data = useStaticQuery(graphql`
+    query ExpertiseMediaQuery {
+      wordpress {
+        expertises(first: 100, where: { status: PUBLISH }) {
+          nodes {
+            title
+            featuredImage {
+              node {
+                sourceUrl(size: LARGE)
+                imageFile {
+                  childImageSharp {
+                    fixed(width: 1500, quality: 90) {
+                      ...GatsbyImageSharpFixed
                     }
                   }
                 }
@@ -42,79 +43,99 @@ const ExpertisePage = props => {
             }
           }
         }
-      `}
-      render={data => (
-        <Layout isMenuLight>
-          <ExpertiseContainer className="gradientBg">
-            <Heading>
-              <p className="breadcrumbs mono">
-                <Link to={lang.code === "EN" ? "/en/expertise/" : "/expertise/"}>
-                  {lang.code === "EN" ? "Expertise" : "Expertise"}</Link> /
-              </p>
-              <div tw="w-full md:w-3/4">
-                <div tw="w-full">
-                  <h1 tw="leading-10">{title}</h1>
-                </div>
-                {
-                  expertiseACF && expertiseACF.introduzione &&
-                  <div className="intro" tw="w-full">
-                    {expertiseACF.introduzione}
-                  </div>
-                }
+      }
+    }
+  `)
+
+  return (
+    <Layout isMenuLight>
+      <Helmet>
+        <title>{seo && seo.title ? `${seo.title}` : lang.code === "IT" ? `${title} • Expertise • WAU Architetti` : `${title} • Expertise • WAU Architects`}</title>
+        <link rel="canonical" href={lang.code === "IT" ? `https://www.wauarchitetti.com/expertise/${slug}` : `https://www.wauarchitetti.com/en/expertise/${slug}`} />
+        <meta name="description" content={`${seo & seo.metaDesc}`} />
+        <meta name="keywords" content={tags ? (tags.nodes.map(tag => tag.name ? ` ${tag.name},` : "")) : "WAU Architetti, architetti a torino, studio di architetti"} />
+        <meta itemprop="image" content={`${featuredImage ? featuredImage.node.sourceUrl : fallbackImg}`} />
+        <meta property="og:site_name" content={lang.code === "IT" ? `${title} • Expertise • WAU Architetti` : `${title} • Expertise • WAU Architects`} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={lang.code === "IT" ? `https://www.wauarchitetti.com/expertise/${slug}` : `https://www.wauarchitetti.com/en/expertise/${slug}`} />
+        <meta property="og:title" content={lang.code === "IT" ? `${title} • Expertise • WAU Architetti` : `${title} • Expertise • WAU Architects`} />
+        <meta property="og:image" content={`${featuredImage ? featuredImage.node.sourceUrl : fallbackImg}`} />
+        <meta property="og:description" content={`${seo & seo.metaDesc}`} />
+        <meta property="og:locale" content={lang.locale} />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:site" content={lang.code === "IT" ? `https://www.wauarchitetti.com/expertise/${slug}` : `https://www.wauarchitetti.com/en/expertise/${slug}`} />
+        <meta name="twitter:title" content={lang.code === "IT" ? `${title} • Expertise • WAU Architetti` : `${title} • Expertise • WAU Architects`} />
+        <meta name="twitter:description" content={`${seo & seo.metaDesc}`} />
+        <meta name="twitter:image" content={`${featuredImage ? featuredImage.node.sourceUrl : fallbackImg}`} />
+      </Helmet>
+      <ExpertiseContainer className="gradientBg">
+        <Heading>
+          <p className="breadcrumbs mono">
+            <Link to={lang.code === "EN" ? "/en/expertise/" : "/expertise/"}>
+              {lang.code === "EN" ? "Expertise" : "Expertise"}</Link> /
+          </p>
+          <div tw="w-full md:w-3/4">
+            <div tw="w-full">
+              <h1 tw="leading-10">{title}</h1>
+            </div>
+            {
+              expertiseACF && expertiseACF.introduzione &&
+              <div className="intro" tw="w-full">
+                {expertiseACF.introduzione}
               </div>
-            </Heading>
+            }
+          </div>
+        </Heading>
+        {
+          featuredImage &&
+            <figure className="cover-image" tw="mb-10 md:mb-16 xl:mb-32">
+              {
+                data.wordpress.expertises.nodes.find(expertise => expertise.title === title).featuredImage.node.imageFile ?
+                <Img
+                    tw="relative w-full h-64 top-0 right-0 bottom-0 left-0"
+                    fixed={data.wordpress.expertises.nodes.find(expertise => expertise.title === title).featuredImage.node.imageFile.childImageSharp.fixed}
+                /> :
+                <img
+                  src={featuredImage.node.sourceUrl}
+                  alt={featuredImage.node.altText}
+                  tw="relative w-full h-64 top-0 right-0 bottom-0 left-0"
+                />
+              }
+            </figure>
+        }
+        <article tw="w-full flex justify-center">
+          <GridMaxWidthContainer className="expertise-content" tw="w-full grid grid-cols-12">
             {
-              featuredImage &&
-                <figure className="cover-image" tw="mb-10 md:mb-16 xl:mb-32">
-                  {
-                    data.wordpress.expertises.nodes.find(expertise => expertise.title === title).featuredImage.node.imageFile ?
-                    <Img
-                        tw="relative w-full h-64 top-0 right-0 bottom-0 left-0"
-                        fixed={data.wordpress.expertises.nodes.find(expertise => expertise.title === title).featuredImage.node.imageFile.childImageSharp.fixed}
-                    /> :
-                    <img
-                      src={featuredImage.node.sourceUrl}
-                      alt={featuredImage.node.altText}
-                      tw="relative w-full h-64 top-0 right-0 bottom-0 left-0"
+              content &&
+              parse(content)
+            }
+          </GridMaxWidthContainer>
+        </article>
+        {
+          expertiseACF && expertiseACF.progetti && expertiseACF.progetti &&
+          <section>
+            <p tw="text-center text-3xl py-16 md:py-32">Ecco qualche esempio:</p>
+            <ul tw="w-full grid grid-cols-1 m-0 md:grid-cols-2 lg:grid-cols-3 pb-px">
+              {
+                expertiseACF.progetti.map(project => (
+                  <li key={`exp-proj-${Math.floor(Math.random() * (100 - 999) + 100)}`} tw="p-px">
+                    <ProjectPreviewCard
+                      link={lang.code === "EN" ? `/en/projects/${project.slug}` : `/progetti/${project.slug}`}
+                      title={project.title}
+                      featuredImage={project.featuredImage}
+                      imgSrc={project.featuredImage ? project.featuredImage.node.sourceUrl : ""}
+                      imgAlt={project.featuredImage ? project.featuredImage.node.altText : ""}
+                      projectdate={project.ProjectAFC.projectdate ? project.ProjectAFC.projectdate : null}
+                      location={project.ProjectAFC.location && project.ProjectAFC.location}
                     />
-                  }
-                </figure>
-            }
-            <article tw="w-full flex justify-center">
-              <GridMaxWidthContainer className="expertise-content" tw="w-full grid grid-cols-12">
-                {
-                  content &&
-                  parse(content)
-                }
-              </GridMaxWidthContainer>
-            </article>
-            {
-              expertiseACF && expertiseACF.progetti && expertiseACF.progetti &&
-              <section>
-                <p tw="text-center text-3xl py-16 md:py-32">Ecco qualche esempio:</p>
-                <ul tw="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 pb-px">
-                  {
-                    expertiseACF.progetti.map(project => (
-                      <li key={`exp-proj-${Math.floor(Math.random() * (100 - 999) + 100)}`} tw="p-px">
-                        <ProjectPreviewCard
-                          link={lang.code === "EN" ? `/en/projects/${project.slug}` : `/progetti/${project.slug}`}
-                          title={project.title}
-                          featuredImage={project.featuredImage}
-                          imgSrc={project.featuredImage ? project.featuredImage.node.link : ""}
-                          imgAlt={project.featuredImage ? project.featuredImage.node.altText : ""}
-                          projectdate={project.ProjectAFC.projectdate ? project.ProjectAFC.projectdate : null}
-                          location={project.ProjectAFC.location && project.ProjectAFC.location}
-                        />
-                      </li>
-                    ))
-                  }
-                </ul>
-              </section>
-            }
-          </ExpertiseContainer>
-        </Layout>
-      )}
-    />
+                  </li>
+                ))
+              }
+            </ul>
+          </section>
+        }
+      </ExpertiseContainer>
+    </Layout>
   )
 }
 

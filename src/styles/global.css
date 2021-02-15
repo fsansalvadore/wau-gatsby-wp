@@ -7,13 +7,17 @@
     --purple: #403C90;
     --white: #FCFCFC;
     --heading-font-size: 52px;
-    --gradientBg: linear-gradient(354.28deg, #00ACA9 0%, #403C90 100%);
+    --gradientBg: linear-gradient(-30deg, #00ACA9 0%, #403C90 100%);
 }
 
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+}
+
+ul {
+    margin: 0;
 }
 
 a, a:visited, a:active {

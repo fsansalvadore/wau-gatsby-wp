@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react"
+import React, { useRef } from "react"
 import { graphql, useStaticQuery, Link } from "gatsby"
 import { Helmet } from 'react-helmet'
 import Layout from "../LayoutComponent"
@@ -9,7 +9,8 @@ import parse from 'html-react-parser'
 import Img from 'gatsby-image'
 import GridMaxWidthContainer from '../elements/Atoms/GridMaxWidthContainer'
 import SocialShare from '../elements/Atoms/SocialShare'
-import Button from '../elements/Atoms/Button'
+// import Button from '../elements/Atoms/Button'
+import fallbackImg from '../../images/Wau-Architetti-social-logo.jpg'
 
 const ProjectPage = (props) => {
   const {
@@ -64,11 +65,27 @@ const ProjectPage = (props) => {
   `)
   const pdfRef = useRef(null)
   const proj = data.wordpress.projects.nodes.find(project => project.title === title)
-
+    console.log("lang", lang)
   return (
     <Layout>
       <Helmet>
-        <title>{proj ? `${proj.title}` : "Progetto"} • WAU Architetti</title>
+        <title>{seo && seo.title ? `${seo.title}` : lang.code === "IT" ? `${title} • Progetti • WAU Architetti` : `${title} • Projects • WAU Architects`}</title>
+        <link rel="canonical" href={lang.code === "IT" ? `https://www.wauarchitetti.com/progetti/${slug}` : `https://www.wauarchitetti.com/en/projects/${slug}`} />
+        <meta name="description" content={`${seo & seo.metaDesc}`} />
+        <meta name="keywords" content={tags ? (tags.nodes.map(tag => tag.name ? ` ${tag.name}` : "")) : "WAU Architetti, architetti a torino, studio di architetti"} />
+        <meta itemprop="image" content={`${featuredImage ? featuredImage.node.sourceUrl : fallbackImg}`} />
+        <meta property="og:site_name" content={lang.code === "IT" ? `${title} • Progetti • WAU Architetti` : `${title} • Projects • WAU Architects`} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={lang.code === "IT" ? `https://www.wauarchitetti.com/progetti/${slug}` : `https://www.wauarchitetti.com/en/projects/${slug}`} />
+        <meta property="og:title" content={lang.code === "IT" ? `${title} • Progetti • WAU Architetti` : `${title} • Projects • WAU Architects`} />
+        <meta property="og:image" content={`${featuredImage ? featuredImage.node.sourceUrl : fallbackImg}`} />
+        <meta property="og:description" content={`${seo & seo.metaDesc}`} />
+        <meta property="og:locale" content={lang.locale} />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:site" content={lang.code === "IT" ? `https://www.wauarchitetti.com/progetti/${slug}` : `https://www.wauarchitetti.com/en/projects/${slug}`} />
+        <meta name="twitter:title" content={lang.code === "IT" ? `${title} • Progetti • WAU Architetti` : `${title} • Projects • WAU Architects`} />
+        <meta name="twitter:description" content={`${seo & seo.metaDesc}`} />
+        <meta name="twitter:image" content={`${featuredImage ? featuredImage.node.sourceUrl : fallbackImg}`} />
       </Helmet>
       <ProjectContainer ref={pdfRef} id="printJS-form">
         <Heading tw="flex flex-col lg:flex-row">

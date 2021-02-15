@@ -5,11 +5,11 @@ module.exports = {
     title: `WAU Architetti`,
     titleTemplate: "%s",
     description: `WAU ARCHITETTI description`,
-    author: `@Francesco_Sansa`,
+    author: ``,
     url: "https://wauarchitetti.com/", // No trailing slash allowed!
     siteUrl: `https://wauarchitetti.com/`,
     image: "src/images/Wau-Architetti-social.jpg", // Path to your image you placed in the 'static' folder
-    twitterUsername: "@Francesco_Sansa"
+    twitterUsername: ""
   },
   plugins: [
     {
