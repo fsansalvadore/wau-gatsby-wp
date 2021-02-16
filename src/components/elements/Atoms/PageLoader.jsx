@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import tw, { css } from 'twin.macro'
 import { motion } from 'framer-motion'
-import Logo from '../Logo/Logo'
+// import Logo from '../Logo/Logo'
+import Logo from '../../../assets/WAU-Logo-white.svg'
 import { transition, loaderVariants } from '../../../helpers/framer-defaults'
 
 export default () => {
@@ -27,7 +28,7 @@ export default () => {
             exit={{y: "-100%", ...transition}}
             transition={{...transition, duration: 0.4}}
         >
-            <Logo isMenuLight tw="" className="loader-logo" />
+            <img src={Logo} alt="WAU Architetti logo" className="loader-logo" />
         </StyledPageLoader>
     )
 }
@@ -43,6 +44,16 @@ const StyledPageLoader = styled(motion.div)(() => [
             width: 40%;
             max-width: 200px;
             height: auto;
+            animation: pulse 0.6s ease infinite alternate both;
+        }
+
+        @keyframes pulse {
+            from {
+                opacity: 1;
+            }
+            to {
+                opacity: 0.5;
+            }
         }
     `
 ])
