@@ -31,11 +31,12 @@ const MenuSlider = styled(motion.div)`
         flex: 1;
         display: flex;
         align-items: center;
+        max-height: 70vh;
 
         a {
             padding: 5px 0;
-            font-size: 1.8rem;
-            line-height: 3rem;
+            ${tw`text-2xl lg:text-3xl block`}
+            line-height: 2rem;
             opacity: 0.3;
             transition: opacity 0.15s ease, padding: 0.2s ease;
             will-change: opacity;
@@ -49,6 +50,7 @@ const MenuSlider = styled(motion.div)`
                 display: flex;
                 align-items: center;
                 position: relative;
+                opacity: 0.9;
 
                 &:before {
                     content: '';
@@ -66,6 +68,7 @@ const MenuSlider = styled(motion.div)`
     .menu-bottom {
         display: flex;
         flex-direction: column;
+        ${tw`absolute bottom-8 lg:bottom-auto lg:relative`}
 
         .lang-container {
             display: flex;
@@ -75,6 +78,14 @@ const MenuSlider = styled(motion.div)`
     
     @media screen and (min-width: 768px) {
         width: 60%;
+
+        .menu-top {
+            max-height: auto;
+
+            a {
+                line-height: 2.5rem;
+            }
+        }
         
         .menu-bottom {
             flex-direction: row;
@@ -236,7 +247,7 @@ const Menu = ({lang, isOpen}) => {
                             <SocialIcons menu={socialMenu} />
                         </div>
                     </div>
-                    <div className="lang-container">
+                    <div className="lang-container" tw="mt-4 lg:mt-0">
                         <LanguageSelector />
                     </div>
                 </div>
