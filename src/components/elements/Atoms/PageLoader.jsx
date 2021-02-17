@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import tw, { css } from 'twin.macro'
 import { motion } from 'framer-motion'
-// import Logo from '../Logo/Logo'
 import Logo from '../../../assets/WAU-Logo-white.svg'
 import { transition, loaderVariants } from '../../../helpers/framer-defaults'
 
