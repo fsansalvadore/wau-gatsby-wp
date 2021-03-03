@@ -45,7 +45,7 @@ const ContattiPage = () => {
             }
           }
         }
-        menu(id: "dGVybTozMQ==") {
+        menu(id: "dGVybTo0OQ==") {
           name
           menuItems {
             nodes {
