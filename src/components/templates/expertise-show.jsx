@@ -96,8 +96,8 @@ const ExpertisePage = props => {
                     fixed={data.wordpress.expertises.nodes.find(expertise => expertise.title === title).featuredImage.node.imageFile.childImageSharp.fixed}
                 /> :
                 <img
-                  src={featuredImage.node.sourceUrl}
-                  alt={featuredImage.node.altText}
+                  src={featuredImage && featuredImage.node.sourceUrl}
+                  alt={featuredImage && featuredImage.node.altText}
                   tw="relative w-full h-64 top-0 right-0 bottom-0 left-0"
                 />
               }
