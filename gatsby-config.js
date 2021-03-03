@@ -17,7 +17,7 @@ module.exports = {
       options: {
         typeName: "WORDPRESS",
         fieldName: "wordpress",
-        url: "https://www.fsansalvadore.com/dev/wau/wp/graphql",
+        url: "https://wp.wauarchitetti.com/graphql",
         refetchInterval: 60,
       },
     },
