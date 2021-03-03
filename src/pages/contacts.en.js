@@ -6,7 +6,7 @@ import ContactsPageLayout from '../components/elements/Contacts/ContactsPageLayo
 
 // const VideoSection = loadable(() => import('../components/organisms/video-section/video-section.component'))
 
-const ContactsEngPage = () => {
+const ContactsPage = () => {
   const data = useStaticQuery(graphql`
     query ContactsEngQuery {
       wordpress {
@@ -45,7 +45,7 @@ const ContactsEngPage = () => {
             }
           }
         }
-        menu(id: "dGVybTozMQ==") {
+        menu(id: "dGVybTo0OQ==") {
           name
           menuItems {
             nodes {
@@ -76,4 +76,4 @@ const ContactsEngPage = () => {
   )
 }
 
-export default ContactsEngPage
+export default ContactsPage
