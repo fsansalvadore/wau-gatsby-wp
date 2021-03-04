@@ -87,13 +87,13 @@ const ContactFormContainer = styled.div`
           
           .ant-checkbox {
               ${tw`flex items-center mr-2`}
-              width: 13px;
-              height: 13px;
+              width: 16px;
+              height: 16px;
           }
           
           p {
               margin: 0;
-              ${tw`font-mono font-light`}
+              ${tw`font-light`}
           }
           input {
               display: inline;
@@ -120,8 +120,7 @@ const ContactFormContainer = styled.div`
     border-radius: 0;
     display: flex;
     pointer-event: auto;
-    justify-content: space-between;
-    ${tw`font-mono`}
+    justify-content: center;
   }
 ` 
 
@@ -223,7 +222,7 @@ class ContactForm extends React.Component {
                     </div>
                 </div>
                 <div tw="flex-grow">
-                    <button type="submit" tw="w-full text-center opacity-80 hover:opacity-100 cursor-pointer">
+                    <button type="submit" tw="w-full text-center flex justify-center opacity-80 hover:opacity-100 cursor-pointer">
                     {
                         // check if loading or success
                         loading ? "loading"

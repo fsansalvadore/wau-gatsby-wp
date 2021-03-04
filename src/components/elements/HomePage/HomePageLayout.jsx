@@ -50,7 +50,7 @@ const HomePageLayout = ({ lang, data, ...otherProps }) => {
 
   // Words animation
   useEffect(() => {
-    setIntroWords(["architettura", "multidisciplinare", "design", "passione", "creatività"])
+    setIntroWords(["architettura", "design", "passione", "creatività"])
     if(videoRef.current) {
       videoRef.current.querySelector("video").play()
     }
@@ -117,7 +117,7 @@ const HomePageLayout = ({ lang, data, ...otherProps }) => {
                 ref={introTextRef}
                 tw="fixed left-0 right-0 top-0 bottom-0 w-full h-screen flex items-center justify-center opacity-0"
                 >
-                <p>Lorem ipsum dolor sit amet</p>
+                <p>SCOPRI L’EFFETTO WAU</p>
               </div>
                 <div
                 className="video-container"
@@ -168,7 +168,7 @@ const HomePageLayout = ({ lang, data, ...otherProps }) => {
             <GridMaxWidthContainer>
               <SectionTextBlock 
                 label="Expertise"
-                title="Lorem ipsum dolor sit amet, consectetur."
+                title="Multidisciplinari. Sempre e comunque. Questo è il nostro know-WAU."
                 link={lang === "it" ? `/expertise` : `/en/expertise`}
                 cta="Scopri le espertise"
                 tw="col-span-full md:col-span-6"

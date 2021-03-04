@@ -13,7 +13,7 @@ const StyledWAUCampPage = styled.div(() => [
     }
 
     p {
-      ${tw`leading-6`}
+      ${tw`leading-8 text-xl`}
     }
 
     .studio-content > div {

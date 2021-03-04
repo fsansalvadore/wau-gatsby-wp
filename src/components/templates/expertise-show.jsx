@@ -103,7 +103,7 @@ const ExpertisePage = props => {
               }
             </figure>
         }
-        <article tw="w-full flex justify-center">
+        <article tw="w-full flex justify-center py-8 md:py-16">
           <GridMaxWidthContainer className="expertise-content" tw="w-full grid grid-cols-12">
             {
               content &&

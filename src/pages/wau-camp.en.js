@@ -16,17 +16,29 @@ const WauCampEng = () => {
             }
             waucampACF {
               caroselloIntro {
-                immaginecarosello1 {
-                  sourceUrl
+                slide1 {
+                  immagine {
+                    sourceUrl
+                  }
+                  testo
                 }
-                immaginecarosello2 {
-                  sourceUrl
+                slide2 {
+                  immagine {
+                    sourceUrl
+                  }
+                  testo
                 }
-                immaginecarosello3 {
-                  sourceUrl
+                slide3 {
+                  immagine {
+                    sourceUrl
+                  }
+                  testo
                 }
-                immaginecarosello4 {
-                  sourceUrl
+                slide4 {
+                  immagine {
+                    sourceUrl
+                  }
+                  testo
                 }
               }
               sezione1 {

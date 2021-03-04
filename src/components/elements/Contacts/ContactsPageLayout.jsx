@@ -44,6 +44,10 @@ const ContactsPageLayout = ({data, socials, lang}) => {
                         data.pagesACF.title &&
                         <h1 tw="w-full md:w-3/4">{data.pagesACF.title}</h1>
                     }
+                    {
+                        data.pagesACF.introduzione &&
+                        <p tw="w-full md:w-3/4">{data.pagesACF.introduzione}</p>
+                    }
                 </div>
                 <div>
                     {
