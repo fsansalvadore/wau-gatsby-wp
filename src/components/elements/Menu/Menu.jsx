@@ -83,7 +83,7 @@ const MenuSlider = styled(motion.div)`
             max-height: auto;
 
             a {
-                line-height: 2.5rem;
+                line-height: 2rem;
             }
         }
         
@@ -92,7 +92,7 @@ const MenuSlider = styled(motion.div)`
             justify-content: space-between;
         }
     }
-`
+`;
 
 
 export const DimOverlay = styled(motion.div)`
@@ -153,11 +153,6 @@ export const menuDim = {
         display: "block",
     }
 }
-
-// const activeMenuLink = {
-//     background: "white",
-//     color: "green"
-// }
 
 const Menu = ({lang, isOpen}) => {
     const data = useStaticQuery(graphql`

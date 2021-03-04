@@ -218,6 +218,65 @@ const query = `
               content
             }
           }
+          waucampACF {
+            caroselloIntro {
+              immaginecarosello1 {
+                sourceUrl
+              }
+              immaginecarosello2 {
+                sourceUrl
+              }
+              immaginecarosello3 {
+                sourceUrl
+              }
+              immaginecarosello4 {
+                sourceUrl
+              }
+            }
+            sezione1 {
+              paragrafo
+              titolo
+              immagine {
+                sourceUrl
+              }
+            }
+            sezione2 {
+              paragrafo
+              titolo
+            }
+            sezione3 {
+              paragrafo
+              titolo
+              immagine {
+                sourceUrl
+              }
+            }
+            sezione4 {
+              titolo
+              paragrafo
+              immagine {
+                sourceUrl
+              }
+            }
+            sezione5 {
+              paragrafo
+              titolo
+              immagine {
+                sourceUrl
+              }
+            }
+            sezione6 {
+              paragrafo
+              titolo
+              immagine {
+                sourceUrl
+              }
+            }
+            sezione7Form {
+              titolo
+              paragrafo
+            }
+          }
         }
       }
       clients(first: 100, where: { status: PUBLISH }) {

@@ -99,10 +99,10 @@ export default ({lang}) => {
                 <div tw="col-span-12 text-center mt-6 lg:mt-0 lg:text-right lg:col-span-6 flex justify-center lg:justify-end" className="footer-inline-list">
                     <ul>
                         <li>
-                            <Link to="https://www.saglietti.it/" target="_blank" tw="py-4" >Design</Link>
+                            <a href="https://www.saglietti.it/" target="_blank" tw="py-4" >Design</a>
                         </li>
                         <li>
-                            <Link to="https://www.fsansalvadore.com/" target="_blank" tw="py-4" >Website</Link>
+                            <a href="https://www.fsansalvadore.com/" target="_blank" tw="py-4" >Website</a>
                         </li>
                     </ul>
                 </div>

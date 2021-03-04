@@ -3,6 +3,19 @@ import styled from 'styled-components'
 
 const StyledWAUCampPage = styled.div(() => [
     css`
+
+    h2 {
+      ${tw`text-3xl md:text-4xl mb-10`}
+    }
+
+    section > div > div {
+      ${tw`my-4`}
+    }
+
+    p {
+      ${tw`leading-6`}
+    }
+
     .studio-content > div {
       // max-width: 1600px;
   

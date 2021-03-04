@@ -3,12 +3,14 @@ import Layout from "../../LayoutComponent"
 import { Helmet } from 'react-helmet'
 import { Link } from 'gatsby'
 import Heading from "../Heading/Heading"
+import HeadingIntroHalf from "../Heading/HeadingIntroHalf"
 import tw from 'twin.macro'
 import GridMaxWidthContainer from "../Atoms/GridMaxWidthContainer"
 import Button from '../Atoms/Button'
 import ClientsSection from "../Clients/ClientsSection"
 
 const ExpertisePageLayout = ({data, lang}) => {
+  const [page, setPage] = useState(null)
   const [expertises, setExpertises] = useState(null)
 
   useEffect(() => {
@@ -17,15 +19,24 @@ const ExpertisePageLayout = ({data, lang}) => {
     }
   }, [setExpertises, data.wordpress.expertises])
   
+  useEffect(() => {
+    if(data.wordpress.pages) {
+      setPage(data.wordpress.pages.nodes[0])
+    }
+  }, [setPage, data.wordpress.pages])
+  
   return(
     <Layout isMenuLight>
       <Helmet>
         <title>WAU Architetti • Expertise</title>
       </Helmet>
       <div className="gradientBg">
-        <Heading tw="w-full md:w-3/4 lg:w-1/2">
-          <p className="breadcrumbs mono">Expertise</p>
-          <h1>Lorem ipsum dolor sit amet, consectetur.</h1>
+        <Heading>
+          <HeadingIntroHalf
+            breadcrumb={page ? page.title : "Expertise"}
+            heading={page ? page.pagesACF.title : ""}
+            subheading={page ? page.pagesACF.introduzione : ""}
+          />
         </Heading>
         <section tw="w-full flex justify-center">
           <GridMaxWidthContainer>

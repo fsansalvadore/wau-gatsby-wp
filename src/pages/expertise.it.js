@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React from "react"
 import { graphql, useStaticQuery } from 'gatsby'
 import ExpertisesPageLayout from '../components/elements/Expertise/ExpertisePageLayout'
 
@@ -6,7 +6,7 @@ const ExpertisesPageIta = () => {
   const data = useStaticQuery(graphql`
     query ExpertisesItaQuery {
       wordpress {
-        pages(where: { status: PUBLISH, language: IT, title: "Studio" }) {
+        pages(where: { status: PUBLISH, language: IT, title: "Expertise" }) {
           nodes {
             slug
             title
