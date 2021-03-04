@@ -69,7 +69,7 @@ const ProjectPreviewCard = ({
                         :
                         <img
                             tw="absolute w-full h-full top-0 right-0 bottom-0 left-0"
-                            src={featuredImage.node.sourceUrl}
+                            src={featuredImage && featuredImage.node.sourceUrl}
                             alt={imgAlt ? imgAlt : "Image"}
                             />
                     }
