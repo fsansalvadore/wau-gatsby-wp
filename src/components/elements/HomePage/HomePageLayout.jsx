@@ -82,7 +82,7 @@ const HomePageLayout = ({ lang, data, ...otherProps }) => {
       introTextTL
       .to(introTextRef.current, {
         duration: 2,
-        scale: 3
+        scale: 4
       }, indexRef.current)
       .to(introTextRef.current,  {
         opacity: 1
@@ -170,7 +170,7 @@ const HomePageLayout = ({ lang, data, ...otherProps }) => {
                 label="Expertise"
                 title="Multidisciplinari. Sempre e comunque. Questo è il nostro know-WAU."
                 link={lang === "it" ? `/expertise` : `/en/expertise`}
-                cta="Scopri le espertise"
+                cta="Scopri le expertise"
                 tw="col-span-full md:col-span-6"
               />
               {

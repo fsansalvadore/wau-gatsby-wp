@@ -15,7 +15,8 @@ const Navbar = styled.div(({isMenuLight}) => [
         ${tw`absolute w-full py-0 px-8 md:px-16 flex items-center justify-between`}
     `,
     isMenuLight && css`
-        .menu-icon span {
+        .menu-icon span,
+        .navbar-right a {
             color: var(--white) !important;
         }
     `
@@ -32,10 +33,22 @@ const FixedNavbar = styled(motion.div)(() => [
     `
 ])
 
+const WCampLink = motion.custom(Link)
+
+// const WCampLink = styled(Link)`
+//     opacity: 0.8;
+//     &:hover {
+//         cursor: pointer !important;
+//         opacity: 1;
+//     }
+// `
+
 const MenuBtn = styled.button`
     position: relative;
-    display: flex;
+    display: inline-flex;
     align-items: center;
+    width: 50px;
+    margin-left: 40px;
     height: 50px;
     opacity: 0.8;
     &:hover {
@@ -108,9 +121,21 @@ const NavContent = ({lang, isOpen, toggleMenu, isMenuLight}) => {
     return (
         <>
             <Link to={lang === "en" ? "/en/" : "/"}>
-            <Logo isMenuLight={isMenuLight} />
+                <Logo isMenuLight={isMenuLight} />
             </Link>
-            <MenuBtn as="a" onClick={() => toggleMenu(!isOpen)} isOpen={isOpen}>
+            <div tw="flex items-center" className="navbar-right">
+                <div tw="opacity-80 hover:opacity-100">
+                    <WCampLink
+                        variants={openBtnVariant}
+                        animate={!isOpen ? "show" : "hidden"}
+                        initial="hidden"
+                        exit={{opacity: 0, ...transition}}
+                        to={lang === "it" ? "/wau-camp" : "/en/wau-camp"}
+                    >
+                            WAU Camp
+                    </WCampLink>
+                </div>
+                <MenuBtn as="a" onClick={() => toggleMenu(!isOpen)} isOpen={isOpen}>
                     <motion.span
                         className="menu-icon"
                         variants={openBtnVariant}
@@ -121,6 +146,7 @@ const NavContent = ({lang, isOpen, toggleMenu, isMenuLight}) => {
                     >
                         <span>Menu</span>
                     </motion.span>
+                    <span tw="opacity-0" aria-hidden="true">Menu</span>
                     <motion.div
                         className="close-icon"
                         variants={closeBtnVariant}
@@ -132,7 +158,8 @@ const NavContent = ({lang, isOpen, toggleMenu, isMenuLight}) => {
                         <motion.span></motion.span>
                         <motion.span></motion.span>
                     </motion.div>
-            </MenuBtn>
+                </MenuBtn>
+            </div>
         </>
     )
 }

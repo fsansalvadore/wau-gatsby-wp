@@ -38,13 +38,15 @@ const WauCampPageLayout = ({data, lang}) => {
         </Helmet>
         <StyledWAUCampPage>
           <Heading>
-            <div tw="flex w-full flex-col md:flex-row">
+            <div tw="flex w-full flex-col md:flex-row pb-12">
               <div tw="w-full md:w-1/3 mb-8">
                 <p className="breadcrumbs mono" tw="text-wauGreen">{page ? page.title : "page"}</p>
-                <h1 tw="leading-10 mb-8">{page ? page.pagesACF.title : ""}</h1>
-                <Button as="a" href="#contact">Richiedi info</Button>
+                <h1 tw="leading-10 mb-12">{page ? page.pagesACF.title : ""}</h1>
+                <div tw="mt-12">
+                  <Button as="a" href="#contact">Richiedi info</Button>
+                </div>
               </div>
-              <div className="waucamp-slider" tw="w-full mb-8 pl-0 md:pl-8 md:w-2/3">
+              <div className="waucamp-slider" tw="w-full block mb-12 mt-6 md:mt-0 pl-0 md:pl-8 md:w-2/3">
                 {
                   !!slides.length && <WauCampSlider slides={slides} />
                 }

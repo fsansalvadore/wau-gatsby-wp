@@ -7,14 +7,14 @@ import tw from 'twin.macro'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-const SlideContent = tw.div`flex! justify-center! items-center`;
+const SlideContent = tw.div`w-full flex! justify-center! items-center`;
 const SlideText = styled.div`
-  ${tw`text-wauGreen text-3xl`}
+  ${tw`text-wauGreen text-xl md:text-4xl`}
 
   p {
-    ${tw`m-auto leading-8 font-light`}
+    ${tw`m-auto leading-6 md:leading-8 font-light`}
     strong {
-        ${tw`font-bold text-4xl`}
+        ${tw`font-bold text-2xl md:text-4xl`}
     }
     em {
       ${tw`block font-mono mt-4`}
@@ -33,11 +33,14 @@ const SliderBlock = styled.div`
     .slick-list {
         /* overflow: visible; */
         line-height: 0;
+        ${tw`p-0!`}
+        min-width: 100%;
     }
     
     .slick-slider {
         /* overflow: visible; */
         img {
+          ${tw`w-1/3 md:w-auto`}
             cursor: ew-resize !important;
         }
     }
@@ -70,7 +73,7 @@ const WauCampSlider = ({ slides }) => {
     autoplay: true,
     autoplaySpeed: 2000,
     arrows: false,
-    centerMode: true,
+    // centerMode: true,
     speed: 500,
   };
 

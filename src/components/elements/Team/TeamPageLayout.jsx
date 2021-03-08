@@ -25,7 +25,7 @@ const TeamPageLayout = ({data, lang}) => {
         setCollaborators(data.wordpress.collaborators.nodes
         .sort((a, b) => (a.date < b.date) ? 1 : (a.date === b.date) ? ((a.title > b.title) ? 1 : -1) : -1 ))
     }
-  }, [])
+  }, [setTeamMembers])
 
   return(
     <Layout>

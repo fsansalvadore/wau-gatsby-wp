@@ -4,12 +4,9 @@ useState,
 Suspense,
 useEffect
 } from "react"
-import Layout from "../../LayoutComponent"
-import { Helmet } from 'react-helmet'
-
 import * as THREE from "three"
 import {
-Canvas,
+
 useLoader,
 } from 'react-three-fiber'
 import {
@@ -18,24 +15,11 @@ MeshDistortMaterial
 } from 'drei'
 import { useSpring, animated } from 'react-spring/three'
 import WauGradient from '../../../assets/wau-sphere-texture-sp1.svg'
-import WauVideo from '../../../assets/Wau-Architetti--SOCIAL-.mp4'
-import WauLogo from '../../../assets/WAU-Logo.svg'
-import styled from 'styled-components'
 import { gsap, Power1 } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Link } from 'gatsby'
-import TextLoop from "react-text-loop";
-import tw from 'twin.macro'
-import GridMaxWidthContainer from "../Atoms/GridMaxWidthContainer"
-import SectionTextBlock from "../Atoms/SectionTextBlock"
-import Accordion from "../Atoms/Accordion"
-import Button from '../Atoms/Button'
-import PageLoader from "../Atoms/PageLoader"
 import {
     StyledIntroCanvas,
-    StyledVisionSectionCanvas,
-    StyledIntroContainer,
-    AnimatedCanvas
+    StyledVisionSectionCanvas
   } from './HomePageLayout.styled'
 
 softShadows()
@@ -44,7 +28,7 @@ const { TextureLoader } = THREE
 
 const AnimatedMeshDistortMaterial = animated(MeshDistortMaterial)
 
-const Sphere = ({ indexRef, position, url }) => {
+const Sphere = ({ indexRef, position }) => {
 const sphereRef = useRef(null)
 const meshRef = useRef(null)
 const [hovered, setHover] = useState(false)
@@ -61,7 +45,7 @@ useEffect(() => {
         start: "200px 10%",
         end: "center 20%",
         scrub: 1,
-        onUpdate: ({progress, direction, isActive}) => progress === 1 ? setIntroFinished(true) : setIntroFinished(false)
+        onUpdate: ({ progress }) => progress === 1 ? setIntroFinished(true) : setIntroFinished(false)
         }
     })
     
@@ -97,11 +81,6 @@ useEffect(() => {
         speed: 10,
         factor: 20,
         rotation: [0, 0, 0],
-        // from: {
-        //   scale: [40, 40, 6],
-        //   speed: 1,
-        //   rotation: [0, 0, 0]
-        // },
         config: {
         mass: 1,
         friction: 40,
@@ -114,10 +93,8 @@ useEffect(() => {
         castShadow
         onPointerOver={() => setHover(true)}
         onPointerOut={() => setHover(false)}
-        // scale={introSpring.scale}
         position={position}
         ref={sphereRef}
-        // rotation={introSpring.rotation}
         >
         {/* geomtery */}
         <sphereBufferGeometry attach='geometry' args={[1, 400, 400]}/>
@@ -125,22 +102,16 @@ useEffect(() => {
         {/* https://github.com/pmndrs/drei#shaders */}
         <AnimatedMeshDistortMaterial
             attach='material'
-            // color={"#403C90"}
-            // drei arguments for MeshWobbleMaterial
             ref={meshRef}
             factor={introSpring.factor}
             map={texture}
-            // speed={introSpring.speed}
             speed={hovered ? 2 : 2}
             />
         </animated.mesh>
     )
 }
 
-export const IntroCanvas = ({
-    indexRef,
-    ...otherProps
-}) => {
+export const IntroCanvas = ({ indexRef }) => {
     const canvasRef = useRef()
 
     return (
@@ -189,7 +160,7 @@ export const IntroCanvas = ({
                 // enable receiving shadows
                 receiveShadow
                 rotation={[-Math.PI / 2, 0, 0]}
-                position={[0, -3, 0]}
+                position={[0, -2, 0]}
                 >
                 <planeBufferGeometry attach='geometry' args={[100, 100]} />
                 
@@ -216,8 +187,7 @@ export const VisionSphere = ({ visionSectionRef, position, url }) => {
             trigger: visionSectionRef.current,
             start: "top 40%",
             end: "bottom 10%",
-            scrub: 1.4,
-            // markers: true,
+            scrub: 1.4
             }
         })
         
@@ -239,11 +209,6 @@ export const VisionSphere = ({ visionSectionRef, position, url }) => {
         speed: 10,
         factor: 20,
         rotation: [0, 0, 0],
-        // from: {
-        //   scale: [40, 40, 6],
-        //   speed: 1,
-        //   rotation: [0, 0, 0]
-        // },
         config: {
         mass: 1,
         friction: 40,

@@ -21,6 +21,14 @@ const StyledTeamMemberCard = styled(motion.div)(() => [
     * {
         color: var(--white);
     }
+
+    .description {
+        height: 65%;
+
+        p {
+            ${tw`mb-4`}
+        }
+    }
     
     .gatsby-image-wrapper {
         position: absolute !important;
@@ -71,7 +79,7 @@ const TeamMemberCard = ({
                         animate={isHovered ? "hovered" : "hidden"}
                         initial={"hidden"}
                         className="preview-card-info-container"
-                        tw="absolute w-full bottom-0 py-8 px-4 md:px-8 z-20"
+                        tw="absolute w-full h-full bottom-0 py-8 px-4 md:px-8 z-20"
                     >
                         <div tw="overflow-hidden pt-1 mb-px">
                             <motion.h2
@@ -90,13 +98,14 @@ const TeamMemberCard = ({
                         {
                             afc && afc.descrizione &&
                             <motion.div
-                                tw="absolute left-0 right-0 px-4 md:px-8 mt-4"
+                                tw="absolute left-0 top-24 right-0 overflow-hidden overflow-y-scroll px-4 md:px-8 mt-4"
+                                className="description"
                                 variants={teamMemberDescriptionVariants}
                                 animate={isHovered ? "hovered" : "hidden"}
                                 transition={{...transition, delay: 2}}
                                 initial="hidden"
                             >
-                                <p>{parse(afc.descrizione)}</p>
+                                {parse(afc.descrizione)}
                             </motion.div>
                         }
                         {

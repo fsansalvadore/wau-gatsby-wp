@@ -91,9 +91,8 @@ const WauCampEng = () => {
     }
   `)
 
-  return (
-    // <WauCampPageLayout data={data} lang="en" />
-    <div>WAu camp</div>
+  return(
+    <WauCampPageLayout data={data} lang="en" />
   )
 }
 

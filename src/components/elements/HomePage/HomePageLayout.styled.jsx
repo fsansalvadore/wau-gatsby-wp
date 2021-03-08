@@ -29,7 +29,7 @@ export const StyledVisionSectionCanvas = styled(AnimatedCanvas)`
 export const StyledIntroContainer = styled.div`
     width: 100%;
     position: relative !important;
-    height: 400vh !important;
+    height: 500vh !important;
     min-height: 2800px;
     display: flex;
     justify-content: center;
@@ -43,7 +43,7 @@ export const StyledIntroContainer = styled.div`
     
     p#continue-cta {
     ${tw`fixed font-light left-0 right-0 mx-auto text-center`}
-    bottom: 5%;
+    bottom: 10%;
     color: var(--black);
     z-index: 4;
 
@@ -67,7 +67,7 @@ export const StyledIntroContainer = styled.div`
     border: 1px solid #111;
     position: fixed;
     top: auto;
-    bottom: 13%;
+    bottom: 16%;
     transition: bottom 0.3s ease;
     will-change: bottom;
     opacity: 0.8;
@@ -89,10 +89,10 @@ export const StyledIntroContainer = styled.div`
     @media screen and (min-width: 1024px) {
     a.main-cta {
         // top: 75vh;
-        bottom: 25%;
+        /* bottom: 15%; */
     }
     p#continue-cta {
-        bottom: 13%;
+        bottom: 8%;
     }
     }
 

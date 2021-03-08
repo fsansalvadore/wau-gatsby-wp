@@ -136,10 +136,10 @@ const ProjectPage = (props) => {
             {
               tags && tags.nodes.length > 0 &&
               <div>
-                <ul>
+                <ul tw="my-2">
                   {
                     tags.nodes.map(tag => (
-                      <li>/ {tag.name}</li>
+                      <li tw="py-0">/ {tag.name}</li>
                     ))
                   }
                 </ul>
@@ -149,14 +149,14 @@ const ProjectPage = (props) => {
             {
               ProjectAFC && ProjectAFC.projectdate && ProjectAFC.projectdate.split("/") &&
               <div>
-                <p>{ProjectAFC.projectdate.split("/").slice(-1)[0]}</p>
+                <p tw="my-2">{ProjectAFC.projectdate.split("/").slice(-1)[0]}</p>
                 <hr/>
               </div>
             }
             {
               ProjectAFC && ProjectAFC.location &&
               <div>
-                <p>{ProjectAFC.location}</p>
+                <p tw="my-2">{ProjectAFC.location}</p>
                 <hr/>
               </div>
             }
@@ -201,7 +201,7 @@ const ProjectContainer = styled.div(() => [
   }
   .project-aside-info {
     p, li {
-      ${tw`inline-block py-2 font-light`}
+      ${tw`inline-block font-light`}
     }
     li {
       ${tw`mr-2`}
