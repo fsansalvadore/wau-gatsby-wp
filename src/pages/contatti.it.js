@@ -38,6 +38,20 @@ const ContattiPage = () => {
                   etichetta
                 }
               }
+              map {
+                box
+                mappa {
+                  altText
+                  sourceUrl
+                  imageFile {
+                    childImageSharp {
+                      fixed(width: 1500, quality: 90) {
+                        ...GatsbyImageSharpFixed
+                      }
+                    }
+                  }
+                }
+              }
               form {
                 titolo
                 sottotitolo

@@ -173,6 +173,14 @@ const query = `
                 etichetta
               }
             }
+            map {
+              box
+              mappa {
+                altText
+                sourceUrl
+                link
+              }
+            }
             form {
               titolo
               sottotitolo
