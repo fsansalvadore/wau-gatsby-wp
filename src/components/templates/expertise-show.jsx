@@ -187,7 +187,7 @@ const ExpertiseContainer = styled.div(() => [
         }
       }
 
-      > figure:last-of-type {
+      > *:last-of-type {
         margin-bottom: 0;
       }
 
