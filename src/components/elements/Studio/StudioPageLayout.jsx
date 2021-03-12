@@ -53,7 +53,7 @@ const StudioPageLayout = ({data}) => {
           setCounter(0)
           console.log(counter)
         }
-      }, 5000)
+      }, 15000)
       return () => clearInterval(interval);
     }
   }, [counter, values, interval])
@@ -88,9 +88,6 @@ const StudioPageLayout = ({data}) => {
               {
                 studio && studio.studioACF.videonative &&
                 <div className="cover-image cover-image-fullscreen video-container" tw="mb-8 md:mb-0">
-                  {/* <ReactPlayer url={studio.studioACF.video} autoplay="true" controls="false" options={{autoplay:true}} /> */}
-                  {/* <Embed url={studio.studioACF.video} autoplay={true} controls={false} /> */}
-                  {/* <iframe width="1920" height="1080" src="https://www.youtube.com/embed/cW7VDF0HI9Y?controls=0&autoplay=1&allowfullscreen=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen={true}></iframe> */}
                   <video
                     autoPlay
                     muted

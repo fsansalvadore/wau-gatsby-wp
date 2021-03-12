@@ -260,10 +260,6 @@ const query = `
                 sourceUrl
               }
             }
-            sezione2 {
-              paragrafo
-              titolo
-            }
             sezione3 {
               paragrafo
               titolo

@@ -5,7 +5,10 @@ const StyledWAUCampPage = styled.div(() => [
     css`
 
     h2 {
-      ${tw`text-3xl md:text-4xl mb-10`}
+      ${tw`text-3xl! md:text-4xl! mb-10`}
+      * {
+        ${tw`text-3xl! md:text-4xl! mb-10`}
+      }
     }
 
     section > div > div {

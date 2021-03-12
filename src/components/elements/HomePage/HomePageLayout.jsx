@@ -111,30 +111,30 @@ const HomePageLayout = ({ lang, data, ...otherProps }) => {
           className="intro-container"
           >
             <Link to={lang === "it" ? "/progetti" : "/en/projects"} className="main-cta">{lang === "it" ? "Esplora i Progetti" : "Explore projects"}</Link>
-              <p id="continue-cta">{lang === "it" ? "Scorri per continuare" : "Scroll to continue"}</p>
-              <div
-                className="intro-text-container"
-                ref={introTextRef}
-                tw="fixed left-0 right-0 top-0 bottom-0 w-full h-screen flex items-center justify-center opacity-0"
+            <p id="continue-cta">{lang === "it" ? "Scorri per continuare" : "Scroll to continue"}</p>
+            <div
+              className="intro-text-container"
+              ref={introTextRef}
+              tw="fixed left-0 right-0 top-0 bottom-0 w-full h-screen flex items-center justify-center opacity-0"
+              >
+              <p>SCOPRI L’EFFETTO WAU</p>
+            </div>
+            <div
+              className="video-container"
+              ref={videoRef}>
+              <video
+                className="video"
+                width="900"
+                height="500"
+                controls={false}
+                loop
+                autoPlay
+                muted
                 >
-                <p>SCOPRI L’EFFETTO WAU</p>
-              </div>
-                <div
-                className="video-container"
-                ref={videoRef}>
-                  <video
-                    className="video"
-                    width="900"
-                    height="500"
-                    controls={false}
-                    loop
-                    autoPlay
-                    muted
-                    >
-                    <source src={`${WauVideo}`} type="video/mp4" />
-                    Your browser does not support the video tag.
-                  </video>
-                </div>
+                <source src={`${WauVideo}`} type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            </div>
             <IntroCanvas
               className="canvas"
               indexRef={indexRef}

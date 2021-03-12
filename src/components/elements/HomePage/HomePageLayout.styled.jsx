@@ -64,10 +64,10 @@ export const StyledIntroContainer = styled.div`
     color: #111;
     text-decoration: none;
     padding: 10px 30px;
-    border: 1px solid #111;
+    /* border: 1px solid #111; */
     position: fixed;
     top: auto;
-    bottom: 16%;
+    bottom: 12%;
     transition: bottom 0.3s ease;
     will-change: bottom;
     opacity: 0.8;
