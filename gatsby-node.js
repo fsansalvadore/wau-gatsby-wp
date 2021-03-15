@@ -71,6 +71,7 @@ const query = `
             ruolo
             descrizione
             email
+            founder
           }
           ${language}
         }

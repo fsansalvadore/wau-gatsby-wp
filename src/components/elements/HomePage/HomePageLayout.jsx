@@ -111,7 +111,12 @@ const HomePageLayout = ({ lang, data, ...otherProps }) => {
           className="intro-container"
           >
             <Link to={lang === "it" ? "/progetti" : "/en/projects"} className="main-cta">{lang === "it" ? "Esplora i Progetti" : "Explore projects"}</Link>
-            <p id="continue-cta">{lang === "it" ? "Scorri per continuare" : "Scroll to continue"}</p>
+            {/* <p id="continue-cta">{lang === "it" ? "Scorri per continuare" : "Scroll to continue"}</p> */}
+            <div id="continue-cta">
+              <svg width="8" height="38" viewBox="0 0 8 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M3.64644 37.3536C3.84171 37.5488 4.15829 37.5488 4.35355 37.3536L7.53553 34.1716C7.73079 33.9763 7.73079 33.6597 7.53553 33.4645C7.34027 33.2692 7.02369 33.2692 6.82843 33.4645L4 36.2929L1.17157 33.4645C0.976309 33.2692 0.659727 33.2692 0.464465 33.4645C0.269202 33.6597 0.269202 33.9763 0.464465 34.1716L3.64644 37.3536ZM3.5 -2.18557e-08L3.5 37L4.5 37L4.5 2.18557e-08L3.5 -2.18557e-08Z" fill="#14181A"/>
+              </svg>
+            </div>
             <div
               className="intro-text-container"
               ref={introTextRef}

@@ -41,14 +41,19 @@ export const StyledIntroContainer = styled.div`
 
     }
     
-    p#continue-cta {
+    #continue-cta {
     ${tw`fixed font-light left-0 right-0 mx-auto text-center`}
     bottom: 10%;
     color: var(--black);
     z-index: 4;
+    animation: bounce 0.8s ease-in-out infinite alternate both;
 
     &.white {
         color: var(--white) !important;
+
+        svg path {
+          fill: var(--white) !important;
+        }
     }
     }
     
@@ -64,10 +69,10 @@ export const StyledIntroContainer = styled.div`
     color: #111;
     text-decoration: none;
     padding: 10px 30px;
-    /* border: 1px solid #111; */
+    border: 1px solid transparent;
     position: fixed;
     top: auto;
-    bottom: 12%;
+    bottom: 15%;
     transition: bottom 0.3s ease;
     will-change: bottom;
     opacity: 0.8;
@@ -83,17 +88,18 @@ export const StyledIntroContainer = styled.div`
 
     &:hover {
         opacity: 1;
+        border: 1px solid #111;
     }
     }
 
     @media screen and (min-width: 1024px) {
-    a.main-cta {
-        // top: 75vh;
-        /* bottom: 15%; */
-    }
-    p#continue-cta {
-        bottom: 8%;
-    }
+        a.main-cta {
+            // top: 75vh;
+            /* bottom: 15%; */
+        }
+        #continue-cta {
+            bottom: 8%;
+        }
     }
 
     .vision-section {

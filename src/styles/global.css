@@ -142,3 +142,11 @@ h1 {
         z-index: 100;
     }
 }
+@keyframes bounce {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(10px);
+    }
+}

@@ -9,7 +9,7 @@ import parse from 'html-react-parser'
 import StyledWAUCampPage from './WauCampPageLayout.styled'
 import fallbackImg from '../../../images/Wau-Architetti-social-logo.jpg'
 import Button from '../Atoms/Button';
-import ContactForm from "../Contacts/Form/ContactForm"
+import WauCampContactForm from "./WauCampContactForm"
 import WauCampSlider from "./WauCampSlider"
 
 const WauCampPageLayout = ({data, lang}) => {
@@ -161,7 +161,7 @@ const WauCampPageLayout = ({data, lang}) => {
                       {page.waucampACF.sezione7Form.paragrafo && parse(page.waucampACF.sezione7Form.paragrafo)}
                     </div>
                     <div tw="col-span-12 md:col-span-5 md:col-start-8">
-                      <ContactForm lang={lang} />
+                      <WauCampContactForm lang={lang} />
                     </div>
                   </GridMaxWidthContainer>
                 </section>

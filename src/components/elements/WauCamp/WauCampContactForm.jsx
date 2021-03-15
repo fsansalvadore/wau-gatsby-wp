@@ -8,7 +8,7 @@ import tw from 'twin.macro'
 
 const { TextArea } = Input;
 
-const ContactFormContainer = styled.div`
+const WauCampContactFormContainer = styled.div`
   position: relative;
   width: 100%;
   letter-spacing: 0;
@@ -130,12 +130,14 @@ const encode = (data) => {
       .join("&");
 }
 
-class ContactForm extends React.Component {
+class WauCampContactForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: "",
+      nome: "",
+      cognome: "",
       email: "",
+      nascita: "",
       message: "", 
       btn: props.lang === "it" ? "Invia" : "Send",
       feedback: "",
@@ -159,7 +161,9 @@ class ContactForm extends React.Component {
           {
             feedback: "Messaggio inviato 👍",
             loading: false,
-            name: "",
+            nome: "",
+            cognome: "",
+            nascita: "",
             message: "",
             email: ""
           }
@@ -182,20 +186,26 @@ class ContactForm extends React.Component {
   handleChange = e => this.setState({ [e.target.name]: e.target.value });
 
   render() {
-    const { name, email, message, btn, feedback, loading } = this.state;
+    const { nome, cognome, nascita, email, message, btn, feedback, loading } = this.state;
 
     return (
-      <ContactFormContainer>
-        <form onSubmit={this.handleSubmit} name="Contatti" method="POST" data-netlify="true">
+      <WauCampContactFormContainer>
+        <form onSubmit={this.handleSubmit} name="WauCamp Form" method="POST" data-netlify="true">
             <input type="hidden" name="form-name" value="contact" netlify-honeypot="bot-field" hidden/>
             
+            <Input placeholder={this.props.lang === "it" ? "Nome *" : "First Name *"} type="text" label="Nome" name="nome" value={nome} required
+              onChange={this.handleChange}
+            />
+            <Input placeholder={this.props.lang === "it" ? "Cognome *" : "Last Name *"} type="text" label="Cognome" name="cognome" value={cognome} required
+              onChange={this.handleChange}
+            />
             <Input placeholder="Email *" type="email" label="Email" name="email" value={email} required
               onChange={this.handleChange}
             />
-  
-            <Input placeholder={this.props.lang === "it" ? "Nome *" : "Name *"} type="text" label="Nome" name="name" value={name} required
+            <Input placeholder="Data di nascita *" type="data-di-nascita" label="Data di nascita" name="nascita" value={nascita}
               onChange={this.handleChange}
             />
+  
   
             <TextArea
                 placeholder={this.props.lang === "it" ? "Messaggio *" : "Message *"}
@@ -244,7 +254,7 @@ class ContactForm extends React.Component {
             </motion.p>
           )}
         </FormErrorComponent>
-      </ContactFormContainer>
+      </WauCampContactFormContainer>
     )
   }
 }
@@ -261,4 +271,4 @@ const FormErrorComponent = styled.div`
   }
 `
 
-export default ContactForm
+export default WauCampContactForm

@@ -83,7 +83,7 @@ const MenuSlider = styled(motion.div)`
             max-height: auto;
 
             a {
-                line-height: 2rem;
+                line-height: 2.4rem;
             }
         }
         

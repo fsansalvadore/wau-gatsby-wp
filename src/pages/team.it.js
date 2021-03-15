@@ -28,6 +28,7 @@ const TeamPageIta = () => {
               ruolo
               descrizione
               email
+              founder
             }
             language {
               code
