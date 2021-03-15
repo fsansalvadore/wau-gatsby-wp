@@ -191,7 +191,7 @@ class WauCampContactForm extends React.Component {
     return (
       <WauCampContactFormContainer>
         <form onSubmit={this.handleSubmit} name="WauCamp Form" method="POST" data-netlify="true">
-            <input type="hidden" name="form-name" value="contact" netlify-honeypot="bot-field" hidden/>
+            <input type="hidden" name="WauCamp Form" value="WauCamp Form" netlify-honeypot="bot-field" hidden/>
             
             <Input placeholder={this.props.lang === "it" ? "Nome *" : "First Name *"} type="text" label="Nome" name="nome" value={nome} required
               onChange={this.handleChange}

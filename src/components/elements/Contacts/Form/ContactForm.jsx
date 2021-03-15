@@ -187,7 +187,7 @@ class ContactForm extends React.Component {
     return (
       <ContactFormContainer>
         <form onSubmit={this.handleSubmit} name="Contatti" method="POST" data-netlify="true">
-            <input type="hidden" name="form-name" value="contact" netlify-honeypot="bot-field" hidden/>
+            <input type="hidden" name="Contatti" value="Contatti" netlify-honeypot="bot-field" hidden/>
             
             <Input placeholder="Email *" type="email" label="Email" name="email" value={email} required
               onChange={this.handleChange}
