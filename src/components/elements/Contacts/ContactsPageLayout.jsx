@@ -74,7 +74,6 @@ const ContactsPageLayout = ({data, socials, lang}) => {
           <div tw="absolute w-full top-0 lg:top-auto lg:w-1/4 lg:left-32 p-8 z-10" className="map-info-card" >
             {data.contactsACF.map && data.contactsACF.map.box && parse(data.contactsACF.map.box)}
           </div>
-          {console.log("map", data.contactsACF)}
           {
             data.contactsACF.map.mappa && data.contactsACF.map.mappa.imageFile ?
             <Img

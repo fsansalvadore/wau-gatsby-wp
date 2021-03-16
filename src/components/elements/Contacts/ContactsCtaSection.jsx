@@ -85,7 +85,7 @@ const Sphere = ({ ctaSectionRef, position, url }) => {
   
     useEffect(() => {
       if(introFinished) {
-        console.log("Animation finished!")
+        // console.log("Animation finished!")
       }
     }, [introFinished])
   

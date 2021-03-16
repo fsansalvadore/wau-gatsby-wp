@@ -38,7 +38,6 @@ const HomePageLayout = ({ lang, data, ...otherProps }) => {
   const [ articles, setArticles ] = useState(null)
   const [ expertises, setExpertises ] = useState(null)
 
-  console.log("hp data", data)
   useEffect(() => {
     if(data && data.wordpress.articles) {
       setArticles(data.wordpress.articles.nodes)
