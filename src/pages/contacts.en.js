@@ -63,16 +63,7 @@ const ContactsPage = () => {
           name
           menuItems {
             nodes {
-              id
-              databaseId
-              title
-              url
-              cssClasses
-              description
               label
-              linkRelationship
-              target
-              parentId
               path
             }
           }

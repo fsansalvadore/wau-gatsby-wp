@@ -145,9 +145,10 @@ class WauCampContactForm extends React.Component {
       cognome: "",
       email: "",
       nascita: "",
-      message: "", 
+      messaggio: "", 
       btn: props.lang === "it" ? "Invia" : "Send",
       feedback: "",
+      error: "",
       loading: false,
       lang: props.lang
     };
@@ -161,30 +162,30 @@ class WauCampContactForm extends React.Component {
     fetch("/", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: encode({ "form-name": "contact", ...this.state })
+      body: encode({ "form-name": "WauCamp", ...this.state })
     })
       .then(() => {
         this.setState(
           {
-            feedback: "Messaggio inviato 👍",
+            feedback: "Messaggio inviato",
             loading: false,
             nome: "",
             cognome: "",
             nascita: "",
-            message: "",
+            messaggio: "",
             email: ""
           }
         )
-        setTimeout(() => {
-          this.setState(
-            {
-              feedback: "",
-            }
-          )
-        }, 3000);
+        // setTimeout(() => {
+        //   this.setState(
+        //     {
+        //       feedback: "",
+        //     }
+        //   )
+        // }, 3000);
       })
       .catch(error => {
-        this.setState({feedback: error, loading: false})
+        this.setState({error: error, loading: false})
       });
 
     e.preventDefault();
@@ -193,11 +194,13 @@ class WauCampContactForm extends React.Component {
   handleChange = e => this.setState({ [e.target.name]: e.target.value });
 
   render() {
-    const { nome, cognome, nascita, email, message, btn, feedback, loading } = this.state;
+    const { nome, cognome, nascita, email, messaggio, btn, feedback, error, loading } = this.state;
 
     return (
       <WauCampContactFormContainer>
-        <form onSubmit={this.handleSubmit} name="WauCamp" method="POST" data-netlify="true">
+        {
+          !!feedback ? <motion.span animate={{opacity: 1}} initial={{opacity: 0}} tw="w-full h-full text-center flex items-center justify-center">{feedback}</motion.span> : (
+          <form onSubmit={this.handleSubmit} name="WauCamp" method="POST" data-netlify="true">
             <input type="hidden" name="form-name" value="WauCamp" netlify-honeypot="bot-field" hidden/>
             
             <Input placeholder={this.props.lang === "it" ? "Nome *" : "First Name *"} type="text" label="Nome" name="nome" value={nome} required
@@ -215,8 +218,8 @@ class WauCampContactForm extends React.Component {
             <TextArea
                 placeholder={this.props.lang === "it" ? "Messaggio *" : "Message *"}
                 label="Messaggio"
-                name="message"
-                value={message}
+                name="messaggio"
+                value={messaggio}
                 required
                 onChange={this.handleChange}
                 rows={4}
@@ -246,19 +249,21 @@ class WauCampContactForm extends React.Component {
                 </button>
               </div>
             </div>
-        </form>
+          </form>
+          )
+        }
         
-        <FormErrorComponent>
-          {feedback && (
+        {error && (
+          <FormErrorComponent>
             <motion.p
               initial={{y: 10, opacity: 0}}
               animate={{y: 0, opacity: 1}}
               transition={{ ease: [0, 0, 0, 1], duration: 0.5 }}
             >
-                {feedback}
+                {error}
             </motion.p>
-          )}
-        </FormErrorComponent>
+          </FormErrorComponent>
+        )}
       </WauCampContactFormContainer>
     )
   }

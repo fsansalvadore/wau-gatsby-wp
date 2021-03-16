@@ -139,6 +139,7 @@ class ContactForm extends React.Component {
       message: "", 
       btn: props.lang === "it" ? "Invia" : "Send",
       feedback: "",
+      error: "",
       loading: false,
       lang: props.lang
     };
@@ -152,12 +153,12 @@ class ContactForm extends React.Component {
     fetch("/", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: encode({ "form-name": "contact", ...this.state })
+      body: encode({ "form-name": "Contatti", ...this.state })
     })
       .then(() => {
         this.setState(
           {
-            feedback: "Messaggio inviato 👍",
+            feedback: "Messaggio inviato",
             loading: false,
             name: "",
             message: "",
@@ -173,7 +174,7 @@ class ContactForm extends React.Component {
         }, 3000);
       })
       .catch(error => {
-        this.setState({feedback: error, loading: false})
+        this.setState({error: error, loading: false})
       });
 
     e.preventDefault();
@@ -182,46 +183,48 @@ class ContactForm extends React.Component {
   handleChange = e => this.setState({ [e.target.name]: e.target.value });
 
   render() {
-    const { name, email, message, btn, feedback, loading } = this.state;
+    const { name, email, message, btn, feedback, error, loading } = this.state;
 
     return (
       <ContactFormContainer>
-        <form onSubmit={this.handleSubmit} name="Contatti" method="POST" data-netlify="true">
-            <input type="hidden" name="form-name" value="Contatti" netlify-honeypot="bot-field" hidden/>
-            
-            <Input placeholder="Email *" type="email" label="Email" name="email" value={email} required
-              onChange={this.handleChange}
-            />
-  
-            <Input placeholder={this.props.lang === "it" ? "Nome *" : "Name *"} type="text" label="Nome" name="name" value={name} required
-              onChange={this.handleChange}
-            />
-  
-            <TextArea
-                placeholder={this.props.lang === "it" ? "Messaggio *" : "Message *"}
-                label="Messaggio"
-                name="message"
-                value={message}
-                required
+        {
+          !!feedback ? <motion.span animate={{opacity: 1}} initial={{opacity: 0}} tw="w-full h-full text-center flex items-center justify-center">{feedback}</motion.span> : (
+          <form onSubmit={this.handleSubmit} name="Contatti" method="POST" data-netlify="true">
+              <input type="hidden" name="form-name" value="Contatti" netlify-honeypot="bot-field" hidden/>
+              
+              <Input placeholder="Email *" type="email" label="Email" name="email" value={email} required
                 onChange={this.handleChange}
-                rows={4}
-            />
-            <div tw="flex flex-col md:flex-row">
-                <div className="form-disclaimer" tw="mb-4 w-full md:w-3/4 flex flex-col items-start justify-start">
-                    <div className="privacy-check" tw="mb-4">
-                        <Checkbox value="checkedA" onChange={this.handleChange} required inputProps={{ 'aria-label': 'Checkbox A' }}>
+              />
+    
+              <Input placeholder={this.props.lang === "it" ? "Nome *" : "Name *"} type="text" label="Nome" name="name" value={name} required
+                onChange={this.handleChange}
+              />
+    
+              <TextArea
+                  placeholder={this.props.lang === "it" ? "Messaggio *" : "Message *"}
+                  label="Messaggio"
+                  name="message"
+                  value={message}
+                  required
+                  onChange={this.handleChange}
+                  rows={4}
+              />
+              <div tw="flex flex-col md:flex-row">
+                  <div className="form-disclaimer" tw="mb-4 w-full md:w-3/4 flex flex-col items-start justify-start">
+                      <div className="privacy-check" tw="mb-4">
+                          <Checkbox value="checkedA" onChange={this.handleChange} required inputProps={{ 'aria-label': 'Checkbox A' }}>
                             {
-                                this.props.lang === "it" ?
-                                <p>Ho letto e accettato l’<Link to="/privacy">informativa sulla privacy</Link>.*</p> :
-                                <p>I read and accepted the <Link to="/privacy">Privacy Policy</Link>.*</p>
+                              this.props.lang === "it" ?
+                              <p>Ho letto e accettato l’<Link to="/privacy">informativa sulla privacy</Link>.*</p> :
+                              <p>I read and accepted the <Link to="/privacy">Privacy Policy</Link>.*</p>
                             }
-                        </Checkbox>
-                    </div>
-                    <div className="required-label">
-                        <p>* Campi obbligatori</p>
-                    </div>
-                </div>
-                <div tw="flex-grow">
+                          </Checkbox>
+                      </div>
+                      <div className="required-label">
+                          <p>* Campi obbligatori</p>
+                      </div>
+                  </div>
+                  <div tw="flex-grow">
                     <button type="submit" tw="w-full text-center flex justify-center opacity-80 hover:opacity-100 cursor-pointer">
                     {
                         // check if loading or success
@@ -229,21 +232,22 @@ class ContactForm extends React.Component {
                         : btn
                     }
                     </button>
-                </div>
-            </div>
-        </form>
+                  </div>
+              </div>
+          </form>
+        )}
         
-        <FormErrorComponent>
-          {feedback && (
+        {error && (
+          <FormErrorComponent>
             <motion.p
               initial={{y: 10, opacity: 0}}
               animate={{y: 0, opacity: 1}}
               transition={{ ease: [0, 0, 0, 1], duration: 0.5 }}
             >
-                {feedback}
+                {error}
             </motion.p>
-          )}
-        </FormErrorComponent>
+          </FormErrorComponent>
+        )}
       </ContactFormContainer>
     )
   }
