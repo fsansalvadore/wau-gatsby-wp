@@ -66,7 +66,7 @@ const StudioPageLayout = ({data}) => {
           item.querySelector("div").classList.add("active")
         }
       })
-      console.log("items", items)
+      // console.log("items", items)
     }
   }, [values, counter])
 
