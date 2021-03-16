@@ -3,7 +3,6 @@ import { Link } from 'gatsby'
 import { Input, Checkbox } from 'antd'
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
-// import FormErrorComponent from '../../atoms/form-error.component'
 import tw from 'twin.macro'
 
 const { TextArea } = Input;
@@ -20,6 +19,14 @@ const WauCampContactFormContainer = styled.div`
   form, input, textarea,
   .MuiFormControl-root {
     width: 100% !important;
+  }
+
+  form {
+    ${tw`lg:(grid grid-cols-2 column-gap[1rem])`}
+  }
+
+  textarea {
+    ${tw`lg:col-span-2`}
   }
 
   input, textarea {
@@ -190,8 +197,8 @@ class WauCampContactForm extends React.Component {
 
     return (
       <WauCampContactFormContainer>
-        <form onSubmit={this.handleSubmit} name="WauCamp Form" method="POST" data-netlify="true">
-            <input type="hidden" name="WauCamp Form" value="WauCamp Form" netlify-honeypot="bot-field" hidden/>
+        <form onSubmit={this.handleSubmit} name="WauCamp" method="POST" data-netlify="true">
+            <input type="hidden" name="form-name" value="WauCamp" netlify-honeypot="bot-field" hidden/>
             
             <Input placeholder={this.props.lang === "it" ? "Nome *" : "First Name *"} type="text" label="Nome" name="nome" value={nome} required
               onChange={this.handleChange}
@@ -205,8 +212,6 @@ class WauCampContactForm extends React.Component {
             <Input placeholder="Data di nascita *" type="data-di-nascita" label="Data di nascita" name="nascita" value={nascita}
               onChange={this.handleChange}
             />
-  
-  
             <TextArea
                 placeholder={this.props.lang === "it" ? "Messaggio *" : "Message *"}
                 label="Messaggio"
@@ -216,30 +221,30 @@ class WauCampContactForm extends React.Component {
                 onChange={this.handleChange}
                 rows={4}
             />
-            <div tw="flex flex-col md:flex-row">
-                <div className="form-disclaimer" tw="mb-4 w-full md:w-3/4 flex flex-col items-start justify-start">
-                    <div className="privacy-check" tw="mb-4">
-                        <Checkbox value="checkedA" onChange={this.handleChange} required inputProps={{ 'aria-label': 'Checkbox A' }}>
-                            {
-                                this.props.lang === "it" ?
-                                <p>Ho letto e accettato l’<Link to="/privacy">informativa sulla privacy</Link>.*</p> :
-                                <p>I read and accepted the <Link to="/privacy">Privacy Policy</Link>.*</p>
-                            }
-                        </Checkbox>
-                    </div>
-                    <div className="required-label">
-                        <p>* Campi obbligatori</p>
-                    </div>
-                </div>
-                <div tw="flex-grow">
-                    <button type="submit" tw="w-full text-center flex justify-center opacity-80 hover:opacity-100 cursor-pointer">
+            <div tw="flex flex-col md:flex-row col-span-2">
+              <div className="form-disclaimer" tw="mb-4 w-full md:w-3/4 flex flex-col items-start justify-start">
+                <div className="privacy-check" tw="mb-4">
+                  <Checkbox value="checkedA" onChange={this.handleChange} required inputProps={{ 'aria-label': 'Checkbox A' }}>
                     {
-                        // check if loading or success
-                        loading ? "loading"
-                        : btn
+                      this.props.lang === "it" ?
+                      <p>Ho letto e accettato l’<Link to="/privacy">informativa sulla privacy</Link>.*</p> :
+                      <p>I read and accepted the <Link to="/privacy">Privacy Policy</Link>.*</p>
                     }
-                    </button>
+                  </Checkbox>
                 </div>
+                <div className="required-label">
+                  <p>* Campi obbligatori</p>
+                </div>
+              </div>
+              <div tw="flex-grow">
+                <button type="submit" tw="w-full text-center flex justify-center opacity-80 hover:opacity-100 cursor-pointer">
+                {
+                  // check if loading or success
+                  loading ? "loading"
+                  : btn
+                }
+                </button>
+              </div>
             </div>
         </form>
         
