@@ -57,7 +57,6 @@ const WauCampPageLayout = ({data, lang}) => {
             !!page && (
               <div className="page-content" tw="w-full flex flex-col justify-center">
                 <section tw="w-full py-16 lg:py-32 bg-wauGreen text-white">
-                  {console.log(page)}
                   <GridMaxWidthContainer>
                     <div tw="relative col-span-12 h-auto md:col-span-4">
                       <h2>{page.waucampACF.sezione1.titolo && parse(page.waucampACF.sezione1.titolo)}</h2>

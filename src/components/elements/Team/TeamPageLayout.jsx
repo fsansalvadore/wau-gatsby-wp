@@ -16,7 +16,7 @@ const TeamPageLayout = ({data, lang}) => {
   useEffect(() => {
     if(data) {
       setPage(data.wordpress.pages.nodes[0])
-      console.log("data", data)
+      // console.log("data", data)
     }
   }, [data, setPage])
   

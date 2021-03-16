@@ -9,10 +9,6 @@ const HeadingStyled = styled.div`
 `
 
 const Heading = ({name, originalContent}) => {
-    
-    console.log('From heading component:')
-    console.log(name)
-
     return (
         <HeadingStyled>
             {parse(originalContent)}

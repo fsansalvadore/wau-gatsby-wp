@@ -48,10 +48,10 @@ const StudioPageLayout = ({data}) => {
       interval = setInterval(() => {
         if(counter < values.length - 1) {
           setCounter(counter => counter + 1)
-          console.log(counter)
+          // console.log(counter)
         } else {
           setCounter(0)
-          console.log(counter)
+          // console.log(counter)
         }
       }, 15000)
       return () => clearInterval(interval);

@@ -293,7 +293,7 @@ export const VisionSectionCanvas = ({
 }
 
 export const ScrollProgressToggleOut = () => {
-    console.log("ScrollProgressToggleOut")
+    // console.log("ScrollProgressToggleOut")
     if(typeof window !== `undefined` && typeof document !== `undefined`) {
         if(document.querySelector("a.main-cta")) {
         document.querySelector("a.main-cta").classList.add("off")
@@ -303,7 +303,7 @@ export const ScrollProgressToggleOut = () => {
 }
 
 export const ScrollProgressToggleIn = () => {
-    console.log("ScrollProgressToggleIn")
+    // console.log("ScrollProgressToggleIn")
     if(typeof window !== `undefined` && typeof document !== `undefined`) {
         if(document.querySelector("a.main-cta")) {
         document.querySelector("a.main-cta").classList.remove("off")

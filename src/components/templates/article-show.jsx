@@ -66,7 +66,7 @@ const ArticleShowPage = props => {
           }
       }
   }, [setArticleDate, lang])
-  console.log("featuredImage", featuredImage)
+
   return (
     <Layout>
       <Helmet>

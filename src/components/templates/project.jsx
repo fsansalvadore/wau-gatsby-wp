@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react"
+import React, { useRef } from "react"
 import { graphql, useStaticQuery, Link } from "gatsby"
 import { Helmet } from 'react-helmet'
 import Layout from "../LayoutComponent"
@@ -9,7 +9,6 @@ import parse from 'html-react-parser'
 import Img from 'gatsby-image'
 import GridMaxWidthContainer from '../elements/Atoms/GridMaxWidthContainer'
 import SocialShare from '../elements/Atoms/SocialShare'
-// import Button from '../elements/Atoms/Button'
 import fallbackImg from '../../images/Wau-Architetti-social-logo.jpg'
 
 const ProjectPage = (props) => {
@@ -67,30 +66,27 @@ const ProjectPage = (props) => {
     }
   `)
 
-  const [prevPost, setPrevPost] = useState(null)
-  const [nextPost, setNextPost] = useState(null)
+  // const [prevPost, setPrevPost] = useState(null)
+  // const [nextPost, setNextPost] = useState(null)
   const proj = data.wordpress.projects.nodes.find(project => project.title === title)
   const sortedProjects = data.wordpress.projects.nodes.sort((a, b) => (a.date < b.date) ? 1 : (a.date === b.date) ? ((a.title > b.title) ? 1 : -1) : -1 )
   const pdfRef = useRef(null)
   const postLength = sortedProjects.length
 
-  useEffect(() => {
-    if(sortedProjects) {
-      if (index === postLength - 1) {
-        setPrevPost(sortedProjects[index - 1])
-        setNextPost(sortedProjects[0])
-      } else if (index === 0) {
-        setPrevPost(sortedProjects[postLength - 1])
-        setNextPost(sortedProjects[index + 1])
-      } else {
-        setPrevPost(sortedProjects[index - 1])
-        setNextPost(sortedProjects[index + 1])
-      }
-    }
-  }, [index, sortedProjects])
-
-  console.log("prevPost", prevPost)
-  console.log("nextPost", nextPost)
+  // useEffect(() => {
+  //   if(sortedProjects) {
+  //     if (index === postLength - 1) {
+  //       setPrevPost(sortedProjects[index - 1])
+  //       setNextPost(sortedProjects[0])
+  //     } else if (index === 0) {
+  //       setPrevPost(sortedProjects[postLength - 1])
+  //       setNextPost(sortedProjects[index + 1])
+  //     } else {
+  //       setPrevPost(sortedProjects[index - 1])
+  //       setNextPost(sortedProjects[index + 1])
+  //     }
+  //   }
+  // }, [index, sortedProjects])
 
   return (
     <Layout>
