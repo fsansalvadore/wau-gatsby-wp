@@ -6,8 +6,7 @@ const Heading = styled.div`
     ${tw`p-8 pt-28 md:p-16 md:pt-40`}
 
     h1 {
-        font-size: 3.25rem;
-        ${tw`text-3xl md:text-5xl`}
+      ${tw`text-3xl letter-spacing[-0.05rem] md:(text-5xl letter-spacing[-0.01rem])`}
     }
 
     .breadcrumbs, h1 {
@@ -15,7 +14,7 @@ const Heading = styled.div`
     }
     
     .intro {
-        ${tw`text-xl`}
+        ${tw`text-xl letter-spacing[-0.02rem] md:(letter-spacing[-0.01rem])`}
     }
 `
 
