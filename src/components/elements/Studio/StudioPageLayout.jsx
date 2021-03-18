@@ -107,19 +107,19 @@ const StudioPageLayout = ({data}) => {
                       <div tw="text-3xl md:text-5xl mb-4 text-center col-span-12 lg:col-span-10 lg:col-start-2 xl:col-span-8 xl:col-start-3">{parse(studio.studioACF.valuesSection.title)}</div>
                     }
                     <figure tw="col-span-full text-center flex flex-col items-center">
-                      <ul className="value-items" tw="my-8 md:my-16 w-full flex justify-center">
+                      <ul className="value-items" tw="p-0! my-8 w-full flex justify-between md:(my-16 justify-center)">
                       {
                         values &&
                         values.map((value, index) => (
-                            <li
-                              key={Math.floor(Math.random() * (100 - 999) + 100)}
-                              tw="p-2 md:p-4 list-none"
-                              data-counter={index}
-                              onClick={() => setCounter(index)}
-                              onMouseOver={() => setCounter(index)}
-                            >
-                              <ValueCircle value={value} index={index} />
-                            </li>
+                          <li
+                            key={Math.floor(Math.random() * (100 - 999) + 100)}
+                            tw="p-1 md:p-4 list-none"
+                            data-counter={index}
+                            onClick={() => setCounter(index)}
+                            onMouseOver={() => setCounter(index)}
+                          >
+                            <ValueCircle value={value} index={index} />
+                          </li>
                         ))
                       }
                       </ul>
