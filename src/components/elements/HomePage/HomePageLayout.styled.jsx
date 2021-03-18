@@ -127,47 +127,46 @@ export const StyledIntroContainer = styled.div`
     }
 
     .video-container {
-    position: fixed;
-    // left: 0;
-    right: 0;
-    width: 100vw;
-    height: 100vh;
-    min-width: 100%;
-    min-height: 100%;
-    // top: 0;
-    bottom: 0;
-    z-index: -1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
+      position: fixed;
+      // left: 0;
+      right: 0;
+      width: 100vw;
+      height: 100vh;
+      min-width: 100%;
+      min-height: 100%;
+      // top: 0;
+      bottom: 0;
+      z-index: -1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
 
-    video.video {
-        object-fit: cover;
-        width: 100vw;
-        height: 100vh;
-        position: fixed;
-        top: 0;
-        left: 0;
-    }
+      video.video {
+          object-fit: cover;
+          width: 100vw;
+          height: 100vh;
+          position: fixed;
+          top: 0;
+          left: 0;
+      }
 
-    p {
-        ${tw`absolute left-0 right-0 bottom-32 z-20 mx-auto text-white text-center uppercase`}
-    }
+      p {
+          ${tw`absolute left-0 right-0 bottom-32 z-20 mx-auto text-white text-center uppercase`}
+      }
     }
 
     .intro-text-container {
-    z-index: -2;
-
-    p {
-        max-width: 180px;
+      z-index: -2;
+      
+      p {
+        ${tw`text-sm md:text-base max-width[100px] md:max-width[180px]`}
         text-align: center;
         color: white;
-        font-size: 16px;
         line-height: 110%;
         letter-spacing: -0.02rem;
         text-transform: uppercase;
-    }
+      }
     }
 
     @media screen and (min-width: 600px) {
