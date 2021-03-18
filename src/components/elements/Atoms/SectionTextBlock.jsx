@@ -65,7 +65,7 @@ export default ({
             {
               title &&
               <div className="st-title st-anim">
-                <motion.h5 tw="text-3xl lg:text-5xl mb-4 w-3/4">{title}</motion.h5>
+                <motion.h5 tw="text-3xl letter-spacing[-0.03rem] lg:(text-5xl letter-spacing[-0.01rem]) mb-8 w-3/4">{title}</motion.h5>
               </div>
             }
             {
@@ -100,6 +100,9 @@ const StyledContactsTextBlock = styled(motion.div)(({$fullWidthContent, $hasText
       }
     `,
     $fullWidthContent && css`
+      h5 {
+        ${tw`w-full lg:w-3/4`}
+      }
       p {
         ${tw`w-full`}
       }
