@@ -186,6 +186,21 @@ const HomePageLayout = ({ lang, data, ...otherProps }) => {
               }
             </GridMaxWidthContainer>
           </section>
+          <section tw="relative flex justify-center z-50 bg-white py-16 lg:py-32 text-center">
+            <GridMaxWidthContainer>
+              <SectionTextBlock 
+                label="Studio"
+                title="Un’Architecture Factory che offre soluzioni di progettazione globali."
+                content="Architettura. Design. Urbanistica. Ingegneria. Sono i quattro pilastri del mondo WAU.<br/>
+                Una Factory multidisciplinare costruita nel 2012 con l’obiettivo di immaginare l’evoluzione dello spazio in qualsiasi tipologia di contesto. Un’expertise elevata e stratificata. Per rispondere a ogni esigenza con un effetto WAU."
+                tw="flex justify-center col-span-full xl:(col-span-8 col-start-3) text-center"
+                link={lang === "it" ? `/studio` : `/en/studio`}
+                cta="Scopri lo studio"
+                fullWidthContent
+                hasTextCenter
+              />
+            </GridMaxWidthContainer>
+          </section>
           <section
             tw="relative w-full py-32 lg:py-64 flex justify-center"
             className="vision-section lightGradientBg"
@@ -201,8 +216,6 @@ const HomePageLayout = ({ lang, data, ...otherProps }) => {
                 label="Vision"
                 title="Ri(e)voluzioni dello spazio quotidiano"
                 content="Abbiamo l’obiettivo di creare ambienti migliori per la vita e il lavoro dei nostri clienti, mettendo in circolo nuova energia."
-                link={lang === "it" ? `/studio` : `/en/studio`}
-                cta="Scopri lo studio"
                 tw="col-span-full md:col-span-6 md:col-start-7"
               />
             </GridMaxWidthContainer>

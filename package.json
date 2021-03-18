@@ -68,5 +68,8 @@
     "twin": {
       "preset": "styled-components"
     }
+  },
+  "devDependencies": {
+    "prettify": "^0.1.7"
   }
 }

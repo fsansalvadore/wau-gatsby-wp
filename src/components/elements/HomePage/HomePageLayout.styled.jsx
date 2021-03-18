@@ -35,95 +35,84 @@ export const StyledIntroContainer = styled.div`
     justify-content: center;
 
     .after-sphere {
-    position: realtive;
-    z-index: 50 !important;
-    background: var(--white);
-
+      position: realtive;
+      z-index: 50 !important;
+      background: var(--white);
     }
     
     #continue-cta {
-    ${tw`fixed font-light left-0 right-0 mx-auto text-center`}
-    bottom: 10%;
-    color: var(--black);
-    z-index: 4;
-    animation: bounce 0.8s ease-in-out infinite alternate both;
+      ${tw`fixed font-light left-0 right-0 mx-auto text-center`}
+      bottom: 8%;
+      color: var(--black);
+      z-index: 4;
+      animation: bounce 0.8s ease-in-out infinite alternate both;
 
-    &.white {
+      &.white {
         color: var(--white) !important;
 
-        svg path {
-          fill: var(--white) !important;
-        }
-    }
+      svg path {
+        fill: var(--white) !important;
+      }
+      }
     }
     
     .canvas {
-    top: 0;
+      top: 0;
     }
 
     .hidden {
-    display: none;
+      display: none;
     }
 
     a.main-cta {
-    color: #111;
-    text-decoration: none;
-    padding: 10px 30px;
-    border: 1px solid transparent;
-    position: fixed;
-    top: auto;
-    bottom: 15%;
-    transition: bottom 0.3s ease;
-    will-change: bottom;
-    opacity: 0.8;
-    z-index: 50;
-    transition: opacity 0.3s ease !important;
-    // animation: fadeIn 0.3s ease 2s both;
-    animation: zIndexIn 0.3s ease 2s both;
+      color: #111;
+      text-decoration: none;
+      padding: 10px 30px;
+      border: 1px solid transparent;
+      position: fixed;
+      top: auto;
+      bottom: 15%;
+      transition: bottom 0.3s ease;
+      will-change: bottom;
+      opacity: 0.8;
+      z-index: 50;
+      transition: opacity 0.3s ease !important;
+      // animation: fadeIn 0.3s ease 2s both;
+      animation: zIndexIn 0.3s ease 2s both;
 
-    &.off {
+      &.off {
         opacity: 0 !important;
         pointer-events: none;
-    }
+      }
 
-    &:hover {
+      &:hover {
         opacity: 1;
         border: 1px solid #111;
-    }
-    }
-
-    @media screen and (min-width: 1024px) {
-        a.main-cta {
-            // top: 75vh;
-            /* bottom: 15%; */
-        }
-        #continue-cta {
-            bottom: 8%;
-        }
+      }
     }
 
     .vision-section {
-    z-index: -1;
+      z-index: -1;
     }
 
     .intro-text {
-    min-height: 700px;
-    z-index: -10;
-    
-    img {
+      min-height: 700px;
+      z-index: -10;
+      
+      img {
         height: 40px;
         top: 18%;
         ${tw`absolute right-0 left-0 mx-auto mb-32`}
-    }
-    
-    h1.intro-title {
+      }
+      
+      h1.intro-title {
         ${tw`absolute right-0 font-light text-4xl md:text-5xl left-0 mx-auto text-center`}
         top: 25%;
         letter-spacing: -0.05rem;
         line-height: 100%;
-    }
+      }
 
-    @media (min-width: 1024px) {
+      @media (min-width: 1024px) {
         img {
         right: calc(50% + 150px);
         ${tw`top-auto left-auto m-0`}
@@ -134,7 +123,7 @@ export const StyledIntroContainer = styled.div`
         left: calc(50% + 140px);
         line-height: 100%;
         }
-    }
+      }
     }
 
     .video-container {

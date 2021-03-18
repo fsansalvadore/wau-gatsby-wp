@@ -14,6 +14,8 @@ export default ({
     content,
     link,
     cta,
+    fullWidthContent,
+    hasTextCenter,
     ...otherProps
 }) => {
     const sectionRef = useRef(null)
@@ -48,44 +50,63 @@ export default ({
     }, [sectionRef.current])
 
     return (
-        <StyledContactsTextBlock {...otherProps} ref={sectionRef} >
+        <StyledContactsTextBlock
+          $fullWidthContent={fullWidthContent}
+          $hasTextCenter={hasTextCenter}
+          {...otherProps}
+          ref={sectionRef}
+        >
             {
-                label &&
-                <div className="st-label st-anim">
-                    <motion.h4 tw="font-mono text-sm mb-4">{label}</motion.h4>
-                </div>
+              label &&
+              <div className="st-label st-anim">
+                <motion.h4 tw="font-mono text-sm mb-4">{label}</motion.h4>
+              </div>
             }
             {
-                title &&
-                <div className="st-title st-anim">
-                    <motion.h5 tw="text-3xl lg:text-5xl mb-4 w-3/4">{title}</motion.h5>
-                </div>
+              title &&
+              <div className="st-title st-anim">
+                <motion.h5 tw="text-3xl lg:text-5xl mb-4 w-3/4">{title}</motion.h5>
+              </div>
             }
             {
-                content &&
-                <div className="st-content st-anim">
-                    <motion.p tw="text-xl mb-4 w-3/4">{parse(content)}</motion.p>
-                </div>
+              content &&
+              <div className="st-content st-anim">
+                <motion.p tw="text-xl mb-4 md:mb-8 w-3/4">{parse(content)}</motion.p>
+              </div>
             }
-            <div className="st-link st-anim" tw="py-8">
-                <div>
-                    <Button to={link ? link : "#"}>
-                        {
-                            cta ? cta : "Scopri di più"
-                        }
+            {
+              link && (
+                <div className="st-link st-anim" tw="py-8">
+                  <div>
+                    <Button to={link || "#"}>
+                      {
+                        cta ? cta : "Scopri di più"
+                      }
                     </Button>
+                  </div>
                 </div>
-            </div>
+              )
+            }
         </StyledContactsTextBlock>
     )
 }
 
-const StyledContactsTextBlock = styled(motion.div)(() => [
+const StyledContactsTextBlock = styled(motion.div)(({$fullWidthContent, $hasTextCenter}) => [
     css`
-        ${tw`w-full flex flex-col`}
+      ${tw`w-full flex flex-col`}
 
-        > div {
-            ${tw`overflow-hidden relative`}
-        }
+      > div {
+          ${tw`overflow-hidden relative`}
+      }
+    `,
+    $fullWidthContent && css`
+      p {
+        ${tw`w-full`}
+      }
+    `,
+    $hasTextCenter && css`
+      > div {
+        ${tw`text-center flex justify-center`}
+      }
     `
 ])
