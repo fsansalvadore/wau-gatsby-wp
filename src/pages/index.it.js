@@ -6,6 +6,50 @@ const IndexIta = () => {
   const data = useStaticQuery(graphql`
     query HomePageItaQuery {
       wordpress {
+        page(id: "cG9zdDo4NDk=") {
+          homePageACF {
+            introWords
+            testoDentroSfera
+            sezioneContatti {
+              paragrafo
+              tasto {
+                link
+                testo
+              }
+              titolo
+            }
+            sezioneExpertise {
+              titoletto
+              titolo
+              tasto {
+                link
+                testo
+              }
+            }
+            sezioneStudio {
+              paragrafo
+              titoletto
+              titolo
+              tasto {
+                link
+                testo
+              }
+            }
+            sezioneVision {
+              paragrafo
+              titoletto
+              titolo
+              tasto {
+                link
+                testo
+              }
+            }
+            tastoIniziale {
+              link
+              testo
+            }
+          }
+        }
         expertises(first: 100, where: { status: PUBLISH, language: IT }) {
           nodes {
             date

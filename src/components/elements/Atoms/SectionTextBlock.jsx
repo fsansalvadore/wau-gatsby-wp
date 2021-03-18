@@ -65,13 +65,13 @@ export default ({
             {
               title &&
               <div className="st-title st-anim">
-                <motion.h5 tw="text-3xl letter-spacing[-0.04rem] lg:(text-5xl letter-spacing[-0.01rem]) mb-8 w-3/4">{title}</motion.h5>
+                <motion.div tw="text-3xl letter-spacing[-0.04rem] lg:(text-5xl letter-spacing[-0.01rem]) mb-8 w-3/4">{parse(title)}</motion.div>
               </div>
             }
             {
               content &&
               <div className="st-content st-anim">
-                <motion.p tw="md:text-xl mb-4 md:mb-8 w-3/4">{parse(content)}</motion.p>
+                <motion.span tw="block md:text-xl mb-4 w-3/4">{parse(content)}</motion.span>
               </div>
             }
             {
@@ -100,15 +100,25 @@ const StyledContactsTextBlock = styled(motion.div)(({$fullWidthContent, $hasText
       }
     `,
     $fullWidthContent && css`
-      h5 {
-        ${tw`w-full lg:w-3/4`}
-      }
-      p {
+      .st-title {
         ${tw`w-full`}
+
+        > * {
+          ${tw`w-full lg:w-3/4`}
+        }
+      }
+      .st-content {
+        ${tw`w-full`}
+
+        > * {
+          ${tw`w-full`}
+        }
       }
     `,
     $hasTextCenter && css`
-      > div {
+      ${tw`text-center flex justify-center items-stretch`}
+    
+      > div, > div > div {
         ${tw`text-center flex justify-center`}
       }
     `

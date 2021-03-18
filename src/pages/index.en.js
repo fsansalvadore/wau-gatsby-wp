@@ -6,6 +6,50 @@ const IndexEng = () => {
   const data = useStaticQuery(graphql`
     query HomePageEngQuery {
       wordpress {
+        page(id: "cG9zdDo5Mjc=") {
+          homePageACF {
+            introWords
+            testoDentroSfera
+            sezioneContatti {
+              paragrafo
+              tasto {
+                link
+                testo
+              }
+              titolo
+            }
+            sezioneExpertise {
+              titoletto
+              titolo
+              tasto {
+                link
+                testo
+              }
+            }
+            sezioneStudio {
+              paragrafo
+              titoletto
+              titolo
+              tasto {
+                link
+                testo
+              }
+            }
+            sezioneVision {
+              paragrafo
+              titoletto
+              titolo
+              tasto {
+                link
+                testo
+              }
+            }
+            tastoIniziale {
+              link
+              testo
+            }
+          }
+        }
         expertises(first: 100, where: { status: PUBLISH, language: EN }) {
           nodes {
             date

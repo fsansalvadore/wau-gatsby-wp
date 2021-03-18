@@ -64,7 +64,7 @@ export const StyledIntroContainer = styled.div`
       display: none;
     }
 
-    a.main-cta {
+    .main-cta {
       color: #111;
       text-decoration: none;
       padding: 10px 30px;
@@ -160,24 +160,20 @@ export const StyledIntroContainer = styled.div`
       z-index: -2;
       
       p {
-        ${tw`text-sm md:text-base max-width[100px] md:max-width[180px]`}
+        ${tw`text-sm line-height[110%] max-width[100px] md:(text-base max-width[200px] line-height[100%]!)`}
         text-align: center;
         color: white;
-        line-height: 110%;
         letter-spacing: -0.02rem;
         text-transform: uppercase;
       }
     }
 
     @media screen and (min-width: 600px) {
-    .intro-text-container p {
-        max-width: 320px;
-    }
-    .video-container {
+      .video-container {
         .video {
-        width: 100vw;
-        height: 105vh;
+          width: 100vw;
+          height: 105vh;
         }
-    }
+      }
     }
 `

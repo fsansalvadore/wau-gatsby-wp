@@ -155,6 +155,48 @@ const query = `
             title
             introduzione
           }
+          homePageACF {
+            introWords
+            testoDentroSfera
+            sezioneContatti {
+              paragrafo
+              tasto {
+                link
+                testo
+              }
+              titolo
+            }
+            sezioneExpertise {
+              titoletto
+              titolo
+              tasto {
+                link
+                testo
+              }
+            }
+            sezioneStudio {
+              paragrafo
+              titoletto
+              titolo
+              tasto {
+                link
+                testo
+              }
+            }
+            sezioneVision {
+              paragrafo
+              titoletto
+              titolo
+              tasto {
+                link
+                testo
+              }
+            }
+            tastoIniziale {
+              link
+              testo
+            }
+          }
           contactsACF {
             emails {
               email1 {

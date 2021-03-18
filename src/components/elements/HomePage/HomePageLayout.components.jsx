@@ -293,21 +293,23 @@ export const VisionSectionCanvas = ({
 }
 
 export const ScrollProgressToggleOut = () => {
-    // console.log("ScrollProgressToggleOut")
-    if(typeof window !== `undefined` && typeof document !== `undefined`) {
-        if(document.querySelector("a.main-cta")) {
-        document.querySelector("a.main-cta").classList.add("off")
-        document.querySelector("#continue-cta").classList.add("white")
-        }
+  if(typeof window !== `undefined` && typeof document !== `undefined`) {
+    if(document.querySelector(".main-cta")) {
+      document.querySelector(".main-cta").classList.add("off")
     }
+    if(document.querySelector("#continue-cta")) {
+      document.querySelector("#continue-cta").classList.add("white")
+    }
+  }
 }
 
 export const ScrollProgressToggleIn = () => {
-    // console.log("ScrollProgressToggleIn")
-    if(typeof window !== `undefined` && typeof document !== `undefined`) {
-        if(document.querySelector("a.main-cta")) {
-        document.querySelector("a.main-cta").classList.remove("off")
-        document.querySelector("#continue-cta").classList.remove("white")
-        }
+  if(typeof window !== `undefined` && typeof document !== `undefined`) {
+    if(document.querySelector(".main-cta")) {
+      document.querySelector(".main-cta").classList.remove("off")
     }
+    if(document.querySelector("#continue-cta")) {
+      document.querySelector("#continue-cta").classList.remove("white")
+    }
+  }
 }
