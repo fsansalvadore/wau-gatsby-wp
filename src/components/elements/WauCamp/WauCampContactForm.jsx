@@ -162,7 +162,7 @@ class WauCampContactForm extends React.Component {
     fetch("/", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: encode({ "form-name": "WauCamp", ...this.state })
+      body: encode({ "form-name": "Camp", ...this.state })
     })
       .then(() => {
         this.setState(
@@ -200,8 +200,8 @@ class WauCampContactForm extends React.Component {
       <WauCampContactFormContainer>
         {
           !!feedback ? <motion.span animate={{opacity: 1}} initial={{opacity: 0}} tw="w-full h-full text-center flex items-center justify-center">{feedback}</motion.span> : (
-          <form onSubmit={this.handleSubmit} name="WauCamp" method="POST" data-netlify="true">
-            <input type="hidden" name="form-name" value="WauCamp" netlify-honeypot="bot-field" hidden/>
+          <form onSubmit={this.handleSubmit} name="Camp" method="POST" data-netlify="true">
+            <input type="hidden" name="form-name" value="Camp" netlify-honeypot="bot-field" hidden/>
             
             <Input placeholder={this.props.lang === "it" ? "Nome *" : "First Name *"} type="text" label="Nome" name="nome" value={nome} required
               onChange={this.handleChange}
