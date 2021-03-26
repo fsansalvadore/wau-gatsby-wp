@@ -34,7 +34,7 @@ const HomePageLayout = ({ lang, data, ...otherProps }) => {
   const mainCtaRef = useRef(null)
   const videoRef = useRef(null)
   const visionSectionRef = useRef(null)
-  const introTextRef = useRef(null)
+  const introTextRef = useRef(["architettura", "design", "passione", "creatività"])
   const [ introWords, setIntroWords ] = useState(null)
   const [ articles, setArticles ] = useState(null)
   const [ acf, setAcf ] = useState(null)
@@ -54,8 +54,8 @@ const HomePageLayout = ({ lang, data, ...otherProps }) => {
 
   // Words animation
   useEffect(() => {
-    if (!!acf) {
-      setIntroWords(["architettura", "design", "passione", "creatività"])
+    if (!!acf && !!acf.introWords) {
+      setIntroWords(acf.introWords.split(","))
       if(videoRef.current) {
         videoRef.current.querySelector("video").play()
       }
@@ -74,7 +74,7 @@ const HomePageLayout = ({ lang, data, ...otherProps }) => {
           end: "center 20%",
           scrub: 2,
           // markers: true,
-          onUpdate: ({progress, direction, isActive}) => (
+          onUpdate: ({ progress }) => (
             progress > 0.3 ? ScrollProgressToggleOut() : ScrollProgressToggleIn()
           ),
         }
