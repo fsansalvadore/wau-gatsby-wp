@@ -50,7 +50,7 @@ const ExpertisePage = props => {
   return (
     <Layout isMenuLight>
       <Helmet>
-        <title>{seo && seo.title ? `${seo.title}` : lang.code === "IT" ? `${title} • Expertise • WAU Architetti` : `${title} • Expertise • WAU Architects`}</title>
+        <title>{seo && seo.title ? `${parse(seo.title)}` : lang.code === "IT" ? `${title} • Expertise • WAU Architetti` : `${title} • Expertise • WAU Architects`}</title>
         <link rel="canonical" href={lang.code === "IT" ? `https://www.wauarchitetti.com/expertise/${slug}` : `https://www.wauarchitetti.com/en/expertise/${slug}`} />
         <meta name="description" content={`${seo && seo.metaDesc && seo.metaDesc}`} />
         <meta name="keywords" content={`${seo && seo.metaKeywords && seo.metaKeywords}`} />
@@ -88,7 +88,7 @@ const ExpertisePage = props => {
         </Heading>
         {
           featuredImage &&
-            <figure className="cover-image" tw="mb-10 md:mb-16 xl:mb-32">
+            <figure className="cover-image" tw="mb-10 md:mb-16">
               {
                 data.wordpress.expertises.nodes.find(expertise => expertise.title === title).featuredImage.node.imageFile ?
                 <Img
@@ -114,7 +114,7 @@ const ExpertisePage = props => {
         {
           expertiseACF && expertiseACF.progetti && expertiseACF.progetti &&
           <section>
-            <p tw="text-center text-3xl py-16 md:py-32">Ecco qualche esempio:</p>
+            <p tw="text-center text-3xl pt-8 pb-16 md:pb-28">Ecco qualche esempio:</p>
             <ul tw="w-full grid grid-cols-1 m-0 md:grid-cols-2 lg:grid-cols-3 pb-px">
               {
                 expertiseACF.progetti.map(project => (
@@ -170,7 +170,7 @@ const ExpertiseContainer = styled.div(() => [
 
       p {
         line-height: 1.6rem;
-        font-weight: 200;
+        /* font-weight: 200; */
         ${tw`md:text-lg`}
       }
 
@@ -188,7 +188,7 @@ const ExpertiseContainer = styled.div(() => [
       }
 
       > *:last-of-type {
-        margin-bottom: 0;
+        ${tw`mb-0!`}
       }
 
       .wp-block-embed {

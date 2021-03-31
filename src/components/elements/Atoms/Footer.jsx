@@ -42,7 +42,7 @@ export default ({lang}) => {
                         <Logo isMenuLight  />
                     </Link>
                     <div tw="mt-6 text-sm">
-                        <p>P.IVA 10041760017</p>
+                        <p tw="opacity-80">P.IVA 10041760017</p>
                         <p tw="block mt-1 mb-6"><a href="https://www.google.com/maps/place/WAU/@45.0702929,7.6850724,17z/data=!3m1!4b1!4m5!3m4!1s0x47886d70758553ef:0x8d4b755f8f78c8db!8m2!3d45.0702929!4d7.6872611">Via Po, 1 - Torino - 10124 Italia</a></p>
                     </div>
                 </div>
@@ -132,7 +132,7 @@ const StyledFooter = styled.footer(() => [
             ${tw`col-span-12 md:col-span-4 lg:col-span-2 text-center md:text-left my-2`}
 
             li {
-                ${tw`text-sm mb-2 opacity-60 hover:opacity-100`}        
+                ${tw`text-sm mb-2`}        
             }
         }
         

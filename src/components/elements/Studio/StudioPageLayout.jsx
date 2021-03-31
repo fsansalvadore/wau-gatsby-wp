@@ -11,6 +11,7 @@ import { motion } from 'framer-motion'
 import {transition} from '../../../helpers/framer-defaults'
 import ValueCircle from "./ValueCircle"
 import StyledStudioPage from './StyledStudioPage'
+import SectionTextBlock from "../Atoms/SectionTextBlock"
 
 const StudioPageLayout = ({data}) => {
   const [studio, setStudio] = useState(null)
@@ -103,8 +104,13 @@ const StudioPageLayout = ({data}) => {
                 <section tw="my-6 md:my-16 xl:my-48">
                   <div tw="grid grid-cols-12">
                     {
-                      studio.studioACF.valuesSection.title &&
-                      <div tw="text-3xl md:text-5xl mb-4 text-center col-span-12 lg:col-span-10 lg:col-start-2 xl:col-span-8 xl:col-start-3">{parse(studio.studioACF.valuesSection.title)}</div>
+                      !!studio.studioACF.valuesSection.title &&
+                      <SectionTextBlock
+                        title={studio.studioACF.valuesSection.title}
+                        fullWidthContent
+                        hasTextCenter
+                        tw="flex justify-center col-span-full xl:(col-span-10 col-start-2) text-center"
+                      />
                     }
                     <figure tw="col-span-full text-center flex flex-col items-center">
                       <ul className="value-items" tw="p-0! my-8 w-full flex justify-between md:(my-16 justify-center)">
@@ -174,7 +180,10 @@ const StudioPageLayout = ({data}) => {
                   <div tw="grid grid-cols-12">
                     {
                       studio.studioACF.sectionApproach.title &&
-                      <div tw="text-3xl md:text-5xl col-span-12 md:col-span-6 mb-8">{parse(studio.studioACF.sectionApproach.title)}</div>
+                      <SectionTextBlock
+                        title={studio.studioACF.sectionApproach.title}
+                        tw="col-span-full md:col-span-6"
+                      />
                     }
                     {
                       studio.studioACF.sectionApproach.content &&
@@ -207,7 +216,10 @@ const StudioPageLayout = ({data}) => {
                   <div tw="grid grid-cols-12">
                     {
                       studio.studioACF.sectionEnd.title &&
-                      <div tw="text-3xl md:text-5xl col-span-12 md:col-span-6 mb-8">{parse(studio.studioACF.sectionEnd.title)}</div>
+                      <SectionTextBlock
+                        title={studio.studioACF.sectionEnd.title}
+                        tw="col-span-full md:col-span-6"
+                      />
                     }
                     {
                       studio.studioACF.sectionEnd.content &&

@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import tw, { css } from 'twin.macro'
 import parse from 'html-react-parser'
 import { motion } from 'framer-motion'
-import { Link } from 'gatsby'
 import { gsap, Power1 } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Button from './Button'
@@ -69,7 +68,7 @@ export default ({
             {
               title &&
               <div className="st-title st-anim">
-                <motion.div tw="text-3xl letter-spacing[-0.04rem] lg:(text-5xl letter-spacing[-0.01rem]) mb-8 w-3/4">{parse(title)}</motion.div>
+                <motion.div tw="text-3xl line-height[110%] letter-spacing[-0.04rem] lg:(text-5xl line-height[90%] letter-spacing[-0.01rem]) mb-8 w-3/4">{parse(title)}</motion.div>
               </div>
             }
             {

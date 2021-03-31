@@ -88,7 +88,7 @@ const HomePageLayout = ({ lang, data, ...otherProps }) => {
       introTextTL
       .to(introTextRef.current, {
         duration: 2,
-        scale: 4
+        scale: 2
       }, indexRef.current)
       .to(introTextRef.current,  {
         opacity: 1
@@ -202,7 +202,7 @@ const HomePageLayout = ({ lang, data, ...otherProps }) => {
                       title={acf.sezioneExpertise.titolo ? acf.sezioneExpertise.titolo : ""}
                       link={acf.sezioneExpertise.tasto.link || "#"}
                       cta={acf.sezioneExpertise.tasto.testo || ""}
-                      tw="col-span-full md:col-span-6"
+                      tw="col-span-full mb-10 md:col-span-6"
                     />
                   )}
                   {

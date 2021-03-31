@@ -91,7 +91,7 @@ const ProjectPage = (props) => {
   return (
     <Layout>
       <Helmet>
-        <title>{seo && seo.title ? `${seo.title}` : lang.code === "IT" ? `${title} • Progetti • WAU Architetti` : `${title} • Projects • WAU Architects`}</title>
+        <title>{seo && seo.title ? `${parse(seo.title)}` : lang.code === "IT" ? `${title} • Progetti • WAU Architetti` : `${title} • Projects • WAU Architects`}</title>
         <link rel="canonical" href={lang.code === "IT" ? `https://www.wauarchitetti.com/progetti/${slug}` : `https://www.wauarchitetti.com/en/projects/${slug}`} />
         <meta name="description" content={`${seo && seo.metaDesc}`} />
         <meta name="keywords" content={tags ? (tags.nodes.map(tag => tag.name ? ` ${tag.name}` : "")) : "WAU Architetti, architetti a torino, studio di architetti"} />
@@ -233,7 +233,7 @@ const ProjectContainer = styled.div(() => [
 
       p {
         line-height: 1.6rem;
-        font-weight: 200;
+        /* font-weight: 200; */
         ${tw`md:text-lg`}
       }
 

@@ -31,7 +31,7 @@ export default (({list = [], ...otherProps}) => {
                                 header={item.title}
                                 key={index}
                                 // showArrow={false}
-                                tw="border-0 border-t border-solid border-white border-opacity-20 py-4 text-2xl md:text-4xl font-bold cursor-pointer opacity-60 hover:opacity-100"
+                                tw="border-0 border-t border-solid border-white border-opacity-20 py-4 text-2xl md:text-3xl font-bold cursor-pointer opacity-60 hover:opacity-100"
                             >
                                 <div tw="py-4 text-lg">
                                     <p tw="mb-8">{item.expertiseACF.anteprima}</p>
