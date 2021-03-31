@@ -43,7 +43,11 @@ export default ({
           
             sectionTextTL
             .fromTo([items],
-            {y: "170%", skewY: 4, opacity: 0},
+            {
+              y: "170%",
+              // skewY: 4,
+              opacity: 0
+            },
             {duration: 0.8, skewY: 0, opacity: 1, ease: Power1.easeOut, y: "0",stagger: 0.1},
             sectionRef.current)
           }

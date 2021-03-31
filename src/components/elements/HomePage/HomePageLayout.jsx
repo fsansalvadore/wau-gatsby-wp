@@ -180,6 +180,20 @@ const HomePageLayout = ({ lang, data, ...otherProps }) => {
             <div
               className="after-sphere smooth-scroll"
               >
+              <section tw="relative flex justify-center z-50 bg-white py-16 lg:py-32 text-center">
+                <GridMaxWidthContainer>
+                  <SectionTextBlock 
+                    label={acf.sezioneStudio.titoletto || ""}
+                    title={acf.sezioneStudio.titolo ? acf.sezioneStudio.titolo : ""}
+                    content={acf.sezioneStudio.paragrafo ? acf.sezioneStudio.paragrafo : ""}
+                    tw="flex justify-center col-span-full xl:(col-span-8 col-start-3) text-center"
+                    link={acf.sezioneStudio.tasto.link || "#"}
+                    cta={acf.sezioneStudio.tasto.testo || ""}
+                    fullWidthContent
+                    hasTextCenter
+                  />
+                </GridMaxWidthContainer>
+              </section>
               <section className="gradientBg" tw="w-full py-32 lg:py-64 flex justify-center bg-blue-400">
                 <GridMaxWidthContainer>
                   {acf.sezioneExpertise && (
@@ -198,20 +212,6 @@ const HomePageLayout = ({ lang, data, ...otherProps }) => {
                       tw="col-span-12 md:col-span-6 md:col-start-7"
                     />
                   }
-                </GridMaxWidthContainer>
-              </section>
-              <section tw="relative flex justify-center z-50 bg-white py-16 lg:py-32 text-center">
-                <GridMaxWidthContainer>
-                  <SectionTextBlock 
-                    label={acf.sezioneStudio.titoletto || ""}
-                    title={acf.sezioneStudio.titolo ? acf.sezioneStudio.titolo : ""}
-                    content={acf.sezioneStudio.paragrafo ? acf.sezioneStudio.paragrafo : ""}
-                    tw="flex justify-center col-span-full xl:(col-span-8 col-start-3) text-center"
-                    link={acf.sezioneStudio.tasto.link || "#"}
-                    cta={acf.sezioneStudio.tasto.testo || ""}
-                    fullWidthContent
-                    hasTextCenter
-                  />
                 </GridMaxWidthContainer>
               </section>
               <section
