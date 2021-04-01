@@ -143,6 +143,7 @@ const HomePageLayout = ({ lang, data, ...otherProps }) => {
                     width="900"
                     height="500"
                     controls={false}
+                    poster="../../../assets/WAU-videoPoster.jpg"
                     loop
                     autoPlay
                     muted
