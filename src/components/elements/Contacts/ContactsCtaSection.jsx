@@ -220,7 +220,12 @@ export default ({
             <GridMaxWidthContainer>
                 <ContactsTextBlock
                     title="Raccontaci i tuoi progetti"
-                    content="WAU è la soluzione per chi cerca un partner capace di accompagnare e guidare le proprie idee, fino alla realizzazione finale. Che si tratti di un piccolo incarico o di una grande committenza, seguiamo ogni lavoro con la stessa attenzione."
+                    content={
+                      lang === "it"
+                        ? "La qualità del nostro ascolto è pari a quella delle nostre soluzioni. Siamo pronti a far incontrare le tue esigenze con la nostra voglia di fare. E garantire al tuo progetto un effetto WAU."
+                        : "..."
+                      }
+                    // content="WAU è la soluzione per chi cerca un partner capace di accompagnare e guidare le proprie idee, fino alla realizzazione finale. Che si tratti di un piccolo incarico o di una grande committenza, seguiamo ogni lavoro con la stessa attenzione."
                     link={lang === "it" ? "/contatti" : "/en/contacts"}
                     cta={lang === "it" ? "Contattaci" : "Contact Us"}
                     tw="col-span-full md:col-span-8 md:col-start-7 lg:col-span-7 lg:col-start-5"
