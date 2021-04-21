@@ -1,25 +1,26 @@
-import React from 'react'
-import styled from 'styled-components'
-import tw, { css } from 'twin.macro'
+import React from "react";
+import styled from "styled-components";
+import tw, { css } from "twin.macro";
 import antd from "./antd-custom.css";
 
-export default ({children, otherProps}) => {
-    return (
-        <StyledFilterForm {...otherProps} styles={antd.styles} >
-            {children}
-        </StyledFilterForm>
-    )
-}
+// eslint-disable-next-line import/no-default-export
+export default ({ children, otherProps }) => {
+  return (
+    <StyledFilterForm {...otherProps} styles={antd.styles}>
+      {children}
+    </StyledFilterForm>
+  );
+};
 
 const StyledFilterForm = styled.form(() => [
-    css`
-        ${tw``}
+  css`
+    ${tw``}
 
-        .ant-select {
-            .ant-select-selector {
-                ${tw`border-black`}
-                color: black !important;
-            }
-        }
-    `
-])
+    .ant-select {
+      .ant-select-selector {
+        ${tw`border-black`}
+        color: black !important;
+      }
+    }
+  `,
+]);
