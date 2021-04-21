@@ -1,20 +1,20 @@
-import React, { useRef } from "react"
-import { graphql, useStaticQuery, Link } from "gatsby"
-import { Helmet } from 'react-helmet'
-import Layout from "../LayoutComponent"
-import Heading from '../elements/Heading/Heading'
-import styled from 'styled-components'
-import tw, { css } from 'twin.macro'
-import parse from 'html-react-parser'
-import Img from 'gatsby-image'
-import GridMaxWidthContainer from '../elements/Atoms/GridMaxWidthContainer'
-import SocialShare from '../elements/Atoms/SocialShare'
-import fallbackImg from '../../images/Wau-Architetti-social-logo.jpg'
+import React, { useRef } from "react";
+import { graphql, useStaticQuery, Link } from "gatsby";
+import { Helmet } from "react-helmet";
+import styled from "styled-components";
+import tw from "twin.macro";
+import parse from "html-react-parser";
+import Img from "gatsby-image";
+import Heading from "../elements/Heading/Heading";
+import Layout from "../LayoutComponent";
+import GridMaxWidthContainer from "../elements/Atoms/GridMaxWidthContainer";
+import SocialShare from "../elements/Atoms/SocialShare";
+import fallbackImg from "../../images/Wau-Architetti-social-logo.jpg";
 
 const ProjectPage = (props) => {
   const {
     slug,
-    index,
+    // index,
     title,
     featuredImage,
     ProjectAFC,
@@ -22,9 +22,9 @@ const ProjectPage = (props) => {
     content,
     seo,
     tags,
-    project
+    // project,
   } = props.pageContext;
-  
+
   const data = useStaticQuery(graphql`
     query PrevNextQuery {
       wordpress {
@@ -64,14 +64,18 @@ const ProjectPage = (props) => {
         }
       }
     }
-  `)
+  `);
 
   // const [prevPost, setPrevPost] = useState(null)
   // const [nextPost, setNextPost] = useState(null)
-  const proj = data.wordpress.projects.nodes.find(project => project.title === title)
-  const sortedProjects = data.wordpress.projects.nodes.sort((a, b) => (a.date < b.date) ? 1 : (a.date === b.date) ? ((a.title > b.title) ? 1 : -1) : -1 )
-  const pdfRef = useRef(null)
-  const postLength = sortedProjects.length
+  const proj = data.wordpress.projects.nodes.find(
+    (project) => project.title === title
+  );
+  const sortedProjects = data.wordpress.projects.nodes.sort((a, b) =>
+    a.date < b.date ? 1 : a.date === b.date ? (a.title > b.title ? 1 : -1) : -1
+  );
+  const pdfRef = useRef(null);
+  const postLength = sortedProjects.length;
 
   // useEffect(() => {
   //   if(sortedProjects) {
@@ -91,104 +95,178 @@ const ProjectPage = (props) => {
   return (
     <Layout>
       <Helmet>
-        <title>{seo && seo.title ? `${parse(seo.title)}` : lang.code === "IT" ? `${title} • Progetti • WAU Architetti` : `${title} • Projects • WAU Architects`}</title>
-        <link rel="canonical" href={lang.code === "IT" ? `https://www.wauarchitetti.com/progetti/${slug}` : `https://www.wauarchitetti.com/en/projects/${slug}`} />
+        <title>
+          {seo && seo.title
+            ? `${parse(seo.title)}`
+            : lang.code === "IT"
+            ? `${title} • Progetti • WAU Architetti`
+            : `${title} • Projects • WAU Architects`}
+        </title>
+        <link
+          rel="canonical"
+          href={
+            lang.code === "IT"
+              ? `https://www.wauarchitetti.com/progetti/${slug}`
+              : `https://www.wauarchitetti.com/en/projects/${slug}`
+          }
+        />
         <meta name="description" content={`${seo && seo.metaDesc}`} />
-        <meta name="keywords" content={tags ? (tags.nodes.map(tag => tag.name ? ` ${tag.name}` : "")) : "WAU Architetti, architetti a torino, studio di architetti"} />
-        <meta itemprop="image" content={`${featuredImage ? featuredImage.node.sourceUrl : fallbackImg}`} />
-        <meta property="og:site_name" content={lang.code === "IT" ? `${title} • Progetti • WAU Architetti` : `${title} • Projects • WAU Architects`} />
+        <meta
+          name="keywords"
+          content={
+            tags
+              ? tags.nodes.map((tag) => (tag.name ? ` ${tag.name}` : ""))
+              : "WAU Architetti, architetti a torino, studio di architetti"
+          }
+        />
+        <meta
+          itemprop="image"
+          content={`${
+            featuredImage ? featuredImage.node.sourceUrl : fallbackImg
+          }`}
+        />
+        <meta
+          property="og:site_name"
+          content={
+            lang.code === "IT"
+              ? `${title} • Progetti • WAU Architetti`
+              : `${title} • Projects • WAU Architects`
+          }
+        />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content={lang.code === "IT" ? `https://www.wauarchitetti.com/progetti/${slug}` : `https://www.wauarchitetti.com/en/projects/${slug}`} />
-        <meta property="og:title" content={lang.code === "IT" ? `${title} • Progetti • WAU Architetti` : `${title} • Projects • WAU Architects`} />
-        <meta property="og:image" content={`${featuredImage ? featuredImage.node.sourceUrl : fallbackImg}`} />
+        <meta
+          property="og:url"
+          content={
+            lang.code === "IT"
+              ? `https://www.wauarchitetti.com/progetti/${slug}`
+              : `https://www.wauarchitetti.com/en/projects/${slug}`
+          }
+        />
+        <meta
+          property="og:title"
+          content={
+            lang.code === "IT"
+              ? `${title} • Progetti • WAU Architetti`
+              : `${title} • Projects • WAU Architects`
+          }
+        />
+        <meta
+          property="og:image"
+          content={`${
+            featuredImage ? featuredImage.node.sourceUrl : fallbackImg
+          }`}
+        />
         <meta property="og:description" content={`${seo && seo.metaDesc}`} />
         <meta property="og:locale" content={lang.locale} />
         <meta name="twitter:card" content="summary" />
-        <meta name="twitter:site" content={lang.code === "IT" ? `https://www.wauarchitetti.com/progetti/${slug}` : `https://www.wauarchitetti.com/en/projects/${slug}`} />
-        <meta name="twitter:title" content={lang.code === "IT" ? `${title} • Progetti • WAU Architetti` : `${title} • Projects • WAU Architects`} />
+        <meta
+          name="twitter:site"
+          content={
+            lang.code === "IT"
+              ? `https://www.wauarchitetti.com/progetti/${slug}`
+              : `https://www.wauarchitetti.com/en/projects/${slug}`
+          }
+        />
+        <meta
+          name="twitter:title"
+          content={
+            lang.code === "IT"
+              ? `${title} • Progetti • WAU Architetti`
+              : `${title} • Projects • WAU Architects`
+          }
+        />
         <meta name="twitter:description" content={`${seo && seo.metaDesc}`} />
-        <meta name="twitter:image" content={`${featuredImage ? featuredImage.node.sourceUrl : fallbackImg}`} />
+        <meta
+          name="twitter:image"
+          content={`${
+            featuredImage ? featuredImage.node.sourceUrl : fallbackImg
+          }`}
+        />
       </Helmet>
-      <ProjectContainer ref={pdfRef} >
+      <ProjectContainer ref={pdfRef}>
         <Heading tw="flex flex-col lg:flex-row">
           <div tw="w-full md:w-3/4">
-            <p className="breadcrumbs mono" >
-              <Link to={lang.code === "EN" ? "/en/projects/" : "/progetti/"}>{lang.code === "EN" ? "Projects" : "Progetti"}</Link> /
+            <p className="breadcrumbs mono">
+              <Link to={lang.code === "EN" ? "/en/projects/" : "/progetti/"}>
+                {lang.code === "EN" ? "Projects" : "Progetti"}
+              </Link>{" "}
+              /
             </p>
             <div tw="w-full p-0 md:pr-32">
               <div tw="w-full">
                 <h1 tw="leading-10">{title}</h1>
               </div>
-              {
-                ProjectAFC && ProjectAFC.introduzione &&
+              {ProjectAFC && ProjectAFC.introduzione && (
                 <div className="intro" tw="w-full">
                   {parse(ProjectAFC.introduzione)}
                 </div>
-              }
+              )}
             </div>
           </div>
-          <aside tw="w-full md:w-1/4 mt-8 lg:mt-0" className="project-aside-info">
-            <hr/>
-            {
-              tags && tags.nodes.length > 0 &&
+          <aside
+            tw="w-full md:w-1/4 mt-8 lg:mt-0"
+            className="project-aside-info"
+          >
+            <hr />
+            {tags && tags.nodes.length > 0 && (
               <div>
                 <ul tw="my-2">
-                  {
-                    tags.nodes.map(tag => (
-                      <li tw="py-0">/ {tag.name}</li>
-                    ))
-                  }
+                  {tags.nodes.map((tag) => (
+                    <li tw="py-0">/ {tag.name}</li>
+                  ))}
                 </ul>
-                <hr/>
+                <hr />
               </div>
-            }
-            {
-              ProjectAFC && ProjectAFC.projectdate && ProjectAFC.projectdate.split("/") &&
-              <div>
-                <p tw="my-2">{ProjectAFC.projectdate.split("/").slice(-1)[0]}</p>
-                <hr/>
-              </div>
-            }
-            {
-              ProjectAFC && ProjectAFC.location &&
+            )}
+            {ProjectAFC &&
+              ProjectAFC.projectdate &&
+              ProjectAFC.projectdate.split("/") && (
+                <div>
+                  <p tw="my-2">
+                    {ProjectAFC.projectdate.split("/").slice(-1)[0]}
+                  </p>
+                  <hr />
+                </div>
+              )}
+            {ProjectAFC && ProjectAFC.location && (
               <div>
                 <p tw="my-2">{ProjectAFC.location}</p>
-                <hr/>
+                <hr />
               </div>
-            }
+            )}
           </aside>
         </Heading>
-        {
-          proj.featuredImage &&
-          <figure className="project-coverImage" tw="mb-10 md:mb-16 xl:mb-32">
-            {
-                proj.featuredImage.node.imageFile ?
-                <Img
-                    tw="relative w-full h-64 top-0 right-0 bottom-0 left-0"
-                    fixed={proj.featuredImage.node.imageFile.childImageSharp.fixed}
-
-                /> :
-                <img
-                  src={proj.featuredImage.node.sourceUrl}
-                  alt={proj.featuredImage.node.altText}
-                  tw="relative w-full h-64 top-0 right-0 bottom-0 left-0"
-                />
-              }
+        {proj.featuredImage && (
+          <figure className="project-coverImage" tw="mb-10 md:mb-16 xl:mb-24">
+            {proj.featuredImage.node.imageFile ? (
+              <Img
+                tw="relative w-full h-64 top-0 right-0 bottom-0 left-0"
+                fixed={proj.featuredImage.node.imageFile.childImageSharp.fixed}
+              />
+            ) : (
+              <img
+                src={proj.featuredImage.node.sourceUrl}
+                alt={proj.featuredImage.node.altText}
+                tw="relative w-full h-64 top-0 right-0 bottom-0 left-0"
+              />
+            )}
           </figure>
-        }
+        )}
         <article tw="w-full flex justify-center">
-          <GridMaxWidthContainer className="project-content" tw="w-full grid grid-cols-12 mb-16 md:mb-32">
+          <GridMaxWidthContainer
+            className="project-content"
+            tw="w-full grid grid-cols-12 mb-16 md:mb-32"
+          >
             {content && parse(content)}
             <SocialShare lang={lang.slug} />
           </GridMaxWidthContainer>
         </article>
       </ProjectContainer>
     </Layout>
-  )
-}
+  );
+};
 
-const ProjectContainer = styled.div(() => [
-  css`
+const ProjectContainer = styled.div`
   .project-coverImage
     .gatsby-image-wrapper {
         width: 100% !important;
@@ -271,10 +349,10 @@ const ProjectContainer = styled.div(() => [
       }
 
       .wp-block-separator {
-        ${tw`my-6 md:my-12 xl:my-32`}
+        ${tw`my-6 md:my-12 xl:my-24`}
       }
       .wp-block-image {
-        ${tw`my-4 md:my-12 xl:my-32`}
+        ${tw`my-4 md:my-12 xl:my-24`}
         
         img {
           ${tw`w-full h-auto`}
@@ -282,6 +360,7 @@ const ProjectContainer = styled.div(() => [
       }
     }
   }
-`])
+`;
 
-export default ProjectPage
+// eslint-disable-next-line import/no-default-export
+export default ProjectPage;
