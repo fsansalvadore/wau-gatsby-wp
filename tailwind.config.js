@@ -9,6 +9,10 @@ module.exports = {
           wauGreen: "#00ACA9",
           wauPurple: "#403C90",
         },
+        fontSize: {
+          35: "35px",
+          53: "53px",
+        },
       },
     },
     plugins: [],

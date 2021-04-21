@@ -62,7 +62,7 @@ const Sphere = ({ ctaSectionRef, position, url }) => {
             trigger: ctaSectionRef.current,
             start: "top 85%",
             end: "top 15%",
-            scrub: 1,
+            // scrub: 1,
             // snap: true,
             // markers: true,
             // onUpdate: ({progress, direction, isActive}) => console.log(progress, direction, isActive)

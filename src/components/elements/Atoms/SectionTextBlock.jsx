@@ -68,7 +68,7 @@ export default ({
             {
               title &&
               <div className="st-title st-anim">
-                <motion.div tw="text-3xl line-height[110%] letter-spacing[-0.04rem] lg:(text-5xl line-height[90%] letter-spacing[-0.01rem]) mb-8 w-3/4">{parse(title)}</motion.div>
+                <motion.div>{parse(title)}</motion.div>
               </div>
             }
             {
@@ -101,13 +101,19 @@ const StyledContactsTextBlock = styled(motion.div)(({$fullWidthContent, $hasText
       > div {
           ${tw`overflow-hidden relative`}
       }
+
+      .st-title {
+        > * {
+          ${tw`text-3xl! line-height[120%]! letter-spacing[-0.02rem] lg:(text-5xl! line-height[115%]! letter-spacing[-0.01rem]) mb-8 w-3/4`}
+        }
+      }
     `,
     $fullWidthContent && css`
       .st-title {
         ${tw`w-full`}
 
         > * {
-          ${tw`w-full lg:w-3/4`}
+          ${tw`w-full lg:w-3/4 text-35 line-height[120%] letter-spacing[-0.04rem] lg:(text-53! letter-spacing[-0.01rem])`}
         }
       }
       .st-content {

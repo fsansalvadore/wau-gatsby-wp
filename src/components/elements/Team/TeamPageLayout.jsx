@@ -47,60 +47,66 @@ const TeamPageLayout = ({data, lang}) => {
           />
         </Heading>
         <section>
-          <ul className="team_content" tw="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4">
-            {
-              founders && founders.length > 0 ?
-              founders.map(member => (
-                <li key={`team-${Math.floor(Math.random() * (100 - 999) + 100)}`} tw="p-px">
-                  <TeamMemberCard
-                    title={member.title}
-                    featuredImage={member.featuredImage}
-                    date={member.date}
-                    afc={member.teamMemberAFC}
-                  />
-                </li>
-              )) : (
-                <li className="">
-                  <span className="divider"></span>
-                    <div className="">
-                      <p className="not-found">Nessun founder trovato</p>
-                    </div>
+          <GridMaxWidthContainer tw="my-4 lg:mb-16 lg:mt-0">
+            <hr tw="col-span-12 mb-8 lg:mb-16" />
+            <h2 tw="col-span-12 text-3xl md:text-5xl">Soci</h2>
+            <ul className="team_content" tw="col-span-12 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 mt-8 lg:mt-16">
+              {
+                founders && founders.length > 0 ?
+                founders.map(member => (
+                  <li key={`team-${Math.floor(Math.random() * (100 - 999) + 100)}`} tw="p-px">
+                    <TeamMemberCard
+                      title={member.title}
+                      featuredImage={member.featuredImage}
+                      date={member.date}
+                      afc={member.teamMemberAFC}
+                    />
                   </li>
-                )
-            }
-          </ul>
+                )) : (
+                  <li className="">
+                    <span className="divider"></span>
+                      <div className="">
+                        <p className="not-found">Nessun founder trovato</p>
+                      </div>
+                    </li>
+                  )
+              }
+            </ul>
+          </GridMaxWidthContainer>
         </section>
         <section>
-          <GridMaxWidthContainer tw="my-16 lg:mt-32">
+          <GridMaxWidthContainer tw="my-4 lg:my-8">
+            <hr tw="col-span-12 mb-8 lg:mb-16" />
             <h2 tw="col-span-12 text-3xl md:text-5xl">Team operativo</h2>
-          </GridMaxWidthContainer>
-          <ul className="team_content" tw="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4">
-            {
-              teamMembers && teamMembers.length > 0 ?
-              teamMembers.map(member => (
-                <li key={`team-${Math.floor(Math.random() * (100 - 999) + 100)}`} tw="p-px">
-                  <TeamMemberCard
-                    title={member.title}
-                    featuredImage={member.featuredImage}
-                    date={member.date}
-                    afc={member.teamMemberAFC}
-                  />
-                </li>
-              )) : (
-                <li className="">
-                  <span className="divider"></span>
-                    <div className="">
-                      <p className="not-found">Nessun componente del team trovato</p>
-                    </div>
+            <ul className="team_content" tw="col-span-12 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 mt-8 lg:mt-16">
+              {
+                teamMembers && teamMembers.length > 0 ?
+                teamMembers.map(member => (
+                  <li key={`team-${Math.floor(Math.random() * (100 - 999) + 100)}`} tw="p-px">
+                    <TeamMemberCard
+                      title={member.title}
+                      featuredImage={member.featuredImage}
+                      date={member.date}
+                      afc={member.teamMemberAFC}
+                    />
                   </li>
-                )
-            }
-          </ul>
+                )) : (
+                  <li className="">
+                    <span className="divider"></span>
+                      <div className="">
+                        <p className="not-found">Nessun componente del team trovato</p>
+                      </div>
+                    </li>
+                  )
+              }
+            </ul>
+          </GridMaxWidthContainer>
         </section>
         {collaborators
           && collaborators.length > 0 && (
           <section tw="w-full flex justify-center">
-            <GridMaxWidthContainer tw="mt-16 lg:mt-32 mb-16 md:mb-32">
+            <GridMaxWidthContainer tw="my-4 lg:mb-8">
+              <hr tw="col-span-12 mb-8 lg:mb-16" />
               <h2 tw="col-span-12 md:col-span-4 md:col-start-1 text-3xl md:text-5xl">Referenti</h2>
               <ul tw="col-span-12 md:col-span-5 md:col-start-7 mt-8 md:mt-0">
                 {
