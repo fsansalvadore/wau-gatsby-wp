@@ -1,6 +1,6 @@
-import React from "react"
-import { graphql, useStaticQuery } from 'gatsby'
-import ProjectsPageLayout from '../components/elements/Projects/ProjectsPageLayout'
+import React from "react";
+import { graphql, useStaticQuery } from "gatsby";
+import ProjectsPageLayout from "../components/elements/Projects/ProjectsPageLayout";
 
 const ProjectsPageIta = () => {
   const data = useStaticQuery(graphql`
@@ -57,11 +57,10 @@ const ProjectsPageIta = () => {
         }
       }
     }
-  `)
+  `);
 
-  return(
-    <ProjectsPageLayout data={data} lang="en" />
-  )
-}
+  return <ProjectsPageLayout data={data} lang="en" />;
+};
 
-export default ProjectsPageIta
+// eslint-disable-next-line import/no-default-export
+export default ProjectsPageIta;

@@ -1,13 +1,51 @@
 import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import { Link } from "gatsby";
-import tw from "twin.macro";
+import tw, { styled, css } from "twin.macro";
 import Layout from "../../LayoutComponent";
 import Heading from "../Heading/Heading";
 import HeadingIntroHalf from "../Heading/HeadingIntroHalf";
 import GridMaxWidthContainer from "../Atoms/GridMaxWidthContainer";
 import Button from "../Atoms/Button";
 import ClientsSection from "../Clients/ClientsSection";
+
+const ThumbImage = styled.div`
+  ${tw`relative z-0 padding-bottom[60%] w-full bg-cover bg-center opacity-90 hover:opacity-100 transition-opacity`}
+  ${({ $image }) =>
+    !!$image &&
+    css`
+      background-image: url(${$image});
+    `}
+`;
+
+const ContentWrapper = styled.div`
+  ${tw`col-start-1 lg:(col-start-2 flex flex-col justify-center)`}
+`;
+
+const Title = styled.h3`
+  ${tw`text-3xl lg:text-4xl`}
+`;
+
+const Paragraph = styled.p`
+  ${tw`text-lg`}
+`;
+
+const ExpertiseWrapper = styled.div`
+  ${tw`grid grid-cols-1 lg:grid-cols-2 column-gap[40px] row-gap[30px] border-0 border-b border-solid border-white py-12`}
+`;
+
+const ListWrapper = styled.div`
+  ${tw`col-span-12 pb-8 md:pb-16`}
+
+  ${ExpertiseWrapper}:first-child {
+    ${Paragraph} {
+      ${tw`text-xl`}
+    }
+    ${Title} {
+      ${tw`text-4xl lg:text-6xl`}
+    }
+  }
+`;
 
 const ExpertisePageLayout = ({ data, lang }) => {
   const [page, setPage] = useState(null);
@@ -41,65 +79,47 @@ const ExpertisePageLayout = ({ data, lang }) => {
         <section tw="w-full flex justify-center">
           <GridMaxWidthContainer>
             <hr tw="col-span-12" />
-            {expertises && expertises.length > 0 && (
-              <div tw="flex flex-col md:flex-row col-span-12 py-8 md:py-16">
-                <h3 tw="w-full md:w-1/2 text-5xl">{expertises[0].title}</h3>
-                <div tw="w-full md:w-1/2 mt-8 md:mt-0 text-xl">
-                  <p>{expertises[0].expertiseACF.anteprima}</p>
-                  <div tw="mt-8">
-                    <Button
-                      as={Link}
-                      to={
-                        lang === "it"
-                          ? `/expertise/${expertises[0].slug}`
-                          : `/en/expertise/${expertises[0].slug}`
-                      }
-                      isWhite
-                    >
-                      Approfondisci
-                    </Button>
-                  </div>
-                </div>
-              </div>
-            )}
-            <hr tw="col-span-12" />
-            <ul tw="col-span-12 md:col-span-6 md:col-start-7 pb-8 md:pb-16">
+            <ListWrapper>
               {expertises && expertises.length > 0 ? (
-                expertises.slice(1).map((expertise) => (
-                  <li
-                    key={`exp-${expertise.id}-${expertise.slug}-${Math.floor(
-                      Math.random() * (100 - 999) + 100
-                    )}`}
-                    tw="border-0 border-b border-solid border-white py-6 md:py-12"
-                  >
-                    <h3 tw="text-4xl">{expertise.title}</h3>
-                    <div tw="w-full mt-8">
-                      {expertise.expertiseACF &&
-                        expertise.expertiseACF.anteprima && (
-                          <p>{expertise.expertiseACF.anteprima}</p>
-                        )}
-                      <div tw="mt-8">
-                        <Button
-                          as={Link}
-                          to={
-                            lang === "it"
-                              ? `/expertise/${expertise.slug}`
-                              : `/en/expertise/${expertise.slug}`
-                          }
-                          isWhite
-                        >
-                          Approfondisci
-                        </Button>
+                expertises.map((expertise, i) => (
+                  <ExpertiseWrapper key={`exp-${i}`}>
+                    {!!expertise.featuredImage && (
+                      <ThumbImage
+                        $image={expertise.featuredImage.node.sourceUrl}
+                      />
+                    )}
+                    <ContentWrapper>
+                      <Title>{expertise.title}</Title>
+                      <div tw="w-full mt-8">
+                        {expertise.expertiseACF &&
+                          expertise.expertiseACF.anteprima && (
+                            <Paragraph>
+                              {expertise.expertiseACF.anteprima}
+                            </Paragraph>
+                          )}
+                        <div tw="mt-8">
+                          <Button
+                            as={Link}
+                            to={
+                              lang === "it"
+                                ? `/expertise/${expertise.slug}`
+                                : `/en/expertise/${expertise.slug}`
+                            }
+                            isWhite
+                          >
+                            Approfondisci
+                          </Button>
+                        </div>
                       </div>
-                    </div>
-                  </li>
+                    </ContentWrapper>
+                  </ExpertiseWrapper>
                 ))
               ) : (
                 <li>
                   <p className="not-found">Nessuna expertise trovata</p>
                 </li>
               )}
-            </ul>
+            </ListWrapper>
           </GridMaxWidthContainer>
         </section>
       </div>
@@ -108,4 +128,5 @@ const ExpertisePageLayout = ({ data, lang }) => {
   );
 };
 
+// eslint-disable-next-line import/no-default-export
 export default ExpertisePageLayout;
