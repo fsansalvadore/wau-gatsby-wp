@@ -108,7 +108,7 @@ const StudioPageLayout = ({ data }) => {
               </div>
             )}
             {studio && studio.studioACF && (
-              <section tw="my-6 md:my-16 xl:my-48">
+              <section tw="my-6 md:my-32 xl:my-48">
                 <div tw="grid grid-cols-12">
                   {!!studio.studioACF.valuesSection.title && (
                     <SectionTextBlock
@@ -121,7 +121,7 @@ const StudioPageLayout = ({ data }) => {
                   <figure tw="col-span-full text-center flex flex-col items-center">
                     <ul
                       className="value-items"
-                      tw="p-0! my-8 w-full flex justify-between md:(my-16 justify-center)"
+                      tw="p-0! mb-8 mt-4 w-full flex justify-between sm:justify-center"
                     >
                       {values &&
                         values.map((value, index) => (
@@ -136,7 +136,7 @@ const StudioPageLayout = ({ data }) => {
                           </li>
                         ))}
                     </ul>
-                    <div tw="relative w-full flex justify-center pb-56 md:pb-32">
+                    <div tw="relative w-full flex justify-center pb-44 md:pb-32">
                       {values.map((value, index) => (
                         <motion.figcaption
                           tw="absolute mx-auto text-center w-full lg:w-2/3"
@@ -161,9 +161,7 @@ const StudioPageLayout = ({ data }) => {
                           trasition={{ ...transition }}
                           exit={{ y: 40, opacity: 0 }}
                         >
-                          <h4 tw="text-3xl font-bold mb-4 md:mb-8">
-                            {value.title}
-                          </h4>
+                          <h4 tw="text-3xl font-bold mb-4">{value.title}</h4>
                           <p>{value.description}</p>
                         </motion.figcaption>
                       ))}
@@ -173,7 +171,7 @@ const StudioPageLayout = ({ data }) => {
               </section>
             )}
             {studio && studio.studioACF && studio.studioACF.image1 && (
-              <figure className="cover-image cover-image-fullscreen" tw="my-8">
+              <figure className="cover-image cover-image-fullscreen" tw="mt-8">
                 {studio.studioACF.image1.imageFile ? (
                   <Img
                     tw="relative w-full h-64 top-0 right-0 bottom-0 left-0"
@@ -196,11 +194,11 @@ const StudioPageLayout = ({ data }) => {
                   {studio.studioACF.sectionApproach.title && (
                     <SectionTextBlock
                       title={studio.studioACF.sectionApproach.title}
-                      tw="col-span-full md:col-span-6"
+                      tw="col-span-full lg:col-span-6"
                     />
                   )}
                   {studio.studioACF.sectionApproach.content && (
-                    <div tw="text-lg col-span-12 md:col-span-6 md:col-start-7">
+                    <div tw="text-lg col-span-12 lg:col-span-6 lg:col-start-7">
                       {parse(studio.studioACF.sectionApproach.content)}
                     </div>
                   )}
@@ -208,7 +206,7 @@ const StudioPageLayout = ({ data }) => {
               </section>
             )}
             {studio && studio.studioACF && studio.studioACF.image2 && (
-              <figure className="cover-image cover-image-fullscreen" tw="my-8">
+              <figure className="cover-image cover-image-fullscreen" tw="mt-8">
                 {studio.studioACF.image2.imageFile ? (
                   <Img
                     tw="relative w-full h-64 top-0 right-0 bottom-0 left-0"
@@ -231,11 +229,11 @@ const StudioPageLayout = ({ data }) => {
                   {studio.studioACF.sectionEnd.title && (
                     <SectionTextBlock
                       title={studio.studioACF.sectionEnd.title}
-                      tw="col-span-full md:col-span-6"
+                      tw="col-span-full lg:col-span-6"
                     />
                   )}
                   {studio.studioACF.sectionEnd.content && (
-                    <div tw="text-lg col-span-12 md:col-span-6 md:col-start-7">
+                    <div tw="text-lg col-span-12 lg:col-span-6 lg:col-start-7">
                       {parse(studio.studioACF.sectionEnd.content)}
                     </div>
                   )}

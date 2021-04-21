@@ -1,6 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
 import { Helmet } from "react-helmet";
-import parse from "html-react-parser";
 import { gsap, Power1 } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Link } from "gatsby";
