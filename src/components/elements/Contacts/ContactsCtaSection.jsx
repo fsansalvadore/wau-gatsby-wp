@@ -192,6 +192,7 @@ const ContentCtaCanvas = ({ ctaSectionRef, ...otherProps }) => {
   );
 };
 
+// eslint-disable-next-line import/no-default-export
 export default ({ className, lang, ...props }) => {
   const ctaSectionRef = useRef(null);
 
@@ -209,7 +210,11 @@ export default ({ className, lang, ...props }) => {
       />
       <GridMaxWidthContainer>
         <ContactsTextBlock
-          title="Raccontaci i tuoi progetti"
+          title={
+            lang === "it"
+              ? "Raccontaci i tuoi progetti"
+              : "Tell us your projects"
+          }
           content={
             lang === "it"
               ? "La qualità del nostro ascolto è pari a quella delle nostre soluzioni. Siamo pronti a far incontrare le tue esigenze con la nostra voglia di fare. E garantire al tuo progetto un effetto WAU."
