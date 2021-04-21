@@ -1,18 +1,19 @@
-import React from "react"
-import { Link } from "gatsby"
+import React from "react";
+import { Link } from "gatsby";
 
-import Layout from "../../LayoutComponent"
+import Layout from "../../LayoutComponent";
 
-const TeamPage = props => {
+const TeamPage = (props) => {
   const { content, title } = props.pageContext;
 
   return (
     <Layout>
       <h1>{title}</h1>
-      <article dangerouslySetInnerHTML={{ __html: content }}/>
+      <article dangerouslySetInnerHTML={{ __html: content }} />
       <Link to="/">Go to Home Page</Link>
     </Layout>
-  )
-}
+  );
+};
 
-export default TeamPage
+// eslint-disable-next-line import/no-default-export
+export default TeamPage;
