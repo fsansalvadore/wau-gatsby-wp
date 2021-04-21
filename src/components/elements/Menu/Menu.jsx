@@ -1,19 +1,19 @@
-import React, { useEffect, useRef, useState } from 'react'
-import { useStaticQuery, graphql, Link } from "gatsby"
-import styled from 'styled-components'
-import { motion } from 'framer-motion'
-import { transition } from '../../../helpers/framer-defaults'
-import tw from 'twin.macro'
+import React, { useEffect, useState } from "react";
+import { useStaticQuery, graphql, Link } from "gatsby";
+import styled from "styled-components";
+import { motion } from "framer-motion";
+import tw from "twin.macro";
+import { transition } from "../../../helpers/framer-defaults";
 
-import LanguageSelector from '../LanguageSelector'
-import SocialIcons from '../SocialIcons/SocialIcons'
+import LanguageSelector from "../LanguageSelector";
+import SocialIcons from "../SocialIcons/SocialIcons";
 
 const MenuContainer = styled(motion.div)`
-    position: fixed;
-    width: 100vw;
-    height: 100vh;
-    z-index: 101;
-`
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  z-index: 101;
+`;
 const MenuSlider = styled(motion.div)`
     min-height: 550px;
     z-index: 99;
@@ -77,7 +77,10 @@ const MenuSlider = styled(motion.div)`
     }
     
     @media screen and (min-width: 768px) {
-        width: 60%;
+      & {
+
+        ${tw`width[60%]`}
+      }
 
         .menu-top {
             max-height: auto;
@@ -94,168 +97,202 @@ const MenuSlider = styled(motion.div)`
     }
 `;
 
-
 export const DimOverlay = styled(motion.div)`
-    position: fixed;
-    width: 100vw;
-    height: 100vh;
-    z-index: 50;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.25);
-    display: none;
-`
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  z-index: 50;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.25);
+  display: none;
+`;
 
 const sliderVariants = {
-    initial: {
-        x: "100%"
-    },
-    show: {
-        x: 0,
-    },
-    hidden: {
-        x: "100%"
-    }
-}
+  initial: {
+    x: "100%",
+  },
+  show: {
+    x: 0,
+  },
+  hidden: {
+    x: "100%",
+  },
+};
 
 export const menuContainer = {
-    initial: {
-        display: "none",
+  initial: {
+    display: "none",
+  },
+  hidden: {
+    display: "block",
+    delay: 0.4,
+    transitionEnd: {
+      display: "none",
     },
-    hidden: { 
-        display: "block",
-        delay: 0.4,
-        transitionEnd: {
-            display: "none",
-        },
-    },
-    show: {
-        display: "block",
-    }
-}
+  },
+  show: {
+    display: "block",
+  },
+};
 
 export const menuDim = {
-    initial: {
-        opacity: 0,
-        display: "none",
+  initial: {
+    opacity: 0,
+    display: "none",
+  },
+  hidden: {
+    opacity: 0,
+    display: "block",
+    transitionEnd: {
+      display: "none",
     },
-    hidden: { 
-        opacity: 0,
-        display: "block",
-        transitionEnd: {
-            display: "none",
-        },
-    },
-    show: {
-        opacity: 1,
-        display: "block",
-    }
-}
+  },
+  show: {
+    opacity: 1,
+    display: "block",
+  },
+};
 
-const Menu = ({lang, isOpen}) => {
-    const data = useStaticQuery(graphql`
-        query GET_MENU_BY_NAME {
-            wordpress {
-                menus {
-                    nodes {
-                        count
-                        name
-                        menuItems {
-                            nodes {
-                                id
-                                databaseId
-                                title
-                                url
-                                cssClasses
-                                description
-                                label
-                                linkRelationship
-                                target
-                                parentId
-                                path
-                            }
-                        }
-                    }
-                }
+const Menu = ({ lang, isOpen }) => {
+  const data = useStaticQuery(graphql`
+    query GET_MENU_BY_NAME {
+      wordpress {
+        menus {
+          nodes {
+            count
+            name
+            menuItems {
+              nodes {
+                id
+                databaseId
+                title
+                url
+                cssClasses
+                description
+                label
+                linkRelationship
+                target
+                parentId
+                path
+              }
             }
+          }
         }
-    `)
+      }
+    }
+  `);
 
-    const [location, setLocation] = useState("")
-    const [socialMenu, setSocialMenu] = useState(null)
-    
-    useEffect(() => {
-        if (typeof window !== `undefined`) {
-            setLocation(window.location.href)
-        }
-    }, [setLocation])
-    
-    useEffect(() => {
-        if (typeof window !== `undefined`) {
-            setSocialMenu(data.wordpress.menus.nodes.find(node => node.name === "Social"))
-        }
-    }, [setLocation])
+  const [location, setLocation] = useState("");
+  const [socialMenu, setSocialMenu] = useState(null);
 
-    return (
-        <MenuContainer
-            variants={menuContainer}
-            animate={isOpen ? "show" : "hidden"}
-            initial="initial"
-            exit="hidden"
-            transition={{...transition, duration: 0.4}}
-        >
-            <MenuSlider
-                variants={sliderVariants}
-                animate={isOpen ? "show" : "hidden"}
-                initial="initial"
-                transition={{...transition, duration: 0.4}}
-            >
-                <div className="menu-top">
-                    <ul>
-                        {
-                            lang === "it" ?
-                            data.wordpress.menus.nodes.find(node => node.name === "Menu ita").menuItems.nodes.map(item => (
-                                <li key={item.id}>
-                                    <Link to={item.path.replace("/dev/wau/wp", "")} activeClassName="active-menuLink" className={location.includes(item.label.toLowerCase()) ? "active-menuLink" : ""}>{item.label}</Link>
-                                </li>
-                            )) :
-                            data.wordpress.menus.nodes.find(node => node.name === "Menu eng").menuItems.nodes.map(item => (
-                                <li key={item.id}>
-                                    <Link to={item.path.replace("/dev/wau/wp", "")} activeClassName="active-menuLink" className={location.includes(item.label.toLowerCase()) ? "active-menuLink" : ""}>{item.label}</Link>
-                                </li>
-                            ))
+  useEffect(() => {
+    if (typeof window !== `undefined`) {
+      setLocation(window.location.href);
+    }
+  }, [setLocation]);
+
+  useEffect(() => {
+    if (typeof window !== `undefined`) {
+      setSocialMenu(
+        data.wordpress.menus.nodes.find((node) => node.name === "Social")
+      );
+    }
+  }, [data.wordpress.menus.nodes]);
+
+  return (
+    <MenuContainer
+      variants={menuContainer}
+      animate={isOpen ? "show" : "hidden"}
+      initial="initial"
+      exit="hidden"
+      transition={{ ...transition, duration: 0.4 }}
+    >
+      <MenuSlider
+        variants={sliderVariants}
+        animate={isOpen ? "show" : "hidden"}
+        initial="initial"
+        transition={{ ...transition, duration: 0.4 }}
+      >
+        <div className="menu-top">
+          <ul>
+            {lang === "it"
+              ? data.wordpress.menus.nodes
+                  .find((node) => node.name === "Menu ita")
+                  .menuItems.nodes.map((item) => (
+                    <li key={item.id}>
+                      <Link
+                        to={item.path.replace("/dev/wau/wp", "")}
+                        activeClassName="active-menuLink"
+                        className={
+                          location.includes(item.label.toLowerCase())
+                            ? "active-menuLink"
+                            : ""
                         }
-                    </ul>
-                </div>
-                <div className="menu-bottom">
-                    <div className="menu-bottom-info">
-                        <div className="menu-footer-info">
-                            <h3>WAU ARCHITETTI</h3>
-                            <div tw="opacity-70 text-sm mb-8 pt-2">
-                                <a target="_blank" href="https://www.google.com/maps/place/Via+Po,+1,+10124+Torino+TO/data=!4m2!3m1!1s0x47886d7075788f65:0xfbab35a5fc5276c2?sa=X&ved=2ahUKEwjD8czu4onuAhXJ5KQKHc0nCyUQ8gEwAHoECAYQAQ">Via Po, 1 - 10124 Torino, Italia</a>
-                                <p>T <a target="_blank" href="tel:+390118127237">+39 011 812 7237</a></p>
-                            </div>
-                        </div>
-                        <div className="social-icons">
-                            <SocialIcons menu={socialMenu} />
-                        </div>
-                    </div>
-                    <div className="lang-container" tw="mt-4 lg:mt-0">
-                        <LanguageSelector />
-                    </div>
-                </div>
-            </MenuSlider>
-            <DimOverlay
-                id="dim-overlay"
-                variants={menuDim}
-                initial="initial"
-                animate={isOpen ? "show" : "hidden"}
-                transition={{...transition, duration: 0.4}}    
-            />
-        </MenuContainer>
-    )
-}
+                      >
+                        {item.label}
+                      </Link>
+                    </li>
+                  ))
+              : data.wordpress.menus.nodes
+                  .find((node) => node.name === "Menu eng")
+                  .menuItems.nodes.map((item) => (
+                    <li key={item.id}>
+                      <Link
+                        to={item.path.replace("/dev/wau/wp", "")}
+                        activeClassName="active-menuLink"
+                        className={
+                          location.includes(item.label.toLowerCase())
+                            ? "active-menuLink"
+                            : ""
+                        }
+                      >
+                        {item.label}
+                      </Link>
+                    </li>
+                  ))}
+          </ul>
+        </div>
+        <div className="menu-bottom">
+          <div className="menu-bottom-info">
+            <div className="menu-footer-info">
+              <h3>WAU ARCHITETTI</h3>
+              <div tw="opacity-70 text-sm mb-8 pt-2">
+                <a
+                  target="_blank"
+                  href="https://www.google.com/maps/place/Via+Po,+1,+10124+Torino+TO/data=!4m2!3m1!1s0x47886d7075788f65:0xfbab35a5fc5276c2?sa=X&ved=2ahUKEwjD8czu4onuAhXJ5KQKHc0nCyUQ8gEwAHoECAYQAQ"
+                >
+                  Via Po, 1 - 10124 Torino, Italia
+                </a>
+                <p>
+                  T{" "}
+                  <a target="_blank" href="tel:+390118127237">
+                    +39 011 812 7237
+                  </a>
+                </p>
+              </div>
+            </div>
+            <div className="social-icons">
+              <SocialIcons menu={socialMenu} />
+            </div>
+          </div>
+          <div className="lang-container" tw="mt-4 lg:mt-0">
+            <LanguageSelector />
+          </div>
+        </div>
+      </MenuSlider>
+      <DimOverlay
+        id="dim-overlay"
+        variants={menuDim}
+        initial="initial"
+        animate={isOpen ? "show" : "hidden"}
+        transition={{ ...transition, duration: 0.4 }}
+      />
+    </MenuContainer>
+  );
+};
 
-export default Menu
+// eslint-disable-next-line import/no-default-export
+export default Menu;
