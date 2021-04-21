@@ -78,22 +78,21 @@ const MenuSlider = styled(motion.div)`
     
     @media screen and (min-width: 768px) {
       & {
-
         ${tw`width[60%]`}
       }
 
-        .menu-top {
-            max-height: auto;
+      .menu-top {
+          max-height: auto;
 
-            a {
-                line-height: 2.4rem;
-            }
-        }
-        
-        .menu-bottom {
-            flex-direction: row;
-            justify-content: space-between;
-        }
+          a {
+              line-height: 2.4rem;
+          }
+      }
+      
+      .menu-bottom {
+          flex-direction: row;
+          justify-content: space-between;
+      }
     }
 `;
 
