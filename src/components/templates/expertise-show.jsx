@@ -162,28 +162,6 @@ const ExpertisePage = (props) => {
             )}
           </div>
         </Heading>
-        {featuredImage && (
-          <figure className="cover-image" tw="px-8 md:px-16">
-            {data.wordpress.expertises.nodes.find(
-              (expertise) => expertise.title === title
-            ).featuredImage.node.imageFile ? (
-              <Img
-                tw="relative w-full h-64 top-0 right-0 bottom-0 left-0"
-                fixed={
-                  data.wordpress.expertises.nodes.find(
-                    (expertise) => expertise.title === title
-                  ).featuredImage.node.imageFile.childImageSharp.fixed
-                }
-              />
-            ) : (
-              <img
-                src={featuredImage && featuredImage.node.sourceUrl}
-                alt={featuredImage && featuredImage.node.altText}
-                tw="relative w-full h-64 top-0 right-0 bottom-0 left-0"
-              />
-            )}
-          </figure>
-        )}
         <article tw="w-full flex justify-center pt-4 pb-8 md:pb-16">
           <GridMaxWidthContainer
             className="expertise-content"
