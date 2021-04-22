@@ -68,7 +68,7 @@ export const StyledIntroContainer = styled.div`
     color: #111;
     text-decoration: none;
     padding: 10px 30px;
-    border: 1px solid transparent;
+    border: 1px solid black;
     position: fixed;
     top: auto;
     bottom: 15%;
