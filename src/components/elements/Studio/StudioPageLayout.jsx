@@ -194,11 +194,11 @@ const StudioPageLayout = ({ data }) => {
                   {studio.studioACF.sectionApproach.title && (
                     <SectionTextBlock
                       title={studio.studioACF.sectionApproach.title}
-                      tw="col-span-full lg:col-span-6"
+                      tw="col-span-full xl:col-span-6"
                     />
                   )}
                   {studio.studioACF.sectionApproach.content && (
-                    <div tw="text-lg col-span-12 lg:col-span-6 lg:col-start-7">
+                    <div tw="text-lg col-span-12 xl:col-span-6 xl:col-start-7">
                       {parse(studio.studioACF.sectionApproach.content)}
                     </div>
                   )}
@@ -229,11 +229,11 @@ const StudioPageLayout = ({ data }) => {
                   {studio.studioACF.sectionEnd.title && (
                     <SectionTextBlock
                       title={studio.studioACF.sectionEnd.title}
-                      tw="col-span-full lg:col-span-6"
+                      tw="col-span-full xl:col-span-6"
                     />
                   )}
                   {studio.studioACF.sectionEnd.content && (
-                    <div tw="text-lg col-span-12 lg:col-span-6 lg:col-start-7">
+                    <div tw="text-lg col-span-12 xl:col-span-6 xl:col-start-7">
                       {parse(studio.studioACF.sectionEnd.content)}
                     </div>
                   )}
