@@ -6,7 +6,7 @@ import { Link } from "gatsby";
 import TextLoop from "react-text-loop";
 import "twin.macro";
 import WauLogo from "../../../assets/WAU-Logo.svg";
-import WauVideo from "../../../assets/Wau-Architetti--SOCIAL-.mp4";
+import WauVideoPoster from "../../../assets/Wau-Architetti-cut.gif";
 import Layout from "../../LayoutComponent";
 import GridMaxWidthContainer from "../Atoms/GridMaxWidthContainer";
 import SectionTextBlock from "../Atoms/SectionTextBlock";
@@ -168,12 +168,27 @@ const HomePageLayout = ({ lang, data, ...otherProps }) => {
                   width="900"
                   height="500"
                   controls={false}
-                  poster="../../../assets/WAU-videoPoster.jpg"
+                  poster={WauVideoPoster}
                   loop
                   autoPlay
                   muted
                 >
-                  <source src={`${WauVideo}`} type="video/mp4" />
+                  <source
+                    src="/assets/Wau-Architetti-cut.mp4"
+                    type="video/mp4"
+                  />
+                  <source
+                    src="/assets/Wau-Architetti-cut.webm"
+                    type="video/webm"
+                  />
+                  <source
+                    src="/assets/Wau-Architetti-cut.ogg"
+                    type="video/ogg"
+                  />
+                  <source
+                    src="/assets/Wau-Architetti-cut.ogm"
+                    type="video/ogg"
+                  />
                   Your browser does not support the video tag.
                 </video>
               </div>
