@@ -9,7 +9,7 @@ module.exports = {
     url: "https://wauarchitetti.com/", // No trailing slash allowed!
     siteUrl: `https://wauarchitetti.com/`,
     image: "src/images/Wau-Architetti-social.jpg", // Path to your image you placed in the 'static' folder
-    twitterUsername: ""
+    twitterUsername: "",
   },
   plugins: [
     {
@@ -22,13 +22,13 @@ module.exports = {
       },
     },
     {
-      resolve: 'gatsby-plugin-i18n',
-      options: {        
-        langKeyDefault: 'it',
-        langKeyForNull: 'it ',
+      resolve: "gatsby-plugin-i18n",
+      options: {
+        langKeyDefault: "it",
+        langKeyForNull: "it ",
         prefixDefault: false,
-        useLangKeyLayout: false
-      }
+        useLangKeyLayout: false,
+      },
     },
     // {
     //   resolve: `gatsby-source-filesystem`,
@@ -41,9 +41,9 @@ module.exports = {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,
-        path: `${__dirname}/src/images/`
+        path: `${__dirname}/src/images/`,
         // path: path.join(__dirname, `src`, `images`),
-      }
+      },
     },
     {
       resolve: `gatsby-plugin-manifest`,
@@ -66,12 +66,12 @@ module.exports = {
     // },
     `gatsby-plugin-sass`,
     {
-        resolve: `gatsby-plugin-styled-components`,
-        options: {
-            // Add any options here
-        },
+      resolve: `gatsby-plugin-styled-components`,
+      options: {
+        // Add any options here
+      },
     },
     "gatsby-transformer-sharp",
     "gatsby-plugin-sharp",
-  ]
-}
+  ],
+};
