@@ -6,11 +6,14 @@ import Heading from "../../elements/Heading/Heading";
 import HeadingIntroHalf from "../../elements/Heading/HeadingIntroHalf";
 import TeamMemberCard from "../../elements/Team/TeamMemberCard";
 import GridMaxWidthContainer from "../../elements/Atoms/GridMaxWidthContainer";
+import { MemberModal } from "./MemberModal";
 
 const TeamPageLayout = ({ data, lang }) => {
   const [founders, setFounders] = useState(null);
   const [teamMembers, setTeamMembers] = useState(null);
   const [collaborators, setCollaborators] = useState(null);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [activeMember, setActiveMember] = useState(null);
   const [page, setPage] = useState(null);
 
   useEffect(() => {
@@ -18,7 +21,7 @@ const TeamPageLayout = ({ data, lang }) => {
       setPage(data.wordpress.pages.nodes[0]);
       // console.log("data", data)
     }
-  }, [data, setPage]);
+  }, [data]);
 
   useEffect(() => {
     if (data && data.wordpress.team_members) {
@@ -60,7 +63,7 @@ const TeamPageLayout = ({ data, lang }) => {
         )
       );
     }
-  }, [data, setFounders, setTeamMembers, setCollaborators]);
+  }, [data]);
 
   return (
     <Layout>
@@ -68,6 +71,11 @@ const TeamPageLayout = ({ data, lang }) => {
         <title>WAU Architetti • Team</title>
       </Helmet>
       <div tw="background-color[#ffffff]">
+        <MemberModal
+          activeMember={activeMember}
+          isOpen={modalIsOpen}
+          setModalIsOpen={setModalIsOpen}
+        />
         <Heading>
           <HeadingIntroHalf
             breadcrumb={page && page.pagesACF && page.pagesACF.titoletto}
@@ -96,6 +104,9 @@ const TeamPageLayout = ({ data, lang }) => {
                       featuredImage={member.featuredImage}
                       date={member.date}
                       afc={member.teamMemberAFC}
+                      setModalIsOpen={setModalIsOpen}
+                      setActiveMember={setActiveMember}
+                      member={member}
                     />
                   </li>
                 ))
@@ -131,6 +142,9 @@ const TeamPageLayout = ({ data, lang }) => {
                       featuredImage={member.featuredImage}
                       date={member.date}
                       afc={member.teamMemberAFC}
+                      setModalIsOpen={setModalIsOpen}
+                      setActiveMember={setActiveMember}
+                      member={member}
                     />
                   </li>
                 ))

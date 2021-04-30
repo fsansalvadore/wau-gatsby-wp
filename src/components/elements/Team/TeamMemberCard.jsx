@@ -1,16 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import tw, { css } from "twin.macro";
 import { motion } from "framer-motion";
 import styled from "styled-components";
 import LazyLoad from "react-lazyload";
 import Img from "gatsby-image";
-import parse from "html-react-parser";
+// import parse from "html-react-parser";
+import Button from "../Atoms/Button";
 import {
   transition,
   teamMemberFilterVariants,
   teamMemberContentVariants,
   teamMemberDescriptionVariants,
 } from "../../../helpers/framer-defaults";
+
+const ButtonWrapper = tw.div`mt-10 z-10`;
 
 const StyledTeamMemberCard = styled(motion.div)(() => [
   css`
@@ -52,8 +55,28 @@ const StyledTeamMemberCard = styled(motion.div)(() => [
   `,
 ]);
 
-const TeamMemberCard = ({ title, date, featuredImage, afc, ...otherProps }) => {
+const TeamMemberCard = ({
+  title,
+  date,
+  featuredImage,
+  afc,
+  member,
+  setActiveMember,
+  setModalIsOpen,
+  ...otherProps
+}) => {
   const [isHovered, setIsHovered] = useState(false);
+
+  useEffect(() => {
+    console.log("Card member:", member);
+  });
+
+  const setModal = () => {
+    if (!!member) {
+      setModalIsOpen(true);
+      setActiveMember(member);
+    }
+  };
 
   return (
     <LazyLoad height={500}>
@@ -63,8 +86,9 @@ const TeamMemberCard = ({ title, date, featuredImage, afc, ...otherProps }) => {
         transition={{ ...transition, duration: 0.8 }}
         tw="relative flex items-end w-full overflow-hidden"
         onMouseEnter={() => setIsHovered(true)}
-        onTap={() => setIsHovered(!isHovered)}
+        // onTap={() => setIsHovered(!isHovered)}
         onMouseLeave={() => setIsHovered(false)}
+        onClick={() => setModal(member)}
         {...otherProps}
       >
         <div tw="w-full relative" className="team-card-container">
@@ -76,12 +100,7 @@ const TeamMemberCard = ({ title, date, featuredImage, afc, ...otherProps }) => {
             tw="absolute w-full h-full bottom-0 py-4 px-4 md:py-8 md:px-8 z-20"
           >
             <div tw="overflow-hidden pt-1 mb-px">
-              <motion.h2
-                // initial={{y: 50}}
-                // animate={{y: 0}}
-                // transition={{...transition, delay: 0.1, duration: 1}}
-                tw="pb-2"
-              >
+              <motion.h2 tw="pb-2">
                 {title ? title : "Missing member name"}
               </motion.h2>
             </div>
@@ -90,21 +109,12 @@ const TeamMemberCard = ({ title, date, featuredImage, afc, ...otherProps }) => {
                 <motion.p>{afc.ruolo}</motion.p>
               </div>
             )}
-            {afc && afc.descrizione && (
-              <motion.div
-                tw="absolute left-0 top-24 right-0 overflow-hidden overflow-y-scroll px-4 md:px-8 mt-4"
-                className="description"
-                variants={teamMemberDescriptionVariants}
-                animate={isHovered ? "hovered" : "hidden"}
-                transition={{ ...transition, delay: 2 }}
-                initial="hidden"
-              >
-                {parse(afc.descrizione)}
-              </motion.div>
-            )}
+            <ButtonWrapper>
+              <Button>Leggi di più</Button>
+            </ButtonWrapper>
             {afc && afc.email && (
               <motion.div
-                tw="absolute bottom-4 mb-4"
+                tw="absolute bottom-4 mb-4 hidden md:block text-sm"
                 variants={teamMemberDescriptionVariants}
                 animate={isHovered ? "hovered" : "hidden"}
                 initial="hidden"
