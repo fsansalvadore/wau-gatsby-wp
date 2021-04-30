@@ -3,6 +3,14 @@ import styled from "styled-components";
 
 const StyledStudioPage = styled.div(() => [
   css`
+    @media screen and (max-width: 620px) {
+      .value-items {
+        margin-left: calc(50% - 50vw);
+        margin-right: calc(50% - 50vw);
+        max-width: 1000%;
+        width: auto;
+      }
+    }
     .studio-content > div {
       // max-width: 1600px;
 

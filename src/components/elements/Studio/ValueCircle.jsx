@@ -13,15 +13,12 @@ export default ({ value, index }) => {
 
 const StyledValueCircle = styled.div(() => [
   css`
-    ${tw`w-auto height[100px] sm:width[23vw] sm:height[23vw] max-width[200px] max-height[200px] md:max-width[270px] md:max-height[270px] flex items-center justify-center rounded-full border-0 border-none sm:border-2 sm:border-solid border-gray-800 opacity-50 hover:opacity-100 transition-all transform duration-200 ease-in-out cursor-pointer`}
+    ${tw`width[30vw] height[30vw] sm:max-width[200px] sm:max-height[200px] md:max-width[270px] md:max-height[270px] flex items-center justify-center rounded-full border-2 border-solid border-gray-800 opacity-50 hover:opacity-100 transition-all transform duration-200 ease-in-out cursor-pointer`}
     p {
-      ${tw`font-bold! text-base`}
+      ${tw`font-bold! text-10 sm:text-base`}
     }
 
     &.active {
-      p {
-        ${tw`underline sm:no-underline`}
-      }
       transition: transform 0.3s ease;
       border-color: var(--green) !important;
       opacity: 1 !important;
