@@ -30,6 +30,8 @@
     "gatsby": "^2.26.1",
     "gatsby-background-image": "^1.3.1",
     "gatsby-image": "^2.9.0",
+    "gatsby-plugin-gdpr-cookies": "^2.0.0",
+    "gatsby-plugin-google-analytics": "^3.4.0",
     "gatsby-plugin-i18n": "^1.0.1",
     "gatsby-plugin-manifest": "^2.11.0",
     "gatsby-plugin-sass": "^2.8.0",
