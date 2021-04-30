@@ -20,7 +20,7 @@ const MenuSlider = styled(motion.div)`
     background: linear-gradient(317.03deg, var(--green) -33.22%, var(--purple) 78.8%);
     will-change: width, transform;
     transition: width 0.3s ease;
-    ${tw`absolute w-full h-full right-0 top-0 bottom-0 flex flex-col justify-between p-8 md:p-16`}
+    ${tw`absolute w-full overflow-y-scroll h-full right-0 top-0 bottom-0 flex flex-col justify-between p-8 md:p-16`}
 
     * {
       color: var(--white);
@@ -34,8 +34,7 @@ const MenuSlider = styled(motion.div)`
         max-height: 70vh;
 
         a {
-            padding: 5px 0;
-            ${tw`text-2xl lg:text-3xl block`}
+            ${tw`text-2xl padding[2px 0] sm:padding[5px 0] lg:text-3xl block`}
             line-height: 2rem;
             opacity: 0.3;
             transition: opacity 0.15s ease, padding: 0.2s ease;
@@ -68,7 +67,7 @@ const MenuSlider = styled(motion.div)`
     .menu-bottom {
         display: flex;
         flex-direction: column;
-        ${tw`absolute bottom-8 lg:bottom-auto lg:relative`}
+        ${tw`my-8 bottom-8 lg:bottom-auto lg:relative`}
 
         .lang-container {
             display: flex;
