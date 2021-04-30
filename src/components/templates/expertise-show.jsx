@@ -18,7 +18,7 @@ const ExpertisePage = (props) => {
     expertiseACF,
     featuredImage,
     seo,
-    tags,
+    // tags,
     title,
     lang,
   } = props.pageContext;

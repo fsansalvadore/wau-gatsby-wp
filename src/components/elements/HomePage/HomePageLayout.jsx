@@ -71,6 +71,7 @@ const HomePageLayout = ({ lang, data, ...otherProps }) => {
       typeof document !== `undefined` &&
       !!acf
     ) {
+      // eslint-disable-next-line react-hooks/exhaustive-deps
       introTextTL = gsap.timeline({
         scrollTrigger: {
           trigger: indexRef.current,

@@ -59,7 +59,7 @@ const ProjectPreviewCard = ({
           >
             <div tw="mb-4">
               <motion.p>
-                {projectdate ? `${projectdate.split("/").slice(-1)[0]} - ` : ""}
+                {/* {projectdate ? `${projectdate.split("/").slice(-1)[0]} - ` : ""} */}
                 {location}
               </motion.p>
             </div>

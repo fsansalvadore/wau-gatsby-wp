@@ -49,12 +49,15 @@ export default ({ lang }) => {
   return (
     <StyledFooter>
       <GridMaxWidthContainer>
-        <div tw="col-span-12 text-center lg:col-span-5 lg:text-left">
+        <div tw="col-span-12 text-center xl:col-span-5 xl:text-left">
           <Link to={lang == "it" ? "/" : "/en"}>
             <Logo isMenuLight />
           </Link>
           <div tw="mt-6 text-sm">
-            <p tw="opacity-80">P.IVA 12437940013</p>
+            <p tw="inline mr-4 mb-1 text-sm opacity-80">
+              WAU ARCHITETTI SRL Società di Ingegneria
+            </p>
+            <p tw="opacity-80 mt-1">P.IVA 12437940013</p>
             <p tw="block mt-1 mb-6">
               <a href="https://www.google.com/maps/place/WAU/@45.0702929,7.6850724,17z/data=!3m1!4b1!4m5!3m4!1s0x47886d70758553ef:0x8d4b755f8f78c8db!8m2!3d45.0702929!4d7.6872611">
                 Via Po, 1 - Torino - 10124 Italia
@@ -86,7 +89,10 @@ export default ({ lang }) => {
                   ))}
           </ul>
         </div>
-        <div className="footer-list">
+        <div
+          className="footer-list"
+          tw="col-span-12 md:col-span-4! xl:col-span-2"
+        >
           <h5>Chat</h5>
           <ul>
             <li>
@@ -97,20 +103,18 @@ export default ({ lang }) => {
             </li>
           </ul>
         </div>
-        <div className="footer-list">
+        <div
+          className="footer-list"
+          tw="col-span-12 md:col-span-4! xl:col-span-2"
+        >
           <h5>Seguici</h5>
-          {/* <ul>
-            <li>
-              <a href="https://www.facebook.com/wau.architetti">Facebook</a>
-            </li>
-            <li>
-              <a href="https://www.instagram.com/wau_architetti">Instagram</a>
-            </li>
-          </ul> */}
           {!!socialMenu && <SocialIcons menu={socialMenu} />}
         </div>
-        <div className="footer-lang-container" tw="col-span-12 lg:col-span-1">
-          <ul>
+        <div
+          className="footer-lang-container"
+          tw="col-span-12 md:col-span-1 xl:col-span-1"
+        >
+          <ul tw="flex justify-center md:justify-end">
             <li>
               <a href="/">ITA</a>
             </li>
@@ -121,10 +125,12 @@ export default ({ lang }) => {
         </div>
         <hr tw="col-span-full my-8 opacity-50" />
         <div
-          tw="col-span-12 text-center lg:text-left lg:col-span-6"
+          tw="col-span-12 text-center xl:text-left xl:col-span-6"
           className="footer-inline-list"
         >
-          <p tw="inline mr-4 text-sm">© WAU {new Date().getFullYear()}</p>
+          <p tw="inline mr-4 mb-1 text-sm opacity-80">
+            © Copyright {new Date().getFullYear()}
+          </p>
           <ul tw="inline">
             <li>
               <Link
@@ -142,7 +148,7 @@ export default ({ lang }) => {
           </ul>
         </div>
         <div
-          tw="col-span-12 text-center mt-6 lg:mt-0 lg:text-right lg:col-span-6 flex justify-center lg:justify-end"
+          tw="col-span-12 text-center mt-6 xl:mt-0 xl:text-right xl:col-span-6 flex justify-center xl:justify-end"
           className="footer-inline-list"
         >
           <ul>
@@ -181,7 +187,7 @@ const StyledFooter = styled.footer(() => [
       ${tw`opacity-80 hover:opacity-100 visited:text-white text-white`}
     }
     .footer-list {
-      ${tw`col-span-12 md:col-span-4 lg:col-span-2 text-center md:text-left my-2`}
+      ${tw`col-span-12 md:col-span-3 xl:col-span-2! text-center md:text-left my-2`}
 
       li {
         ${tw`text-sm mb-2`}

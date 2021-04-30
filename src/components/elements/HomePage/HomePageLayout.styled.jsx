@@ -22,7 +22,7 @@ export const StyledVisionSectionCanvas = styled(AnimatedCanvas)`
   width: 100%;
 
   @media (min-width: 768px) {
-    width: 60% !important;
+    width: 57% !important;
   }
 `;
 

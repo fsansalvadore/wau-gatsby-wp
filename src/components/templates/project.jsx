@@ -335,7 +335,7 @@ const ProjectContainer = styled.div`
         }
       }
 
-      > .wp-block-image.size-large {
+      /* > .wp-block-image.size-large {
         grid-column: 1 / span 12;
         margin-left: calc(50% - 50vw);
         margin-right: calc(50% - 50vw);
@@ -346,7 +346,7 @@ const ProjectContainer = styled.div`
           width: 100%;
           height: auto;
         }
-      }
+      } */
 
       .wp-block-separator {
         ${tw`my-6 md:my-12 xl:my-24`}

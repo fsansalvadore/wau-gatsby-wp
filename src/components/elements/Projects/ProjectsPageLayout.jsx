@@ -50,7 +50,7 @@ const ProjectsPageLayout = ({ data, lang }) => {
           )
       );
     }
-  }, [setProjects, term, data.wordpress.projects]);
+  }, [term, data.wordpress.projects]);
 
   const handleChange = (value) => {
     setTerm(value.toLowerCase());
@@ -60,7 +60,7 @@ const ProjectsPageLayout = ({ data, lang }) => {
     if (data) {
       setPage(data.wordpress.pages.nodes[0]);
     }
-  }, [data, setPage]);
+  }, [data]);
 
   const tags = [];
 
