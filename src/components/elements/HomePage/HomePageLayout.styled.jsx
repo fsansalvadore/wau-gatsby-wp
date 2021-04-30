@@ -29,7 +29,7 @@ export const StyledVisionSectionCanvas = styled(AnimatedCanvas)`
 export const StyledIntroContainer = styled.div`
   width: 100%;
   position: relative !important;
-  height: 500vh !important;
+  height: 600vh !important;
   min-height: 2800px;
   display: flex;
   justify-content: center;

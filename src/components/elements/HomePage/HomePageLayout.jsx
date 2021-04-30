@@ -118,10 +118,10 @@ const HomePageLayout = ({ lang, data, ...otherProps }) => {
         .to(
           videoRef.current,
           {
-            duration: 0.5,
+            duration: 1,
             opacity: 1,
           },
-          "1.2"
+          "1.5"
         );
     }
   }, [introTextTL, ScrollTrigger, gsap.timeline, acf]);
@@ -227,7 +227,7 @@ const HomePageLayout = ({ lang, data, ...otherProps }) => {
               </section>
               <section
                 className="gradientBg"
-                tw="w-full py-32 lg:py-64 flex justify-center bg-blue-400"
+                tw="w-full py-32 flex justify-center bg-blue-400"
               >
                 <GridMaxWidthContainer>
                   {acf.sezioneExpertise && (
@@ -281,7 +281,7 @@ const HomePageLayout = ({ lang, data, ...otherProps }) => {
                   />
                 </GridMaxWidthContainer>
               </section>
-              <section tw="w-full z-30 py-32 lg:py-64 flex justify-center items-center bg-white">
+              <section tw="w-full z-30 py-32 flex justify-center items-center bg-white">
                 <GridMaxWidthContainer>
                   <div tw="col-span-full md:col-span-8 md:col-start-3">
                     <h4 tw="font-mono font-light mb-8 md:mb-16">

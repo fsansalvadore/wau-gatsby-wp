@@ -23,29 +23,29 @@ const ExpertisePage = (props) => {
     lang,
   } = props.pageContext;
 
-  const data = useStaticQuery(graphql`
-    query ExpertiseMediaQuery {
-      wordpress {
-        expertises(first: 100, where: { status: PUBLISH }) {
-          nodes {
-            title
-            featuredImage {
-              node {
-                sourceUrl(size: LARGE)
-                imageFile {
-                  childImageSharp {
-                    fixed(width: 1500, quality: 90) {
-                      ...GatsbyImageSharpFixed
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  `);
+  // const data = useStaticQuery(graphql`
+  //   query ExpertiseMediaQuery {
+  //     wordpress {
+  //       expertises(first: 100, where: { status: PUBLISH }) {
+  //         nodes {
+  //           title
+  //           featuredImage {
+  //             node {
+  //               sourceUrl(size: LARGE)
+  //               imageFile {
+  //                 childImageSharp {
+  //                   fixed(width: 1500, quality: 90) {
+  //                     ...GatsbyImageSharpFixed
+  //                   }
+  //                 }
+  //               }
+  //             }
+  //           }
+  //         }
+  //       }
+  //     }
+  //   }
+  // `);
 
   return (
     <Layout isMenuLight>
