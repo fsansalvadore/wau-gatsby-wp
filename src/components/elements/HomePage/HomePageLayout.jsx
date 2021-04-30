@@ -78,11 +78,11 @@ const HomePageLayout = ({ lang, data, ...otherProps }) => {
           start: "200px 10%",
           end: "center 20%",
           scrub: 2,
-          // markers: true,
-          onUpdate: ({ progress }) =>
+          onUpdate: ({ progress }) => [
             progress > 0.3
               ? ScrollProgressToggleOut()
               : ScrollProgressToggleIn(),
+          ],
         },
       });
 
@@ -125,6 +125,39 @@ const HomePageLayout = ({ lang, data, ...otherProps }) => {
         );
     }
   }, [introTextTL, ScrollTrigger, gsap.timeline, acf]);
+
+  const hideVideo = () => {
+    videoRef.current.style.display = "none";
+  };
+  const showVideo = () => {
+    videoRef.current.style.display = "flex";
+  };
+
+  let visionTL;
+  useEffect(() => {
+    if (typeof window !== `undefined` && typeof document !== `undefined`) {
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      visionTL = gsap.timeline({
+        scrollTrigger: {
+          trigger: ".vision-section",
+          start: "top bottom",
+          end: "bottom bottom",
+          onUpdate: ({ progress }) => [
+            progress > 0 ? hideVideo() : showVideo(),
+          ],
+        },
+      });
+
+      ScrollTrigger.defaults({
+        immediateRender: false,
+        ease: Power1.inOut,
+      });
+
+      visionTL.to(videoRef.current, {
+        display: "hidden",
+      });
+    }
+  }, [visionTL, visionSectionRef.current]);
 
   return (
     <Layout>
