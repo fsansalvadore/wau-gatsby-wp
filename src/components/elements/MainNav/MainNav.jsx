@@ -12,7 +12,7 @@ const Navbar = styled.div(({ isMenuLight }) => [
     position: fixed;
     z-index: 999;
     height: 80px;
-    ${tw`absolute w-full py-0 px-8 md:px-16 flex items-center justify-between`}
+    ${tw`absolute w-full py-0 px-4 sm:px-8 md:px-16 flex items-center justify-between`}
   `,
   isMenuLight &&
     css`
@@ -31,7 +31,7 @@ const FixedNavbar = styled(motion.div)(() => [
     background: ${(props) => (props.isOpen ? "transparent" : "var(--white)")};
     box-shadow: ${(props) =>
       props.isOpen ? "none" : "1px 0 1px rgba(0, 0, 0, 0.4)"};
-    ${tw`fixed w-full py-0 px-8 md:px-16 flex items-center justify-between`}
+    ${tw`fixed w-full py-0 px-4 sm:px-8 md:px-16 flex items-center justify-between`}
   `,
 ]);
 
