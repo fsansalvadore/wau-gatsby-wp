@@ -50,7 +50,7 @@ const StudioPageLayout = ({ data }) => {
         },
       ]);
     }
-  }, [data, setStudio, setValues]);
+  }, [data]);
 
   let interval;
 
@@ -66,7 +66,7 @@ const StudioPageLayout = ({ data }) => {
       }, 15000);
       return () => clearInterval(interval);
     }
-  }, [values, interval, counter]);
+  }, [values, counter]);
 
   useEffect(() => {
     if (typeof window !== `undefined`) {
