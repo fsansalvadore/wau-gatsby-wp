@@ -94,12 +94,12 @@ export const MemberModal = ({ isOpen, setModalIsOpen, activeMember }) => {
   const modalRef = useRef(null);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    if (typeof document !== `undefined`) {
-      if (isOpen) disableBodyScroll(modalRef.current);
-      else enableBodyScroll(modalRef.current);
-    }
-  }, [isOpen, modalRef]);
+  // useEffect(() => {
+  //   if (typeof document !== `undefined`) {
+  //     if (isOpen) disableBodyScroll(modalRef.current);
+  //     else enableBodyScroll(modalRef.current);
+  //   }
+  // }, [isOpen, modalRef]);
 
   useEffect(() => {
     console.log("activeMember", activeMember);
