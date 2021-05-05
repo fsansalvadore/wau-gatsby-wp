@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
-import tw, { css } from "twin.macro";
+import { css } from "twin.macro";
 import { Link } from "gatsby";
 import { motion } from "framer-motion";
 import styled from "styled-components";
 import LazyLoad from "react-lazyload";
 import Img from "gatsby-image";
-import { transition } from "../../../helpers/framer-defaults";
 // import { WPImage } from '../../WPImage/WPImage'
 import WAUFallback from "../../../assets/WAUFallback.svg";
 import { months } from "../../../helpers/utils";
@@ -43,12 +42,12 @@ const ArticlePreviewCard = ({ article, ...otherProps }) => {
               ? `/article/${article.slug}`
               : `/notizie/${article.slug}`
           }
-          tw="w-full grid grid-cols-9 row-gap[40px]"
+          tw="w-full grid grid-cols-9 row-gap[20px]"
           {...otherProps}
         >
           <div
             className="article-preview-image"
-            tw="relative flex items-center justify-center col-span-9 md:col-span-3 w-full overflow-hidden"
+            tw="relative flex items-center justify-center col-span-9 md:col-span-3 height[50vw] md:height[12vw] min-height[200px] w-full overflow-hidden"
           >
             {article.featuredImage && article.featuredImage.node.imageFile ? (
               <Img
@@ -56,12 +55,12 @@ const ArticlePreviewCard = ({ article, ...otherProps }) => {
                   article.featuredImage.node.imageFile.childImageSharp.fixed
                 }
                 // fluid={article.featuredImage.node.imageFile.childImageSharp.fluid}
-                tw=" top-0 right-0 bottom-0 left-0"
+                tw=""
                 alt={article.imgAlt ? article.imgAlt : "Image"}
               />
             ) : (
               <img
-                tw=" top-0 right-0 bottom-0 left-0"
+                tw=""
                 src={
                   article.featuredImage
                     ? article.featuredImage.node.sourceUrl
@@ -72,7 +71,7 @@ const ArticlePreviewCard = ({ article, ...otherProps }) => {
             )}
           </div>
           <div tw="col-span-9 md:col-start-4 md:col-span-6 pl-0 md:pl-8">
-            <h3 tw="text-4xl">{article.title}</h3>
+            <h3 tw="text-2xl md:text-3xl">{article.title}</h3>
             <p tw="mt-2 font-mono text-sm">
               <span tw="font-bold">{articleDate && articleDate}</span>
               {article.categories.nodes.length > 0 && (
