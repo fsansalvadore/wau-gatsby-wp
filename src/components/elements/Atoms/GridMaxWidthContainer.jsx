@@ -12,7 +12,7 @@ const StyledGridMaxWidthContainer = styled.div(() => [
 export default ({ children, ...props }) => {
   return (
     <StyledGridMaxWidthContainer
-      tw="relative w-full grid grid-cols-12 px-8 md:px-16"
+      tw="relative w-full grid grid-cols-12 px-4 sm:px-8 md:px-16"
       {...props}
     >
       {children}

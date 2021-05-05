@@ -7,7 +7,7 @@ import TextLoop from "react-text-loop";
 import "twin.macro";
 import WauLogo from "../../../assets/WAU-Logo.svg";
 import WauVideoMp4 from "../../../assets/Wau-Architetti-cut.mp4";
-// import WauVideoOgg from "../../../assets/Wau-Architetti-cut.ogg";
+// import WauVideoOgg from "../../../assets/Wau-Architetti-cut.ogm";
 import WauVideoWebM from "../../../assets/Wau-Architetti-cut.webm";
 import WauVideoPoster from "../../../assets/Wau-Architetti-cut.gif";
 import Layout from "../../LayoutComponent";

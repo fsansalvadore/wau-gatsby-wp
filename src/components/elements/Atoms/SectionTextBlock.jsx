@@ -111,7 +111,7 @@ const StyledContactsTextBlock = styled(motion.div)(
 
       .st-title {
         > * {
-          ${tw`text-4xl line-height[110%] lg:(text-5xl line-height[115%]) letter-spacing[-0.02rem] mb-8 w-3/4`}
+          ${tw`text-3xl line-height[110%] letter-spacing[-0.02rem] mb-8 w-full lg:(text-5xl line-height[115%] w-3/4)`}
         }
       }
     `,

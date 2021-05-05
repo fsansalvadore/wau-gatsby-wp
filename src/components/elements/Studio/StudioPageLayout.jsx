@@ -66,13 +66,13 @@ const StudioPageLayout = ({ data }) => {
       }, 15000);
       return () => clearInterval(interval);
     }
-  }, [values]);
+  }, [values, interval, counter]);
 
   useEffect(() => {
     if (typeof window !== `undefined`) {
       const items = document.querySelectorAll(".value-items li");
       items.forEach((item) => {
-        if (item.dataset.counter == counter) {
+        if (item.dataset.counter === counter) {
           item.querySelector("div").classList.add("active");
         }
       });
@@ -132,7 +132,11 @@ const StudioPageLayout = ({ data }) => {
                             onClick={() => setCounter(index)}
                             onMouseOver={() => setCounter(index)}
                           >
-                            <ValueCircle value={value} index={index} />
+                            <ValueCircle
+                              value={value}
+                              index={index}
+                              counter={counter}
+                            />
                           </li>
                         ))}
                     </ul>
