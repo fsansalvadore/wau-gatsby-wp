@@ -15,12 +15,12 @@ const Wrapper = styled.div(({ isOpen }) => [
 const WrapperContent = tw.div`relative h-screen w-full overflow-y-scroll lg:overflow-hidden`;
 const WrapperScroll = tw.div`relative h-auto flex flex-col lg:h-screen lg:items-center lg:flex-row`;
 const CloseIcon = styled.div`
-  ${tw`absolute right-0 flex items-center justify-center rounded-full border-2 border-white`}
+  ${tw`right-0 flex items-center justify-center rounded-full border-2 border-white`}
   width: 50px;
   height: 50px;
 
   span {
-    ${tw`bg-black ml-1 absolute`}
+    ${tw`bg-black absolute`}
     width: 18px;
     height: 2px;
 
@@ -96,10 +96,10 @@ export const MemberModal = ({ isOpen, setModalIsOpen, activeMember }) => {
 
   useEffect(() => {
     if (typeof document !== `undefined`) {
-      if (isOpen) disableBodyScroll(document.body);
-      else enableBodyScroll(document.body);
+      if (isOpen) disableBodyScroll(modalRef.current);
+      else enableBodyScroll(modalRef.current);
     }
-  }, [isOpen]);
+  }, [isOpen, modalRef]);
 
   useEffect(() => {
     console.log("activeMember", activeMember);

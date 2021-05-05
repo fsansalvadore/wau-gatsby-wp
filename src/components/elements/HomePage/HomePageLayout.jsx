@@ -127,10 +127,10 @@ const HomePageLayout = ({ lang, data, ...otherProps }) => {
   }, [introTextTL, ScrollTrigger, gsap.timeline, acf]);
 
   const hideVideo = () => {
-    videoRef.current.style.display = "none";
+    if (!!videoRef) videoRef.current.style.display = "none";
   };
   const showVideo = () => {
-    videoRef.current.style.display = "flex";
+    if (!!videoRef) videoRef.current.style.display = "flex";
   };
 
   let visionTL;
