@@ -160,7 +160,7 @@ export const StyledIntroContainer = styled.div`
     z-index: -2;
 
     p {
-      ${tw`text-2xl font-light line-height[110%]! max-width[200px] md:(text-3xl max-width[500px] line-height[100%]!)`}
+      ${tw`text-2xl font-light line-height[110%]! max-width[200px] md:(text-3xl max-width[300px] line-height[100%]!)`}
       text-align: center;
       color: white;
       letter-spacing: -0.02rem;

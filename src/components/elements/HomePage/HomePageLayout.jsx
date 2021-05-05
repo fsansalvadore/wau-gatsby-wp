@@ -95,7 +95,7 @@ const HomePageLayout = ({ lang, data, ...otherProps }) => {
         .to(
           introTextRef.current,
           {
-            duration: 2,
+            duration: 3,
             scale: 2,
           },
           indexRef.current
@@ -113,7 +113,7 @@ const HomePageLayout = ({ lang, data, ...otherProps }) => {
             duration: 0.5,
             opacity: 0,
           },
-          "1.2"
+          "1.4"
         )
         .to(
           videoRef.current,
