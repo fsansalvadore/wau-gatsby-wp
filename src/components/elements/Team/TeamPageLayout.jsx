@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
-import "twin.macro";
+import tw from "twin.macro";
 import Layout from "../../LayoutComponent";
 import Heading from "../../elements/Heading/Heading";
 import HeadingIntroHalf from "../../elements/Heading/HeadingIntroHalf";
 import TeamMemberCard from "../../elements/Team/TeamMemberCard";
 import GridMaxWidthContainer from "../../elements/Atoms/GridMaxWidthContainer";
 import { MemberModal } from "./MemberModal";
+
+const Role = tw.div`text-base`;
 
 const TeamPageLayout = ({ data, lang }) => {
   const [founders, setFounders] = useState(null);
@@ -176,7 +178,8 @@ const TeamPageLayout = ({ data, lang }) => {
                     )}`}
                     tw="p-px text-2xl mb-4"
                   >
-                    {collaborator.title}
+                    <div>{collaborator.title}</div>
+                    <Role>{collaborator.collaboratorsACF.ruolo}</Role>
                   </li>
                 ))}
               </ul>

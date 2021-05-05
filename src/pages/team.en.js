@@ -41,6 +41,9 @@ const TeamPageIta = () => {
           nodes {
             date
             title
+            collaboratorsACF {
+              ruolo
+            }
           }
         }
         pages(where: { status: PUBLISH, language: EN, title: "Team" }) {

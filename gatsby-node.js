@@ -143,6 +143,9 @@ const query = `
           slug
           id
           title(format: RENDERED)
+          collaboratorsACF {
+            ruolo
+          }
         }
       }
       pages(first: 100, where: { status: PUBLISH }) {
