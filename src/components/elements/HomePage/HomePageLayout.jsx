@@ -105,7 +105,7 @@ const HomePageLayout = ({ lang, data, ...otherProps }) => {
           {
             opacity: 1,
           },
-          0.4
+          0.6
         )
         .to(
           introTextRef.current,
