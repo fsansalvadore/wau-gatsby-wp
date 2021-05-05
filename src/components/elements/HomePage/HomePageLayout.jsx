@@ -143,7 +143,7 @@ const HomePageLayout = ({ lang, data, ...otherProps }) => {
           start: "top bottom",
           end: "bottom bottom",
           onUpdate: ({ progress }) => [
-            progress > 0 ? hideVideo() : showVideo(),
+            progress > 100 ? hideVideo() : showVideo(),
           ],
         },
       });
