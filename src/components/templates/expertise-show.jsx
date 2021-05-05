@@ -18,37 +18,12 @@ const ExpertisePage = (props) => {
     expertiseACF,
     featuredImage,
     seo,
-    // tags,
     title,
     lang,
   } = props.pageContext;
 
-  // const data = useStaticQuery(graphql`
-  //   query ExpertiseMediaQuery {
-  //     wordpress {
-  //       expertises(first: 100, where: { status: PUBLISH }) {
-  //         nodes {
-  //           title
-  //           featuredImage {
-  //             node {
-  //               sourceUrl(size: LARGE)
-  //               imageFile {
-  //                 childImageSharp {
-  //                   fixed(width: 1500, quality: 90) {
-  //                     ...GatsbyImageSharpFixed
-  //                   }
-  //                 }
-  //               }
-  //             }
-  //           }
-  //         }
-  //       }
-  //     }
-  //   }
-  // `);
-
   return (
-    <Layout isMenuLight>
+    <Layout>
       <Helmet>
         <title>
           {seo && seo.title
@@ -143,7 +118,7 @@ const ExpertisePage = (props) => {
           }`}
         />
       </Helmet>
-      <ExpertiseContainer className="gradientBg">
+      <ExpertiseContainer>
         <Heading>
           <p className="breadcrumbs mono">
             <Link to={lang.code === "EN" ? "/en/expertise/" : "/expertise/"}>

@@ -31,7 +31,7 @@ const Paragraph = styled.p`
 `;
 
 const ExpertiseWrapper = styled.div`
-  ${tw`grid grid-cols-1 lg:grid-cols-2 column-gap[40px] row-gap[30px] border-0 border-b border-solid border-white py-12`}
+  ${tw`grid grid-cols-1 lg:grid-cols-2 column-gap[40px] row-gap[30px] border-0 border-b border-solid border-black py-12`}
 `;
 
 const ListWrapper = styled.div`
@@ -64,11 +64,11 @@ const ExpertisePageLayout = ({ data, lang }) => {
   }, [setPage, data.wordpress.pages]);
 
   return (
-    <Layout isMenuLight>
+    <Layout>
       <Helmet>
         <title>WAU Architetti • Expertise</title>
       </Helmet>
-      <div className="gradientBg">
+      <div>
         <Heading>
           <HeadingIntroHalf
             breadcrumb={page ? page.title : "Expertise"}
