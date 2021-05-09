@@ -39,9 +39,9 @@ const WauCampPageLayout = ({ data, lang }) => {
         <title>WAU Architetti • {page ? `${page.title}` : "page"}</title>
       </Helmet>
       <StyledWAUCampPage>
-        <Heading>
-          <div tw="flex w-full flex-col xl:flex-row pb-6 sm:pb-12">
-            <div tw="w-full xl:w-1/3 mb-8">
+        <Heading tw="pb-8">
+          <div tw="flex w-full flex-col xl:flex-row pb-6">
+            <div tw="w-full xl:w-1/3 mb-4">
               <p className="breadcrumbs mono" tw="text-wauGreen">
                 {page ? page.title : "page"}
               </p>
@@ -54,7 +54,7 @@ const WauCampPageLayout = ({ data, lang }) => {
             </div>
             <div
               className="waucamp-slider"
-              tw="w-full block mb-6 sm:mb-12 mt-6 xl:mt-0 pl-0 xl:pl-8 xl:w-2/3"
+              tw="w-full block sm:mb-12 mt-2 sm:mt-4 xl:mt-0 pl-0 xl:pl-8 xl:w-2/3"
             >
               {!!slides.length && <WauCampSlider slides={slides} />}
             </div>
@@ -65,14 +65,28 @@ const WauCampPageLayout = ({ data, lang }) => {
             className="page-content"
             tw="w-full flex flex-col justify-center"
           >
-            <section tw="w-full py-8 sm:py-16 bg-wauGreen text-white">
+            <section tw="w-full pb-4 xl:pb-16">
               <GridMaxWidthContainer>
+                <figure tw="grid grid-cols-12 mb-8 sm:mb-16 col-span-12">
+                  <ImageWrapper
+                    image={
+                      page.waucampACF.sezione3.immagine &&
+                      page.waucampACF.sezione3.immagine
+                    }
+                    imgAlt="WAU Camp"
+                    tw="col-span-12"
+                  />
+                </figure>
                 <div tw="relative col-span-12 h-auto xl:col-span-4">
                   <h2>
                     {page.waucampACF.sezione1.titolo &&
                       parse(page.waucampACF.sezione1.titolo)}
                   </h2>
-                  <figure tw="w-full block relative xl:absolute xl:top-32">
+                </div>
+                <div tw="col-span-12 xl:col-span-6 xl:col-start-6">
+                  {page.waucampACF.sezione1.paragrafo &&
+                    parse(page.waucampACF.sezione1.paragrafo)}
+                  <figure tw="w-full block mt-8 lg:mt-16">
                     <ImageWrapper
                       image={
                         page.waucampACF.sezione1.immagine &&
@@ -83,34 +97,10 @@ const WauCampPageLayout = ({ data, lang }) => {
                     />
                   </figure>
                 </div>
-                <div tw="col-span-12 xl:col-span-6 xl:col-start-6">
-                  {page.waucampACF.sezione1.paragrafo &&
-                    parse(page.waucampACF.sezione1.paragrafo)}
-                </div>
               </GridMaxWidthContainer>
             </section>
-            {/* <section tw="w-full py-16">
-                  <GridMaxWidthContainer>
-                    <div tw="relative col-span-12 xl:col-span-4">
-                    </div>
-                    <div tw="col-span-12 xl:col-span-6 xl:col-start-6">
-                      <h2>{page.waucampACF.sezione2.titolo && parse(page.waucampACF.sezione2.titolo)}</h2>
-                      {page.waucampACF.sezione2.paragrafo && parse(page.waucampACF.sezione2.paragrafo)}
-                    </div>
-                  </GridMaxWidthContainer>
-                </section> */}
-            <section tw="w-full pb-8 sm:pb-16 bg-wauGreen text-white">
+            <section tw="w-full pb-8 xl:pb-16">
               <GridMaxWidthContainer>
-                <figure tw="grid grid-cols-12 mb-8 sm:mb-16 col-span-12">
-                  <ImageWrapper
-                    image={
-                      page.waucampACF.sezione3.immagine &&
-                      page.waucampACF.sezione3.immagine
-                    }
-                    imgAlt="WAU Camp"
-                    tw="col-span-12 xl:(col-span-7 col-start-6)"
-                  />
-                </figure>
                 <div tw="relative col-span-12 xl:col-span-4">
                   <h2>
                     {page.waucampACF.sezione3.titolo &&
@@ -123,17 +113,7 @@ const WauCampPageLayout = ({ data, lang }) => {
                 <div tw="col-span-12 xl:col-span-6 xl:col-start-6">
                   {page.waucampACF.sezione3.paragrafo &&
                     parse(page.waucampACF.sezione3.paragrafo)}
-                </div>
-              </GridMaxWidthContainer>
-            </section>
-            <section tw="w-full py-8 sm:py-16 ">
-              <GridMaxWidthContainer>
-                <div tw="relative col-span-12 xl:col-span-4">
-                  <h2>
-                    {page.waucampACF.sezione4.titolo &&
-                      parse(page.waucampACF.sezione4.titolo)}
-                  </h2>
-                  <figure tw="w-full">
+                  <figure tw="w-full mt-4 lg:mt-16">
                     <ImageWrapper
                       image={
                         page.waucampACF.sezione4.immagine &&
@@ -144,13 +124,23 @@ const WauCampPageLayout = ({ data, lang }) => {
                     />
                   </figure>
                 </div>
+              </GridMaxWidthContainer>
+            </section>
+            <section tw="w-full pb-8 xl:pb-16 ">
+              <GridMaxWidthContainer>
+                <div tw="relative col-span-12 xl:col-span-4">
+                  <h2>
+                    {page.waucampACF.sezione4.titolo &&
+                      parse(page.waucampACF.sezione4.titolo)}
+                  </h2>
+                </div>
                 <div tw="col-span-12 xl:col-span-6 xl:col-start-6">
                   {page.waucampACF.sezione4.paragrafo &&
                     parse(page.waucampACF.sezione4.paragrafo)}
                 </div>
               </GridMaxWidthContainer>
             </section>
-            <section tw="w-full py-8 sm:py-16 bg-wauGreen text-white">
+            <section tw="w-full pt-8 xl:pt-16">
               <GridMaxWidthContainer>
                 <div tw="relative col-span-12 xl:col-span-4">
                   <h2>
@@ -160,7 +150,7 @@ const WauCampPageLayout = ({ data, lang }) => {
                   <Button as="a" href="#contact">
                     Richiedi info
                   </Button>
-                  <figure tw="w-full mt-8 sm:mt-16 xl:absolute xl:-bottom-64">
+                  {/* <figure tw="w-full mt-8 sm:mt-16 xl:absolute xl:-bottom-64">
                     <ImageWrapper
                       image={
                         page.waucampACF.sezione5.immagine &&
@@ -169,38 +159,39 @@ const WauCampPageLayout = ({ data, lang }) => {
                       imgAlt="WAU Camp"
                       tw="w-full"
                     />
-                  </figure>
+                  </figure> */}
                 </div>
                 <div tw="col-span-12 xl:col-span-6 xl:col-start-6">
                   {page.waucampACF.sezione5.paragrafo &&
                     parse(page.waucampACF.sezione5.paragrafo)}
+                  <figure tw="w-full grid grid-cols-12 pt-8 xl:pt-16 col-span-12">
+                    <ImageWrapper
+                      image={
+                        page.waucampACF.sezione6.immagine &&
+                        page.waucampACF.sezione6.immagine
+                      }
+                      imgAlt="WAU Camp"
+                      tw="col-span-12"
+                    />
+                  </figure>
                 </div>
               </GridMaxWidthContainer>
             </section>
-            <section tw="w-full sm:py-8 xl:pt-16">
+            <section tw="w-full xl:pt-4">
               <GridMaxWidthContainer>
-                <div tw="relative col-span-12 xl:col-span-4" />
-                <div tw="col-span-12 xl:col-span-6 xl:col-start-6">
+                <div tw="relative col-span-12 xl:col-span-4">
                   <h2>
                     {page.waucampACF.sezione6.titolo &&
                       parse(page.waucampACF.sezione6.titolo)}
                   </h2>
+                </div>
+                <div tw="col-span-12 xl:col-span-6 xl:col-start-6">
                   {page.waucampACF.sezione6.paragrafo &&
                     parse(page.waucampACF.sezione6.paragrafo)}
                 </div>
-                <figure tw="grid grid-cols-12 pt-8 xl:pt-16 col-span-12">
-                  <ImageWrapper
-                    image={
-                      page.waucampACF.sezione6.immagine &&
-                      page.waucampACF.sezione6.immagine
-                    }
-                    imgAlt="WAU Camp"
-                    tw="col-span-12 xl:col-span-6 xl:col-start-6"
-                  />
-                </figure>
               </GridMaxWidthContainer>
             </section>
-            <section id="contact" tw="w-full py-8 sm:py-16">
+            <section id="contact" tw="w-full py-8 xl:py-16">
               <GridMaxWidthContainer>
                 <div tw="relative col-span-12 xl:col-span-4">
                   <h2>
