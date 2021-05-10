@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "gatsby";
-import { Select } from "antd";
+import Select from "react-select";
 import { Helmet } from "react-helmet";
 import Layout from "../../LayoutComponent";
 import "twin.macro";
@@ -9,7 +9,27 @@ import HeadingIntroHalf from "../../elements/Heading/HeadingIntroHalf";
 import ProjectPreviewCard from "../../elements/Projects/ProjectPreviewCard/ProjectPreviewCard";
 import FilterForm from "../Forms/FilterForm";
 
-const { Option } = Select;
+const SelectStyles = {
+  option: (provided, state) => ({
+    ...provided,
+    backgroundColor: state.isFocused ? "#eee" : "transparent",
+    color: "#111",
+  }),
+  control: (provided, state) => ({
+    ...provided,
+    borderRadius: 0,
+  }),
+  container: (provided, state) => ({
+    ...provided,
+    // none of react-select's styles are passed to <Control />
+    width: "100%",
+    maxWidth: 400,
+    border: state.isFocused ? "transparent" : "transparent",
+  }),
+  indicatorSeparator: (provided, state) => ({
+    display: "none",
+  }),
+};
 
 const ProjectsPageLayout = ({ data, lang }) => {
   const [projects, setProjects] = useState(null);
@@ -34,7 +54,7 @@ const ProjectsPageLayout = ({ data, lang }) => {
                 Array.from(item.tags.nodes.map((node) => node.name))
                   .join()
                   .toLowerCase()
-                  .includes(term)) ||
+                  .includes(term.toLowerCase())) ||
               // || item.custom_post_type_Project.ambiti.join().toLowerCase().includes(term.toLowerCase())
               // || item.custom_post_type_Project.anno.toString().includes(term)
               !term
@@ -53,7 +73,7 @@ const ProjectsPageLayout = ({ data, lang }) => {
   }, [term, data.wordpress.projects]);
 
   const handleChange = (value) => {
-    setTerm(value.toLowerCase());
+    setTerm(value.value);
   };
 
   useEffect(() => {
@@ -62,6 +82,10 @@ const ProjectsPageLayout = ({ data, lang }) => {
     }
   }, [data]);
 
+  const AllProjects = {
+    value: "",
+    label: lang === "it" ? "Tutti i progetti" : "All projects",
+  };
   const tags = [];
 
   if (data.wordpress.projects.nodes) {
@@ -154,19 +178,25 @@ const ProjectsPageLayout = ({ data, lang }) => {
             heading={page ? page.pagesACF.title : ""}
           />
           <FilterForm>
-            <Select
-              defaultValue="Tutti i progetti"
-              style={{ width: 300 }}
-              onChange={handleChange}
-            >
-              <Option value="">Tutti i progetti</Option>
-              {tags &&
-                tags.map((tag, i) => (
-                  <Option value={tag} key={`tag-${i}`}>
-                    {tag}
-                  </Option>
-                ))}
-            </Select>
+            {!!tags.length && (
+              <Select
+                value={{
+                  value: term,
+                  label: !!term.length ? term : AllProjects.label,
+                }}
+                defaultValue={AllProjects}
+                placeholder={
+                  lang === "it" ? "Cerca progetti" : "Search projects"
+                }
+                indicator={false}
+                styles={SelectStyles}
+                onChange={(value) => handleChange(value)}
+                options={[
+                  AllProjects,
+                  ...tags.map((tag, i) => ({ value: tag, label: tag })),
+                ]}
+              />
+            )}
           </FilterForm>
         </Heading>
         <ul className="proj_content" tw="grid grid-cols-1 md:grid-cols-2 m-0">

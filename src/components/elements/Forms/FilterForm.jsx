@@ -14,7 +14,7 @@ export default ({ children, otherProps }) => {
 
 const StyledFilterForm = styled.form(() => [
   css`
-    ${tw``}
+    ${tw`relative z-50`}
 
     .ant-select {
       .ant-select-selector {
