@@ -58,7 +58,7 @@ export default ({ ...otherProps }) => {
                   <img
                     src={client.featuredImage.node.sourceUrl}
                     alt={client.title}
-                    tw="relative max-width[210px] w-full h-64"
+                    tw="relative max-width[220px] w-full h-64"
                   />
                 ))}
             </li>
