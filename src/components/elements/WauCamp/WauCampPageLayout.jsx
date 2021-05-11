@@ -34,7 +34,7 @@ const WauCampPageLayout = ({ data, lang }) => {
   }, [data]);
 
   return (
-    <Layout>
+    <Layout hasNoContactsCta>
       <Helmet>
         <title>WAU Architetti • {page ? `${page.title}` : "page"}</title>
       </Helmet>
@@ -140,8 +140,9 @@ const WauCampPageLayout = ({ data, lang }) => {
                 </div>
               </GridMaxWidthContainer>
             </section>
-            <section tw="w-full pt-8 xl:pt-16">
+            <section tw="w-full">
               <GridMaxWidthContainer>
+                <div tw="col-span-full border-0 border-solid border-t border-gray-300 block pb-8 xl:pb-16" />
                 <div tw="relative col-span-12 xl:col-span-4">
                   <h2>
                     {page.waucampACF.sezione5.titolo &&
@@ -150,16 +151,6 @@ const WauCampPageLayout = ({ data, lang }) => {
                   <Button as="a" href="#contact">
                     Richiedi info
                   </Button>
-                  {/* <figure tw="w-full mt-8 sm:mt-16 xl:absolute xl:-bottom-64">
-                    <ImageWrapper
-                      image={
-                        page.waucampACF.sezione5.immagine &&
-                        page.waucampACF.sezione5.immagine
-                      }
-                      imgAlt="WAU Camp"
-                      tw="w-full"
-                    />
-                  </figure> */}
                 </div>
                 <div tw="col-span-12 xl:col-span-6 xl:col-start-6">
                   {page.waucampACF.sezione5.paragrafo &&
@@ -193,6 +184,7 @@ const WauCampPageLayout = ({ data, lang }) => {
             </section>
             <section id="contact" tw="w-full py-8 xl:py-16">
               <GridMaxWidthContainer>
+                <div tw="col-span-full border-0 border-solid border-t border-gray-300 block pb-8 xl:pb-16" />
                 <div tw="relative col-span-12 xl:col-span-4">
                   <h2>
                     {page.waucampACF.sezione7Form.titolo &&

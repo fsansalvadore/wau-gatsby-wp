@@ -41,14 +41,14 @@ export default ({ ...otherProps }) => {
   return (
     <StyledClientsSection {...otherProps}>
       <h3 tw="text-4xl">Chi si è affidato a noi</h3>
-      <ul tw="flex justify-around flex-wrap my-16 mx-auto max-width[1440px]">
+      <ul tw="flex justify-around xl:justify-between flex-wrap my-16 mx-auto max-width[1440px]">
         {!!clients &&
           clients.map((client) => (
-            <li>
+            <li tw="flex-basis[200px] xl:max-width[220px]">
               {!!client.featuredImage &&
                 (client.featuredImage.node.imageFile ? (
                   <Img
-                    tw="relative w-full h-64 top-0 right-0 bottom-0 left-0"
+                    tw="relative max-width[220px] w-full h-64"
                     fixed={
                       client.featuredImage.node.imageFile.childImageSharp.fixed
                     }
@@ -58,7 +58,7 @@ export default ({ ...otherProps }) => {
                   <img
                     src={client.featuredImage.node.sourceUrl}
                     alt={client.title}
-                    tw="relative w-full h-64 top-0 right-0 bottom-0 left-0"
+                    tw="relative max-width[210px] w-full h-64"
                   />
                 ))}
             </li>
