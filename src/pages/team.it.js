@@ -1,6 +1,6 @@
-import React from "react"
-import { graphql, useStaticQuery } from 'gatsby'
-import TeamPageLayout from '../components/elements/Team/TeamPageLayout'
+import React from "react";
+import { graphql, useStaticQuery } from "gatsby";
+import TeamPageLayout from "../components/elements/Team/TeamPageLayout";
 
 const TeamPageIta = () => {
   const data = useStaticQuery(graphql`
@@ -59,11 +59,10 @@ const TeamPageIta = () => {
         }
       }
     }
-  `)
+  `);
 
-  return(
-    <TeamPageLayout data={data} lang="it" />
-  )
-}
+  return <TeamPageLayout data={data} lang="it" />;
+};
 
-export default TeamPageIta
+// eslint-disable-next-line import/no-default-export
+export default TeamPageIta;

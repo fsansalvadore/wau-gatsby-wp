@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import loadable from "@loadable/component";
+import { graphql, useStaticQuery } from "gatsby";
 import GenericMetadata from "./GenericMetadata";
 import MainNav from "./elements/MainNav/MainNav";
 import "../styles/global.css";
@@ -26,12 +27,37 @@ const Layout = ({ isMenuLight, hasNoContactsCta, children }) => {
     }
   }, [lang]);
 
+  const data = useStaticQuery(graphql`
+    query ContactsCtaQuery {
+      wordpress {
+        pages(where: { title: "HOME PAGE" }) {
+          nodes {
+            language {
+              name
+              code
+            }
+            homePageACF {
+              sezioneContatti {
+                paragrafo
+                tasto {
+                  link
+                  testo
+                }
+                titolo
+              }
+            }
+          }
+        }
+      }
+    }
+  `);
+
   return (
     <>
       <GenericMetadata lang={lang} />
       <MainNav lang={lang} isMenuLight={isMenuLight} />
       {children}
-      {!hasNoContactsCta && <CtaSection lang={lang} />}
+      {!hasNoContactsCta && <CtaSection lang={lang} data={data} />}
       <Footer lang={lang} />
       <script
         type="text/javascript"

@@ -1,6 +1,6 @@
-import React from "react"
-import { useStaticQuery, graphql } from 'gatsby'
-import StudioPageLayout from "../components/elements/Studio/StudioPageLayout"
+import React from "react";
+import { useStaticQuery, graphql } from "gatsby";
+import StudioPageLayout from "../components/elements/Studio/StudioPageLayout";
 
 const StudioPageIta = () => {
   const data = useStaticQuery(graphql`
@@ -72,11 +72,9 @@ const StudioPageIta = () => {
         }
       }
     }
-  `)
+  `);
 
-  return(
-    <StudioPageLayout data={data} />
-  )
-}
+  return <StudioPageLayout data={data} />;
+};
 
-export default StudioPageIta
+export default StudioPageIta;

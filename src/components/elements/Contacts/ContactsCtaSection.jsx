@@ -6,12 +6,10 @@ import { useSpring, animated } from "react-spring/three";
 import styled from "styled-components";
 import { gsap, Power1 } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Link, StaticQuery, graphql } from "gatsby";
-import tw from "twin.macro";
+import "twin.macro";
 import WauGradient from "../../../assets/wau-sphere-texture-sp1.svg";
 import GridMaxWidthContainer from "../../../components/elements/Atoms/GridMaxWidthContainer";
 import ContactsTextBlock from "../../../components/elements/Atoms/ContactsTextBlock";
-import Button from "../Atoms/Button";
 
 softShadows();
 
@@ -48,8 +46,6 @@ const Sphere = ({ ctaSectionRef, position, url }) => {
     ) {
       gsap.registerPlugin(ScrollTrigger);
 
-      // console.log("contactsCtaSphereRef", contactsCtaSphereRef)
-      // console.log("ctaSectionRef", ctaSectionRef)
       const sphereTL = gsap.timeline({
         scrollTrigger: {
           trigger: ctaSectionRef.current,
@@ -193,8 +189,20 @@ const ContentCtaCanvas = ({ ctaSectionRef, ...otherProps }) => {
 };
 
 // eslint-disable-next-line import/no-default-export
-export default ({ className, lang, ...props }) => {
+export default ({ className, lang, data, ...props }) => {
   const ctaSectionRef = useRef(null);
+  const [ctaData, setCtaData] = useState(null);
+
+  useEffect(() => {
+    if (!!data) {
+      console.log(data);
+      setCtaData(
+        data.wordpress.pages.nodes.find(
+          (node) => node.language.code.toLowerCase() === lang
+        ).homePageACF.sezioneContatti
+      );
+    }
+  }, [data, lang]);
 
   return (
     <section
@@ -209,22 +217,15 @@ export default ({ className, lang, ...props }) => {
         tw="absolute w-1/4 left-0 top-0 h-full"
       />
       <GridMaxWidthContainer>
-        <ContactsTextBlock
-          title={
-            lang === "it"
-              ? "Raccontaci i tuoi progetti"
-              : "Tell us your projects"
-          }
-          content={
-            lang === "it"
-              ? "La qualità del nostro ascolto è pari a quella delle nostre soluzioni. Siamo pronti a far incontrare le tue esigenze con la nostra voglia di fare. E garantire al tuo progetto un effetto WAU."
-              : "..."
-          }
-          // content="WAU è la soluzione per chi cerca un partner capace di accompagnare e guidare le proprie idee, fino alla realizzazione finale. Che si tratti di un piccolo incarico o di una grande committenza, seguiamo ogni lavoro con la stessa attenzione."
-          link={lang === "it" ? "/contatti" : "/en/contacts"}
-          cta={lang === "it" ? "Contattaci" : "Contact Us"}
-          tw="col-span-full md:col-span-8 md:col-start-7 lg:col-span-7 lg:col-start-5"
-        />
+        {!!ctaData && (
+          <ContactsTextBlock
+            title={ctaData.titolo}
+            content={ctaData.paragrafo}
+            link={ctaData.tasto.link}
+            cta={ctaData.tasto.testo}
+            tw="col-span-full md:col-span-8 md:col-start-7 lg:col-span-7 lg:col-start-5"
+          />
+        )}
       </GridMaxWidthContainer>
     </section>
   );

@@ -57,7 +57,7 @@ export default ({ title, content, link, cta, ...otherProps }) => {
       <div className="left" tw="col-span-full xl:col-span-3">
         {title && (
           <div className="st-title">
-            <motion.h5 tw="text-4xl mb-4 w-3/4">{title}</motion.h5>
+            <motion.h5 tw="text-4xl mb-4 w-3/4">{parse(title)}</motion.h5>
           </div>
         )}
       </div>

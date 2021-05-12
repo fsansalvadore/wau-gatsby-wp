@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react"
-import { useStaticQuery, graphql } from 'gatsby'
-import HomePageLayout from '../components/elements/HomePage/HomePageLayout'
+import React, { useEffect, useState } from "react";
+import { useStaticQuery, graphql } from "gatsby";
+import HomePageLayout from "../components/elements/HomePage/HomePageLayout";
 
 const IndexIta = () => {
   const data = useStaticQuery(graphql`
@@ -92,22 +92,25 @@ const IndexIta = () => {
         }
       }
     }
-  `)
-  const [lang, setLang] = useState("it")
-  let location
+  `);
+  const [lang, setLang] = useState("it");
+  let location;
 
   useEffect(() => {
     if (typeof window !== `undefined`) {
-        location = window.location.href
-        if(location.includes("00/en") || location.includes("app/en") || location.includes("com/en")) {
-          setLang("en")
-        }
+      location = window.location.href;
+      if (
+        location.includes("00/en") ||
+        location.includes("app/en") ||
+        location.includes("com/en")
+      ) {
+        setLang("en");
+      }
     }
-  }, [lang])
-  
-  return(
-    <HomePageLayout lang={lang} data={data} />
-  )
-}
+  }, [lang]);
 
-export default IndexIta
+  return <HomePageLayout lang={lang} data={data} />;
+};
+
+// eslint-disable-next-line import/no-default-export
+export default IndexIta;

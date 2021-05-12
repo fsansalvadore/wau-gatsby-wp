@@ -1,7 +1,7 @@
-import React from "react"
-import { graphql, useStaticQuery } from 'gatsby'
-import tw from 'twin.macro'
-import ArticlesPageLayout from '../components/elements/Articles/ArticlesPageLayout'
+import React from "react";
+import { graphql, useStaticQuery } from "gatsby";
+import "twin.macro";
+import ArticlesPageLayout from "../components/elements/Articles/ArticlesPageLayout";
 
 const NewsPageEng = () => {
   const data = useStaticQuery(graphql`
@@ -56,11 +56,10 @@ const NewsPageEng = () => {
         }
       }
     }
-  `)
+  `);
 
-  return(
-    <ArticlesPageLayout data={data} lang="en" />
-  )
-}
+  return <ArticlesPageLayout data={data} lang="en" />;
+};
 
-export default NewsPageEng
+// eslint-disable-next-line import/no-default-export
+export default NewsPageEng;

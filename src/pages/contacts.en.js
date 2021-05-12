@@ -1,6 +1,6 @@
-import React from "react"
-import { useStaticQuery, graphql } from 'gatsby'
-import ContactsPageLayout from '../components/elements/Contacts/ContactsPageLayout'
+import React from "react";
+import { useStaticQuery, graphql } from "gatsby";
+import ContactsPageLayout from "../components/elements/Contacts/ContactsPageLayout";
 
 // import loadable from '@loadable/component'
 
@@ -70,15 +70,16 @@ const ContactsPage = () => {
         }
       }
     }
-  `)
+  `);
 
-  return(
+  return (
     <ContactsPageLayout
       data={data.wordpress.pages.nodes[0]}
       socials={data.wordpress.menu}
       lang="en"
     />
-  )
-}
+  );
+};
 
-export default ContactsPage
+// eslint-disable-next-line import/no-default-export
+export default ContactsPage;
