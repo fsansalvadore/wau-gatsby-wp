@@ -1,6 +1,6 @@
-import React from "react"
-import { graphql, useStaticQuery } from 'gatsby'
-import ExpertisesPageLayout from '../components/elements/Expertise/ExpertisePageLayout'
+import React from "react";
+import { graphql, useStaticQuery } from "gatsby";
+import ExpertisesPageLayout from "../components/elements/Expertise/ExpertisePageLayout";
 
 const ExpertisesPageIta = () => {
   const data = useStaticQuery(graphql`
@@ -23,6 +23,20 @@ const ExpertisesPageIta = () => {
             slug
             id
             title
+            featuredImage {
+              node {
+                altText
+                link
+                sourceUrl
+                imageFile {
+                  childImageSharp {
+                    fixed(width: 900, quality: 90) {
+                      ...GatsbyImageSharpFixed
+                    }
+                  }
+                }
+              }
+            }
             expertiseACF {
               anteprima
             }
@@ -35,11 +49,10 @@ const ExpertisesPageIta = () => {
         }
       }
     }
-  `)
+  `);
 
-  return(
-    <ExpertisesPageLayout data={data} lang="en" />
-  )
-}
+  return <ExpertisesPageLayout data={data} lang="en" />;
+};
 
-export default ExpertisesPageIta
+// eslint-disable-next-line import/no-default-export
+export default ExpertisesPageIta;

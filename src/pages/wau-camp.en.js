@@ -1,5 +1,5 @@
-import React from "react"
-import { useStaticQuery, graphql } from 'gatsby'
+import React from "react";
+import { useStaticQuery, graphql } from "gatsby";
 import WauCampPageLayout from "../components/elements/WauCamp/WauCampPageLayout";
 
 const WauCampEng = () => {
@@ -85,11 +85,10 @@ const WauCampEng = () => {
         }
       }
     }
-  `)
+  `);
 
-  return(
-    <WauCampPageLayout data={data} lang="en" />
-  )
-}
+  return <WauCampPageLayout data={data} lang="en" />;
+};
 
-export default WauCampEng
+// eslint-disable-next-line import/no-default-export
+export default WauCampEng;

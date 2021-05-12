@@ -77,4 +77,5 @@ const StudioPageIta = () => {
   return <StudioPageLayout data={data} />;
 };
 
+// eslint-disable-next-line import/no-default-export
 export default StudioPageIta;

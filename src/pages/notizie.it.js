@@ -35,7 +35,7 @@ const NewsPageIta = () => {
                 sourceUrl(size: LARGE)
                 imageFile {
                   childImageSharp {
-                    fixed(width: 1500, quality: 90) {
+                    fixed(width: 1200, quality: 90) {
                       ...GatsbyImageSharpFixed
                     }
                   }

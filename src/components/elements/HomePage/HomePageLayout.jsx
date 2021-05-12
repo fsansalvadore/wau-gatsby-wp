@@ -126,12 +126,12 @@ const HomePageLayout = ({ lang, data, ...otherProps }) => {
     }
   }, [introTextTL, ScrollTrigger, gsap.timeline, acf]);
 
-  const hideVideo = () => {
-    if (!!videoRef) videoRef.current.style.display = "none";
-  };
-  const showVideo = () => {
-    if (!!videoRef) videoRef.current.style.display = "flex";
-  };
+  // const hideVideo = () => {
+  //   if (!!videoRef) videoRef.current.style.display = "none";
+  // };
+  // const showVideo = () => {
+  //   if (!!videoRef) videoRef.current.style.display = "flex";
+  // };
 
   let visionTL;
   useEffect(() => {
@@ -142,9 +142,9 @@ const HomePageLayout = ({ lang, data, ...otherProps }) => {
           trigger: ".vision-section",
           start: "top bottom",
           end: "bottom bottom",
-          onUpdate: ({ progress }) => [
-            progress > 100 ? hideVideo() : showVideo(),
-          ],
+          // onUpdate: ({ progress }) => [
+          //   progress > 100 ? hideVideo() : showVideo(),
+          // ],
         },
       });
 
