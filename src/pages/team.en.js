@@ -37,7 +37,7 @@ const TeamPageIta = () => {
             }
           }
         }
-        collaborators(first: 100, where: { status: PUBLISH }) {
+        collaborators(first: 100, where: { status: PUBLISH, language: EN }) {
           nodes {
             date
             title
