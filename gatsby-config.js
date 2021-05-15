@@ -71,7 +71,7 @@ module.exports = {
         // Any additional optional fields
         // sampleRate: 5,
         // siteSpeedSampleRate: 10,
-        // cookieDomain: "https://www.saglietti.it/",
+        // cookieDomain: "https://www.wauarchitetti.com/",
       },
     },
     {
