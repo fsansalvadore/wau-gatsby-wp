@@ -78,7 +78,6 @@ const HomePageLayout = ({ lang, data, ...otherProps }) => {
           })
           .then(() => {
             // Auto-play started
-            alert("played!");
             videoRef.current.play();
           });
       }

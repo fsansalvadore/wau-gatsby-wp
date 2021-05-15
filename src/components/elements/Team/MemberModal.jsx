@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import tw, { styled, css } from "twin.macro";
 import parse from "html-react-parser";
-import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
 import Img from "gatsby-image";
 
 const Wrapper = styled.div(({ isOpen }) => [

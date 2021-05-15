@@ -9,90 +9,91 @@ import LanguageSelector from "../LanguageSelector";
 import SocialIcons from "../SocialIcons/SocialIcons";
 
 const MenuContainer = styled(motion.div)`
-  position: fixed;
-  width: 100vw;
-  height: 100vh;
-  z-index: 101;
+  ${tw`fixed w-screen h-screen z-index[101]`}
 `;
 const MenuSlider = styled(motion.div)`
-    min-height: 550px;
-    z-index: 99;
-    background: linear-gradient(317.03deg, var(--green) -33.22%, var(--purple) 78.8%);
-    will-change: width, transform;
-    transition: width 0.3s ease;
-    ${tw`absolute w-full overflow-y-scroll h-full right-0 top-0 bottom-0 flex flex-col justify-between p-8 md:p-16`}
+  min-height: 550px;
+  z-index: 99;
+  background: linear-gradient(
+    317.03deg,
+    var(--green) -33.22%,
+    var(--purple) 78.8%
+  );
+  will-change: width, transform;
+  transition: width 0.3s ease;
+  ${tw`absolute w-full overflow-y-scroll h-full right-0 top-0 bottom-0 flex flex-col justify-between px-4 pt-12 pb-20 sm:p-8 md:p-16`}
 
-    * {
-      color: var(--white);
+  * {
+    color: var(--white);
+  }
+
+  .menu-top {
+    ${tw`mt-8`}
+    flex: 1;
+    display: flex;
+    align-items: center;
+    max-height: 70vh;
+
+    a {
+      ${tw`text-2xl padding[2px 0] sm:padding[5px 0] lg:text-3xl block`}
+      line-height: 2rem;
+      opacity: 0.3;
+      transition: opacity 0.15s ease, padding 0.2s ease;
+      will-change: opacity;
+
+      &:hover {
+        opacity: 1;
+      }
+
+      &.active-menuLink {
+        padding-left: 20px;
+        display: flex;
+        align-items: center;
+        position: relative;
+        opacity: 0.9;
+
+        &:before {
+          content: "";
+          width: 6px;
+          height: 6px;
+          position: absolute;
+          background-color: var(--white);
+          left: 0;
+          border-radius: 50%;
+        }
+      }
+    }
+  }
+
+  .menu-bottom {
+    display: flex;
+    flex-direction: column;
+    ${tw`my-8 bottom-8 lg:bottom-auto lg:relative`}
+
+    .lang-container {
+      display: flex;
+      align-items: flex-end;
+    }
+  }
+
+  @media screen and (min-width: 768px) {
+    & {
+      ${tw`width[60%]`}
     }
 
     .menu-top {
-        ${tw`mt-8`}
-        flex: 1;
-        display: flex;
-        align-items: center;
-        max-height: 70vh;
+      max-height: auto;
 
-        a {
-            ${tw`text-2xl padding[2px 0] sm:padding[5px 0] lg:text-3xl block`}
-            line-height: 2rem;
-            opacity: 0.3;
-            transition: opacity 0.15s ease, padding: 0.2s ease;
-            will-change: opacity;
-
-            &:hover {
-                opacity: 1;
-            }
-
-            &.active-menuLink {
-                padding-left: 20px;
-                display: flex;
-                align-items: center;
-                position: relative;
-                opacity: 0.9;
-
-                &:before {
-                    content: '';
-                    width: 6px;
-                    height: 6px;
-                    position: absolute;
-                    background-color: var(--white);
-                    left: 0;
-                    border-radius: 50%;
-                }
-            }
-        }
+      a {
+        line-height: 2.4rem;
+      }
     }
 
     .menu-bottom {
-        display: flex;
-        flex-direction: column;
-        ${tw`my-8 bottom-8 lg:bottom-auto lg:relative`}
-
-        .lang-container {
-            display: flex;
-            align-items: flex-end;
-        }
+      flex-direction: row;
+      justify-content: space-between;
     }
-    
-    @media screen and (min-width: 768px) {
-      & {
-        ${tw`width[60%]`}
-      }
-
-      .menu-top {
-          max-height: auto;
-
-          a {
-              line-height: 2.4rem;
-          }
-      }
-      
-      .menu-bottom {
-          flex-direction: row;
-          justify-content: space-between;
-      }
-    }
+  }
 `;
 
 export const DimOverlay = styled(motion.div)`
@@ -261,12 +262,13 @@ const Menu = ({ lang, isOpen }) => {
                 <a
                   target="_blank"
                   href="https://www.google.com/maps/place/Via+Po,+1,+10124+Torino+TO/data=!4m2!3m1!1s0x47886d7075788f65:0xfbab35a5fc5276c2?sa=X&ved=2ahUKEwjD8czu4onuAhXJ5KQKHc0nCyUQ8gEwAHoECAYQAQ"
+                  rel="noreferrer"
                 >
                   Via Po, 1 - 10124 Torino, Italia
                 </a>
                 <p>
                   T{" "}
-                  <a target="_blank" href="tel:+390118127237">
+                  <a target="_blank" href="tel:+390118127237" rel="noreferrer">
                     +39 011 812 7237
                   </a>
                 </p>

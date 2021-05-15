@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "gatsby";
+import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import tw, { css } from "twin.macro";
@@ -175,7 +176,23 @@ const MainNav = ({ lang, isMenuLight }) => {
   const [isOpen, toggleMenu] = useState(false);
   const [showFixed, setShowFixed] = useState(false);
   const [isScrollUp, setIsScrollUp] = useState(false);
+  const [isMobileViewport, setIsMobileViewport] = useState(false);
   let scrollPos = 0;
+
+  useEffect(() => {
+    if (typeof window !== `undefined`) {
+      if (!isMobileViewport) setIsMobileViewport(window.outerWidth < 768);
+      window.addEventListener("resize", () => {
+        // your custom logic
+        setIsMobileViewport(window.outerWidth < 768);
+      });
+    }
+  }, [isMobileViewport]);
+
+  useEffect(() => {
+    if (isOpen) disableBodyScroll(document.body);
+    else enableBodyScroll(document.body);
+  }, [isOpen]);
 
   // Disable scroll when menu is open
   useEffect(() => {
@@ -230,7 +247,7 @@ const MainNav = ({ lang, isMenuLight }) => {
           lang={lang}
           toggleMenu={toggleMenu}
           isOpen={isOpen}
-          isMenuLight={isMenuLight}
+          isMenuLight={(isOpen && isMobileViewport) || isMenuLight}
         />
       </Navbar>
       <FixedNavbar
@@ -240,11 +257,17 @@ const MainNav = ({ lang, isMenuLight }) => {
         transition={transition}
         isOpen={isOpen}
       >
-        <NavContent lang={lang} toggleMenu={toggleMenu} isOpen={isOpen} />
+        <NavContent
+          lang={lang}
+          toggleMenu={toggleMenu}
+          isOpen={isOpen}
+          isMenuLight={isOpen && isMobileViewport}
+        />
       </FixedNavbar>
       <Menu lang={lang} isOpen={isOpen} />
     </>
   );
 };
 
+// eslint-disable-next-line import/no-default-export
 export default MainNav;
