@@ -194,16 +194,16 @@ const MainNav = ({ lang, isMenuLight }) => {
     else enableBodyScroll(document.body);
   }, [isOpen]);
 
-  // Disable scroll when menu is open
-  useEffect(() => {
-    if (typeof window !== `undefined`) {
-      if (isOpen) {
-        document.querySelector("body").style.overflowY = "hidden";
-      } else {
-        document.querySelector("body").style.overflowY = "auto";
-      }
-    }
-  });
+  // // Disable scroll when menu is open
+  // useEffect(() => {
+  //   if (typeof window !== `undefined`) {
+  //     if (isOpen) {
+  //       document.querySelector("body").style.overflowY = "hidden";
+  //     } else {
+  //       document.querySelector("body").style.overflowY = "auto";
+  //     }
+  //   }
+  // });
 
   // Detect scroll direction
   useEffect(() => {
