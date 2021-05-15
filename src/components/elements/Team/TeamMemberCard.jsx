@@ -67,10 +67,6 @@ const TeamMemberCard = ({
 }) => {
   const [isHovered, setIsHovered] = useState(false);
 
-  useEffect(() => {
-    console.log("Card member:", member);
-  });
-
   const setModal = () => {
     if (!!member) {
       setModalIsOpen(true);

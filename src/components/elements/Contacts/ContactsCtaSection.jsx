@@ -20,8 +20,6 @@ const AnimatedMeshDistortMaterial = animated(MeshDistortMaterial);
 
 const StyledContactsCtaCanvas = styled(AnimatedCanvas)`
   z-index: 0;
-  // height: 100% !important;
-  // min-height: 700px !important;
   position: absolute !important;
   left: 0 !important;
   top: 0 !important;
@@ -31,14 +29,14 @@ const StyledContactsCtaCanvas = styled(AnimatedCanvas)`
     width: 45% !important;
   }
 `;
-const Sphere = ({ ctaSectionRef, position, url }) => {
+const Sphere = ({ ctaSectionRef, position }) => {
   const contactsCtaSphereRef = useRef(null);
   const meshRef = useRef(null);
   const [hovered, setHover] = useState(false);
   const texture = useLoader(TextureLoader, WauGradient);
-  const [introFinished, setIntroFinished] = useState(false);
 
   useEffect(() => {
+    if (!ctaSectionRef || !ctaSectionRef.current) return;
     if (
       contactsCtaSphereRef.current &&
       typeof window !== `undefined` &&
@@ -51,12 +49,6 @@ const Sphere = ({ ctaSectionRef, position, url }) => {
           trigger: ctaSectionRef.current,
           start: "top 85%",
           end: "top 15%",
-          // scrub: 1,
-          // snap: true,
-          // markers: true,
-          // onUpdate: ({progress, direction, isActive}) => console.log(progress, direction, isActive)
-          onUpdate: ({ progress, direction, isActive }) =>
-            progress === 1 ? setIntroFinished(true) : setIntroFinished(false),
         },
       });
 
@@ -76,22 +68,11 @@ const Sphere = ({ ctaSectionRef, position, url }) => {
     }
   }, [ctaSectionRef, contactsCtaSphereRef]);
 
-  useEffect(() => {
-    if (introFinished) {
-      // console.log("Animation finished!")
-    }
-  }, [introFinished]);
-
   const introSpring = useSpring({
     scale: [1, 1, 1],
     speed: 10,
     factor: 20,
     rotation: [0, 0, 0],
-    // from: {
-    //   scale: [40, 40, 6],
-    //   speed: 1,
-    //   rotation: [0, 0, 0]
-    // },
     config: {
       mass: 1,
       friction: 40,
@@ -104,10 +85,8 @@ const Sphere = ({ ctaSectionRef, position, url }) => {
       castShadow
       onPointerOver={() => setHover(true)}
       onPointerOut={() => setHover(false)}
-      // scale={introSpring.scale}
       position={position}
       ref={contactsCtaSphereRef}
-      // rotation={introSpring.rotation}
     >
       {/* geomtery */}
       <sphereBufferGeometry attach="geometry" args={[1, 150, 150]} />
@@ -195,7 +174,6 @@ export default ({ className, lang, data, ...props }) => {
 
   useEffect(() => {
     if (!!data) {
-      console.log(data);
       setCtaData(
         data.wordpress.pages.nodes.find(
           (node) => node.language.code.toLowerCase() === lang

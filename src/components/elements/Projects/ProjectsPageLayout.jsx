@@ -15,18 +15,17 @@ const SelectStyles = {
     backgroundColor: state.isFocused ? "#eee" : "transparent",
     color: "#111",
   }),
-  control: (provided, state) => ({
+  control: (provided) => ({
     ...provided,
     borderRadius: 0,
   }),
   container: (provided, state) => ({
     ...provided,
-    // none of react-select's styles are passed to <Control />
     width: "100%",
     maxWidth: 400,
     border: state.isFocused ? "transparent" : "transparent",
   }),
-  indicatorSeparator: (provided, state) => ({
+  indicatorSeparator: () => ({
     display: "none",
   }),
 };
@@ -34,11 +33,10 @@ const SelectStyles = {
 const ProjectsPageLayout = ({ data, lang }) => {
   const [projects, setProjects] = useState(null);
   const [term, setTerm] = useState("");
-  const [tagList, setTagList] = useState(null);
   const [page, setPage] = useState(null);
 
   useEffect(() => {
-    if (data.wordpress.projects) {
+    if (!!data && !!data.wordpress.projects) {
       setProjects(
         data.wordpress.projects.nodes
           .filter(
@@ -70,14 +68,14 @@ const ProjectsPageLayout = ({ data, lang }) => {
           )
       );
     }
-  }, [term, data.wordpress.projects]);
+  }, [term, data]);
 
   const handleChange = (value) => {
     setTerm(value.value);
   };
 
   useEffect(() => {
-    if (data) {
+    if (!!data) {
       setPage(data.wordpress.pages.nodes[0]);
     }
   }, [data]);
@@ -200,7 +198,7 @@ const ProjectsPageLayout = ({ data, lang }) => {
           </FilterForm>
         </Heading>
         <ul className="proj_content" tw="grid grid-cols-1 md:grid-cols-2 m-0">
-          {projects && projects.length > 0 ? (
+          {!!projects && projects.length > 0 ? (
             projects.map((proj) => (
               <li
                 key={`${proj.id}-${proj.slug}-${Math.floor(

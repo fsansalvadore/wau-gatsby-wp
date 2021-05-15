@@ -61,7 +61,7 @@ const HomePageLayout = ({ lang, data, ...otherProps }) => {
 
   // Force play video
   useEffect(() => {
-    if (!videoRef || !videoRef.current) return null;
+    if (!videoRef || !videoRef.current) return;
 
     //open bug since 2017 that you cannot set muted in video element https://github.com/facebook/react/issues/10389
     videoRef.current.defaultMuted = true;
@@ -70,7 +70,6 @@ const HomePageLayout = ({ lang, data, ...otherProps }) => {
     if (!!videoRef && !!videoRef.current) {
       const promise = videoRef.current.play();
       videoRef.current.play();
-      console.log("promise", promise);
       if (promise !== undefined) {
         promise
           .catch((error) => {
@@ -84,11 +83,12 @@ const HomePageLayout = ({ lang, data, ...otherProps }) => {
           });
       }
     }
-  }, []);
+  }, [videoRef]);
 
   let introTextTL;
   // Intro Text scroll animation
   useEffect(() => {
+    if (!indexRef || !indexRef.current) return;
     if (
       typeof window !== `undefined` &&
       typeof document !== `undefined` &&
@@ -147,21 +147,22 @@ const HomePageLayout = ({ lang, data, ...otherProps }) => {
           "1.5"
         );
     }
-  }, [introTextTL, ScrollTrigger, gsap, acf]);
+  }, [indexRef, videoContainerRef, acf]);
 
   const hideVideo = () => {
-    if (!videoRef) return null;
+    if (!videoRef) return;
     if (!!videoRef && !!videoRef.current)
       videoRef.current.style.display = "none";
   };
   const showVideo = () => {
-    if (!videoRef) return null;
+    if (!videoRef) return;
     if (!!videoRef && !!videoRef.current)
       videoRef.current.style.display = "flex";
   };
 
   let visionTL;
   useEffect(() => {
+    if (!visionSectionRef || !visionSectionRef.current) return;
     if (typeof window !== `undefined` && typeof document !== `undefined`) {
       // eslint-disable-next-line react-hooks/exhaustive-deps
       visionTL = gsap.timeline({
@@ -169,11 +170,9 @@ const HomePageLayout = ({ lang, data, ...otherProps }) => {
           trigger: ".vision-section",
           start: "top bottom",
           end: "bottom bottom",
-          // onUpdate: ({ progress }) => [
-          //   progress === 1 ? hideVideo() : showVideo(),
-          // ],
-          onEnter: () => hideVideo(),
-          onEnterBack: () => showVideo(),
+          onUpdate: ({ progress }) => [
+            progress === 0 ? showVideo() : hideVideo(),
+          ],
         },
       });
 
@@ -195,7 +194,7 @@ const HomePageLayout = ({ lang, data, ...otherProps }) => {
       </Helmet>
       <div ref={indexRef}>
         <PageLoader />
-        {acf && (
+        {!!acf && (
           <>
             <StyledIntroContainer className="intro-container">
               {!!acf.tastoIniziale.link && (
