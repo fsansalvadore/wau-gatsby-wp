@@ -77,12 +77,12 @@ const ProjectPreviewCard = ({
             <Img
               fixed={featuredImage.node.imageFile.childImageSharp.fixed}
               // fluid={featuredImage.node.imageFile.childImageSharp.fluid}
-              tw="absolute w-full h-full top-0 right-0 bottom-0 left-0"
+              tw="absolute w-full h-full top-0 right-0 bottom-0 left-0 object-cover"
               alt={imgAlt ? imgAlt : "Image"}
             />
           ) : (
             <img
-              tw="absolute w-full h-full top-0 right-0 bottom-0 left-0"
+              tw="absolute w-full h-full top-0 right-0 bottom-0 left-0 object-cover"
               src={featuredImage && featuredImage.node.sourceUrl}
               alt={imgAlt ? imgAlt : "Image"}
             />
