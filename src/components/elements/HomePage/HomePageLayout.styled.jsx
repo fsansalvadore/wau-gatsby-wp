@@ -9,16 +9,14 @@ export const StyledIntroCanvas = styled(AnimatedCanvas)`
   z-index: -3;
   width: 100% !important;
   height: 100vh !important;
-  min-height: 700px !important;
+  min-height: 650px !important;
   position: fixed !important;
 `;
 export const StyledVisionSectionCanvas = styled(AnimatedCanvas)`
-  // z-index: -3;
   height: 100% !important;
   position: absolute !important;
   left: 0 !important;
   top: 0 !important;
-  // position: fixed !important;
   width: 100%;
 
   @media (min-width: 768px) {
@@ -42,7 +40,7 @@ export const StyledIntroContainer = styled.div`
 
   #continue-cta {
     ${tw`fixed font-light left-0 right-0 mx-auto text-center`}
-    bottom: 8%;
+    bottom: 6%;
     color: var(--black);
     z-index: 4;
     animation: bounce 0.8s ease-in-out infinite alternate both;
@@ -71,7 +69,7 @@ export const StyledIntroContainer = styled.div`
     border: 1px solid black;
     position: fixed;
     top: auto;
-    bottom: 15%;
+    bottom: 16%;
     transition: bottom 0.3s ease;
     will-change: bottom;
     opacity: 0.8;

@@ -26,7 +26,8 @@ const Sphere = ({ indexRef, position }) => {
 
   useEffect(() => {
     if (
-      sphereRef.current &&
+      !!sphereRef &&
+      !!sphereRef.current &&
       typeof window !== `undefined` &&
       typeof document !== `undefined`
     ) {
@@ -71,9 +72,9 @@ const Sphere = ({ indexRef, position }) => {
 
   useEffect(() => {
     if (introFinished) {
-      document.querySelector("#continue-cta").style.display = "none";
+      document.querySelector("#continue-cta").classList.add("hide");
     } else {
-      document.querySelector("#continue-cta").style.display = "block";
+      document.querySelector("#continue-cta").classList.remove("hide");
     }
   }, [introFinished]);
 
