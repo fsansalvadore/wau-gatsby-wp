@@ -17,9 +17,6 @@ export default ({ ...otherProps }) => {
         clients(first: 100, where: { status: PUBLISH }) {
           nodes {
             title
-            clientACF {
-              link
-            }
             featuredImage {
               node {
                 altText
@@ -27,12 +24,15 @@ export default ({ ...otherProps }) => {
                 sourceUrl
                 imageFile {
                   childImageSharp {
-                    fixed(width: 1500, quality: 90) {
+                    fixed(width: 500, quality: 90) {
                       ...GatsbyImageSharpFixed
                     }
                   }
                 }
               }
+            }
+            clientACF {
+              link
             }
           }
         }
@@ -63,7 +63,7 @@ export default ({ ...otherProps }) => {
               {!!client.featuredImage &&
                 (client.featuredImage.node.imageFile ? (
                   <Img
-                    tw="relative max-width[220px] w-full h-64"
+                    tw="relative max-width[220px] w-full h-auto"
                     fixed={
                       client.featuredImage.node.imageFile.childImageSharp.fixed
                     }
@@ -73,7 +73,7 @@ export default ({ ...otherProps }) => {
                   <img
                     src={client.featuredImage.node.sourceUrl}
                     alt={client.title}
-                    tw="relative max-width[220px] w-full h-64"
+                    tw="relative max-width[220px] w-full h-auto"
                   />
                 ))}
             </ClientLink>
