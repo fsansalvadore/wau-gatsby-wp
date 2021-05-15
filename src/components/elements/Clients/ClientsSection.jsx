@@ -94,7 +94,7 @@ const StyledClientsSection = styled.section(() => [
 
       .gatsby-image-wrapper,
       img, picture {
-        width: 100%;
+        width: 100% !important;
         max-width: 260px;
         max-height: 160px;
         height: auto !important;
