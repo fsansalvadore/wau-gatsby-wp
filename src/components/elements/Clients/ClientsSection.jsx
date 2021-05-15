@@ -11,6 +11,9 @@ export default ({ ...otherProps }) => {
         clients(first: 100, where: { status: PUBLISH }) {
           nodes {
             title
+            clientACF {
+              link
+            }
             featuredImage {
               node {
                 altText
@@ -33,7 +36,7 @@ export default ({ ...otherProps }) => {
   const [clients, setClients] = useState([]);
 
   useEffect(() => {
-    if (data.wordpress.clients) {
+    if (!!data && !!data.wordpress.clients) {
       setClients(data.wordpress.clients.nodes);
     }
   }, [data]);
@@ -41,10 +44,15 @@ export default ({ ...otherProps }) => {
   return (
     <StyledClientsSection {...otherProps}>
       <h3 tw="text-4xl">Chi si è affidato a noi</h3>
-      <ul tw="flex justify-around xl:justify-between flex-wrap my-16 mx-auto max-width[1440px]">
+      <div tw="flex justify-around xl:justify-between flex-wrap my-16 mx-auto max-width[1440px]">
         {!!clients &&
           clients.map((client) => (
-            <li tw="flex-basis[200px] xl:max-width[220px]">
+            <a
+              href={!!client.clientACF.link ? client.clientACF.link : "#"}
+              target={!!client.clientACF.link ? "_blank" : "_self"}
+              rel="noreferrer"
+              tw="flex-basis[200px] xl:max-width[220px]"
+            >
               {!!client.featuredImage &&
                 (client.featuredImage.node.imageFile ? (
                   <Img
@@ -61,9 +69,9 @@ export default ({ ...otherProps }) => {
                     tw="relative max-width[220px] w-full h-64"
                   />
                 ))}
-            </li>
+            </a>
           ))}
-      </ul>
+      </div>
     </StyledClientsSection>
   );
 };
