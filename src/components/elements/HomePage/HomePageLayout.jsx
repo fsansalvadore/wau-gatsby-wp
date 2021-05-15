@@ -7,7 +7,6 @@ import TextLoop from "react-text-loop";
 import "twin.macro";
 import WauLogo from "../../../assets/WAU-Logo.svg";
 import WauVideoMp4 from "../../../assets/Wau-Architetti-cut.mp4";
-// import WauVideoOgg from "../../../assets/Wau-Architetti-cut.ogm";
 import WauVideoWebM from "../../../assets/Wau-Architetti-cut.webm";
 import WauVideoPoster from "../../../assets/Wau-Architetti-cut.gif";
 import Layout from "../../LayoutComponent";
@@ -27,7 +26,7 @@ import {
 
 const HomePageLayout = ({ lang, data, ...otherProps }) => {
   const indexRef = useRef(null);
-  const mainCtaRef = useRef(null);
+  const videoContainerRef = useRef(null);
   const videoRef = useRef(null);
   const visionSectionRef = useRef(null);
   const introTextRef = useRef([
@@ -57,11 +56,35 @@ const HomePageLayout = ({ lang, data, ...otherProps }) => {
   useEffect(() => {
     if (!!acf && !!acf.introWords) {
       setIntroWords(acf.introWords.split(","));
-      if (videoRef.current) {
-        videoRef.current.querySelector("video").play();
-      }
     }
   }, [setIntroWords, acf]);
+
+  // Force play video
+  useEffect(() => {
+    if (!videoRef || !videoRef.current) return null;
+
+    //open bug since 2017 that you cannot set muted in video element https://github.com/facebook/react/issues/10389
+    videoRef.current.defaultMuted = true;
+    videoRef.current.muted = true;
+
+    if (!!videoRef && !!videoRef.current) {
+      const promise = videoRef.current.play();
+      videoRef.current.play();
+      console.log("promise", promise);
+      if (promise !== undefined) {
+        promise
+          .catch((error) => {
+            // Auto-play was prevented
+            // Show a UI element to let the user manually start playback
+          })
+          .then(() => {
+            // Auto-play started
+            alert("played!");
+            videoRef.current.play();
+          });
+      }
+    }
+  }, []);
 
   let introTextTL;
   // Intro Text scroll animation
@@ -116,7 +139,7 @@ const HomePageLayout = ({ lang, data, ...otherProps }) => {
           "1.4"
         )
         .to(
-          videoRef.current,
+          videoContainerRef.current,
           {
             duration: 1,
             opacity: 1,
@@ -124,14 +147,18 @@ const HomePageLayout = ({ lang, data, ...otherProps }) => {
           "1.5"
         );
     }
-  }, [introTextTL, ScrollTrigger, gsap.timeline, acf]);
+  }, [introTextTL, ScrollTrigger, gsap, acf]);
 
-  // const hideVideo = () => {
-  //   if (!!videoRef) videoRef.current.style.display = "none";
-  // };
-  // const showVideo = () => {
-  //   if (!!videoRef) videoRef.current.style.display = "flex";
-  // };
+  const hideVideo = () => {
+    if (!videoRef) return null;
+    if (!!videoRef && !!videoRef.current)
+      videoRef.current.style.display = "none";
+  };
+  const showVideo = () => {
+    if (!videoRef) return null;
+    if (!!videoRef && !!videoRef.current)
+      videoRef.current.style.display = "flex";
+  };
 
   let visionTL;
   useEffect(() => {
@@ -143,8 +170,10 @@ const HomePageLayout = ({ lang, data, ...otherProps }) => {
           start: "top bottom",
           end: "bottom bottom",
           // onUpdate: ({ progress }) => [
-          //   progress > 100 ? hideVideo() : showVideo(),
+          //   progress === 1 ? hideVideo() : showVideo(),
           // ],
+          onEnter: () => hideVideo(),
+          onEnterBack: () => showVideo(),
         },
       });
 
@@ -153,7 +182,7 @@ const HomePageLayout = ({ lang, data, ...otherProps }) => {
         ease: Power1.inOut,
       });
 
-      visionTL.to(videoRef.current, {
+      visionTL.to(videoContainerRef.current, {
         display: "hidden",
       });
     }
@@ -199,16 +228,18 @@ const HomePageLayout = ({ lang, data, ...otherProps }) => {
                     : "SCOPRI L’EFFETTO WAU"}
                 </p>
               </div>
-              <div className="video-container" ref={videoRef}>
+              <div className="video-container" ref={videoContainerRef}>
                 <video
                   className="video"
                   width="900"
                   height="500"
+                  muted={true}
                   controls={false}
                   poster={WauVideoPoster}
                   loop
+                  ref={videoRef}
                   autoPlay
-                  muted
+                  playsInline
                 >
                   <source src={WauVideoMp4} type="video/mp4" />
                   <source src={WauVideoWebM} type="video/webm" />

@@ -35,7 +35,7 @@ const SocialIcons = ({ menu, isDark }) => {
           .forEach((l) => (l.style.opacity = "1"));
       });
     });
-  });
+  }, [socialIconsRef]);
 
   return (
     <SocialIconsContainer ref={socialIconsRef} isDark={isDark}>
@@ -44,7 +44,7 @@ const SocialIcons = ({ menu, isDark }) => {
           <SocialIcon
             isDark={isDark}
             social={social}
-            key={`icons-${Math.floor(Math.random() * (100 - 999) + 100)}`}
+            key={`icons-${social.id}`}
           />
         ))}
     </SocialIconsContainer>
