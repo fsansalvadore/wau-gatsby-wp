@@ -4,7 +4,7 @@ import tw, { styled, css } from "twin.macro";
 import Img from "gatsby-image";
 
 const ClientLink = styled.a`
-  ${tw`block flex-basis[200px] xl:max-width[220px]`}
+  ${tw`block flex-basis[200px] xl:max-width[220px] p-4 m-4 flex-1`}
 
   ${({ $hasLink }) => !$hasLink && tw`pointer-events-none`}
 `;
@@ -63,7 +63,7 @@ export default ({ ...otherProps }) => {
               {!!client.featuredImage &&
                 (client.featuredImage.node.imageFile ? (
                   <Img
-                    tw="relative max-width[220px] w-full h-auto"
+                    tw="relative max-width[220px] w-full h-64"
                     fixed={
                       client.featuredImage.node.imageFile.childImageSharp.fixed
                     }
@@ -73,7 +73,7 @@ export default ({ ...otherProps }) => {
                   <img
                     src={client.featuredImage.node.sourceUrl}
                     alt={client.title}
-                    tw="relative max-width[220px] w-full h-auto"
+                    tw="relative max-width[220px] w-full h-64"
                   />
                 ))}
             </ClientLink>
@@ -87,18 +87,13 @@ const StyledClientsSection = styled.section(() => [
   css`
     ${tw`p-8 py-16 md:py-32 text-center background-image[linear-gradient(#FCFCFC 0%, #fff 20%)]`}
 
-    ul li {
-      flex: 1;
-      flex-basis: 200px;
-      ${tw`p-4 m-4`}
-
-      .gatsby-image-wrapper,
-      img, picture {
-        width: 100% !important;
-        max-width: 260px !important;
-        max-height: 160px !important;
-        height: auto !important;
-      }
+    .gatsby-image-wrapper,
+    img,
+    picture {
+      width: 100%;
+      max-width: 260px;
+      max-height: 160px;
+      height: auto;
     }
   `,
 ]);
