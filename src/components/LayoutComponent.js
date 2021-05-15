@@ -62,7 +62,7 @@ const Layout = ({ isMenuLight, hasNoContactsCta, children }) => {
       <script
         type="text/javascript"
         charSet="UTF-8"
-        src="//cdn.cookie-script.com/s/b6c4a2730d62e6c3c995c08302b9a5c3.js"
+        src="//cdn.cookie-script.com/s/7991ee83e5ce42619638cf7bb4398e2e.js"
       />
     </>
   );
