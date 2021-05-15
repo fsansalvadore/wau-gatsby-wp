@@ -3,6 +3,12 @@ import { graphql, useStaticQuery } from "gatsby";
 import tw, { styled, css } from "twin.macro";
 import Img from "gatsby-image";
 
+const ClientLink = styled.a`
+  ${tw`flex-basis[200px] xl:max-width[220px]`}
+
+  ${({ $hasLink }) => !$hasLink && tw`pointer-events-none`}
+`;
+
 // eslint-disable-next-line import/no-default-export
 export default ({ ...otherProps }) => {
   const data = useStaticQuery(graphql`
@@ -47,11 +53,11 @@ export default ({ ...otherProps }) => {
       <div tw="flex justify-around xl:justify-between flex-wrap my-16 mx-auto max-width[1440px]">
         {!!clients &&
           clients.map((client) => (
-            <a
+            <ClientLink
               href={!!client.clientACF.link ? client.clientACF.link : "#"}
               target={!!client.clientACF.link ? "_blank" : "_self"}
               rel="noreferrer"
-              tw="flex-basis[200px] xl:max-width[220px]"
+              $hasLink={!!client.clientACF.link}
             >
               {!!client.featuredImage &&
                 (client.featuredImage.node.imageFile ? (
@@ -69,7 +75,7 @@ export default ({ ...otherProps }) => {
                     tw="relative max-width[220px] w-full h-64"
                   />
                 ))}
-            </a>
+            </ClientLink>
           ))}
       </div>
     </StyledClientsSection>
