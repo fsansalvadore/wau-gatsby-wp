@@ -52,12 +52,13 @@ export default ({ ...otherProps }) => {
       <h3 tw="text-4xl">Chi si è affidato a noi</h3>
       <div tw="flex justify-around xl:justify-between flex-wrap my-16 mx-auto max-width[1440px]">
         {!!clients &&
-          clients.map((client) => (
+          clients.map((client, i) => (
             <ClientLink
               href={!!client.clientACF.link ? client.clientACF.link : "#"}
               target={!!client.clientACF.link ? "_blank" : "_self"}
               rel="noreferrer"
               $hasLink={!!client.clientACF.link}
+              key={i}
             >
               {!!client.featuredImage &&
                 (client.featuredImage.node.imageFile ? (
@@ -96,7 +97,7 @@ const StyledClientsSection = styled.section(() => [
         width: 100%;
         max-width: 260px;
         max-height: 160px;
-        height: auto;
+        height: auto !important;
       }
     }
   `,
