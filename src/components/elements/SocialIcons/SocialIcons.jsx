@@ -16,7 +16,7 @@ const SocialIconsContainer = styled.div((isDark) => [
   `,
 ]);
 
-const SocialIcons = ({ menu, isDark }) => {
+const SocialIcons = ({ menu, isDark, haveSpacing }) => {
   const socialIconsRef = useRef(null);
 
   useEffect(() => {
@@ -44,6 +44,7 @@ const SocialIcons = ({ menu, isDark }) => {
           <SocialIcon
             isDark={isDark}
             social={social}
+            haveSpacing={haveSpacing}
             key={`icons-${social.id}`}
           />
         ))}

@@ -108,7 +108,7 @@ export default ({ lang }) => {
           tw="col-span-12 md:col-span-4! xl:col-span-2"
         >
           <h5>Seguici</h5>
-          {!!socialMenu && <SocialIcons menu={socialMenu} />}
+          {!!socialMenu && <SocialIcons menu={socialMenu} haveSpacing />}
         </div>
         <div
           className="footer-lang-container"

@@ -4,7 +4,7 @@ import tw, { styled, css } from "twin.macro";
 import Img from "gatsby-image";
 
 const ClientLink = styled.a`
-  ${tw`flex-basis[200px] xl:max-width[220px]`}
+  ${tw`block flex-basis[200px] xl:max-width[220px]`}
 
   ${({ $hasLink }) => !$hasLink && tw`pointer-events-none`}
 `;
@@ -95,8 +95,8 @@ const StyledClientsSection = styled.section(() => [
       .gatsby-image-wrapper,
       img, picture {
         width: 100% !important;
-        max-width: 260px;
-        max-height: 160px;
+        max-width: 260px !important;
+        max-height: 160px !important;
         height: auto !important;
       }
     }
