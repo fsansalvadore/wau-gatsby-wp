@@ -267,7 +267,11 @@ class ContactForm extends React.Component {
                   </Checkbox>
                 </div>
                 <div className="required-label">
-                  <p>* Campi obbligatori</p>
+                  <p>
+                    {this.props.lang === "it"
+                      ? "* Campi obbligatori"
+                      : "* Required fields"}
+                  </p>
                 </div>
               </div>
               <div tw="flex-grow">

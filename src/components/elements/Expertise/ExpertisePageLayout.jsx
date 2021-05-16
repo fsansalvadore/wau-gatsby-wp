@@ -127,7 +127,7 @@ const ExpertisePageLayout = ({ data, lang }) => {
           </GridMaxWidthContainer>
         </section>
       </div>
-      <ClientsSection />
+      <ClientsSection lang={lang} />
     </Layout>
   );
 };

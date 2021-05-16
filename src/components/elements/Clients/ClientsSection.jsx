@@ -10,7 +10,7 @@ const ClientLink = styled.a`
 `;
 
 // eslint-disable-next-line import/no-default-export
-export default ({ ...otherProps }) => {
+export default ({ lang, ...otherProps }) => {
   const data = useStaticQuery(graphql`
     query ClientsQuery {
       wordpress {
@@ -49,7 +49,9 @@ export default ({ ...otherProps }) => {
 
   return (
     <StyledClientsSection {...otherProps}>
-      <h3 tw="text-4xl">Chi si è affidato a noi</h3>
+      <h3 tw="text-4xl">
+        {lang === "it" ? "Chi si è affidato a noi" : "Who has relied on us"}
+      </h3>
       <div tw="flex justify-around xl:justify-between flex-wrap my-16 mx-auto max-width[1440px]">
         {!!clients &&
           clients.map((client, i) => (
