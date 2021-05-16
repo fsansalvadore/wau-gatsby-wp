@@ -61,7 +61,7 @@ const TeamPageIta = () => {
     }
   `);
 
-  return <TeamPageLayout data={data} lang="it" />;
+  return <TeamPageLayout data={data} lang="en" />;
 };
 
 // eslint-disable-next-line import/no-default-export

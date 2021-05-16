@@ -62,6 +62,7 @@ const TeamMemberCard = ({
   afc,
   member,
   setActiveMember,
+  lang,
   setModalIsOpen,
   ...otherProps
 }) => {
@@ -82,7 +83,6 @@ const TeamMemberCard = ({
         transition={{ ...transition, duration: 0.8 }}
         tw="relative flex items-end w-full overflow-hidden"
         onMouseEnter={() => setIsHovered(true)}
-        // onTap={() => setIsHovered(!isHovered)}
         onMouseLeave={() => setIsHovered(false)}
         onClick={() => setModal(member)}
         {...otherProps}
@@ -106,7 +106,7 @@ const TeamMemberCard = ({
               </div>
             )}
             <ButtonWrapper>
-              <Button>Leggi di più</Button>
+              <Button>{lang === "it" ? "Leggi di più" : "Read more"}</Button>
             </ButtonWrapper>
             {afc && afc.email && (
               <motion.div

@@ -87,7 +87,9 @@ const TeamPageLayout = ({ data, lang }) => {
         <section>
           <GridMaxWidthContainer tw="my-4 lg:mb-16 lg:mt-0">
             <hr tw="col-span-12 mb-8 lg:mb-16" />
-            <h2 tw="col-span-12 text-3xl md:text-5xl">Soci</h2>
+            <h2 tw="col-span-12 text-3xl md:text-5xl">
+              {lang === "it" ? "Soci" : "Founders"}
+            </h2>
             <ul
               className="team_content"
               tw="col-span-12 grid grid-cols-2 lg:grid-cols-4 mt-8 lg:mt-16"
@@ -108,6 +110,7 @@ const TeamPageLayout = ({ data, lang }) => {
                       setModalIsOpen={setModalIsOpen}
                       setActiveMember={setActiveMember}
                       member={member}
+                      lang={lang}
                     />
                   </li>
                 ))
@@ -125,7 +128,9 @@ const TeamPageLayout = ({ data, lang }) => {
         <section>
           <GridMaxWidthContainer tw="my-4 lg:my-8">
             <hr tw="col-span-12 mb-8 lg:mb-16" />
-            <h2 tw="col-span-12 text-3xl md:text-5xl">Team operativo</h2>
+            <h2 tw="col-span-12 text-3xl md:text-5xl">
+              {lang === "it" ? "Team operativo" : "Operations Team"}
+            </h2>
             <ul
               className="team_content"
               tw="col-span-12 grid grid-cols-2 lg:grid-cols-4 mt-8 lg:mt-16"
@@ -146,6 +151,7 @@ const TeamPageLayout = ({ data, lang }) => {
                       setModalIsOpen={setModalIsOpen}
                       setActiveMember={setActiveMember}
                       member={member}
+                      lang={lang}
                     />
                   </li>
                 ))
@@ -167,7 +173,7 @@ const TeamPageLayout = ({ data, lang }) => {
             <GridMaxWidthContainer tw="my-4 lg:mb-8">
               <hr tw="col-span-12 mb-8 lg:mb-16" />
               <h2 tw="col-span-12 md:col-span-4 md:col-start-1 text-3xl md:text-5xl">
-                Referenti
+                {lang === "it" ? "Referenti" : "Referents"}
               </h2>
               <ul tw="col-span-12 md:col-span-5 md:col-start-7 mt-8 md:mt-0">
                 {collaborators.map((collaborator) => (

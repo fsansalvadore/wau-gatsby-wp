@@ -107,7 +107,7 @@ const ExpertisePageLayout = ({ data, lang }) => {
                             }
                             isWhite
                           >
-                            Approfondisci
+                            {lang === "it" ? "Approfondisci" : "Learn more"}
                           </Button>
                         </div>
                       </div>
@@ -116,7 +116,11 @@ const ExpertisePageLayout = ({ data, lang }) => {
                 ))
               ) : (
                 <li>
-                  <p className="not-found">Nessuna expertise trovata</p>
+                  <p className="not-found">
+                    {lang === "it"
+                      ? "Nessuna expertise trovata"
+                      : "No expertise found"}
+                  </p>
                 </li>
               )}
             </ListWrapper>
