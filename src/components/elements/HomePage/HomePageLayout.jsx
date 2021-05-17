@@ -410,7 +410,7 @@ const HomePageLayout = ({ lang, data, ...otherProps }) => {
                       to={lang === "it" ? "/notizie" : "/en/news"}
                       tw="mt-8 md:mt-16 inline-block"
                     >
-                      {lang === "it" ? "Explora le notizie" : "Read all news"}
+                      {lang === "it" ? "Esplora le notizie" : "Read all news"}
                     </Button>
                   </div>
                 </GridMaxWidthContainer>

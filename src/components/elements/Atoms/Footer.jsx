@@ -153,13 +153,19 @@ export default ({ lang }) => {
         >
           <ul>
             <li>
-              <a href="https://www.saglietti.it/" target="_blank" tw="py-4">
+              <a
+                href="https://www.saglietti.it/"
+                rel="noreferrer"
+                target="_blank"
+                tw="py-4"
+              >
                 Design
               </a>
             </li>
             <li>
               <a
                 href="https://www.fsansalvadore.com/"
+                rel="noreferrer"
                 target="_blank"
                 tw="py-4"
               >

@@ -166,7 +166,7 @@ class WauCampContactForm extends React.Component {
     fetch("/", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: encode({ "form-name": "Contatti", ...this.state }),
+      body: encode({ "form-name": "WAU-Camp", ...this.state }),
     })
       .then(() => {
         this.setState({
@@ -221,14 +221,14 @@ class WauCampContactForm extends React.Component {
         ) : (
           <form
             onSubmit={this.handleSubmit}
-            name="Contatti"
+            name="WAU-Camp"
             method="POST"
             data-netlify="true"
           >
             <input
               type="hidden"
               name="form-name"
-              value="Contatti"
+              value="WAU-Camp"
               netlify-honeypot="bot-field"
               hidden
             />

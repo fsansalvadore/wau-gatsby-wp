@@ -6,7 +6,7 @@ const ExpertisesPageIta = () => {
   const data = useStaticQuery(graphql`
     query ExpertisesEngQuery {
       wordpress {
-        pages(where: { status: PUBLISH, language: EN, title: "Studio" }) {
+        pages(where: { status: PUBLISH, language: EN, title: "Expertise" }) {
           nodes {
             slug
             title

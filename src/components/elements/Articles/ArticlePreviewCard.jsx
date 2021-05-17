@@ -39,7 +39,7 @@ const ArticlePreviewCard = ({ article, ...otherProps }) => {
         <StyledArticlePreviewCard
           to={
             article.language.code === "EN"
-              ? `/article/${article.slug}`
+              ? `/en/news/${article.slug}`
               : `/notizie/${article.slug}`
           }
           tw="w-full grid grid-cols-9 row-gap[20px]"

@@ -145,51 +145,54 @@ const ExpertisePage = (props) => {
             {content && parse(content)}
           </GridMaxWidthContainer>
         </article>
-        {expertiseACF && expertiseACF.progetti && expertiseACF.progetti && (
-          <section>
-            <p tw="text-center text-3xl pt-8 pb-16 md:pb-28">
-              Ecco qualche esempio:
-            </p>
-            <ul tw="w-full grid grid-cols-1 m-0 md:grid-cols-2 lg:grid-cols-3 pb-px">
-              {expertiseACF.progetti.map((project) => (
-                <li
-                  key={`exp-proj-${Math.floor(
-                    Math.random() * (100 - 999) + 100
-                  )}`}
-                  tw="p-px"
-                >
-                  <ProjectPreviewCard
-                    link={
-                      lang.code === "EN"
-                        ? `/en/projects/${project.slug}`
-                        : `/progetti/${project.slug}`
-                    }
-                    title={project.title}
-                    featuredImage={project.featuredImage}
-                    imgSrc={
-                      project.featuredImage
-                        ? project.featuredImage.node.sourceUrl
-                        : ""
-                    }
-                    imgAlt={
-                      project.featuredImage
-                        ? project.featuredImage.node.altText
-                        : ""
-                    }
-                    projectdate={
-                      project.ProjectAFC.projectdate
-                        ? project.ProjectAFC.projectdate
-                        : null
-                    }
-                    location={
-                      project.ProjectAFC.location && project.ProjectAFC.location
-                    }
-                  />
-                </li>
-              ))}
-            </ul>
-          </section>
-        )}
+        {!!expertiseACF &&
+          !!expertiseACF.progetti &&
+          expertiseACF.progetti.length > 1 && (
+            <section>
+              <p tw="text-center text-3xl pt-8 pb-16 md:pb-28">
+                Ecco qualche esempio:
+              </p>
+              <ul tw="w-full grid grid-cols-1 m-0 md:grid-cols-2 lg:grid-cols-3 pb-px">
+                {expertiseACF.progetti.map((project) => (
+                  <li
+                    key={`exp-proj-${Math.floor(
+                      Math.random() * (100 - 999) + 100
+                    )}`}
+                    tw="p-px"
+                  >
+                    <ProjectPreviewCard
+                      link={
+                        lang.code === "EN"
+                          ? `/en/projects/${project.slug}`
+                          : `/progetti/${project.slug}`
+                      }
+                      title={project.title}
+                      featuredImage={project.featuredImage}
+                      imgSrc={
+                        project.featuredImage
+                          ? project.featuredImage.node.sourceUrl
+                          : ""
+                      }
+                      imgAlt={
+                        project.featuredImage
+                          ? project.featuredImage.node.altText
+                          : ""
+                      }
+                      projectdate={
+                        project.ProjectAFC.projectdate
+                          ? project.ProjectAFC.projectdate
+                          : null
+                      }
+                      location={
+                        project.ProjectAFC.location &&
+                        project.ProjectAFC.location
+                      }
+                    />
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
       </ExpertiseContainer>
     </Layout>
   );
