@@ -203,6 +203,7 @@ class ContactForm extends React.Component {
             method="POST"
             data-netlify="true"
           >
+            <input type="hidden" name="bot-field" />
             <input
               type="hidden"
               name="form-name"

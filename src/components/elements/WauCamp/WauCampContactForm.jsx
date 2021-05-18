@@ -162,6 +162,7 @@ class WauCampContactForm extends React.Component {
   }
 
   handleSubmit = (e) => {
+    e.preventDefault();
     this.setState({ loading: true });
     fetch("/", {
       method: "POST",
@@ -220,12 +221,13 @@ class WauCampContactForm extends React.Component {
           </motion.span>
         ) : (
           <form
-            onSubmit={this.handleSubmit}
             name="WAU-Camp"
             id="WAU-Camp"
-            method="POST"
+            method="POST" 
             data-netlify="true"
+            onSubmit={this.handleSubmit}
           >
+            <input type="hidden" name="bot-field" />
             <input
               type="hidden"
               name="form-name"
