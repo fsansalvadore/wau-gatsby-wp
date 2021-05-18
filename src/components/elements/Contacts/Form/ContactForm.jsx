@@ -199,6 +199,7 @@ class ContactForm extends React.Component {
           <form
             onSubmit={this.handleSubmit}
             name="Contatti"
+            id="Contatti"
             method="POST"
             data-netlify="true"
           >

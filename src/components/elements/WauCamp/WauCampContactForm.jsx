@@ -222,6 +222,7 @@ class WauCampContactForm extends React.Component {
           <form
             onSubmit={this.handleSubmit}
             name="WAU-Camp"
+            id="WAU-Camp"
             method="POST"
             data-netlify="true"
           >
