@@ -66,7 +66,7 @@ export default ({ lang }) => {
           </div>
         </div>
         <div className="footer-list">
-          <h5>Naviga</h5>
+          <h5>{lang === "it" ? "Naviga" : "Explore"}</h5>
           <ul>
             {lang === "it"
               ? data.wordpress.menus.nodes
@@ -107,7 +107,7 @@ export default ({ lang }) => {
           className="footer-list"
           tw="col-span-12 md:col-span-4! xl:col-span-2"
         >
-          <h5>Seguici</h5>
+          <h5>{lang === "it" ? "Seguici" : "Follow us"}</h5>
           {!!socialMenu && (
             <SocialIcons menu={socialMenu} hasGrid haveSpacing />
           )}

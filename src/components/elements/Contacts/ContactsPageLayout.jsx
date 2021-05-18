@@ -137,4 +137,5 @@ const ContactsPageLayout = ({ data, socials, lang }) => {
   );
 };
 
+// eslint-disable-next-line import/no-default-export
 export default ContactsPageLayout;

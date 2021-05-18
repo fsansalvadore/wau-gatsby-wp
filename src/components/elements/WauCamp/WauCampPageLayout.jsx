@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
-import tw from "twin.macro";
+import "twin.macro";
 import parse from "html-react-parser";
 import Layout from "../../LayoutComponent";
 import Heading from "../Heading/Heading";
 import ImageWrapper from "../Atoms/ImageWrapper";
 import GridMaxWidthContainer from "../Atoms/GridMaxWidthContainer";
-import fallbackImg from "../../../images/Wau-Architetti-social-logo.jpg";
 import Button from "../Atoms/Button";
 import StyledWAUCampPage from "./WauCampPageLayout.styled";
 import WauCampContactForm from "./WauCampContactForm";

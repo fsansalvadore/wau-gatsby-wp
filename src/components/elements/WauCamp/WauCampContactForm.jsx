@@ -222,7 +222,6 @@ class WauCampContactForm extends React.Component {
             {feedback}
           </motion.span>
         ) : (
-          // <!-- A little help for the Netlify post-processing bots -->
           <>
             <form
               onSubmit={this.handleSubmit}
