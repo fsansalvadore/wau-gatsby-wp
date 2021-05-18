@@ -162,6 +162,11 @@ class WauCampContactForm extends React.Component {
   }
 
   handleSubmit = (e) => {
+    navigator.serviceWorker.getRegistrations().then(function (registrations) {
+      for (const registration of registrations) {
+        registration.unregister();
+      }
+    });
     this.setState({ loading: true });
     fetch("/", {
       method: "POST",
@@ -226,6 +231,7 @@ class WauCampContactForm extends React.Component {
               name="WauCamp"
               method="POST"
               data-netlify="true"
+              data-netlify-honeypot="bot-field"
             >
               <input type="hidden" name="form-name" value="WauCamp" />
               <Input
