@@ -221,7 +221,7 @@ class WauCampContactForm extends React.Component {
         ) : (
           // <!-- A little help for the Netlify post-processing bots -->
           <>
-            <form onSubmit={this.handleSubmit}>
+            <form onSubmit={this.handleSubmit} name="WauCamp">
               <input type="hidden" name="form-name" value="WauCamp" />
               <Input
                 placeholder={

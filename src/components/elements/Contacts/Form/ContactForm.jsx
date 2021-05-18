@@ -196,7 +196,7 @@ class ContactForm extends React.Component {
             {feedback}
           </motion.span>
         ) : (
-          <form onSubmit={this.handleSubmit}>
+          <form onSubmit={this.handleSubmit} name="Contatti">
             <input type="hidden" name="form-name" value="Contatti" />
             <Input
               placeholder="Email *"
