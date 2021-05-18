@@ -1,10 +1,11 @@
 import React, { useRef, useEffect } from "react";
 import styled from "styled-components";
-import { css } from "twin.macro";
+import tw, { css } from "twin.macro";
 import SocialIcon from "./SocialIcon";
 
-const SocialIconsContainer = styled.div((isDark) => [
+const SocialIconsContainer = styled.div((isDark, hasGrid) => [
   css`
+    ${tw`w-auto`}
     a {
       margin-right: 10px;
       transition: opacity 0.25s ease;
@@ -13,10 +14,16 @@ const SocialIconsContainer = styled.div((isDark) => [
     a.social-icon:hover {
       opacity: 1 !important;
     }
+
+    ${({ $hasGrid }) =>
+      $hasGrid &&
+      css`
+        ${tw`md:(grid grid-cols-3 grid-auto-columns[min-content] max-width[145px])`}
+      `}
   `,
 ]);
 
-const SocialIcons = ({ menu, isDark, haveSpacing }) => {
+const SocialIcons = ({ menu, isDark, haveSpacing, hasGrid }) => {
   const socialIconsRef = useRef(null);
 
   useEffect(() => {
@@ -38,7 +45,11 @@ const SocialIcons = ({ menu, isDark, haveSpacing }) => {
   }, [socialIconsRef]);
 
   return (
-    <SocialIconsContainer ref={socialIconsRef} isDark={isDark}>
+    <SocialIconsContainer
+      ref={socialIconsRef}
+      $hasGrid={hasGrid}
+      isDark={isDark}
+    >
       {menu &&
         menu.menuItems.nodes.map((social) => (
           <SocialIcon
