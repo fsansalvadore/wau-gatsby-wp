@@ -183,13 +183,11 @@ class WauCampContactForm extends React.Component {
           messaggio: "",
           email: "",
         });
-        // setTimeout(() => {
-        //   this.setState(
-        //     {
-        //       feedback: "",
-        //     }
-        //   )
-        // }, 3000);
+        setTimeout(() => {
+          this.setState({
+            feedback: "",
+          });
+        }, 3000);
       })
       .catch((error) => {
         this.setState({ error: error, loading: false });
@@ -233,7 +231,6 @@ class WauCampContactForm extends React.Component {
               data-netlify="true"
               data-netlify-honeypot="bot-field"
             >
-              <input type="hidden" name="form-name" value="WauCamp" />
               <Input
                 placeholder={
                   this.props.lang === "it" ? "Nome *" : "First Name *"
