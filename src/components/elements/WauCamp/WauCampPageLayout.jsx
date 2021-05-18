@@ -194,9 +194,7 @@ const WauCampPageLayout = ({ data, lang }) => {
                     parse(page.waucampACF.sezione7Form.paragrafo)}
                 </div>
                 <div tw="col-span-12 xl:col-span-8 xl:col-start-6">
-                  {typeof window !== "undefined" && (
-                    <WauCampContactForm lang={lang} />
-                  )}
+                  <WauCampContactForm lang={lang} />
                 </div>
               </GridMaxWidthContainer>
             </section>
