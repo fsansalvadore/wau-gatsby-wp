@@ -4,7 +4,7 @@ module.exports = {
   siteMetadata: {
     title: `WAU Architetti`,
     titleTemplate: "%s",
-    description: `WAU ARCHITETTI description`,
+    description: `Architettura. Design. Urbanistica. Ingegneria. Un’Architecture Factory che offre soluzioni di progettazione globali.`,
     author: ``,
     url: "https://wauarchitetti.com/", // No trailing slash allowed!
     siteUrl: `https://wauarchitetti.com/`,
