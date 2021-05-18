@@ -196,22 +196,7 @@ class ContactForm extends React.Component {
             {feedback}
           </motion.span>
         ) : (
-          <form
-            onSubmit={this.handleSubmit}
-            name="Contatti"
-            id="Contatti"
-            method="POST"
-            data-netlify="true"
-          >
-            <input type="hidden" name="bot-field" />
-            <input
-              type="hidden"
-              name="form-name"
-              value="Contatti"
-              netlify-honeypot="bot-field"
-              hidden
-            />
-
+          <form onSubmit={this.handleSubmit}>
             <Input
               placeholder="Email *"
               type="email"

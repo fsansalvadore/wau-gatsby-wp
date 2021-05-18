@@ -162,7 +162,6 @@ class WauCampContactForm extends React.Component {
   }
 
   handleSubmit = (e) => {
-    e.preventDefault();
     this.setState({ loading: true });
     fetch("/", {
       method: "POST",
@@ -220,115 +219,107 @@ class WauCampContactForm extends React.Component {
             {feedback}
           </motion.span>
         ) : (
-          <form
-            name="WAU-Camp"
-            id="WAU-Camp"
-            method="POST" 
-            data-netlify="true"
-            onSubmit={this.handleSubmit}
-          >
-            <input type="hidden" name="bot-field" />
-            <input
-              type="hidden"
-              name="form-name"
-              value="WAU-Camp"
-              netlify-honeypot="bot-field"
-              hidden
-            />
-
-            <Input
-              placeholder={this.props.lang === "it" ? "Nome *" : "First Name *"}
-              type="text"
-              label="Nome"
-              name="nome"
-              value={nome}
-              required
-              onChange={this.handleChange}
-            />
-            <Input
-              placeholder={
-                this.props.lang === "it" ? "Cognome *" : "Last Name *"
-              }
-              type="text"
-              label="Cognome"
-              name="cognome"
-              value={cognome}
-              required
-              onChange={this.handleChange}
-            />
-            <Input
-              placeholder="Email *"
-              type="email"
-              label="Email"
-              name="email"
-              value={email}
-              required
-              onChange={this.handleChange}
-            />
-            <Input
-              placeholder="Data di nascita *"
-              type="data-di-nascita"
-              label="Data di nascita"
-              name="nascita"
-              value={nascita}
-              onChange={this.handleChange}
-            />
-            <TextArea
-              placeholder={
-                this.props.lang === "it" ? "Messaggio *" : "Message *"
-              }
-              label="Messaggio"
-              name="messaggio"
-              value={messaggio}
-              required
-              onChange={this.handleChange}
-              rows={4}
-            />
-            <div tw="flex flex-col md:flex-row col-span-2">
-              <div
-                className="form-disclaimer"
-                tw="mb-4 w-full md:w-3/4 flex flex-col items-start justify-start"
-              >
-                <div className="privacy-check" tw="mb-4">
-                  <Checkbox
-                    value="checkedA"
-                    onChange={this.handleChange}
-                    required
-                    inputProps={{ "aria-label": "Checkbox A" }}
-                  >
-                    {this.props.lang === "it" ? (
-                      <p>
-                        Ho letto e accettato l’
-                        <Link to="/privacy-policy">
-                          informativa sulla privacy
-                        </Link>
-                        .*
-                      </p>
-                    ) : (
-                      <p>
-                        I read and accepted the{" "}
-                        <Link to="/privacy">Privacy Policy</Link>.*
-                      </p>
-                    )}
-                  </Checkbox>
-                </div>
-                <div className="required-label">
-                  <p>* Campi obbligatori</p>
-                </div>
-              </div>
-              <div tw="flex-grow">
-                <button
-                  type="submit"
-                  tw="w-full text-center flex justify-center opacity-80 hover:opacity-100 cursor-pointer"
+          // <!-- A little help for the Netlify post-processing bots -->
+          <>
+            <form onSubmit={this.handleSubmit}>
+              <Input
+                placeholder={
+                  this.props.lang === "it" ? "Nome *" : "First Name *"
+                }
+                type="text"
+                label="Nome"
+                name="nome"
+                value={nome}
+                required
+                onChange={this.handleChange}
+              />
+              <Input
+                placeholder={
+                  this.props.lang === "it" ? "Cognome *" : "Last Name *"
+                }
+                type="text"
+                label="Cognome"
+                name="cognome"
+                value={cognome}
+                required
+                onChange={this.handleChange}
+              />
+              <Input
+                placeholder="Email *"
+                type="email"
+                label="Email"
+                name="email"
+                value={email}
+                required
+                onChange={this.handleChange}
+              />
+              <Input
+                placeholder={
+                  this.props.lang === "it" ? "Data di nascita *" : "Birthdate *"
+                }
+                type="text"
+                label="Data di nascita"
+                name="nascita"
+                value={nascita}
+                onChange={this.handleChange}
+              />
+              <TextArea
+                placeholder={
+                  this.props.lang === "it" ? "Messaggio *" : "Message *"
+                }
+                label="Messaggio"
+                name="messaggio"
+                value={messaggio}
+                required
+                onChange={this.handleChange}
+                rows={4}
+              />
+              <div tw="flex flex-col md:flex-row col-span-2">
+                <div
+                  className="form-disclaimer"
+                  tw="mb-4 w-full md:w-3/4 flex flex-col items-start justify-start"
                 >
-                  {
-                    // check if loading or success
-                    loading ? "loading" : btn
-                  }
-                </button>
+                  <div className="privacy-check" tw="mb-4">
+                    <Checkbox
+                      value="checkedA"
+                      onChange={this.handleChange}
+                      required
+                      inputProps={{ "aria-label": "Checkbox A" }}
+                    >
+                      {this.props.lang === "it" ? (
+                        <p>
+                          Ho letto e accettato l’
+                          <Link to="/privacy-policy">
+                            informativa sulla privacy
+                          </Link>
+                          .*
+                        </p>
+                      ) : (
+                        <p>
+                          I read and accepted the{" "}
+                          <Link to="/privacy">Privacy Policy</Link>.*
+                        </p>
+                      )}
+                    </Checkbox>
+                  </div>
+                  <div className="required-label">
+                    <p>* Campi obbligatori</p>
+                  </div>
+                </div>
+                <div tw="flex-grow">
+                  <button
+                    type="submit"
+                    tw="w-full text-center flex justify-center opacity-80 hover:opacity-100 cursor-pointer"
+                  >
+                    {
+                      // check if loading or success
+                      loading ? "loading" : btn
+                    }
+                  </button>
+                </div>
               </div>
-            </div>
-          </form>
+            </form>
+          </>
         )}
 
         {error && (
