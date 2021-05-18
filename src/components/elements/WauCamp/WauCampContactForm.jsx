@@ -283,6 +283,7 @@ class WauCampContactForm extends React.Component {
                   <div className="privacy-check" tw="mb-4">
                     <Checkbox
                       value="checkedA"
+                      name="privacy-check"
                       onChange={this.handleChange}
                       required
                       inputProps={{ "aria-label": "Checkbox A" }}
