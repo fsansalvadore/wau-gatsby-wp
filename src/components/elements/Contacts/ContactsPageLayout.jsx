@@ -113,7 +113,7 @@ const ContactsPageLayout = ({ data, socials, lang }) => {
             />
           )}
         </section>
-        <section id="contact-form" tw="p-8 py-16 md:p-16 md:pt-40 lg:flex">
+        <section id="contact-form" tw="p-8 py-16 md:p-16 lg:py-40 lg:flex">
           {data.contactsACF.form && (
             <div tw="w-full lg:w-1/2 mb-8">
               {data.contactsACF.form.titolo && (
@@ -136,7 +136,7 @@ const ContactsPageLayout = ({ data, socials, lang }) => {
               type="hidden"
               data-netlify="true"
               data-netlify-honeypot="bot-field"
-              tw="invisible h-0"
+              tw="invisible h-0 absolute left[9999]"
             >
               <input type="hidden" name="form-name" value="contatti" />
               <input type="email" name="email" required />

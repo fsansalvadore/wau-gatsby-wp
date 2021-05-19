@@ -49,6 +49,21 @@ const IndexEng = () => {
               testo
             }
           }
+          seo {
+            title
+            metaDesc
+            metaKeywords
+            opengraphDescription
+            opengraphImage {
+              link
+            }
+            opengraphTitle
+            twitterDescription
+            twitterImage {
+              link
+            }
+            twitterTitle
+          }
         }
         expertises(first: 100, where: { status: PUBLISH, language: EN }) {
           nodes {

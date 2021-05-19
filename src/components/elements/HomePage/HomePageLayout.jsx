@@ -159,6 +159,10 @@ const HomePageLayout = ({ lang, data, ...otherProps }) => {
       videoRef.current.style.display = "flex";
   };
 
+  useEffect(() => {
+    console.log("data", data);
+  }, [data]);
+
   let visionTL;
   useEffect(() => {
     if (!visionSectionRef || !visionSectionRef.current) return;
@@ -189,7 +193,88 @@ const HomePageLayout = ({ lang, data, ...otherProps }) => {
   return (
     <Layout>
       <Helmet>
-        <title>WAU Architetti • Home Page</title>
+        <title>{`${
+          !!data.wordpress.page.seo
+            ? data.wordpress.page.seo.title
+            : "WAU Architetti - Torino - Home Page"
+        }`}</title>
+        <link
+          rel="canonical"
+          href={
+            lang === "it"
+              ? `https://www.wauarchitetti.com`
+              : `https://www.wauarchitetti.com/en`
+          }
+        />
+        <meta
+          name="description"
+          content={`${
+            !!data.wordpress.page.seo
+              ? data.wordpress.page.seo.metaDesc
+              : "Architettura. Design. Urbanistica. Ingegneria. Un’Architecture Factory che offre soluzioni di progettazione globali."
+          }`}
+        />
+        <meta
+          property="og:site_name"
+          content={
+            !!data.wordpress.page.seo
+              ? lang === "it"
+                ? `${data.wordpress.page?.seo?.title} • WAU Architetti`
+                : `${data.wordpress.page?.seo?.title} • WAU Architects`
+              : "WAU Architetti - Torino - Home Page"
+          }
+        />
+        <meta
+          property="og:url"
+          content={
+            lang === "it"
+              ? `https://www.wauarchitetti.com`
+              : `https://www.wauarchitetti.com/en`
+          }
+        />
+        <meta
+          property="og:title"
+          content={
+            !!data.wordpress.page.seo
+              ? data.wordpress.page.seo.title
+              : "WAU Architetti - Torino - Home Page"
+          }
+        />
+        <meta
+          property="og:description"
+          content={`${
+            !!data.wordpress.page.seo
+              ? data.wordpress.page.seo.metaDesc
+              : "Architettura. Design. Urbanistica. Ingegneria. Un’Architecture Factory che offre soluzioni di progettazione globali."
+          }`}
+        />
+        <meta name="twitter:card" content="summary" />
+        <meta
+          name="twitter:site"
+          content={
+            lang === "it"
+              ? `https://www.wauarchitetti.com`
+              : `https://www.wauarchitetti.com/en`
+          }
+        />
+        <meta
+          name="twitter:title"
+          content={
+            !!data.wordpress.page.seo
+              ? lang === "it"
+                ? `${data.wordpress.page?.seo?.title} • WAU Architetti`
+                : `${data.wordpress.page?.seo?.title} • WAU Architects`
+              : "WAU Architetti - Torino - Home Page"
+          }
+        />
+        <meta
+          name="twitter:description"
+          content={`${
+            !!data.wordpress.page.seo
+              ? data.wordpress.page.seo.metaDesc
+              : "Architettura. Design. Urbanistica. Ingegneria. Un’Architecture Factory che offre soluzioni di progettazione globali."
+          }`}
+        />
       </Helmet>
       <div ref={indexRef}>
         <PageLoader />
