@@ -223,14 +223,7 @@ class WauCampContactForm extends React.Component {
           </motion.span>
         ) : (
           <>
-            <form
-              onSubmit={this.handleSubmit}
-              name="waucamp"
-              method="POST"
-              data-netlify="true"
-              netlify
-              data-netlify-honeypot="bot-field"
-            >
+            <form onSubmit={this.handleSubmit} name="waucamp" netlify>
               <input type="hidden" name="form-name" value="waucamp" />
               <Input
                 placeholder={
