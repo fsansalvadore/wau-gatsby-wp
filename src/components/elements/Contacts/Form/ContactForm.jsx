@@ -157,7 +157,7 @@ class ContactForm extends React.Component {
     fetch("/", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: encode({ "form-name": "Contatti", ...this.state }),
+      body: encode({ "form-name": "contatti", ...this.state }),
     })
       .then(() => {
         this.setState({
@@ -196,8 +196,8 @@ class ContactForm extends React.Component {
             {feedback}
           </motion.span>
         ) : (
-          <form onSubmit={this.handleSubmit} name="Contatti">
-            <input type="hidden" name="form-name" value="Contatti" />
+          <form onSubmit={this.handleSubmit} name="contatti" netlify>
+            <input type="hidden" name="form-name" value="contatti" />
             <Input
               placeholder="Email *"
               type="email"
