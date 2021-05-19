@@ -140,7 +140,7 @@ class ContactForm extends React.Component {
     this.state = {
       nome: "",
       email: "",
-      message: "",
+      messaggio: "",
       btn: props.lang === "it" ? "Invia" : "Send",
       feedback: "",
       error: "",
@@ -164,7 +164,7 @@ class ContactForm extends React.Component {
           feedback: "Messaggio inviato",
           loading: false,
           nome: "",
-          message: "",
+          messaggio: "",
           email: "",
         });
         setTimeout(() => {
@@ -183,7 +183,15 @@ class ContactForm extends React.Component {
   handleChange = (e) => this.setState({ [e.target.name]: e.target.value });
 
   render() {
-    const { nome, email, message, btn, feedback, error, loading } = this.state;
+    const {
+      nome,
+      email,
+      messaggio,
+      btn,
+      feedback,
+      error,
+      loading,
+    } = this.state;
 
     return (
       <ContactFormContainer>
@@ -223,8 +231,8 @@ class ContactForm extends React.Component {
                 this.props.lang === "it" ? "Messaggio *" : "Message *"
               }
               label="Messaggio"
-              name="message"
-              value={message}
+              name="messaggio"
+              value={messaggio}
               required
               onChange={this.handleChange}
               rows={4}
