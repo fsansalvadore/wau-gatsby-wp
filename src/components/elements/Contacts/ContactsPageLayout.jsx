@@ -130,6 +130,25 @@ const ContactsPageLayout = ({ data, socials, lang }) => {
           )}
           <div tw="w-full md:w-1/2 lg:w-1/3">
             <ContactForm lang={lang} />
+            <form
+              name="contatti"
+              method="POST"
+              type="hidden"
+              data-netlify="true"
+              data-netlify-honeypot="bot-field"
+              tw="invisible"
+            >
+              <input type="hidden" name="form-name" value="contatti" />
+              <input type="email" name="email" required />
+              <input type="text" name="nome" required />
+              <textarea name="messaggio" required />
+              <button
+                type="submit"
+                tw="w-full text-center flex justify-center opacity-80 hover:opacity-100 cursor-pointer"
+              >
+                Invia
+              </button>
+            </form>
           </div>
         </section>
       </StyledContactsPageLayout>

@@ -194,6 +194,26 @@ const WauCampPageLayout = ({ data, lang }) => {
                 </div>
                 <div tw="col-span-12 xl:col-span-8 xl:col-start-6">
                   <WauCampContactForm lang={lang} />
+                  <form
+                    name="waucamp"
+                    method="POST"
+                    type="hidden"
+                    data-netlify="true"
+                    data-netlify-honeypot="bot-field"
+                    tw="invisible"
+                  >
+                    <input type="text" name="nome" required />
+                    <input type="text" name="cognome" required />
+                    <input type="email" name="email" required />
+                    <input type="text" name="nascita" />
+                    <textarea name="messaggio" required />
+                    <button
+                      type="submit"
+                      tw="w-full text-center flex justify-center opacity-80 hover:opacity-100 cursor-pointer"
+                    >
+                      Invia
+                    </button>
+                  </form>
                 </div>
               </GridMaxWidthContainer>
             </section>

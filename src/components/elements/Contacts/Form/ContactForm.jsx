@@ -138,7 +138,7 @@ class ContactForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: "",
+      nome: "",
       email: "",
       message: "",
       btn: props.lang === "it" ? "Invia" : "Send",
@@ -163,7 +163,7 @@ class ContactForm extends React.Component {
         this.setState({
           feedback: "Messaggio inviato",
           loading: false,
-          name: "",
+          nome: "",
           message: "",
           email: "",
         });
@@ -183,7 +183,7 @@ class ContactForm extends React.Component {
   handleChange = (e) => this.setState({ [e.target.name]: e.target.value });
 
   render() {
-    const { name, email, message, btn, feedback, error, loading } = this.state;
+    const { nome, email, message, btn, feedback, error, loading } = this.state;
 
     return (
       <ContactFormContainer>
@@ -212,8 +212,8 @@ class ContactForm extends React.Component {
               placeholder={this.props.lang === "it" ? "Nome *" : "Name *"}
               type="text"
               label="Nome"
-              name="name"
-              value={name}
+              name="nome"
+              value={nome}
               required
               onChange={this.handleChange}
             />
