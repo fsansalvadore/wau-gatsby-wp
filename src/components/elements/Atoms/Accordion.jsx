@@ -67,6 +67,7 @@ const StyledAccordion = styled.div(() => [
 
     .ant-collapse-header {
       position: relative !important;
+      ${tw`pr-6`}
     }
     .ant-collapse-item:last-of-type {
       ${tw`border-b`}
