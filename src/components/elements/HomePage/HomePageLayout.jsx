@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet";
 import { gsap, Power1 } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Link } from "gatsby";
-import TextLoop from "react-text-loop";
+import TextLoop from "react-text-loop-next";
 import "twin.macro";
 import WauLogo from "../../../assets/WAU-Logo.svg";
 import WauVideoMp4 from "../../../assets/Wau-Architetti-cut.mp4";
